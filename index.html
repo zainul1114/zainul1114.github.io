@@ -250,8 +250,8 @@
     </div>
     <div class="item">
       <div class="container" style="padding: 40px;">
-        <h3>High-Performance Computing (HPC) & LLMs</h3>
-        <p>Scale workloads with Slurm, PBS Pro, and run high-speed AI inference pipelines using Ollama, vLLM, and Qdrant vector databases.</p>
+        <h3>High-Performance Computing (HPC) & AI/ML</h3>
+        <p>Scale workloads with Slurm, PBS Pro, and run high-speed AI inference pipelines using PyTorch, Hugging Face, and MLflow.</p>
       </div>
     </div>
   </div>
@@ -266,8 +266,8 @@
     <div class="col-sm-8">
       <h2>About Azilehub Academy</h2><br>
       <h4><p style="text-align:justify">Azilehub Academy provides deep technical learning pathways focused on the intersection of robust DevOps pipelines and scalable MLOps environments. In an era where infrastructure automation meets artificial intelligence, engineers need holistic mastery over container runtimes, monitoring frameworks, and accelerated cluster schedulers.</p>
-      <p style="text-align:justify">Our curriculum is built on real-world engineering paradigms. Whether you are establishing local and cloud container architectures via Docker and Portainer, setting up metric-driven observability with Prometheus and Grafana, or scaling deep learning models across Slurm and PBS Pro high-performance computing clusters, our tutorials offer step-by-step clarity.</p>
-      <p style="text-align:justify">We empower practitioners to architect resilient relational databases with PostgreSQL, build vector-search capabilities with Qdrant, and serve local LLMs using high-throughput execution engines like vLLM and Ollama.</p></h4>
+      <p style="text-align:justify">Our curriculum is built on real-world engineering paradigms. Whether you are establishing local and cloud container architectures via Docker and Kubernetes, setting up metric-driven observability with Prometheus and Grafana, or scaling deep learning models across Slurm and HPC clusters, our tutorials offer step-by-step clarity.</p>
+      <p style="text-align:justify">We empower practitioners to master Linux server operating systems, track code via Version Control systems, and build scalable machine learning architectures using PyTorch, Hugging Face, and MLflow.</p></h4>
       <br>
     </div>
     <div class="col-sm-4 text-center">
@@ -283,61 +283,50 @@
   <br>
   <div class="row slideanim">
     
-    <!-- Linux & Git -->
+    <!-- Linux / Git -->
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-hdd logo-small"></span>
-      <h4>Linux & Git</h4>
-      <h4><p style="text-align:justify">Master foundational Linux kernel concepts, command-line operations, shell scripting, and distributed version control workflows using Git for seamless collaboration. <a href="linux/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+      <h4>Linux / Git</h4>
+      <h4><p style="text-align:justify">Ubuntu / Debian: standard server operating systems. RHEL / Rocky Linux: enterprise-grade distributions. Systemd: system and service manager. SSH: secure remote access protocol. <a href="linux/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
     </div>
 
-    <!-- Docker & Portainer -->
+    <!-- Version Control -->
+    <div class="col-sm-4">
+      <span class="glyphicon glyphicon-random logo-small"></span>
+      <h4>Version Control</h4>
+      <h4><p style="text-align:justify">Git: decentralized source code tracking. GitHub / GitLab: cloud hosting and collaboration. Bitbucket: enterprise source control platform. SVN: centralized version control system. <a href="version-control/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+    </div>
+
+    <!-- Containerization -->
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-th-large logo-small"></span>
-      <h4>Docker & Portainer</h4>
-      <h4><p style="text-align:justify">Learn containerization principles, multi-container deployments via Docker Compose, and simplified cluster management through Portainer dashboards. <a href="docker/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
-    </div>
-
-    <!-- Kubernetes (K8s) -->
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-cloud logo-small"></span>
-      <h4>Kubernetes (K8s)</h4>
-      <h4><p style="text-align:justify">Deploy, scale, and manage containerized applications across resilient multi-node Kubernetes clusters with enterprise networking and storage configurations. <a href="kubernetes/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+      <h4>Containerization</h4>
+      <h4><p style="text-align:justify">Docker: container creation and management. Kubernetes: container orchestration and scaling. Podman: rootless alternative to Docker. Helm: package manager for Kubernetes. <a href="containerization/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
     </div>
 
   </div>
   <br><br>
   <div class="row slideanim">
     
-    <!-- Prometheus & Grafana -->
+    <!-- Monitoring -->
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-stats logo-small"></span>
-      <h4>Prometheus & Grafana</h4>
-      <h4><p style="text-align:justify">Implement full-stack infrastructure observability, custom metric scraping with Prometheus, and build dynamic operational dashboards in Grafana. <a href="prometheus/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+      <h4>Monitoring</h4>
+      <h4><p style="text-align:justify">Prometheus: time-series data collection engine. Grafana: metric visualization and dashboards. ELK Stack: log aggregation and analysis. Datadog / Dynatrace: cloud-scale application monitoring. <a href="monitoring/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
     </div>
 
-    <!-- PBS Pro & Slurm -->
+    <!-- HPC -->
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-tasks logo-small"></span>
-      <h4>PBS Pro & Slurm</h4>
-      <h4><p style="text-align:justify">Configure and manage High-Performance Computing (HPC) workload managers, queue scheduling policies, and multi-node job execution environments. <a href="slurm/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+      <h4>HPC</h4>
+      <h4><p style="text-align:justify">PBS: Altair PBSPro. Slurm: cluster management and job scheduling. MPI: message passing for parallel computing. Singularity / Apptainer: HPC-optimized container runtimes. Lustre: high-performance parallel file system. <a href="hpc/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
     </div>
 
-    <!-- Ollama, vLLM & Qdrant -->
+    <!-- AI/ML -->
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-fire logo-small"></span>
-      <h4 style="color:#303030;">Ollama, vLLM & Qdrant</h4>
-      <h4><p style="text-align:justify">Deploy high-performance LLM inference servers with Ollama and vLLM, integrated seamlessly with Qdrant vector databases for advanced RAG pipelines. <a href="ollama/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
-    </div>
-
-  </div>
-  <br><br>
-  <div class="row slideanim">
-    
-    <!-- PostgreSQL -->
-    <div class="col-sm-4 col-sm-offset-4">
-      <span class="glyphicon glyphicon-database logo-small"></span>
-      <h4>PostgreSQL</h4>
-      <h4><p style="text-align:justify">Design, tune, and maintain enterprise relational database instances optimized for high-concurrency microservices and MLOps metadata stores. <a href="postgresql/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
+      <h4 style="color:#303030;">AI/ML</h4>
+      <h4><p style="text-align:justify">PyTorch / TensorFlow: core deep learning frameworks. Hugging Face: transformer models and datasets. Scikit-learn: machine learning data analysis. MLflow / WandB: experiment tracking and MLOps. <a href="ai-ml/index.html" style="color: #ff0000; text-decoration: none; font-weight: bold;">[ see more ]</a></p></h4>
     </div>
 
   </div>
@@ -351,19 +340,19 @@
       <div class="thumbnail">
         <div style="height: 180px; background: #00BFFF; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">DEVOPS</div>
         <p><strong>CI/CD & Infrastructure</strong></p>
-        <p>Linux, Git, Docker, Kubernetes, Portainer</p>
+        <p>Linux, Git, Docker, Kubernetes, Helm</p>
       </div>
     </div>  
     <div class="col-sm-4">
       <div class="thumbnail">
         <div style="height: 180px; background: #303030; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">MLOPS & AI</div>
-        <p><strong>Inference & Vector Search</strong></p>
-        <p>Ollama, vLLM, Qdrant, PostgreSQL</p>
+        <p><strong>Inference & Experiment Tracking</strong></p>
+        <p>PyTorch, Hugging Face, MLflow, Scikit-learn</p>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="thumbnail">
-        <div style="height: 180px; background: #555555; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">HPC & OBSERVABILITY</div>
+        <div style="height: 180px; background: #555555; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold;">HPC & MONITORING</div>
         <p><strong>Cluster Schedulers & Metrics</strong></p>
         <p>Slurm, PBS Pro, Prometheus, Grafana</p>
       </div>
@@ -382,7 +371,7 @@
         <h4>"The Slurm and Kubernetes cluster tutorials gave me the exact hands-on exposure I needed for enterprise infrastructure management!"<br><span>Alex Chen, Senior Systems Engineer</span></h4>
       </div>
       <div class="item">
-        <h4>"Deploying vLLM and Qdrant workflows with actual production configurations made mastering MLOps straightforward and practical."<br><span>Priya Sharma, MLOps Practitioner</span></h4>
+        <h4>"Deploying PyTorch and Hugging Face workflows with actual production configurations made mastering MLOps straightforward and practical."<br><span>Priya Sharma, MLOps Practitioner</span></h4>
       </div>
       <div class="item">
         <h4>"Azilehub Academy bridges the gap between traditional Linux administration and modern AI stack deployment brilliantly."<br><span>David Miller, Cloud Architect</span></h4>
@@ -416,7 +405,7 @@
     <div class="col-sm-4">
       <div class="thumbnail" style="padding: 20px; border: 1px solid #ddd;">
         <p><strong>AI INFERENCE</strong></p>
-        <p>Scaling LLMs with vLLM & Ollama on Kubernetes</p>
+        <p>Scaling Transformers with PyTorch & Hugging Face</p>
       </div>
     </div>
     <div class="col-sm-4">
