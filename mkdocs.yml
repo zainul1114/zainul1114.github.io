@@ -1,0 +1,10 @@
+site_name: Azilehub Academy
+site_url: https://zainul1114.github.io/
+repo_url: https://github.com/zainul1114/zainul1114.github.io
+repo_name: zainul1114/zainul1114.github.io
+
+theme:
+  name: mkdocs
+
+nav:
+  - Home: index.md
