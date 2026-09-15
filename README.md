@@ -119,9 +119,110 @@ MLOps Workflow:
 
 
 
+I would build an enterprise RAG platform on Kubernetes. Users access a Chat or enterprise application through a secured API Gateway providing TLS, authentication, authorization and rate limiting. The request reaches a FastAPI-based RAG service, which generates an embedding for the query, searches Qdrant for relevant document chunks, and constructs an augmented prompt.
+
+The prompt is sent to a vLLM deployment running on a GPU-enabled Kubernetes worker. Kubernetes schedules the Pod based on the nvidia.com/gpu resource, while the NVIDIA GPU Operator manages the GPU drivers, container toolkit, device plugin and GPU monitoring stack. vLLM handles tokenization, scheduling, continuous batching, KV-cache management, PagedAttention, prefill and decode, with the actual model computation executed on the NVIDIA GPU.
+
+For the MLOps lifecycle, I use Git, MLflow, MinIO, CI/CD and GitOps. Models and artifacts are tracked through MLflow and stored in object storage, while approved versions are promoted through CI/CD and deployed to Kubernetes using Argo CD.
+
+For production operations, I monitor Kubernetes, the RAG application, Qdrant, vLLM and GPU infrastructure using Prometheus, Grafana and DCGM, with centralized logging and tracing. Autoscaling, alerting, capacity planning, security, rollback and disaster recovery complete the production lifecycle.
+
+
+Tools at each stage:
+
+| Layer       | Tool                 | description   |
+| ----------- | -------------------- | --------------------------- |
+| Code        | Git                  | Version control             |
+| Build       | Docker               | Containerization            |
+| Registry    | Harbor               | Image management            |
+| Cluster     | Kubernetes/OpenShift | Orchestration               |
+| GPU         | NVIDIA GPU Operator  | GPU lifecycle               |
+| LLM         | Qwen3                | Generative model            |
+| Serving     | vLLM                 | High-performance inference  |
+| Embedding   | BGE-M3               | Semantic representation     |
+| Vector DB   | Qdrant               | Similarity search           |
+| RAG         | FastAPI              | Application orchestration   |
+| Storage     | MinIO                | Object/model storage        |
+| MLOps       | MLflow               | Experiments/model lifecycle |
+| CI          | GitLab CI            | Automated testing/build     |
+| CD          | Argo CD              | GitOps deployment           |
+| Network     | Ingress/Route        | External access             |
+| Security    | RBAC/Secrets         | Access control              |
+| Scaling     | HPA/KEDA             | Autoscaling                 |
+| Metrics     | Prometheus           | Metrics collection          |
+| Dashboard   | Grafana              | Visualization               |
+| GPU metrics | DCGM                 | GPU monitoring              |
+| Logs        | Loki                 | Centralized logs            |
+| Tracing     | OpenTelemetry        | Request tracing             |
 
 
 
+
+
+The Complete runtime request:
+
+          USER
+           │
+           ▼
+          Chat UI
+           │
+           ▼
+          Ingress / AI Gateway
+           │
+           ▼
+          RAG API
+           │
+           ├───────────────┐
+           │               │
+           ▼               ▼
+          BGE-M3          Question
+           │
+           ▼
+          Embedding
+           │
+           ▼
+          Qdrant
+           │
+           ▼
+          Top-K Documents
+           │
+           └───────────────┐
+                           │
+                           ▼
+                        Prompt
+                           │
+                           ▼
+                          vLLM
+                           │
+                           ▼
+                       vLLM Scheduler
+                           │
+                           ▼
+                    Continuous Batching
+                           │
+                           ▼
+                         Prefill
+                           │
+                           ▼
+                       KV Cache
+                           │
+                           ▼
+                    PagedAttention
+                           │
+                           ▼
+                        NVIDIA GPU
+                           │
+                           ▼
+                         Decode
+                           │
+                           ▼
+                        Response
+                           │
+                           ▼
+                       RAG API
+                           │
+                           ▼
+                        User
                           
 
 ```mermaid
