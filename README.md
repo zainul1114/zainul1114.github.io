@@ -24,6 +24,106 @@ and the operational loop is:
 
 Monitor → Analyze → Scale/Tune/Fix → Validate → Production.
 
+
+MLOps Project Structure:
+
+
+                enterprise-ai-platform/
+                │
+                ├── app/
+                │   ├── main.py
+                │   ├── rag.py
+                │   ├── embeddings.py
+                │   └── requirements.txt
+                │
+                ├── docker/
+                │   └── Dockerfile
+                │
+                ├── k8s/
+                │   ├── namespace.yaml
+                │   ├── secrets.yaml
+                │   ├── qdrant/
+                │   │   ├── pvc.yaml
+                │   │   ├── deployment.yaml
+                │   │   └── service.yaml
+                │   │
+                │   ├── vllm/
+                │   │   ├── deployment.yaml
+                │   │   └── service.yaml
+                │   │
+                │   ├── rag-api/
+                │   │   ├── deployment.yaml
+                │   │   ├── service.yaml
+                │   │   └── hpa.yaml
+                │   │
+                │   └── ingress.yaml
+                │
+                ├── monitoring/
+                │   ├── servicemonitor.yaml
+                │   └── dashboards/
+                │
+                ├── mlops/
+                │   ├── mlflow.yaml
+                │   └── minio.yaml
+                │
+                ├── argocd/
+                │   └── application.yaml
+                │
+                └── .gitlab-ci.yml
+
+
+MLOps Workflow:
+
+
+                  MLOps
+                    │
+                    ▼
+                 Dataset
+                    │
+                    ▼
+              Data Processing
+                    │
+                    ▼
+             Fine-tuning/Training
+                    │
+                    ▼
+             Experiment Tracking
+                    │
+                    ▼
+                  MLflow
+                    │
+                    ▼
+              Model Evaluation
+                    │
+             ┌──────┴──────┐
+             │             │
+          FAIL            PASS
+             │             │
+             ▼             ▼
+         Retrain       Model Registry
+                            │
+                            ▼
+                       MinIO Artifact
+                            │
+                            ▼
+                         CI/CD
+                            │
+                            ▼
+                        GitOps
+                            │
+                            ▼
+                       Kubernetes
+                            │
+                            ▼
+                          vLLM
+
+
+
+
+
+
+                          
+
 ```mermaid
 
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor': '#f4f4f4', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
