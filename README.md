@@ -1,6 +1,29 @@
 # azilehub.github.io
 mywebsite
 
+
+At the top, users interact with AI applications such as Chat, RAG, agents and enterprise APIs. These applications communicate through a secured AI gateway that provides TLS, authentication, authorization, rate limiting, WAF and load balancing. The gateway routes requests to workloads running on OpenShift.
+
+OpenShift manages the vLLM deployment, networking, storage, secrets, security and scaling. Kubernetes schedules the vLLM pod onto a GPU-capable worker node. Inside the pod, vLLM handles tokenization, request scheduling, continuous batching, prefill, KV-cache management, PagedAttention and decoding.
+
+The actual tensor computation is executed on NVIDIA GPUs such as H100, H200, A100 or L40S. The NVIDIA GPU Operator manages the Kubernetes GPU software stack, including drivers, Container Toolkit, GPU Device Plugin and GPU monitoring components.
+
+In parallel, the MLOps lifecycle manages data, training or fine-tuning, experiment tracking, evaluation, model registry and model artifacts. CI/CD and GitOps then promote the approved model into the OpenShift environment and deploy it through vLLM.
+
+Finally, observability monitors the application, Kubernetes, vLLM and GPU layers using metrics, logs and traces. Production operations use those signals for capacity planning, scaling, performance tuning, incident response, security, upgrades, rollback and disaster recovery.”
+
+The key sentence to remember
+
+User → Application → Gateway → OpenShift → vLLM → GPU → Response
+
+while the supporting lifecycle is:
+
+Data → MLOps → Model Registry → CI/CD/GitOps → vLLM
+
+and the operational loop is:
+
+Monitor → Analyze → Scale/Tune/Fix → Validate → Production.
+
 ```mermaid
 
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor': '#f4f4f4', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#ffffff'}}}%%
