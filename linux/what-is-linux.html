@@ -227,8 +227,7 @@
             flex: 1 0 auto; 
         }
 
-        .content-inner h1, 
-        .content-inner h2 {
+        .content-inner h1 {
             font-size: 2.6rem; 
             font-weight: 400;
             margin-bottom: 24px;
@@ -237,12 +236,32 @@
             letter-spacing: -0.2px;
         }
 
+        /* Question Headings (h3) */
+        .content-inner h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        /* Tightened paragraph spacing */
         .content-inner p {
-            font-size: 1.3rem;
-            line-height: 1.7;
+            font-size: 1.2rem;
+            line-height: 1.6;
             color: #374151;
-            margin-bottom: 24px;
+            margin-bottom: 12px;
             text-align: justify;
+        }
+
+        .content-inner ul {
+            margin-bottom: 14px;
+        }
+
+        .content-inner li {
+            font-size: 1.2rem;
+            color: #374151;
+            margin-bottom: 6px;
         }
         
         hr {
@@ -455,7 +474,7 @@
             .mobile-secondary-toolbar { display: flex; }
             
             .main-content { padding: 32px 20px; }
-            .content-inner h1, .content-inner h2 { font-size: 2rem; }
+            .content-inner h1 { font-size: 2rem; }
             .content-inner p { font-size: 1.15rem; text-align: left; }
 
             .contact-container { grid-template-columns: 1fr; gap: 40px; }
@@ -694,12 +713,12 @@
             'how-linux-works': {
                 title: 'How it works and its Types',
                 content: `
-                    <p style="margin-bottom: 20px;"><strong>1. What is Linux?</strong></p>
-                    <p style="margin-bottom: 20px;">Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.</p>
+                    <h3>1. What is Linux?</h3>
+                    <p>Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.</p>
                     
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">2. What is an Operating System?</h2>
-                    <p style="margin-bottom: 12px;">An OS is the software layer between applications and hardware. It manages:</p>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 20px; line-height: 1.7;">
+                    <h3>2. What is an Operating System?</h3>
+                    <p>An OS is the software layer between applications and hardware. It manages:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li><strong>CPU</strong> – processing</li>
                         <li><strong>Memory/RAM</strong> – running programs</li>
                         <li><strong>Storage</strong> – files and data</li>
@@ -707,8 +726,8 @@
                         <li><strong>Devices</strong> – disks, GPUs, keyboards, etc.</li>
                         <li><strong>Users and permissions</strong></li>
                     </ul>
-                    <p style="margin-bottom: 10px;"><strong>Simple view:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 15px; border-radius: 6px; font-family: monospace; margin-bottom: 24px; font-size: 0.95rem; overflow-x: auto; line-height: 1.5;">Applications
+                    <p style="margin-top: 12px;"><strong>Simple view:</strong></p>
+                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">Applications
      ↓
 Linux OS
      ↓
@@ -716,10 +735,10 @@ Linux Kernel
      ↓
 Hardware (CPU | RAM | Disk | Network | GPU)</pre>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">3. How Linux Works</h2>
-                    <p style="margin-bottom: 20px;">The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.</p>
-                    <p style="margin-bottom: 10px;">A Linux system generally contains:</p>
-                    <pre style="background: #f3f0ea; padding: 15px; border-radius: 6px; font-family: monospace; margin-bottom: 20px; font-size: 0.95rem; overflow-x: auto; line-height: 1.5;">Applications
+                    <h3>3. How Linux Works</h3>
+                    <p>The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.</p>
+                    <p>A Linux system generally contains:</p>
+                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">Applications
      ↓
 System Utilities / Libraries
      ↓
@@ -728,8 +747,8 @@ Shell / Services / Daemons
 Linux Kernel
      ↓
 Hardware</pre>
-                    <p style="margin-bottom: 12px;"><strong>The kernel manages:</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 24px; line-height: 1.7;">
+                    <p style="margin-top: 12px;"><strong>The kernel manages:</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Process management</li>
                         <li>Memory management</li>
                         <li>File systems</li>
@@ -738,30 +757,30 @@ Hardware</pre>
                         <li>Security and permissions</li>
                     </ul>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">4. GUI vs CLI</h2>
-                    <p style="margin-bottom: 12px;"><strong>GUI (Graphical User Interface)</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 16px; line-height: 1.7;">
+                    <h3>4. GUI vs CLI</h3>
+                    <p><strong>GUI (Graphical User Interface)</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Uses windows, menus, icons, and mouse.</li>
                         <li>Easy for general desktop usage.</li>
                     </ul>
-                    <p style="margin-bottom: 12px;"><strong>CLI (Command Line Interface)</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 16px; line-height: 1.7;">
+                    <p style="margin-top: 10px;"><strong>CLI (Command Line Interface)</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Uses commands through a terminal.</li>
                         <li>Very important for Linux administration, automation, DevOps, cloud, and servers.</li>
                     </ul>
-                    <p style="margin-bottom: 10px;"><strong>Example:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 15px; border-radius: 6px; font-family: monospace; margin-bottom: 24px; font-size: 0.95rem; overflow-x: auto; line-height: 1.5;">ls
+                    <p style="margin-top: 10px;"><strong>Example:</strong></p>
+                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">ls
 cd /var/log
 systemctl status sshd
 df -h</pre>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">5. Main Components of Linux</h2>
-                    <p style="margin-bottom: 20px;">Overview of core architecture components and their respective purposes in a standard Linux environment.</p>
+                    <h3>5. Main Components of Linux</h3>
+                    <p>Overview of core architecture components and their respective purposes in a standard Linux environment.</p>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">6. Linux and Open Source</h2>
-                    <p style="margin-bottom: 16px;">Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.</p>
-                    <p style="margin-bottom: 12px;"><strong>This allows:</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 24px; line-height: 1.7;">
+                    <h3>6. Linux and Open Source</h3>
+                    <p>Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.</p>
+                    <p><strong>This allows:</strong></p>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Global community contribution</li>
                         <li>Customization</li>
                         <li>Bug fixes</li>
@@ -769,17 +788,17 @@ df -h</pre>
                         <li>Development of different Linux distributions</li>
                     </ul>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">7. Major Benefits of Linux</h2>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 24px; line-height: 1.7;">
+                    <h3>7. Major Benefits of Linux</h3>
+                    <ul style="list-style-type: disc; padding-left: 20px;">
                         <li><strong>Versatility:</strong> Works from small embedded devices to large servers and supercomputers.</li>
                         <li><strong>Security:</strong> Strong user/group permissions, SELinux, process isolation, and open-source security review.</li>
                         <li><strong>Community:</strong> Large worldwide developer and administrator community.</li>
                         <li><strong>Automation:</strong> Powerful CLI and scripting make Linux highly suitable for DevOps and infrastructure automation.</li>
                     </ul>
 
-                    <h2 style="font-size: 2.6rem; font-weight: 400; margin-bottom: 24px; color: #111; line-height: 1.2; letter-spacing: -0.2px;">8. Linux vs Linux Distribution</h2>
-                    <p style="margin-bottom: 16px;">A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.</p>
-                    <p style="margin-bottom: 16px;">For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.</p>
+                    <h3>8. Linux vs Linux Distribution</h3>
+                    <p>A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.</p>
+                    <p>For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.</p>
                 `,
                 toc: [
                     'What is Linux', 
