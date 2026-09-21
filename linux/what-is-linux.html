@@ -1,212 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux - Complete Summary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linux Fundamentals</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+<style>
+    :root {
+        --bg: #ffffff;
+        --sidebar-bg: #f7f6f2;
+        --text: #171717;
+        --muted: #66645f;
+        --accent: #e4573d;
+        --border: #e7e4de;
+        --code-bg: #f5f4f1;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+    /* Left navigation */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 322px;
+        height: 100vh;
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--border);
+        padding: 22px 25px;
+        overflow-y: auto;
+    }
+
+    .sidebar-title {
+        color: #173b59;
+        font-size: 16px;
+        margin: 0 0 18px 14px;
+        font-weight: 500;
+    }
+
+    .nav-link {
+        display: block;
+        color: #173b59;
+        text-decoration: none;
+        padding: 11px 14px;
+        margin: 4px 0;
+        border-radius: 10px;
+        line-height: 1.45;
+        font-size: 16px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: #e8e6e1;
+        color: var(--accent);
+    }
+
+    /* Main content */
+    .content {
+        margin-left: 322px;
+        margin-right: 250px;
+        max-width: 900px;
+        padding: 8px 76px 100px;
+    }
+
+    .section {
+        min-height: 500px;
+        padding: 28px 0 70px;
+        border-bottom: 1px solid var(--border);
+        scroll-margin-top: 20px;
+    }
+
+    .section:first-child {
+        padding-top: 22px;
+    }
+
+    h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 400;
+        font-size: 46px;
+        line-height: 1.15;
+        margin: 0 0 24px;
+        letter-spacing: -1px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 18px;
+    }
+
+    h2 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 400;
+        font-size: 38px;
+        line-height: 1.2;
+        margin: 0 0 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        letter-spacing: -0.5px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-top: 28px;
+        margin-bottom: 8px;
+    }
+
+    p {
+        margin: 0 0 18px;
+    }
+
+    ul {
+        margin: 12px 0 22px 22px;
+        padding-left: 8px;
+    }
+
+    li {
+        margin: 8px 0;
+        padding-left: 3px;
+    }
+
+    li::marker {
+        color: var(--accent);
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    .intro {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 25px;
+    }
+
+    .diagram {
+        margin: 25px 0;
+        padding: 20px 24px;
+        background: var(--code-bg);
+        border-left: 3px solid var(--accent);
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+        line-height: 1.55;
+    }
+
+    code {
+        font-family: "Courier New", monospace;
+        background: var(--code-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    .callout {
+        margin: 25px 0;
+        padding: 18px 20px;
+        border-left: 3px solid var(--accent);
+        background: #faf9f6;
+    }
+
+    .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        margin-top: 20px;
+    }
+
+    .mini-card {
+        border-top: 1px solid var(--border);
+        padding-top: 15px;
+    }
+
+    /* Right table of contents */
+    .toc {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        padding: 20px 25px;
+        border-left: 1px solid var(--border);
+        background: #fff;
+        overflow-y: auto;
+    }
+
+    .toc-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .toc a {
+        display: block;
+        color: #666;
+        text-decoration: none;
+        padding: 5px 0;
+        line-height: 1.35;
+    }
+
+    .toc a:hover,
+    .toc a.active {
+        color: var(--accent);
+    }
+
+    .top-button {
+        position: fixed;
+        bottom: 25px;
+        right: 275px;
+        border: 1px solid var(--border);
+        background: white;
+        padding: 8px 13px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: #555;
+        font-size: 13px;
+    }
+
+    @media (max-width: 1050px) {
+        .sidebar {
+            width: 245px;
         }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            background: #f4f6f8;
-            color: #222;
+        .content {
+            margin-left: 245px;
+            margin-right: 0;
+            padding: 20px 45px 80px;
         }
 
-        header {
-            background: #1f2937;
-            color: white;
-            padding: 35px 20px;
-            text-align: center;
+        .toc {
+            display: none;
         }
 
-        header h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
+        .top-button {
+            right: 20px;
         }
+    }
 
-        header p {
-            font-size: 18px;
-            color: #d1d5db;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: white;
-            margin-bottom: 25px;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-
-        .card h2 {
-            color: #b91c1c;
-            margin-bottom: 15px;
-            font-size: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-        }
-
-        .card h3 {
-            margin-top: 18px;
-            margin-bottom: 8px;
-            color: #374151;
-        }
-
-        ul {
-            margin-left: 25px;
-            margin-top: 10px;
-        }
-
-        li {
-            margin: 6px 0;
-        }
-
-        .diagram {
-            background: #111827;
-            color: #f9fafb;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: monospace;
-            white-space: pre;
-            overflow-x: auto;
-            text-align: center;
-        }
-
-        code {
-            background: #f3f4f6;
-            padding: 3px 7px;
-            border-radius: 4px;
-            color: #991b1b;
-            font-family: monospace;
-        }
-
-        pre {
-            background: #111827;
-            color: #e5e7eb;
-            padding: 18px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin-top: 12px;
-        }
-
-        table {
+    @media (max-width: 700px) {
+        .sidebar {
+            position: relative;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+            height: auto;
+            border-right: 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        th {
-            background: #374151;
-            color: white;
-            padding: 12px;
-            text-align: left;
+        .content {
+            margin-left: 0;
+            padding: 20px;
         }
 
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+        h1 {
+            font-size: 36px;
         }
 
-        tr:nth-child(even) {
-            background: #f9fafb;
+        h2 {
+            font-size: 30px;
         }
 
-        .highlight {
-            background: #fef3c7;
-            border-left: 5px solid #f59e0b;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
+        .two-column {
+            grid-template-columns: 1fr;
         }
 
-        .benefit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
+        .top-button {
+            display: none;
         }
-
-        .benefit {
-            background: #f9fafb;
-            padding: 18px;
-            border-radius: 8px;
-            border-left: 4px solid #b91c1c;
-        }
-
-        .benefit h3 {
-            margin-top: 0;
-            color: #b91c1c;
-        }
-
-        footer {
-            background: #1f2937;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 28px;
-            }
-
-            .card {
-                padding: 18px;
-            }
-
-            table {
-                font-size: 14px;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>🐧 Linux - Complete Summary</h1>
-    <p>Linux Fundamentals for DevOps, Cloud, MLOps & System Administration</p>
-</header>
+<!-- LEFT SIDEBAR -->
+<nav class="sidebar">
+    <div class="sidebar-title">Linux Fundamentals</div>
 
-<div class="container">
+    <a class="nav-link active" href="#what-is-linux">1. What is Linux?</a>
+    <a class="nav-link" href="#operating-system">2. What is an Operating System?</a>
+    <a class="nav-link" href="#how-linux-works">3. How Linux Works</a>
+    <a class="nav-link" href="#gui-cli">4. GUI vs CLI</a>
+    <a class="nav-link" href="#components">5. Main Components of Linux</a>
+    <a class="nav-link" href="#open-source">6. Linux and Open Source</a>
+    <a class="nav-link" href="#benefits">7. Major Benefits of Linux</a>
+    <a class="nav-link" href="#distribution">8. Linux vs Linux Distribution</a>
+    <a class="nav-link" href="#devops">Linux in DevOps & MLOps</a>
+</nav>
 
-    <!-- 1 -->
-    <section class="card">
-        <h2>1. What is Linux?</h2>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+
+    <section id="what-is-linux" class="section">
+        <h1>What is Linux?</h1>
+
+        <p class="intro">
+            Linux is an open-source operating system based around the Linux kernel.
+            It was created by <strong>Linus Torvalds in 1991</strong>.
+        </p>
 
         <p>
-            Linux is an <strong>open-source operating system</strong> based around
-            the Linux kernel. It was created by <strong>Linus Torvalds in 1991</strong>.
+            Linux is widely used across modern IT infrastructure, including
+            servers, cloud platforms, containers, embedded systems,
+            supercomputers, and enterprise environments.
         </p>
 
-        <p style="margin-top:10px;">
-            Linux is widely used in:
-        </p>
-
-        <ul>
-            <li>Servers</li>
-            <li>Cloud platforms</li>
-            <li>Containers</li>
-            <li>Embedded systems</li>
-            <li>Supercomputers</li>
-            <li>Enterprise infrastructure</li>
-        </ul>
-
-        <h3>Examples of Linux Distributions</h3>
+        <h3>Examples of Linux distributions</h3>
 
         <ul>
             <li>Red Hat Enterprise Linux (RHEL)</li>
@@ -216,198 +324,177 @@
             <li>Fedora</li>
         </ul>
 
-        <div class="highlight">
-            <strong>Key Point:</strong>
-            Linux is the foundation, while RHEL, Rocky Linux, Ubuntu, etc.
-            are Linux distributions built around the Linux kernel.
+        <div class="callout">
+            <strong>Key Point:</strong> Linux is the foundation, while RHEL,
+            Rocky Linux, Ubuntu, and other distributions are complete operating
+            systems built around the Linux kernel.
         </div>
     </section>
 
 
-    <!-- 2 -->
-    <section class="card">
-        <h2>2. What is an Operating System?</h2>
+    <section id="operating-system" class="section">
+        <h2>What is an Operating System?</h2>
 
         <p>
-            An <strong>Operating System (OS)</strong> is software that manages
-            computer hardware and provides services to applications.
+            An <strong>Operating System (OS)</strong> is software that directly
+            manages computer hardware and provides services to applications.
         </p>
 
-        <h3>Major Responsibilities</h3>
+        <p>The OS manages resources such as:</p>
 
         <ul>
-            <li>CPU management</li>
-            <li>Memory/RAM management</li>
-            <li>Storage management</li>
-            <li>Network management</li>
-            <li>Device management</li>
-            <li>User and permission management</li>
+            <li><strong>CPU</strong> — processing and scheduling</li>
+            <li><strong>Memory/RAM</strong> — running programs and data</li>
+            <li><strong>Storage</strong> — files and persistent data</li>
+            <li><strong>Network</strong> — communication between systems</li>
+            <li><strong>Devices</strong> — disks, GPUs, keyboards, etc.</li>
+            <li><strong>Users and permissions</strong> — access and security</li>
         </ul>
 
-        <div class="diagram">
-Applications
-      ↓
+        <div class="diagram">Applications
+       ↓
 Linux Operating System
-      ↓
+       ↓
 Linux Kernel
-      ↓
+       ↓
 Hardware
-CPU | RAM | Disk | Network | GPU
-        </div>
+CPU | RAM | Disk | Network | GPU</div>
 
-        <div class="highlight">
-            <strong>Simple analogy:</strong>
-            The OS acts as a bridge between applications and physical hardware.
+        <div class="callout">
+            <strong>Simple analogy:</strong> The operating system acts as a
+            bridge between applications and physical hardware.
         </div>
     </section>
 
 
-    <!-- 3 -->
-    <section class="card">
-        <h2>3. How Linux Works</h2>
+    <section id="how-linux-works" class="section">
+        <h2>How Linux Works</h2>
 
         <p>
-            The <strong>Linux kernel</strong> is the core of the Linux operating
-            system. It manages hardware resources and provides services to
-            applications.
+            The <strong>Linux kernel</strong> is the core of the operating system.
+            It manages hardware resources and provides services that applications
+            use to perform their work.
         </p>
 
-        <div class="diagram">
-Applications
-      ↓
+        <div class="diagram">Applications
+       ↓
 System Libraries / Utilities
-      ↓
+       ↓
 Shell / Services / Daemons
-      ↓
+       ↓
 Linux Kernel
-      ↓
-Hardware
-        </div>
+       ↓
+Hardware</div>
 
-        <h3>Kernel Responsibilities</h3>
+        <h3>Kernel responsibilities</h3>
 
         <ul>
-            <li><strong>Process Management</strong> - manages running programs</li>
-            <li><strong>Memory Management</strong> - manages RAM and virtual memory</li>
-            <li><strong>File System Management</strong> - manages files and directories</li>
-            <li><strong>Networking</strong> - manages network communication</li>
-            <li><strong>Device Management</strong> - communicates with hardware</li>
-            <li><strong>Security</strong> - manages users, permissions and access control</li>
+            <li><strong>Process Management</strong> — manages running programs</li>
+            <li><strong>Memory Management</strong> — manages RAM and virtual memory</li>
+            <li><strong>File System Management</strong> — manages files and directories</li>
+            <li><strong>Networking</strong> — manages network communication</li>
+            <li><strong>Device Management</strong> — communicates with hardware</li>
+            <li><strong>Security</strong> — manages users, permissions and access control</li>
         </ul>
     </section>
 
 
-    <!-- 4 -->
-    <section class="card">
-        <h2>4. GUI vs CLI</h2>
+    <section id="gui-cli" class="section">
+        <h2>GUI vs CLI</h2>
 
-        <h3>GUI - Graphical User Interface</h3>
+        <div class="two-column">
+            <div class="mini-card">
+                <h3>GUI — Graphical User Interface</h3>
+                <p>
+                    GUI allows users to interact with Linux through windows,
+                    menus, buttons, icons and a mouse.
+                </p>
+            </div>
 
-        <p>
-            GUI allows users to interact with Linux using windows, menus,
-            buttons, icons and a mouse.
-        </p>
+            <div class="mini-card">
+                <h3>CLI — Command Line Interface</h3>
+                <p>
+                    CLI allows administrators and users to interact with Linux
+                    by executing commands through a terminal.
+                </p>
+            </div>
+        </div>
 
-        <h3>CLI - Command Line Interface</h3>
+        <h3>Example Linux commands</h3>
 
-        <p>
-            CLI allows administrators and users to interact with Linux
-            by executing commands through a terminal.
-        </p>
-
-        <pre>
-ls
+        <div class="diagram">ls
 cd /var/log
 systemctl status sshd
-df -h
-        </pre>
+df -h</div>
 
-        <div class="highlight">
-            <strong>For DevOps:</strong>
-            CLI is extremely important because servers are commonly managed
-            remotely and automated using shell scripts, Ansible, CI/CD and
-            other tools.
+        <div class="callout">
+            <strong>For DevOps:</strong> CLI is extremely important because
+            Linux servers are commonly managed remotely and automated using
+            shell scripts, Ansible, CI/CD pipelines and other tools.
         </div>
     </section>
 
 
-    <!-- 5 -->
-    <section class="card">
-        <h2>5. Main Components of Linux</h2>
+    <section id="components" class="section">
+        <h2>Main Components of Linux</h2>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Component</th>
-                    <th>Purpose</th>
-                </tr>
-            </thead>
+        <p>
+            A Linux system consists of several layers that work together to
+            provide a complete operating environment.
+        </p>
 
-            <tbody>
-                <tr>
-                    <td><strong>Kernel</strong></td>
-                    <td>
-                        Manages CPU, memory, devices, processes, filesystem
-                        and networking.
-                    </td>
-                </tr>
+        <ul>
+            <li>
+                <strong>Kernel:</strong>
+                Manages CPU, memory, devices, processes, filesystem and networking.
+            </li>
+            <li>
+                <strong>Shell:</strong>
+                Provides command-line interaction with the system.
+            </li>
+            <li>
+                <strong>System Utilities:</strong>
+                Tools used for administration and configuration.
+            </li>
+            <li>
+                <strong>Daemons / Services:</strong>
+                Background processes that provide system services.
+            </li>
+            <li>
+                <strong>Libraries:</strong>
+                Provide reusable functions to applications.
+            </li>
+            <li>
+                <strong>Applications:</strong>
+                Software used to perform user or business tasks.
+            </li>
+            <li>
+                <strong>Desktop Environment:</strong>
+                Provides the graphical interface, such as GNOME or KDE.
+            </li>
+        </ul>
 
-                <tr>
-                    <td><strong>Shell</strong></td>
-                    <td>
-                        Provides command-line interaction with the system.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>System Utilities</strong></td>
-                    <td>
-                        Tools used for administration and configuration.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Daemons / Services</strong></td>
-                    <td>
-                        Background processes that provide system services.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Libraries</strong></td>
-                    <td>
-                        Provide reusable functions to applications.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Applications</strong></td>
-                    <td>
-                        Software used to perform user or business tasks.
-                    </td>
-                </tr>
-
-                <tr>
-                    <td><strong>Desktop Environment</strong></td>
-                    <td>
-                        Provides the graphical interface, such as GNOME or KDE.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="diagram">User
+  ↓
+Applications
+  ↓
+Shell / Libraries / System Utilities
+  ↓
+Linux Kernel
+  ↓
+Hardware</div>
     </section>
 
 
-    <!-- 6 -->
-    <section class="card">
-        <h2>6. Linux and Open Source</h2>
+    <section id="open-source" class="section">
+        <h2>Linux and Open Source</h2>
 
         <p>
             Linux is open-source software. Its source code can be studied,
             modified and redistributed according to its applicable licenses.
         </p>
 
-        <h3>Advantages of Open Source</h3>
+        <h3>Advantages of open source</h3>
 
         <ul>
             <li>Global community contribution</li>
@@ -415,11 +502,10 @@ df -h
             <li>Bug fixes</li>
             <li>Security improvements</li>
             <li>Large ecosystem of tools</li>
-            <li>Many distributions and technologies</li>
+            <li>Many Linux distributions and technologies</li>
         </ul>
 
-        <div class="diagram">
-Linux Community
+        <div class="diagram">Linux Community
        ↓
 Kernel Development
        ↓
@@ -427,66 +513,56 @@ Features + Bug Fixes + Security
        ↓
 Linux Distributions
        ↓
-Servers / Cloud / Containers / Devices
-        </div>
+Servers / Cloud / Containers / Devices</div>
     </section>
 
 
-    <!-- 7 -->
-    <section class="card">
-        <h2>7. Major Benefits of Linux</h2>
+    <section id="benefits" class="section">
+        <h2>Major Benefits of Linux</h2>
 
-        <div class="benefit-grid">
-
-            <div class="benefit">
-                <h3>Versatility</h3>
-                <p>
-                    Linux can run on embedded devices, servers,
-                    cloud infrastructure and supercomputers.
-                </p>
-            </div>
-
-            <div class="benefit">
-                <h3>Security</h3>
-                <p>
-                    Linux provides permissions, user/group controls,
-                    SELinux and other security mechanisms.
-                </p>
-            </div>
-
-            <div class="benefit">
-                <h3>Community</h3>
-                <p>
-                    A large global community provides documentation,
-                    support, tools and continuous development.
-                </p>
-            </div>
-
-            <div class="benefit">
-                <h3>Automation</h3>
-                <p>
-                    Shell scripting and CLI tools make Linux highly
-                    suitable for DevOps and infrastructure automation.
-                </p>
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- 8 -->
-    <section class="card">
-        <h2>8. Linux vs Linux Distribution</h2>
-
+        <h3>Versatility</h3>
         <p>
-            The <strong>Linux kernel</strong> is the core component.
-            A complete Linux distribution combines the kernel with
-            libraries, utilities, package management, applications
-            and other components.
+            Linux can run on embedded devices, servers, cloud infrastructure,
+            workstations and supercomputers.
         </p>
 
-        <div class="diagram">
-Linux Kernel
+        <h3>Security</h3>
+        <p>
+            Linux provides users and groups, permissions, SELinux and other
+            security mechanisms for controlling access to system resources.
+        </p>
+
+        <h3>Community</h3>
+        <p>
+            A large global community provides documentation, support,
+            tools and continuous development.
+        </p>
+
+        <h3>Automation</h3>
+        <p>
+            Shell scripting and command-line tools make Linux highly suitable
+            for DevOps and infrastructure automation.
+        </p>
+
+        <div class="callout">
+            <strong>Why Linux is important in infrastructure:</strong>
+            Its command-line tools, scripting capabilities, networking,
+            security model and automation ecosystem make it a common foundation
+            for enterprise and cloud environments.
+        </div>
+    </section>
+
+
+    <section id="distribution" class="section">
+        <h2>Linux vs Linux Distribution</h2>
+
+        <p>
+            The <strong>Linux kernel</strong> is the core component. A complete
+            Linux distribution combines the kernel with libraries, utilities,
+            package management, applications and other components.
+        </p>
+
+        <div class="diagram">Linux Kernel
      +
 System Libraries
      +
@@ -496,39 +572,36 @@ Package Manager
      +
 Applications
      ↓
-Linux Distribution
-        </div>
+Linux Distribution</div>
 
         <h3>Examples</h3>
 
         <ul>
-            <li><strong>RHEL</strong> - Red Hat Enterprise Linux</li>
-            <li><strong>Rocky Linux</strong> - Enterprise Linux compatible distribution</li>
-            <li><strong>Ubuntu</strong> - Debian-based distribution</li>
-            <li><strong>Debian</strong> - Community Linux distribution</li>
-            <li><strong>Fedora</strong> - Community distribution associated with Red Hat</li>
+            <li><strong>RHEL</strong> — Red Hat Enterprise Linux</li>
+            <li><strong>Rocky Linux</strong> — Enterprise Linux compatible distribution</li>
+            <li><strong>Ubuntu</strong> — Debian-based distribution</li>
+            <li><strong>Debian</strong> — Community Linux distribution</li>
+            <li><strong>Fedora</strong> — Community distribution associated with Red Hat</li>
         </ul>
 
-        <div class="highlight">
-            <strong>Important:</strong>
-            Linux ≠ RHEL ≠ Rocky Linux ≠ Ubuntu.
-            They are Linux-based operating systems/distributions built
-            around the Linux kernel.
+        <div class="callout">
+            <strong>Remember:</strong>
+            Linux, RHEL, Rocky Linux and Ubuntu are not interchangeable terms.
+            The Linux kernel is the core; distributions package the kernel with
+            the software needed to create a usable operating system.
         </div>
     </section>
 
 
-    <!-- DevOps Connection -->
-    <section class="card">
-        <h2>Linux in DevOps & MLOps</h2>
+    <section id="devops" class="section">
+        <h2>Linux in DevOps &amp; MLOps</h2>
 
         <p>
             Linux is a fundamental platform for modern DevOps, Cloud,
             Kubernetes and MLOps environments.
         </p>
 
-        <div class="diagram">
-Linux
+        <div class="diagram">Linux
   │
   ├── Docker / Podman
   │
@@ -546,24 +619,72 @@ Linux
   │
   ├── vLLM
   │
-  └── GPU / AI Infrastructure
-        </div>
+  └── GPU / AI Infrastructure</div>
 
-        <div class="highlight">
+        <div class="callout">
             <strong>Interview Summary:</strong>
             Linux is an open-source operating system whose kernel manages
             hardware resources such as CPU, memory, storage, networking and
-            devices. Linux provides the foundation for servers, cloud,
+            devices. It provides the foundation for servers, cloud,
             containers, Kubernetes, DevOps and modern AI/MLOps infrastructure.
         </div>
     </section>
 
-</div>
+</main>
 
 
-<footer>
-    <p>🐧 Linux Fundamentals | DevOps • Cloud • MLOps • System Administration</p>
-</footer>
+<!-- RIGHT TABLE OF CONTENTS -->
+<aside class="toc">
+    <div class="toc-title">On this page</div>
+
+    <a href="#what-is-linux">What is Linux?</a>
+    <a href="#operating-system">What is an Operating System?</a>
+    <a href="#how-linux-works">How Linux Works</a>
+    <a href="#gui-cli">GUI vs CLI</a>
+    <a href="#components">Main Components</a>
+    <a href="#open-source">Linux and Open Source</a>
+    <a href="#benefits">Major Benefits</a>
+    <a href="#distribution">Linux vs Distribution</a>
+    <a href="#devops">Linux in DevOps &amp; MLOps</a>
+</aside>
+
+<a href="#what-is-linux" class="top-button">↑ Top</a>
+
+
+<script>
+    const sections = document.querySelectorAll(".section");
+    const leftLinks = document.querySelectorAll(".nav-link");
+    const tocLinks = document.querySelectorAll(".toc a");
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+
+                    leftLinks.forEach(link => {
+                        link.classList.toggle(
+                            "active",
+                            link.getAttribute("href") === "#" + id
+                        );
+                    });
+
+                    tocLinks.forEach(link => {
+                        link.classList.toggle(
+                            "active",
+                            link.getAttribute("href") === "#" + id
+                        );
+                    });
+                }
+            });
+        },
+        {
+            rootMargin: "-15% 0px -70% 0px"
+        }
+    );
+
+    sections.forEach(section => observer.observe(section));
+</script>
 
 </body>
 </html>
