@@ -171,44 +171,92 @@
         .sidebar-title {
             font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             padding-left: 8px;
             color: var(--text-main);
         }
 
-        .menu-group-title {
-            display: block;
+        /* --- GitHub Style Accordion Menus --- */
+        .nav-details {
+            margin-bottom: 4px;
+        }
+        
+        .nav-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-main);
             padding: 8px;
-            margin-top: 8px;
+            cursor: pointer;
+            list-style: none; /* Remove default browser arrow */
+            user-select: none;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .nav-summary:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        /* Remove Safari arrow */
+        .nav-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .nav-summary .chevron {
+            transition: transform 0.2s ease;
+            color: var(--text-muted);
+        }
+        
+        /* Rotate arrow when open */
+        .nav-details[open] .nav-summary .chevron {
+            transform: rotate(180deg);
         }
 
         .sub-menu {
             list-style: none;
             padding-left: 0;
             margin-bottom: 12px;
-            border-left: 1px solid var(--border-color);
-            margin-left: 12px;
+            margin-top: 4px;
         }
 
-        /* Reduced font size for sidebar sub-menu items (including Basic Commands) */
         .sub-menu li a {
             display: block;
-            padding: 5px 12px 5px 16px;
+            padding: 6px 12px 6px 32px; /* Indented text */
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.95rem; /* Reduced font size */
+            font-size: 0.95rem;
             line-height: 1.4;
-            transition: color 0.2s;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
         }
 
-        .sub-menu li a:hover, .sub-menu li a.active {
-            color: var(--accent-color);
-            font-weight: 500;
-            border-left: 2px solid var(--accent-color);
-            margin-left: -1px;
+        .sub-menu li a:hover {
+            background-color: var(--hover-bg);
+            color: var(--text-main);
+        }
+        
+        /* Active State mimicking GitHub Docs */
+        .sub-menu li a.active {
+            background-color: #f3f0ea;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* The rounded left-accent bar */
+        .sub-menu li a.active::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 15%;
+            height: 70%;
+            width: 4px;
+            background-color: var(--accent-color);
+            border-radius: 4px;
         }
 
         /* --- Main Content --- */
@@ -561,70 +609,140 @@
             
             <div class="sidebar-section" id="section-tutorials">
                 <div class="sidebar-title">Tutorials</div>
-                <span class="menu-group-title">Linux</span>
-                <ul class="sub-menu">
-                    <!-- <li><a href="#" onclick="loadPage('linux/what-is-linux.html', this, event)">What is Linux</a></li> -->
-                    <li><a href="linux/what-is-linux.html">What is Linux</a></li>
-                    <li><a href="linux/how-linux-works.html">How it works and its Types</a></li>
-                  <!--    <li><a href="#" onclick="loadPage('how-linux-works', this, event)">How it works and its Types</a></li> -->
-                    <li><a href="#" onclick="loadPage('linux-commands', this, event)">Basic Commands</a></li>
-                    <li><a href="#" onclick="loadPage('linux-installation', this, event)">Installation of OS</a></li>
-                </ul>
-                <span class="menu-group-title">Git</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-git', this, event)">What is Git</a></li>
-                </ul>
-                <span class="menu-group-title">Docker</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-docker', this, event)">What is Docker</a></li>
-                </ul>
-                <span class="menu-group-title">Kubernetes</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-kubernetes', this, event)">What is Kubernetes</a></li>
-                </ul>
-                <span class="menu-group-title">Nvidia</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('nvidia-tools', this, event)">Nvidia tools</a></li>
-                </ul>
-                <span class="menu-group-title">Cloud</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-cloud', this, event)">What is Cloud</a></li>
-                    <li><a href="#" onclick="loadPage('what-is-aws', this, event)">What is AWS</a></li>
-                    <li><a href="#" onclick="loadPage('what-is-gcp', this, event)">What is GCP</a></li>
-                    <li><a href="#" onclick="loadPage('what-is-azure', this, event)">What is Azure</a></li>
-                </ul>
+                
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Linux
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-linux', this, event)">What is Linux</a></li>
+                        <li><a href="#" onclick="loadPage('how-linux-works', this, event)">How it works and its Types</a></li>
+                        <li><a href="#" onclick="loadPage('linux-commands', this, event)">Basic Commands</a></li>
+                        <li><a href="#" onclick="loadPage('linux-installation', this, event)">Installation of OS</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Git
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-git', this, event)">What is Git</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Docker
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-docker', this, event)">What is Docker</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Kubernetes
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-kubernetes', this, event)">What is Kubernetes</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Nvidia
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('nvidia-tools', this, event)">Nvidia tools</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        Cloud
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-cloud', this, event)">What is Cloud</a></li>
+                        <li><a href="#" onclick="loadPage('what-is-aws', this, event)">What is AWS</a></li>
+                        <li><a href="#" onclick="loadPage('what-is-gcp', this, event)">What is GCP</a></li>
+                        <li><a href="#" onclick="loadPage('what-is-azure', this, event)">What is Azure</a></li>
+                    </ul>
+                </details>
             </div>
 
             <div class="sidebar-section" id="section-projects">
                 <div class="sidebar-title">Projects</div>
-                <span class="menu-group-title">DevOps</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-devops', this, event)">What is DevOps</a></li>
-                </ul>
-                <span class="menu-group-title">MLOps</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-mlops', this, event)">What is MLOps</a></li>
-                </ul>
-                <span class="menu-group-title">RAG</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-rag', this, event)">What is RAG</a></li>
-                </ul>
+                
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        DevOps
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-devops', this, event)">What is DevOps</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        MLOps
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-mlops', this, event)">What is MLOps</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        RAG
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-rag', this, event)">What is RAG</a></li>
+                    </ul>
+                </details>
             </div>
 
             <div class="sidebar-section" id="section-trending">
                 <div class="sidebar-title">Trending</div>
-                <span class="menu-group-title">HPC</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-hpc', this, event)">What is HPC</a></li>
-                </ul>
-                <span class="menu-group-title">AI / ML</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-aiml', this, event)">What is AI/ML</a></li>
-                </ul>
-                <span class="menu-group-title">BIGDATA</span>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="loadPage('what-is-bigdata', this, event)">What is BIGDATA</a></li>
-                </ul>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        HPC
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-hpc', this, event)">What is HPC</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        AI / ML
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-aiml', this, event)">What is AI/ML</a></li>
+                    </ul>
+                </details>
+
+                <details class="nav-details" open>
+                    <summary class="nav-summary">
+                        BIGDATA
+                        <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </summary>
+                    <ul class="sub-menu">
+                        <li><a href="#" onclick="loadPage('what-is-bigdata', this, event)">What is BIGDATA</a></li>
+                    </ul>
+                </details>
             </div>
         </aside>
 
@@ -856,7 +974,7 @@
                             </ul>
                         </div>
                         
-                        <form class="contact-form" action="https://script.google.com/macros/s/AKfycbxScp0Y2X3Pxitx2ucFSxzb8qFzzBfD0bAVlDl20WkQEvkIHmvh81Z-heNDVbjosyw/exec" method="POST" onsubmit="handleContactSubmit(event)">
+                        <form class="contact-form" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST" onsubmit="handleContactSubmit(event)">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>First Name</label>
