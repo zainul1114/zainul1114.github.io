@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
+    <!-- Import Marked.js for parsing Markdown to HTML dynamically -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
         :root {
             --primary-bg: #fcfbf8;
@@ -228,7 +231,6 @@
             flex: 1 0 auto; 
         }
 
-        /* Reduced main heading font size to look like h2 */
         .content-inner h1 {
             font-size: 2.1rem; 
             font-weight: 600;
@@ -238,7 +240,16 @@
             letter-spacing: -0.2px;
         }
 
-        /* Question Headings (h3) */
+        .content-inner h2 {
+            font-size: 2.1rem; 
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #111;
+            line-height: 1.2;
+            letter-spacing: -0.2px;
+        }
+
+        /* Markdown generated h3s */
         .content-inner h3 {
             font-size: 1.35rem;
             font-weight: 600;
@@ -247,7 +258,10 @@
             color: #111;
         }
 
-        /* Tightened paragraph spacing (removed excessive margins) */
+        .content-inner strong {
+            font-weight: 600;
+        }
+
         .content-inner p {
             font-size: 1.15rem;
             line-height: 1.6;
@@ -256,6 +270,15 @@
             text-align: justify;
         }
 
+        /* Markdown generated blockquotes */
+        .content-inner blockquote {
+            border-left: 4px solid var(--border-color);
+            padding-left: 16px;
+            margin: 16px 0;
+            color: #111;
+        }
+
+        /* Markdown generated lists */
         .content-inner ul {
             margin-bottom: 10px;
             padding-left: 20px;
@@ -265,6 +288,32 @@
             font-size: 1.15rem;
             color: #374151;
             margin-bottom: 4px;
+        }
+
+        /* Markdown generated code blocks */
+        .content-inner pre {
+            background: #f3f0ea; 
+            padding: 16px; 
+            border-radius: 8px; 
+            font-family: monospace; 
+            font-size: 0.95rem; 
+            overflow-x: auto; 
+            line-height: 1.5; 
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .content-inner code {
+            font-family: monospace; 
+            font-size: 0.95rem; 
+            background: #f3f0ea;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
+        .content-inner pre code {
+            background: transparent;
+            padding: 0;
         }
         
         hr {
@@ -714,38 +763,39 @@
             },
             'what-is-linux': {
                 title: 'What is Linux',
-                content: 'Linux is a family of open-source Unix-like operating systems based on the Linux kernel, functioning as the core interface between computer hardware and applications.',
-                toc: ['Kernel Architecture', 'Open Source Philosophy']
-            },
-            'how-linux-works': {
-                title: 'How it works and its Types',
-                content: `
-                    <h3 id="what-is-linux">1. What is Linux?</h3>
-                    <p>Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.</p>
-                    
-                    <h3 id="operating-system">2. What is an Operating System?</h3>
-                    <p>An OS is the software layer between applications and hardware. It manages:</p>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li><strong>CPU</strong> – processing</li>
-                        <li><strong>Memory/RAM</strong> – running programs</li>
-                        <li><strong>Storage</strong> – files and data</li>
-                        <li><strong>Network</strong> – communication</li>
-                        <li><strong>Devices</strong> – disks, GPUs, keyboards, etc.</li>
-                        <li><strong>Users and permissions</strong></li>
-                    </ul>
-                    <p style="margin-top: 10px;"><strong>Simple view:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">Applications
+                markdown: `
+<h3 id="what-is-linux">1. What is Linux?</h3>
+
+Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.
+
+<h3 id="operating-system">2. What is an Operating System?</h3>
+
+An OS is the software layer between applications and hardware. It manages:
+* **CPU** – processing
+* **Memory/RAM** – running programs
+* **Storage** – files and data
+* **Network** – communication
+* **Devices** – disks, GPUs, keyboards, etc.
+* **Users and permissions**
+
+**Simple view:**
+\`\`\`text
+Applications
      ↓
 Linux OS
      ↓
 Linux Kernel
      ↓
-Hardware (CPU | RAM | Disk | Network | GPU)</pre>
+Hardware (CPU | RAM | Disk | Network | GPU)
+\`\`\`
 
-                    <h3 id="how-linux-works">3. How Linux Works</h3>
-                    <p>The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.</p>
-                    <p>A Linux system generally contains:</p>
-                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">Applications
+<h3 id="how-linux-works">3. How Linux Works</h3>
+
+The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.
+
+A Linux system generally contains:
+\`\`\`text
+Applications
      ↓
 System Utilities / Libraries
      ↓
@@ -753,59 +803,62 @@ Shell / Services / Daemons
      ↓
 Linux Kernel
      ↓
-Hardware</pre>
-                    <p style="margin-top: 10px;"><strong>The kernel manages:</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li>Process management</li>
-                        <li>Memory management</li>
-                        <li>File systems</li>
-                        <li>Networking</li>
-                        <li>Device drivers</li>
-                        <li>Security and permissions</li>
-                    </ul>
+Hardware
+\`\`\`
 
-                    <h3 id="gui-vs-cli">4. GUI vs CLI</h3>
-                    <p><strong>GUI (Graphical User Interface)</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li>Uses windows, menus, icons, and mouse.</li>
-                        <li>Easy for general desktop usage.</li>
-                    </ul>
-                    <p style="margin-top: 8px;"><strong>CLI (Command Line Interface)</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li>Uses commands through a terminal.</li>
-                        <li>Very important for Linux administration, automation, DevOps, cloud, and servers.</li>
-                    </ul>
-                    <p style="margin-top: 8px;"><strong>Example:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">ls
+**The kernel manages:**
+* Process management
+* Memory management
+* File systems
+* Networking
+* Device drivers
+* Security and permissions
+
+<h3 id="gui-vs-cli">4. GUI vs CLI</h3>
+
+**GUI (Graphical User Interface)**
+* Uses windows, menus, icons, and mouse.
+* Easy for general desktop usage.
+
+**CLI (Command Line Interface)**
+* Uses commands through a terminal.
+* Very important for Linux administration, automation, DevOps, cloud, and servers.
+
+**Example:**
+\`\`\`bash
+ls
 cd /var/log
 systemctl status sshd
-df -h</pre>
+df -h
+\`\`\`
 
-                    <h3 id="main-components">5. Main Components of Linux</h3>
-                    <p>Overview of core architecture components and their respective purposes in a standard Linux environment.</p>
+<h3 id="main-components">5. Main Components of Linux</h3>
 
-                    <h3 id="open-source">6. Linux and Open Source</h3>
-                    <p>Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.</p>
-                    <p><strong>This allows:</strong></p>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li>Global community contribution</li>
-                        <li>Customization</li>
-                        <li>Bug fixes</li>
-                        <li>Security improvements</li>
-                        <li>Development of different Linux distributions</li>
-                    </ul>
+Overview of core architecture components and their respective purposes in a standard Linux environment.
 
-                    <h3 id="major-benefits">7. Major Benefits of Linux</h3>
-                    <ul style="list-style-type: disc; padding-left: 20px;">
-                        <li><strong>Versatility:</strong> Works from small embedded devices to large servers and supercomputers.</li>
-                        <li><strong>Security:</strong> Strong user/group permissions, SELinux, process isolation, and open-source security review.</li>
-                        <li><strong>Community:</strong> Large worldwide developer and administrator community.</li>
-                        <li><strong>Automation:</strong> Powerful CLI and scripting make Linux highly suitable for DevOps and infrastructure automation.</li>
-                    </ul>
+<h3 id="open-source">6. Linux and Open Source</h3>
 
-                    <h3 id="linux-vs-distribution">8. Linux vs Linux Distribution</h3>
-                    <p>A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.</p>
-                    <p>For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.</p>
+Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.
+
+**This allows:**
+* Global community contribution
+* Customization
+* Bug fixes
+* Security improvements
+* Development of different Linux distributions
+
+<h3 id="major-benefits">7. Major Benefits of Linux</h3>
+
+* **Versatility:** Works from small embedded devices to large servers and supercomputers.
+* **Security:** Strong user/group permissions, SELinux, process isolation, and open-source security review.
+* **Community:** Large worldwide developer and administrator community.
+* **Automation:** Powerful CLI and scripting make Linux highly suitable for DevOps and infrastructure automation.
+
+<h3 id="linux-vs-distribution">8. Linux vs Linux Distribution</h3>
+
+A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.
+
+For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.
                 `,
                 toc: [
                     { label: 'What is Linux', target: 'what-is-linux' },
@@ -816,6 +869,130 @@ df -h</pre>
                     { label: 'Open Source', target: 'open-source' },
                     { label: 'Major Benefits', target: 'major-benefits' },
                     { label: 'Linux vs Distribution', target: 'linux-vs-distribution' }
+                ]
+            },
+            'how-linux-works': {
+                title: 'How it works and its Types',
+                markdown: `
+<h3 id="power-on">1. Power On / Reboot</h3>
+The boot process begins when the RHEL 9 system is powered on or restarted.
+The system firmware starts executing the initial hardware and boot operations.
+
+<h3 id="uefi-bios">2. UEFI / BIOS and POST</h3>
+The firmware, typically UEFI on modern RHEL 9 systems, performs the Power-On Self-Test (POST).
+POST checks and initializes essential hardware such as:
+* CPU
+* Memory
+* Storage devices
+* Keyboard and other basic hardware
+
+After successful hardware initialization, the firmware identifies the configured boot device and transfers control to the bootloader.
+
+<h3 id="grub2">3. GRUB2 Bootloader</h3>
+RHEL 9 uses GRUB2 (GRand Unified Bootloader 2) as its bootloader.
+GRUB2 is responsible for loading the selected Linux kernel and the initial RAM filesystem into memory.
+It can also display a boot menu where the administrator can select a kernel or modify kernel boot parameters.
+GRUB2 loads:
+* Linux kernel
+* initramfs
+* Kernel parameters
+
+It then transfers control to the Linux kernel.
+
+<h3 id="kernel-init">4. Linux Kernel Initialization</h3>
+The Linux kernel starts executing after GRUB2 transfers control to it.
+The kernel initializes important parts of the operating system, including:
+* CPU management
+* Memory management
+* Device drivers
+* Hardware interfaces
+* Kernel subsystems
+* Process management
+
+The kernel also uses the initramfs environment during early boot to access the required storage devices and locate the root filesystem.
+
+<h3 id="initramfs">5. initramfs / Early Userspace</h3>
+initramfs provides a temporary filesystem and the tools required during the early boot stage.
+It helps the system perform tasks such as:
+* Loading required storage drivers
+* Detecting storage devices
+* Activating LVM volumes
+* Configuring software RAID when required
+* Unlocking encrypted storage when configured
+* Locating and preparing the root filesystem
+
+After the root filesystem is available, control moves to the normal userspace initialization process.
+
+<h3 id="systemd-pid1">6. systemd — PID 1</h3>
+The kernel starts systemd, which becomes the first userspace process and normally runs as PID 1.
+systemd is the initialization and service-management system used by RHEL 9.
+It is responsible for bringing the system from the basic kernel environment to a usable operating state.
+
+<h3 id="systemd-services">7. systemd Starts Services</h3>
+systemd starts the services and resources required by the system.
+Depending on the configuration, this can include:
+* Mounting filesystems
+* Starting networking
+* Starting SSH
+* Starting logging services
+* Starting scheduled services
+* Starting security-related services
+* Starting other enabled system services
+
+systemd uses dependencies and parallel service startup where possible to efficiently initialize the system.
+
+<h3 id="systemd-target">8. systemd Reaches the Target</h3>
+Finally, systemd reaches the system's configured target.
+For a typical RHEL 9 server, the target is:
+\`multi-user.target\`
+
+This provides a fully operational multi-user server environment without a graphical desktop.
+For a RHEL 9 graphical workstation, the target may be:
+\`graphical.target\`
+
+Once the required target and services are active, the RHEL 9 system is ready for users and applications.
+
+<h3 id="complete-sequence">Complete RHEL 9 Boot Sequence</h3>
+
+\`\`\`text
+Power On / Reboot
+        ↓
+UEFI / BIOS
+        ↓
+POST
+        ↓
+GRUB2
+        ↓
+Linux Kernel + initramfs
+        ↓
+Kernel Initialization
+        ↓
+Early Userspace / Root Filesystem
+        ↓
+systemd (PID 1)
+        ↓
+Start System Services
+        ↓
+Reach systemd Target
+        ↓
+multi-user.target / graphical.target
+        ↓
+RHEL 9 System Ready
+\`\`\`
+
+**Easy way to remember:**
+> Firmware → GRUB2 → Kernel → initramfs → systemd → Services → Target → Login/Ready
+                `,
+                toc: [
+                    { label: 'Power On / Reboot', target: 'power-on' },
+                    { label: 'UEFI / BIOS and POST', target: 'uefi-bios' },
+                    { label: 'GRUB2 Bootloader', target: 'grub2' },
+                    { label: 'Kernel Initialization', target: 'kernel-init' },
+                    { label: 'initramfs', target: 'initramfs' },
+                    { label: 'systemd — PID 1', target: 'systemd-pid1' },
+                    { label: 'systemd Starts Services', target: 'systemd-services' },
+                    { label: 'systemd Reaches Target', target: 'systemd-target' },
+                    { label: 'Complete Sequence', target: 'complete-sequence' }
                 ]
             },
             'linux-commands': {
@@ -936,6 +1113,7 @@ df -h</pre>
                 });
         }
 
+        // --- TOC Smooth Scrolling function ---
         function scrollToSection(targetId, event) {
             if(event) event.preventDefault();
             const el = document.getElementById(targetId);
@@ -1030,9 +1208,12 @@ df -h</pre>
                     `;
                 }
 
+                // If markdown property exists, parse it. Otherwise wrap content in <p> tag.
+                const pageBody = data.markdown ? marked.parse(data.markdown) : (data.content ? `<p>${data.content}</p>` : '');
+
                 contentDiv.innerHTML = `
                     <h1>${data.title}</h1>
-                    <p>${data.content}</p>
+                    ${pageBody}
                     ${footerContent}
                 `;
             }
