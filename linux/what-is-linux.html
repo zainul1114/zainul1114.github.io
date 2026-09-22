@@ -218,6 +218,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            scroll-behavior: smooth;
         }
 
         .content-inner {
@@ -227,10 +228,11 @@
             flex: 1 0 auto; 
         }
 
+        /* Reduced main heading font size to look like h2 */
         .content-inner h1 {
-            font-size: 2.6rem; 
-            font-weight: 400;
-            margin-bottom: 24px;
+            font-size: 2.1rem; 
+            font-weight: 600;
+            margin-bottom: 20px;
             color: #111;
             line-height: 1.2;
             letter-spacing: -0.2px;
@@ -238,30 +240,31 @@
 
         /* Question Headings (h3) */
         .content-inner h3 {
-            font-size: 1.6rem;
+            font-size: 1.35rem;
             font-weight: 600;
-            margin-top: 28px;
-            margin-bottom: 12px;
+            margin-top: 24px;
+            margin-bottom: 8px;
             color: #111;
         }
 
-        /* Tightened paragraph spacing */
+        /* Tightened paragraph spacing (removed excessive margins) */
         .content-inner p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             line-height: 1.6;
             color: #374151;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             text-align: justify;
         }
 
         .content-inner ul {
-            margin-bottom: 14px;
+            margin-bottom: 10px;
+            padding-left: 20px;
         }
 
         .content-inner li {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #374151;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         hr {
@@ -279,7 +282,7 @@
         }
 
         .contact-info p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #555;
             margin-bottom: 24px;
             text-align: left;
@@ -474,8 +477,8 @@
             .mobile-secondary-toolbar { display: flex; }
             
             .main-content { padding: 32px 20px; }
-            .content-inner h1 { font-size: 2rem; }
-            .content-inner p { font-size: 1.15rem; text-align: left; }
+            .content-inner h1 { font-size: 1.8rem; }
+            .content-inner p { font-size: 1.05rem; text-align: left; }
 
             .contact-container { grid-template-columns: 1fr; gap: 40px; }
             .form-row { flex-direction: column; gap: 20px; }
@@ -683,7 +686,11 @@
                 content: `Azilehub Academy provides deep technical learning pathways focused on the intersection of robust DevOps pipelines and scalable MLOps environments. In an era where infrastructure automation meets artificial intelligence, engineers need holistic mastery over container runtimes, monitoring frameworks, and accelerated cluster schedulers.<br><br>
                 Our curriculum is built on real-world engineering paradigms. Whether you are establishing local and cloud container architectures via Docker and Portainer, setting up metric-driven observability with Prometheus and Grafana, or scaling deep learning models across Slurm and PBS Pro high-performance computing clusters, our tutorials offer step-by-step clarity.<br><br>
                 We empower practitioners to architect resilient relational databases with PostgreSQL, build vector-search capabilities with Qdrant, and serve local LLMs using high-throughput execution engines like vLLM and Ollama.`,
-                toc: ['DevOps & MLOps', 'Curriculum', 'Empowering Practitioners']
+                toc: [
+                    { label: 'DevOps & MLOps', target: 'devops-mlops' },
+                    { label: 'Curriculum', target: 'curriculum' },
+                    { label: 'Empowering Practitioners', target: 'empowering-practitioners' }
+                ]
             },
             'main-tutorials': {
                 title: 'Tutorials',
@@ -713,10 +720,10 @@
             'how-linux-works': {
                 title: 'How it works and its Types',
                 content: `
-                    <h3>1. What is Linux?</h3>
+                    <h3 id="what-is-linux">1. What is Linux?</h3>
                     <p>Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.</p>
                     
-                    <h3>2. What is an Operating System?</h3>
+                    <h3 id="operating-system">2. What is an Operating System?</h3>
                     <p>An OS is the software layer between applications and hardware. It manages:</p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
                         <li><strong>CPU</strong> – processing</li>
@@ -726,8 +733,8 @@
                         <li><strong>Devices</strong> – disks, GPUs, keyboards, etc.</li>
                         <li><strong>Users and permissions</strong></li>
                     </ul>
-                    <p style="margin-top: 12px;"><strong>Simple view:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">Applications
+                    <p style="margin-top: 10px;"><strong>Simple view:</strong></p>
+                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">Applications
      ↓
 Linux OS
      ↓
@@ -735,10 +742,10 @@ Linux Kernel
      ↓
 Hardware (CPU | RAM | Disk | Network | GPU)</pre>
 
-                    <h3>3. How Linux Works</h3>
+                    <h3 id="how-linux-works">3. How Linux Works</h3>
                     <p>The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.</p>
                     <p>A Linux system generally contains:</p>
-                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">Applications
+                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">Applications
      ↓
 System Utilities / Libraries
      ↓
@@ -747,7 +754,7 @@ Shell / Services / Daemons
 Linux Kernel
      ↓
 Hardware</pre>
-                    <p style="margin-top: 12px;"><strong>The kernel manages:</strong></p>
+                    <p style="margin-top: 10px;"><strong>The kernel manages:</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Process management</li>
                         <li>Memory management</li>
@@ -757,27 +764,27 @@ Hardware</pre>
                         <li>Security and permissions</li>
                     </ul>
 
-                    <h3>4. GUI vs CLI</h3>
+                    <h3 id="gui-vs-cli">4. GUI vs CLI</h3>
                     <p><strong>GUI (Graphical User Interface)</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Uses windows, menus, icons, and mouse.</li>
                         <li>Easy for general desktop usage.</li>
                     </ul>
-                    <p style="margin-top: 10px;"><strong>CLI (Command Line Interface)</strong></p>
+                    <p style="margin-top: 8px;"><strong>CLI (Command Line Interface)</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
                         <li>Uses commands through a terminal.</li>
                         <li>Very important for Linux administration, automation, DevOps, cloud, and servers.</li>
                     </ul>
-                    <p style="margin-top: 10px;"><strong>Example:</strong></p>
-                    <pre style="background: #f3f0ea; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4;">ls
+                    <p style="margin-top: 8px;"><strong>Example:</strong></p>
+                    <pre style="background: #f3f0ea; padding: 10px; border-radius: 6px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.4; margin-bottom: 8px;">ls
 cd /var/log
 systemctl status sshd
 df -h</pre>
 
-                    <h3>5. Main Components of Linux</h3>
+                    <h3 id="main-components">5. Main Components of Linux</h3>
                     <p>Overview of core architecture components and their respective purposes in a standard Linux environment.</p>
 
-                    <h3>6. Linux and Open Source</h3>
+                    <h3 id="open-source">6. Linux and Open Source</h3>
                     <p>Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.</p>
                     <p><strong>This allows:</strong></p>
                     <ul style="list-style-type: disc; padding-left: 20px;">
@@ -788,7 +795,7 @@ df -h</pre>
                         <li>Development of different Linux distributions</li>
                     </ul>
 
-                    <h3>7. Major Benefits of Linux</h3>
+                    <h3 id="major-benefits">7. Major Benefits of Linux</h3>
                     <ul style="list-style-type: disc; padding-left: 20px;">
                         <li><strong>Versatility:</strong> Works from small embedded devices to large servers and supercomputers.</li>
                         <li><strong>Security:</strong> Strong user/group permissions, SELinux, process isolation, and open-source security review.</li>
@@ -796,19 +803,19 @@ df -h</pre>
                         <li><strong>Automation:</strong> Powerful CLI and scripting make Linux highly suitable for DevOps and infrastructure automation.</li>
                     </ul>
 
-                    <h3>8. Linux vs Linux Distribution</h3>
+                    <h3 id="linux-vs-distribution">8. Linux vs Linux Distribution</h3>
                     <p>A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.</p>
                     <p>For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.</p>
                 `,
                 toc: [
-                    'What is Linux', 
-                    'Operating System', 
-                    'How Linux Works', 
-                    'GUI vs CLI', 
-                    'Main Components', 
-                    'Open Source', 
-                    'Major Benefits', 
-                    'Linux vs Distribution'
+                    { label: 'What is Linux', target: 'what-is-linux' },
+                    { label: 'Operating System', target: 'operating-system' },
+                    { label: 'How Linux Works', target: 'how-linux-works' },
+                    { label: 'GUI vs CLI', target: 'gui-vs-cli' },
+                    { label: 'Main Components', target: 'main-components' },
+                    { label: 'Open Source', target: 'open-source' },
+                    { label: 'Major Benefits', target: 'major-benefits' },
+                    { label: 'Linux vs Distribution', target: 'linux-vs-distribution' }
                 ]
             },
             'linux-commands': {
@@ -929,6 +936,14 @@ df -h</pre>
                 });
         }
 
+        function scrollToSection(targetId, event) {
+            if(event) event.preventDefault();
+            const el = document.getElementById(targetId);
+            if(el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         function loadPage(pageId, element, event) {
             if(event) event.preventDefault();
 
@@ -1032,7 +1047,11 @@ df -h</pre>
                 
                 tocList.innerHTML = '';
                 data.toc.forEach(item => {
-                    tocList.innerHTML += `<li><a href="#">${item}</a></li>`;
+                    if (typeof item === 'object') {
+                        tocList.innerHTML += `<li><a href="#" onclick="scrollToSection('${item.target}', event)">${item.label}</a></li>`;
+                    } else {
+                        tocList.innerHTML += `<li><a href="#">${item}</a></li>`;
+                    }
                 });
             } else {
                 rightSidebar.style.display = 'none';
