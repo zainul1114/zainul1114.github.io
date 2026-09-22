@@ -21,7 +21,7 @@
             --text-main: #111827;
             --text-muted: #4b5563;
             --accent-color: #d9463e;
-            --hover-bg: #f3f0ea;
+            --hover-bg: #f3f4f6; /* Lighter grey for hover/active states */
             --font-serif: "EB Garamond", "Times New Roman", serif;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
@@ -58,14 +58,43 @@
 
         .layout-container { display: flex; flex: 1; overflow: hidden; position: relative; }
 
-        /* --- Sidebars --- */
-        .sidebar-left { width: 300px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color); overflow-y: auto; padding: 24px 16px; flex-shrink: 0; transition: transform 0.3s ease; }
-        .sidebar-section { margin-bottom: 32px; }
-        .sidebar-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; padding-left: 8px; color: var(--text-main); }
-        .menu-group-title { display: block; font-size: 1.05rem; font-weight: 600; color: var(--text-main); padding: 8px; margin-top: 8px; }
-        .sub-menu { list-style: none; padding-left: 0; margin-bottom: 12px; border-left: 1px solid var(--border-color); margin-left: 12px; }
-        .sub-menu li a { display: block; padding: 5px 12px 5px 16px; text-decoration: none; color: var(--text-muted); font-size: 0.95rem; line-height: 1.4; transition: color 0.2s; }
-        .sub-menu li a:hover, .sub-menu li a.active { color: var(--accent-color); font-weight: 500; border-left: 2px solid var(--accent-color); margin-left: -1px; }
+        /* --- Left Sidebar (GitHub Docs Style) --- */
+        .sidebar-left { width: 300px; background-color: var(--sidebar-bg); border-right: 1px solid var(--border-color); overflow-y: auto; padding: 24px 12px; flex-shrink: 0; transition: transform 0.3s ease; }
+        .sidebar-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; padding-left: 12px; color: var(--text-main); }
+        
+        .sidebar-group { margin-bottom: 12px; border-bottom: 1px dashed var(--border-color); padding-bottom: 12px; }
+        .sidebar-group:last-child { border-bottom: none; }
+        
+        .sidebar-group-title {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 1.05rem; font-weight: 600; color: var(--text-main);
+            padding: 8px 12px; cursor: pointer; list-style: none; user-select: none;
+            border-radius: 6px; transition: background 0.2s;
+            font-family: var(--font-sans);
+        }
+        .sidebar-group-title:hover { background-color: var(--hover-bg); }
+        .sidebar-group-title::-webkit-details-marker { display: none; }
+        
+        .chevron { width: 16px; height: 16px; transition: transform 0.2s ease; color: #888; }
+        details[open] .chevron { transform: rotate(180deg); }
+
+        .sub-menu { list-style: none; padding-left: 0; margin-top: 4px; }
+        .sub-menu li a {
+            display: block; padding: 8px 12px 8px 16px; text-decoration: none;
+            color: var(--text-muted); font-size: 0.95rem; line-height: 1.4;
+            border-radius: 6px; transition: all 0.2s; margin-bottom: 2px;
+            position: relative; font-family: var(--font-sans);
+        }
+        .sub-menu li a:hover { background-color: var(--hover-bg); color: var(--text-main); }
+        
+        /* Active State mimicking GitHub Docs */
+        .sub-menu li a.active {
+            background-color: var(--hover-bg); color: var(--text-main); font-weight: 600;
+        }
+        .sub-menu li a.active::before {
+            content: ''; position: absolute; left: 0; top: 15%; bottom: 15%;
+            width: 4px; background-color: var(--accent-color); border-radius: 0 4px 4px 0;
+        }
 
         /* --- Main Content Area --- */
         .main-content { flex: 1; overflow-y: auto; padding: 50px 48px; position: relative; display: flex; flex-direction: column; scroll-behavior: smooth; }
@@ -77,8 +106,8 @@
         .content-inner blockquote { border-left: 4px solid var(--border-color); padding-left: 16px; margin: 16px 0; color: #111; }
         .content-inner ul { margin-bottom: 10px; padding-left: 20px; }
         .content-inner li { font-size: 1.15rem; color: #374151; margin-bottom: 4px; }
-        .content-inner pre { background: #f3f0ea; padding: 16px; border-radius: 8px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; border: 1px solid var(--border-color); }
-        .content-inner code { font-family: monospace; font-size: 0.95rem; background: #f3f0ea; padding: 2px 4px; border-radius: 4px; }
+        .content-inner pre { background: var(--hover-bg); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 0.95rem; overflow-x: auto; line-height: 1.5; margin-bottom: 16px; border: 1px solid var(--border-color); }
+        .content-inner code { font-family: monospace; font-size: 0.95rem; background: var(--hover-bg); padding: 2px 4px; border-radius: 4px; }
         .content-inner pre code { background: transparent; padding: 0; }
         hr { border: 0; border-top: 1px solid var(--border-color); margin: 40px 0; }
 
@@ -126,7 +155,6 @@
 
     <!-- Top Navigation -->
     <nav class="navbar">
-        <!-- NOTE: href uses ../ to go up one folder to the root index.html -->
         <a href="../index.html" class="nav-brand">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="var(--accent-color)" xmlns="http://www.w3.org/2000/svg" style="margin-right: 12px; margin-bottom: 2px;">
                 <rect x="2.5" y="12.5" width="6" height="4.2" rx="1.2"></rect>
@@ -182,36 +210,52 @@
     <!-- Main Layout -->
     <div class="layout-container">
         
-        <!-- Left Sidebar Navigation -->
+        <!-- Left Sidebar Navigation (Collapsible) -->
         <aside class="sidebar-left" id="leftSidebar">
-            <div class="sidebar-section" id="section-tutorials">
-                <div class="sidebar-title">Tutorials</div>
-                
-                <span class="menu-group-title">Linux</span>
+            <div class="sidebar-title">Tutorials</div>
+            
+            <details class="sidebar-group" open>
+                <summary class="sidebar-group-title">
+                    Linux
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
                 <ul class="sub-menu">
-                    <!-- Note the paths: No ../ needed since these are in the same /linux/ folder -->
                     <li><a href="what-is-linux.html">What is Linux</a></li>
                     <li><a href="how-linux-works.html" class="active">How it works and its Types</a></li>
                     <li><a href="linux-commands.html">Basic Commands</a></li>
                     <li><a href="linux-installation.html">Installation of OS</a></li>
                 </ul>
+            </details>
 
-                <span class="menu-group-title">Git</span>
+            <details class="sidebar-group">
+                <summary class="sidebar-group-title">
+                    Git
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
                 <ul class="sub-menu">
-                    <!-- Note the paths: We must use ../ to exit the linux folder, then enter the git folder -->
                     <li><a href="../git/what-is-git.html">What is Git</a></li>
                 </ul>
+            </details>
 
-                <span class="menu-group-title">Docker</span>
+            <details class="sidebar-group">
+                <summary class="sidebar-group-title">
+                    Docker
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
                 <ul class="sub-menu">
                     <li><a href="../docker/what-is-docker.html">What is Docker</a></li>
                 </ul>
+            </details>
 
-                <span class="menu-group-title">Kubernetes</span>
+            <details class="sidebar-group">
+                <summary class="sidebar-group-title">
+                    Kubernetes
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
                 <ul class="sub-menu">
                     <li><a href="../kubernetes/what-is-kubernetes.html">What is Kubernetes</a></li>
                 </ul>
-            </div>
+            </details>
         </aside>
 
         <!-- Center Content -->
@@ -242,7 +286,7 @@
             </footer>
         </main>
 
-        <!-- Right Sidebar (Hardcoded for Multi-page approach) -->
+        <!-- Right Sidebar (TOC) -->
         <aside class="sidebar-right" id="rightSidebar">
             <div class="toc-title">On this page</div>
             <ul class="toc-list" id="toc-list">
@@ -260,7 +304,7 @@
 
     </div>
 
-    <!-- MARKDOWN DATA: Put your markdown inside this script tag -->
+    <!-- MARKDOWN DATA -->
     <script type="text/markdown" id="markdown-source">
 <h3 id="power-on">1. Power On / Reboot</h3>
 The boot process begins when the RHEL 9 system is powered on or restarted.
@@ -374,7 +418,6 @@ RHEL 9 System Ready
 
     <!-- Essential Layout Scripts -->
     <script>
-        // Auto-parse the markdown and display it
         document.getElementById('markdown-output').innerHTML = marked.parse(document.getElementById('markdown-source').textContent);
 
         function scrollToSection(targetId, event) {
