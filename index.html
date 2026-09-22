@@ -70,7 +70,7 @@
             display: flex;
             align-items: center;
             gap: 32px;
-            margin-left: auto; 
+            margin-left: auto;
         }
 
         .nav-links a {
@@ -354,6 +354,104 @@
             margin: 40px 0;
         }
 
+        /* --- Contact Page Specific Styles --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .contact-info p {
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 1.15rem;
+            color: #555;
+        }
+
+        .contact-info svg {
+            width: 20px;
+            height: 20px;
+            color: #777;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        .contact-form input, .contact-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #b3b3b3;
+            border-radius: 6px;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            background: #fff;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .contact-form input:focus, .contact-form select:focus {
+            border-color: var(--accent-color);
+        }
+
+        .contact-form input::placeholder {
+            color: #aaa;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color); 
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: var(--font-serif);
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover { background-color: #b83a33; } 
+        .submit-btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
+
         /* --- Global Footer Styles --- */
         .global-footer {
             background-color: #f5f5f5;
@@ -488,6 +586,7 @@
             Azilehub Academy
         </a>
         
+        <!-- SPA Navigation Links -->
         <div class="nav-menu-group nav-links">
             <a href="#" onclick="loadPage('main-tutorials', this, event)">Tutorials</a>
             <a href="#" onclick="loadPage('main-projects', this, event)">Projects</a>
@@ -683,11 +782,11 @@
                     <polyline points="18 15 12 9 6 15"></polyline>
                 </svg>
                 <div class="footer-links">
-                    <a href="#" onclick="loadPage('landing-page', this, event)">Home</a> |
-                    <a href="#" onclick="loadPage('main-tutorials', this, event)">Tutorials</a> |
-                    <a href="#" onclick="loadPage('main-projects', this, event)">Projects</a> |
-                    <a href="#" onclick="loadPage('main-trending', this, event)">Trending</a> |
-                    <a href="#" onclick="loadPage('main-contact', this, event)">Contact</a>
+                    <a href="#" onclick="loadPage('landing-page', null, event)">Home</a> |
+                    <a href="#" onclick="loadPage('main-tutorials', null, event)">Tutorials</a> |
+                    <a href="#" onclick="loadPage('main-projects', null, event)">Projects</a> |
+                    <a href="#" onclick="loadPage('main-trending', null, event)">Trending</a> |
+                    <a href="#" onclick="loadPage('main-contact', null, event)">Contact</a>
                 </div>
                 <p>All Rights Reserved © zainul1114.github.io</p>
             </footer>
@@ -704,6 +803,7 @@
     </div>
 
     <script>
+        // NOTE: ADD YOUR FULL MARKDOWN CONTENT TO THESE SECTIONS SO THEY ARE NOT EMPTY.
         const pageData = {
             'landing-page': {
                 title: 'Welcome to Azilehub Academy',
@@ -740,13 +840,7 @@ We empower practitioners to architect resilient relational databases with Postgr
             },
             'main-contact': {
                 title: 'Contact Us',
-                markdown: `
-Contact us for tutorial inquiries, enterprise training, or mentorship programs.
-
-* **Location:** Bengaluru, Karnataka, India, Pin-560070
-* **Phone:** +91 80 2654 2726
-* **Email:** azilehub@gmail.com
-                `,
+                isContact: true,
                 toc: []
             },
             'what-is-linux': {
@@ -861,90 +955,245 @@ For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because
             },
             'how-linux-works': {
                 title: 'How it works and its Types',
-                content: 'Linux operates by managing hardware resources through its kernel, and is distributed in various flavors (types) such as Ubuntu, RHEL, CentOS, and Debian to suit different user needs.',
-                toc: ['Resource Management', 'Popular Distributions']
+                markdown: `
+<h3 id="power-on">1. Power On / Reboot</h3>
+The boot process begins when the RHEL 9 system is powered on or restarted.
+The system firmware starts executing the initial hardware and boot operations.
+
+<h3 id="uefi-bios">2. UEFI / BIOS and POST</h3>
+The firmware, typically UEFI on modern RHEL 9 systems, performs the Power-On Self-Test (POST).
+POST checks and initializes essential hardware such as:
+* CPU
+* Memory
+* Storage devices
+* Keyboard and other basic hardware
+
+After successful hardware initialization, the firmware identifies the configured boot device and transfers control to the bootloader.
+
+<h3 id="grub2">3. GRUB2 Bootloader</h3>
+RHEL 9 uses GRUB2 (GRand Unified Bootloader 2) as its bootloader.
+GRUB2 is responsible for loading the selected Linux kernel and the initial RAM filesystem into memory.
+It can also display a boot menu where the administrator can select a kernel or modify kernel boot parameters.
+GRUB2 loads:
+* Linux kernel
+* initramfs
+* Kernel parameters
+
+It then transfers control to the Linux kernel.
+
+<h3 id="kernel-init">4. Linux Kernel Initialization</h3>
+The Linux kernel starts executing after GRUB2 transfers control to it.
+The kernel initializes important parts of the operating system, including:
+* CPU management
+* Memory management
+* Device drivers
+* Hardware interfaces
+* Kernel subsystems
+* Process management
+
+The kernel also uses the initramfs environment during early boot to access the required storage devices and locate the root filesystem.
+
+<h3 id="initramfs">5. initramfs / Early Userspace</h3>
+initramfs provides a temporary filesystem and the tools required during the early boot stage.
+It helps the system perform tasks such as:
+* Loading required storage drivers
+* Detecting storage devices
+* Activating LVM volumes
+* Configuring software RAID when required
+* Unlocking encrypted storage when configured
+* Locating and preparing the root filesystem
+
+After the root filesystem is available, control moves to the normal userspace initialization process.
+
+<h3 id="systemd-pid1">6. systemd — PID 1</h3>
+The kernel starts systemd, which becomes the first userspace process and normally runs as PID 1.
+systemd is the initialization and service-management system used by RHEL 9.
+It is responsible for bringing the system from the basic kernel environment to a usable operating state.
+
+<h3 id="systemd-services">7. systemd Starts Services</h3>
+systemd starts the services and resources required by the system.
+Depending on the configuration, this can include:
+* Mounting filesystems
+* Starting networking
+* Starting SSH
+* Starting logging services
+* Starting scheduled services
+* Starting security-related services
+* Starting other enabled system services
+
+systemd uses dependencies and parallel service startup where possible to efficiently initialize the system.
+
+<h3 id="systemd-target">8. systemd Reaches the Target</h3>
+Finally, systemd reaches the system's configured target.
+For a typical RHEL 9 server, the target is:
+\`multi-user.target\`
+
+This provides a fully operational multi-user server environment without a graphical desktop.
+For a RHEL 9 graphical workstation, the target may be:
+\`graphical.target\`
+
+Once the required target and services are active, the RHEL 9 system is ready for users and applications.
+
+<h3 id="complete-sequence">Complete RHEL 9 Boot Sequence</h3>
+
+\`\`\`text
+Power On / Reboot
+        ↓
+UEFI / BIOS
+        ↓
+POST
+        ↓
+GRUB2
+        ↓
+Linux Kernel + initramfs
+        ↓
+Kernel Initialization
+        ↓
+Early Userspace / Root Filesystem
+        ↓
+systemd (PID 1)
+        ↓
+Start System Services
+        ↓
+Reach systemd Target
+        ↓
+multi-user.target / graphical.target
+        ↓
+RHEL 9 System Ready
+\`\`\`
+
+**Easy way to remember:**
+> Firmware → GRUB2 → Kernel → initramfs → systemd → Services → Target → Login/Ready
+                `,
+                toc: [
+                    { label: 'Power On / Reboot', target: 'power-on' },
+                    { label: 'UEFI / BIOS and POST', target: 'uefi-bios' },
+                    { label: 'GRUB2 Bootloader', target: 'grub2' },
+                    { label: 'Kernel Initialization', target: 'kernel-init' },
+                    { label: 'initramfs', target: 'initramfs' },
+                    { label: 'systemd — PID 1', target: 'systemd-pid1' },
+                    { label: 'systemd Starts Services', target: 'systemd-services' },
+                    { label: 'systemd Reaches Target', target: 'systemd-target' },
+                    { label: 'Complete Sequence', target: 'complete-sequence' }
+                ]
             },
             'linux-commands': {
                 title: 'Basic Commands',
-                content: 'Essential Linux command-line utilities include cd for navigation, ls for listing files, grep for searching text, and chmod for modifying file permissions.',
+                content: 'Essential Linux command-line utilities include cd for navigation, ls for listing files, grep for searching text, and chmod for modifying file permissions. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Navigation', 'File Manipulation', 'Permissions']
             },
             'linux-installation': {
                 title: 'Installation of OS',
-                content: 'Installing a Linux OS typically involves creating a bootable USB drive using an ISO file, booting the system from the drive, and following the distribution-specific graphical installer.',
+                content: 'Installing a Linux OS typically involves creating a bootable USB drive using an ISO file, booting the system from the drive, and following the distribution-specific graphical installer. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Prerequisites', 'Booting', 'Partitioning']
             },
             'what-is-git': {
                 title: 'What is Git',
-                content: 'Git is a distributed version control system designed to track changes in source code during software development, enabling seamless collaboration among programmers.',
+                content: 'Git is a distributed version control system designed to track changes in source code during software development, enabling seamless collaboration among programmers. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Version Control Basics', 'Branching & Merging']
             },
             'what-is-docker': {
                 title: 'What is Docker',
-                content: 'Docker is a software platform that utilizes OS-level virtualization to deliver software in standardized packages called containers, ensuring consistency across environments.',
+                content: 'Docker is a software platform that utilizes OS-level virtualization to deliver software in standardized packages called containers, ensuring consistency across environments. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Containerization', 'Docker Images', 'Docker Compose']
             },
             'what-is-kubernetes': {
                 title: 'What is Kubernetes',
-                content: 'Kubernetes (K8s) is a powerful open-source container orchestration engine that automates the deployment, scaling, and management of containerized applications across clusters of hosts.',
+                content: 'Kubernetes (K8s) is a powerful open-source container orchestration engine that automates the deployment, scaling, and management of containerized applications across clusters of hosts. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Pods & Nodes', 'Services', 'Scaling']
             },
             'nvidia-tools': {
                 title: 'Nvidia tools',
-                content: 'Nvidia provides a suite of high-performance tools such as CUDA, nvtop, and TensorRT, designed to monitor, accelerate, and optimize GPU-based computational workloads.',
+                content: 'Nvidia provides a suite of high-performance tools such as CUDA, nvtop, and TensorRT, designed to monitor, accelerate, and optimize GPU-based computational workloads. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['CUDA Toolkit', 'Monitoring Tools']
             },
             'what-is-cloud': {
                 title: 'What is Cloud',
-                content: 'Cloud computing is the on-demand delivery of IT resources—such as computing power, storage, and databases—over the internet with pay-as-you-go pricing.',
+                content: 'Cloud computing is the on-demand delivery of IT resources—such as computing power, storage, and databases—over the internet with pay-as-you-go pricing. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['IaaS, PaaS, SaaS', 'Deployment Models']
             },
             'what-is-aws': {
                 title: 'What is AWS',
-                content: 'Amazon Web Services (AWS) is a comprehensive, evolving, and widely adopted cloud computing platform provided by Amazon that offers a mix of infrastructure as a service (IaaS) and platform as a service (PaaS) offerings.',
+                content: 'Amazon Web Services (AWS) is a comprehensive, evolving, and widely adopted cloud computing platform provided by Amazon that offers a mix of infrastructure as a service (IaaS) and platform as a service (PaaS) offerings. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Core Services', 'Global Infrastructure']
             },
             'what-is-gcp': {
                 title: 'What is GCP',
-                content: 'Google Cloud Platform (GCP) is a suite of cloud computing services that runs on the same internal infrastructure that Google uses for its end-user products like Google Search and YouTube.',
+                content: 'Google Cloud Platform (GCP) is a suite of cloud computing services that runs on the same internal infrastructure that Google uses for its end-user products like Google Search and YouTube. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Compute Engine', 'Data & AI Services']
             },
             'what-is-azure': {
                 title: 'What is Azure',
-                content: 'Microsoft Azure is a public cloud computing platform that provides a broad range of cloud services, including compute, analytics, storage, and networking tailored for enterprise integration.',
+                content: 'Microsoft Azure is a public cloud computing platform that provides a broad range of cloud services, including compute, analytics, storage, and networking tailored for enterprise integration. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Azure Ecosystem', 'Hybrid Cloud']
             },
             'what-is-devops': {
                 title: 'What is DevOps',
-                content: 'DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the systems development life cycle and provide continuous delivery with high software quality.',
+                content: 'DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the systems development life cycle and provide continuous delivery with high software quality. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['CI/CD Pipelines', 'Infrastructure as Code']
             },
             'what-is-mlops': {
                 title: 'What is MLOps',
-                content: 'MLOps (Machine Learning Operations) focuses on streamlining the process of deploying, testing, and maintaining machine learning models in production environments reliably and efficiently.',
+                content: 'MLOps (Machine Learning Operations) focuses on streamlining the process of deploying, testing, and maintaining machine learning models in production environments reliably and efficiently. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Model Lifecycle', 'Experiment Tracking']
             },
             'what-is-rag': {
                 title: 'What is RAG',
-                content: 'Retrieval-Augmented Generation (RAG) is an AI framework that improves the quality of LLM-generated responses by grounding the model on external sources of knowledge fetched in real-time.',
+                content: 'Retrieval-Augmented Generation (RAG) is an AI framework that improves the quality of LLM-generated responses by grounding the model on external sources of knowledge fetched in real-time. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Vector Databases', 'Prompt Augmentation']
             },
             'what-is-hpc': {
                 title: 'What is HPC',
-                content: 'High-Performance Computing (HPC) involves aggregating computing power to deliver much higher performance than typical desktop computers, solving complex scientific and engineering problems.',
+                content: 'High-Performance Computing (HPC) involves aggregating computing power to deliver much higher performance than typical desktop computers, solving complex scientific and engineering problems. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Cluster Architecture', 'Job Scheduling']
             },
             'what-is-aiml': {
                 title: 'What is AI/ML',
-                content: 'Artificial Intelligence (AI) and Machine Learning (ML) involve developing computer systems capable of performing tasks that typically require human intelligence by learning from large datasets.',
+                content: 'Artificial Intelligence (AI) and Machine Learning (ML) involve developing computer systems capable of performing tasks that typically require human intelligence by learning from large datasets. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Neural Networks', 'Training vs Inference']
             },
             'what-is-bigdata': {
                 title: 'What is BIGDATA',
-                content: 'Big Data refers to extremely large and complex data sets that are analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions.',
+                content: 'Big Data refers to extremely large and complex data sets that are analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions. (ADD YOUR FULL MARKDOWN HERE)',
                 toc: ['Volume, Velocity, Variety', 'Data Warehousing']
             }
         };
+
+        // --- Google Sheets Form Submission Handler ---
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = form.querySelector('.submit-btn');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+
+            const formData = new FormData(form);
+            const scriptURL = form.action;
+
+            fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
+                .then(() => {
+                    btn.innerText = 'Success! We will reach out soon.';
+                    btn.style.backgroundColor = '#27ae60'; 
+                    form.reset();
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.style.backgroundColor = 'var(--accent-color)'; 
+                        btn.disabled = false;
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    btn.innerText = 'Error! Please try again.';
+                    btn.style.backgroundColor = '#e74c3c'; 
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.style.backgroundColor = 'var(--accent-color)'; 
+                        btn.disabled = false;
+                    }, 3000);
+                });
+        }
 
         // --- TOC Smooth Scrolling function ---
         function scrollToSection(targetId, event) {
@@ -963,13 +1212,83 @@ For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because
 
             const contentDiv = document.getElementById('dynamic-content');
 
-            // Parse markdown if exists, else wrap normal text in <p>
-            const pageBody = data.markdown ? marked.parse(data.markdown) : (data.content ? `<p>${data.content}</p>` : '');
+            if (data.isContact) {
+                contentDiv.innerHTML = `
+                    <h1 style="text-align: left; margin-bottom: 40px;">${data.title}</h1>
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <p>Contact us for tutorial inquiries, enterprise training, or mentorship programs.</p>
+                            <ul>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    Bengaluru, Karnataka, India, Pin-560070.
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                    </svg>
+                                    +91 80 2654 2726
+                                </li>
+                                <li>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                    azilehub@gmail.com
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <form class="contact-form" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST" onsubmit="handleContactSubmit(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" name="firstName" placeholder="First Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" name="lastName" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" name="email" placeholder="Email Address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" name="phone" placeholder="Phone Number">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Reason for Contact</label>
+                                <select name="reason" required>
+                                    <option value="" disabled selected>Choose your reason for contacting us</option>
+                                    <option value="Tutorial Inquiry">Tutorial Inquiry</option>
+                                    <option value="Enterprise Training">Enterprise Training</option>
+                                    <option value="Mentorship">Mentorship Program</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Contact Us</button>
+                        </form>
+                    </div>
+                `;
+            } else {
+                // Parse markdown if exists, else wrap normal text in <p>
+                const pageBody = data.markdown ? marked.parse(data.markdown) : (data.content ? `<p>${data.content}</p>` : '');
 
-            contentDiv.innerHTML = `
-                <h1 style="margin-bottom: 24px;">${data.title}</h1>
-                ${pageBody}
-            `;
+                contentDiv.innerHTML = `
+                    <h1 style="margin-bottom: 24px;">${data.title}</h1>
+                    ${pageBody}
+                `;
+            }
 
             const rightSidebar = document.getElementById('rightSidebar');
             const tocList = document.getElementById('toc-list');
