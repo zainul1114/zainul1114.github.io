@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Azilehub Academy | Engineering Docs</title>
     
-    <!-- Import elegant academic serif font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Import Marked.js for parsing Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
@@ -43,7 +41,7 @@
             font-size: 1.15rem;
         }
 
-        /* --- Top Navigation --- */
+        /* Top Navigation */
         .navbar {
             min-height: 65px;
             border-bottom: 1px solid var(--border-color);
@@ -97,7 +95,7 @@
             color: var(--text-main);
         }
 
-        /* --- Mobile Secondary Toolbar --- */
+        /* Mobile Secondary Toolbar */
         .mobile-secondary-toolbar {
             display: none;
             justify-content: space-between;
@@ -128,7 +126,7 @@
             padding: 0 16px;
         }
 
-        /* --- Full Screen Mobile Main Menu --- */
+        /* Full Screen Mobile Main Menu */
         .mobile-fullscreen-menu {
             display: none;
             position: fixed;
@@ -148,7 +146,7 @@
             padding-bottom: 12px;
         }
 
-        /* --- Main Layout --- */
+        /* Main Layout */
         .layout-container {
             display: flex;
             flex: 1;
@@ -156,7 +154,7 @@
             position: relative;
         }
 
-        /* --- Left Sidebar Structure --- */
+        /* Left Sidebar Structure */
         .sidebar-left {
             position: relative;
             width: 300px;
@@ -166,9 +164,13 @@
             padding: 24px 16px;
             flex-shrink: 0;
             transition: transform 0.3s ease;
+            scroll-behavior: smooth;
         }
 
-        .sidebar-section { margin-bottom: 32px; }
+        .sidebar-section { 
+            margin-bottom: 32px; 
+            scroll-margin-top: 16px;
+        }
 
         .sidebar-title {
             font-size: 1.2rem;
@@ -178,7 +180,7 @@
             color: var(--text-main);
         }
 
-        /* --- GitHub Style Accordion Menus --- */
+        /* Accordion Structure */
         .nav-details {
             margin-bottom: 4px;
         }
@@ -257,7 +259,7 @@
             border-radius: 4px;
         }
 
-        /* --- Main Content --- */
+        /* Main Content */
         .main-content {
             flex: 1;
             overflow-y: auto;
@@ -354,105 +356,36 @@
             margin: 40px 0;
         }
 
-        /* --- Contact Page Specific Styles --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 60px;
+        /* Contact Details */
+        .contact-details-box {
+            background: #fdfdfd;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
         }
 
-        .contact-info p {
-            font-size: 1.15rem;
-            color: #555;
-            margin-bottom: 24px;
-            text-align: left;
-        }
-
-        .contact-info ul {
+        .contact-details-box ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .contact-info li {
+        .contact-details-box li {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 16px;
             font-size: 1.15rem;
-            color: #555;
+            color: #333;
         }
 
-        .contact-info svg {
-            width: 20px;
-            height: 20px;
-            color: #777;
+        .contact-details-box svg {
+            color: var(--accent-color);
             flex-shrink: 0;
         }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 1.05rem;
-            color: #333;
-        }
-
-        .contact-form input, .contact-form select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #b3b3b3;
-            border-radius: 6px;
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            background: #fff;
-            color: #333;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .contact-form input:focus, .contact-form select:focus {
-            border-color: var(--accent-color);
-        }
-
-        .contact-form input::placeholder {
-            color: #aaa;
-        }
-
-        .submit-btn {
-            background-color: var(--accent-color); 
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            font-family: var(--font-serif);
-            transition: background 0.3s;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover { background-color: #b83a33; } 
-        .submit-btn:disabled { background-color: #95a5a6; cursor: not-allowed; }
-
-        /* --- Global Footer Styles --- */
+        /* Global Footer */
         .global-footer {
             background-color: #f5f5f5;
             padding: 40px;
@@ -499,7 +432,7 @@
             text-align: center;
         }
 
-        /* --- Right Sidebar (TOC) --- */
+        /* Right Sidebar (TOC) */
         .sidebar-right {
             width: 260px;
             padding: 32px 24px;
@@ -536,7 +469,6 @@
             color: var(--text-main);
         }
 
-        /* Overlay for mobile sidebars */
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -546,7 +478,6 @@
         }
         .sidebar-overlay.active { display: block; }
 
-        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .sidebar-right { display: none !important; }
         }
@@ -586,7 +517,6 @@
             Azilehub Academy
         </a>
         
-        <!-- SPA Navigation Links -->
         <div class="nav-menu-group nav-links">
             <a href="#" onclick="loadPage('main-tutorials', this, event)">Tutorials</a>
             <a href="#" onclick="loadPage('main-projects', this, event)">Projects</a>
@@ -628,13 +558,13 @@
     <!-- Main Layout -->
     <div class="layout-container">
         
-        <!-- Nested Left Sidebar Navigation -->
+        <!-- Left Sidebar Navigation -->
         <aside class="sidebar-left" id="leftSidebar">
             
             <div class="sidebar-section" id="section-tutorials">
                 <div class="sidebar-title">Tutorials</div>
                 
-                <details class="nav-details">
+                <details class="nav-details" id="group-linux">
                     <summary class="nav-summary">
                         Linux
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -647,7 +577,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-git">
                     <summary class="nav-summary">
                         Git
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -657,7 +587,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-docker">
                     <summary class="nav-summary">
                         Docker
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -667,7 +597,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-kubernetes">
                     <summary class="nav-summary">
                         Kubernetes
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -677,7 +607,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-nvidia">
                     <summary class="nav-summary">
                         Nvidia
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -687,7 +617,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-cloud">
                     <summary class="nav-summary">
                         Cloud
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -704,7 +634,7 @@
             <div class="sidebar-section" id="section-projects">
                 <div class="sidebar-title">Projects</div>
                 
-                <details class="nav-details">
+                <details class="nav-details" id="group-devops">
                     <summary class="nav-summary">
                         DevOps
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -714,7 +644,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-mlops">
                     <summary class="nav-summary">
                         MLOps
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -724,7 +654,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-rag">
                     <summary class="nav-summary">
                         RAG
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -738,7 +668,7 @@
             <div class="sidebar-section" id="section-trending">
                 <div class="sidebar-title">Trending</div>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-hpc">
                     <summary class="nav-summary">
                         HPC
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -748,7 +678,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-aiml">
                     <summary class="nav-summary">
                         AI / ML
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -758,7 +688,7 @@
                     </ul>
                 </details>
 
-                <details class="nav-details">
+                <details class="nav-details" id="group-bigdata">
                     <summary class="nav-summary">
                         BIGDATA
                         <svg class="chevron" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -772,38 +702,32 @@
 
         <!-- Center Content & Footer -->
         <main class="main-content" id="mainScrollArea">
-            <div class="content-inner" id="dynamic-content">
-                <!-- Content injected via JavaScript -->
-            </div>
+            <div class="content-inner" id="dynamic-content"></div>
             
-            <!-- Global Footer applied to all pages -->
             <footer class="global-footer">
                 <svg onclick="scrollToTop()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="18 15 12 9 6 15"></polyline>
                 </svg>
                 <div class="footer-links">
-                    <a href="#" onclick="loadPage('landing-page', null, event)">Home</a> |
-                    <a href="#" onclick="loadPage('main-tutorials', null, event)">Tutorials</a> |
-                    <a href="#" onclick="loadPage('main-projects', null, event)">Projects</a> |
-                    <a href="#" onclick="loadPage('main-trending', null, event)">Trending</a> |
-                    <a href="#" onclick="loadPage('main-contact', null, event)">Contact</a>
+                    <a href="#" onclick="loadPage('landing-page', this, event)">Home</a> |
+                    <a href="#" onclick="loadPage('main-tutorials', this, event)">Tutorials</a> |
+                    <a href="#" onclick="loadPage('main-projects', this, event)">Projects</a> |
+                    <a href="#" onclick="loadPage('main-trending', this, event)">Trending</a> |
+                    <a href="#" onclick="loadPage('main-contact', this, event)">Contact</a>
                 </div>
                 <p>All Rights Reserved © zainul1114.github.io</p>
             </footer>
         </main>
 
-        <!-- Right Sidebar (Table of Contents) -->
+        <!-- Right Sidebar (TOC) -->
         <aside class="sidebar-right" id="rightSidebar">
             <div class="toc-title">On this page</div>
-            <ul class="toc-list" id="toc-list">
-                <!-- TOC injected via JavaScript -->
-            </ul>
+            <ul class="toc-list" id="toc-list"></ul>
         </aside>
 
     </div>
 
     <script>
-        // NOTE: ADD YOUR FULL MARKDOWN CONTENT TO THESE SECTIONS SO THEY ARE NOT EMPTY.
         const pageData = {
             'landing-page': {
                 title: 'Welcome to Azilehub Academy',
@@ -825,498 +749,398 @@ We empower practitioners to architect resilient relational databases with Postgr
             },
             'main-tutorials': {
                 title: 'Tutorials',
-                content: 'Explore foundational and advanced guides covering cloud-native infrastructure, containerization, and configuration management.',
-                toc: []
+                sidebarSection: 'section-tutorials',
+                markdown: `
+Foundational documentation and structured technical pathways across the complete cloud and systems engineering lifecycle.
+
+<h3 id="tut-linux">Linux Administration</h3>
+Essential operating system mechanics, system utilities, directory structures, and enterprise server configurations.
+
+<h3 id="tut-git">Version Control with Git</h3>
+Distributed code workflows, branching conventions, repository management, and collaboration best practices.
+
+<h3 id="tut-docker">Docker & Containers</h3>
+Image design, multi-stage compilation, isolation patterns, and local service orchestration with Docker Compose.
+
+<h3 id="tut-k8s">Kubernetes</h3>
+Clustering concepts, pod scheduling, network ingress, stateful persistence, and workload high-availability.
+
+<h3 id="tut-nvidia">Nvidia Ecosystem</h3>
+Driver stacks, CUDA acceleration frameworks, multi-instance partitioning, and GPU monitoring utilities.
+
+<h3 id="tut-cloud">Cloud Providers</h3>
+Scalable public infrastructure configurations across AWS, Google Cloud Platform (GCP), and Microsoft Azure.
+                `,
+                toc: [
+                    { label: 'Linux', target: 'tut-linux' },
+                    { label: 'Git', target: 'tut-git' },
+                    { label: 'Docker', target: 'tut-docker' },
+                    { label: 'Kubernetes', target: 'tut-k8s' },
+                    { label: 'Nvidia', target: 'tut-nvidia' },
+                    { label: 'Cloud', target: 'tut-cloud' }
+                ]
             },
             'main-projects': {
                 title: 'Projects',
-                content: 'Discover hands-on implementations of MLOps pipelines, automated deployments, and end-to-end architecture builds.',
-                toc: []
+                sidebarSection: 'section-projects',
+                markdown: `
+Production-grade deployment blueprints, operational pipelines, and end-to-end architectures.
+
+<h3 id="proj-devops">DevOps Systems</h3>
+Continuous integration pipelines, automated infrastructure provisioning, and container deployment mechanics.
+
+<h3 id="proj-mlops">MLOps Infrastructures</h3>
+Model registries, repeatable training pipelines, automated experiment tracking, and artifact monitoring.
+
+<h3 id="proj-rag">RAG Implementations</h3>
+End-to-end Retrieval-Augmented Generation workflows integrating embedding generation, vector stores, and local model endpoints.
+                `,
+                toc: [
+                    { label: 'DevOps', target: 'proj-devops' },
+                    { label: 'MLOps', target: 'proj-mlops' },
+                    { label: 'RAG', target: 'proj-rag' }
+                ]
             },
             'main-trending': {
-                title: 'Trending',
-                content: 'Stay updated with the latest developments in High-Performance Computing, Artificial Intelligence, and Big Data analytics.',
-                toc: []
+                title: 'Trending Topics',
+                sidebarSection: 'section-trending',
+                markdown: `
+Emerging infrastructure standards, accelerated computing methodologies, and distributed data systems.
+
+<h3 id="trend-hpc">High-Performance Computing (HPC)</h3>
+High-throughput workload scheduling, multi-node node clusters, MPI pipelines, and batch architectures.
+
+<h3 id="trend-aiml">Modern AI / ML Architecture</h3>
+Inference acceleration engines, transformer quantization, multi-GPU parallelism, and scalable serving stacks.
+
+<h3 id="trend-bigdata">Big Data Infrastructure</h3>
+Distributed storage architectures, fault-tolerant message brokers, and horizontal data processing frameworks.
+                `,
+                toc: [
+                    { label: 'HPC', target: 'trend-hpc' },
+                    { label: 'AI / ML', target: 'trend-aiml' },
+                    { label: 'BIGDATA', target: 'trend-bigdata' }
+                ]
             },
             'main-contact': {
-                title: 'Contact Us',
+                title: 'Contact',
                 isContact: true,
                 toc: []
             },
             'what-is-linux': {
                 title: 'What is Linux',
+                parentGroup: 'group-linux',
                 markdown: `
-<h3 id="what-is-linux">1. What is Linux?</h3>
+<h3 id="what-is-linux-q">1. What is Linux?</h3>
+Linux is an open-source operating system based on the Linux kernel, created by Linus Torvalds in 1991. It provides standard kernel interfaces powering modern data centers, cloud providers, high-performance environments, and container platforms.
 
-Linux is an open-source operating system, based around the Linux kernel. It was created by Linus Torvalds in 1991. Linux is widely used in servers, cloud platforms, containers, embedded systems, supercomputers, and enterprise infrastructure. There are many Linux distributions (distros) such as RHEL, Rocky Linux, Ubuntu, Debian, Fedora, and others.
+<h3 id="os-concept">2. What is an Operating System?</h3>
+An OS is the core software layer between computer hardware and execution environments. It regulates CPU cycles, physical memory allocation, peripheral bus devices, networking controllers, and access control permissions.
 
-<h3 id="operating-system">2. What is an Operating System?</h3>
-
-An OS is the software layer between applications and hardware. It manages:
-* **CPU** – processing
-* **Memory/RAM** – running programs
-* **Storage** – files and data
-* **Network** – communication
-* **Devices** – disks, GPUs, keyboards, etc.
-* **Users and permissions**
-
-**Simple view:**
-\`\`\`text
-Applications
-     ↓
-Linux OS
-     ↓
-Linux Kernel
-     ↓
-Hardware (CPU | RAM | Disk | Network | GPU)
-\`\`\`
-
-<h3 id="how-linux-works">3. How Linux Works</h3>
-
-The Linux kernel is the core of the system. It manages hardware resources and provides services to applications.
-
-A Linux system generally contains:
-\`\`\`text
-Applications
-     ↓
-System Utilities / Libraries
-     ↓
-Shell / Services / Daemons
-     ↓
-Linux Kernel
-     ↓
-Hardware
-\`\`\`
-
-**The kernel manages:**
-* Process management
-* Memory management
-* File systems
-* Networking
-* Device drivers
-* Security and permissions
-
-<h3 id="gui-vs-cli">4. GUI vs CLI</h3>
-
-**GUI (Graphical User Interface)**
-* Uses windows, menus, icons, and mouse.
-* Easy for general desktop usage.
-
-**CLI (Command Line Interface)**
-* Uses commands through a terminal.
-* Very important for Linux administration, automation, DevOps, cloud, and servers.
-
-**Example:**
-\`\`\`bash
-ls
-cd /var/log
-systemctl status sshd
-df -h
-\`\`\`
-
-<h3 id="main-components">5. Main Components of Linux</h3>
-
-Overview of core architecture components and their respective purposes in a standard Linux environment.
-
-<h3 id="open-source">6. Linux and Open Source</h3>
-
-Linux is open source, meaning its source code can be studied, modified, and redistributed under its applicable licenses.
-
-**This allows:**
-* Global community contribution
-* Customization
-* Bug fixes
-* Security improvements
-* Development of different Linux distributions
-
-<h3 id="major-benefits">7. Major Benefits of Linux</h3>
-
-* **Versatility:** Works from small embedded devices to large servers and supercomputers.
-* **Security:** Strong user/group permissions, SELinux, process isolation, and open-source security review.
-* **Community:** Large worldwide developer and administrator community.
-* **Automation:** Powerful CLI and scripting make Linux highly suitable for DevOps and infrastructure automation.
-
-<h3 id="linux-vs-distribution">8. Linux vs Linux Distribution</h3>
-
-A useful distinction combining the Linux kernel, system libraries, GNU/system utilities, package managers, and applications into a distributable OS.
-
-For your DevOps/MLOps work, Rocky Linux and RHEL are especially relevant because they are commonly used for enterprise servers, Kubernetes/OpenShift infrastructure, automation, and application platforms.
+<h3 id="linux-mechanics">3. How Linux Works</h3>
+The kernel serves as the privileged intermediary orchestrating resources between user-space runtimes and physical silicon through system calls, process tables, virtual filesystem abstractions, and device drivers.
                 `,
                 toc: [
-                    { label: 'What is Linux', target: 'what-is-linux' },
-                    { label: 'Operating System', target: 'operating-system' },
-                    { label: 'How Linux Works', target: 'how-linux-works' },
-                    { label: 'GUI vs CLI', target: 'gui-vs-cli' },
-                    { label: 'Main Components', target: 'main-components' },
-                    { label: 'Open Source', target: 'open-source' },
-                    { label: 'Major Benefits', target: 'major-benefits' },
-                    { label: 'Linux vs Distribution', target: 'linux-vs-distribution' }
+                    { label: 'What is Linux', target: 'what-is-linux-q' },
+                    { label: 'Operating System', target: 'os-concept' },
+                    { label: 'How Linux Works', target: 'linux-mechanics' }
                 ]
             },
             'how-linux-works': {
                 title: 'How it works and its Types',
+                parentGroup: 'group-linux',
                 markdown: `
-<h3 id="power-on">1. Power On / Reboot</h3>
-The boot process begins when the RHEL 9 system is powered on or restarted.
-The system firmware starts executing the initial hardware and boot operations.
+<h3 id="boot-sequence">RHEL 9 Boot Sequence</h3>
+The standard enterprise initialization begins when machine firmware initiates power checks and transfers execution to GRUB2.
 
-<h3 id="uefi-bios">2. UEFI / BIOS and POST</h3>
-The firmware, typically UEFI on modern RHEL 9 systems, performs the Power-On Self-Test (POST).
-POST checks and initializes essential hardware such as:
-* CPU
-* Memory
-* Storage devices
-* Keyboard and other basic hardware
+<h3 id="initramfs">initramfs Early Userspace</h3>
+Initializes storage array drivers, decrypts encrypted volumes, reads LVM mappings, and hands control to the primary root volume.
 
-After successful hardware initialization, the firmware identifies the configured boot device and transfers control to the bootloader.
-
-<h3 id="grub2">3. GRUB2 Bootloader</h3>
-RHEL 9 uses GRUB2 (GRand Unified Bootloader 2) as its bootloader.
-GRUB2 is responsible for loading the selected Linux kernel and the initial RAM filesystem into memory.
-It can also display a boot menu where the administrator can select a kernel or modify kernel boot parameters.
-GRUB2 loads:
-* Linux kernel
-* initramfs
-* Kernel parameters
-
-It then transfers control to the Linux kernel.
-
-<h3 id="kernel-init">4. Linux Kernel Initialization</h3>
-The Linux kernel starts executing after GRUB2 transfers control to it.
-The kernel initializes important parts of the operating system, including:
-* CPU management
-* Memory management
-* Device drivers
-* Hardware interfaces
-* Kernel subsystems
-* Process management
-
-The kernel also uses the initramfs environment during early boot to access the required storage devices and locate the root filesystem.
-
-<h3 id="initramfs">5. initramfs / Early Userspace</h3>
-initramfs provides a temporary filesystem and the tools required during the early boot stage.
-It helps the system perform tasks such as:
-* Loading required storage drivers
-* Detecting storage devices
-* Activating LVM volumes
-* Configuring software RAID when required
-* Unlocking encrypted storage when configured
-* Locating and preparing the root filesystem
-
-After the root filesystem is available, control moves to the normal userspace initialization process.
-
-<h3 id="systemd-pid1">6. systemd — PID 1</h3>
-The kernel starts systemd, which becomes the first userspace process and normally runs as PID 1.
-systemd is the initialization and service-management system used by RHEL 9.
-It is responsible for bringing the system from the basic kernel environment to a usable operating state.
-
-<h3 id="systemd-services">7. systemd Starts Services</h3>
-systemd starts the services and resources required by the system.
-Depending on the configuration, this can include:
-* Mounting filesystems
-* Starting networking
-* Starting SSH
-* Starting logging services
-* Starting scheduled services
-* Starting security-related services
-* Starting other enabled system services
-
-systemd uses dependencies and parallel service startup where possible to efficiently initialize the system.
-
-<h3 id="systemd-target">8. systemd Reaches the Target</h3>
-Finally, systemd reaches the system's configured target.
-For a typical RHEL 9 server, the target is:
-\`multi-user.target\`
-
-This provides a fully operational multi-user server environment without a graphical desktop.
-For a RHEL 9 graphical workstation, the target may be:
-\`graphical.target\`
-
-Once the required target and services are active, the RHEL 9 system is ready for users and applications.
-
-<h3 id="complete-sequence">Complete RHEL 9 Boot Sequence</h3>
-
-\`\`\`text
-Power On / Reboot
-        ↓
-UEFI / BIOS
-        ↓
-POST
-        ↓
-GRUB2
-        ↓
-Linux Kernel + initramfs
-        ↓
-Kernel Initialization
-        ↓
-Early Userspace / Root Filesystem
-        ↓
-systemd (PID 1)
-        ↓
-Start System Services
-        ↓
-Reach systemd Target
-        ↓
-multi-user.target / graphical.target
-        ↓
-RHEL 9 System Ready
-\`\`\`
-
-**Easy way to remember:**
-> Firmware → GRUB2 → Kernel → initramfs → systemd → Services → Target → Login/Ready
+<h3 id="systemd-init">systemd (PID 1) Execution</h3>
+Executes initialization targets in parallel, mounting auxiliary filesystems, starting networking sockets, and reaching the configured runlevel target.
                 `,
                 toc: [
-                    { label: 'Power On / Reboot', target: 'power-on' },
-                    { label: 'UEFI / BIOS and POST', target: 'uefi-bios' },
-                    { label: 'GRUB2 Bootloader', target: 'grub2' },
-                    { label: 'Kernel Initialization', target: 'kernel-init' },
+                    { label: 'Boot Sequence', target: 'boot-sequence' },
                     { label: 'initramfs', target: 'initramfs' },
-                    { label: 'systemd — PID 1', target: 'systemd-pid1' },
-                    { label: 'systemd Starts Services', target: 'systemd-services' },
-                    { label: 'systemd Reaches Target', target: 'systemd-target' },
-                    { label: 'Complete Sequence', target: 'complete-sequence' }
+                    { label: 'systemd (PID 1)', target: 'systemd-init' }
                 ]
             },
             'linux-commands': {
                 title: 'Basic Commands',
-                content: 'Essential Linux command-line utilities include cd for navigation, ls for listing files, grep for searching text, and chmod for modifying file permissions. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Navigation', 'File Manipulation', 'Permissions']
+                parentGroup: 'group-linux',
+                markdown: `
+<h3 id="nav-cmd">Navigation</h3>
+Fundamental file system navigation utilities including \`cd\`, \`pwd\`, and listing utilities such as \`ls -la\`.
+
+<h3 id="file-cmd">File Manipulation</h3>
+Manipulating object trees using standard posix primitives like \`cp\`, \`mv\`, \`touch\`, and directory removal with \`rm -rf\`.
+                `,
+                toc: [
+                    { label: 'Navigation', target: 'nav-cmd' },
+                    { label: 'File Manipulation', target: 'file-cmd' }
+                ]
             },
             'linux-installation': {
                 title: 'Installation of OS',
-                content: 'Installing a Linux OS typically involves creating a bootable USB drive using an ISO file, booting the system from the drive, and following the distribution-specific graphical installer. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Prerequisites', 'Booting', 'Partitioning']
+                parentGroup: 'group-linux',
+                markdown: `
+<h3 id="os-prep">Prerequisites</h3>
+Setting up partition tables (GPT/MBR), configuring boot devices, UEFI secure boot policies, and writing boot media.
+                `,
+                toc: [
+                    { label: 'Prerequisites', target: 'os-prep' }
+                ]
             },
             'what-is-git': {
                 title: 'What is Git',
-                content: 'Git is a distributed version control system designed to track changes in source code during software development, enabling seamless collaboration among programmers. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Version Control Basics', 'Branching & Merging']
+                parentGroup: 'group-git',
+                markdown: `
+<h3 id="git-arch">Version Control Architecture</h3>
+Git maintains a directed acyclic graph (DAG) of project states via cryptographic object hashing and snapshot trees.
+                `,
+                toc: [
+                    { label: 'Architecture', target: 'git-arch' }
+                ]
             },
             'what-is-docker': {
                 title: 'What is Docker',
-                content: 'Docker is a software platform that utilizes OS-level virtualization to deliver software in standardized packages called containers, ensuring consistency across environments. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Containerization', 'Docker Images', 'Docker Compose']
+                parentGroup: 'group-docker',
+                markdown: `
+<h3 id="cgroups-ns">Kernel Namespaces & cgroups</h3>
+Docker utilizes Linux namespaces (PID, NET, MNT, IPC, UTS) and Control Groups (cgroups) for container isolation and resource accounting.
+                `,
+                toc: [
+                    { label: 'Namespaces & cgroups', target: 'cgroups-ns' }
+                ]
             },
             'what-is-kubernetes': {
                 title: 'What is Kubernetes',
-                content: 'Kubernetes (K8s) is a powerful open-source container orchestration engine that automates the deployment, scaling, and management of containerized applications across clusters of hosts. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Pods & Nodes', 'Services', 'Scaling']
+                parentGroup: 'group-kubernetes',
+                markdown: `
+<h3 id="control-plane">Control Plane Architecture</h3>
+Coordinates cluster state across the API Server, etcd distributed storage, controller managers, and kube-schedulers.
+                `,
+                toc: [
+                    { label: 'Control Plane', target: 'control-plane' }
+                ]
             },
             'nvidia-tools': {
                 title: 'Nvidia tools',
-                content: 'Nvidia provides a suite of high-performance tools such as CUDA, nvtop, and TensorRT, designed to monitor, accelerate, and optimize GPU-based computational workloads. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['CUDA Toolkit', 'Monitoring Tools']
+                parentGroup: 'group-nvidia',
+                markdown: `
+<h3 id="cuda-toolkit">CUDA & Driver Interfaces</h3>
+Accelerated computing abstractions linking application memory spaces with specialized hardware compute cores.
+                `,
+                toc: [
+                    { label: 'CUDA Toolkit', target: 'cuda-toolkit' }
+                ]
             },
             'what-is-cloud': {
                 title: 'What is Cloud',
-                content: 'Cloud computing is the on-demand delivery of IT resources—such as computing power, storage, and databases—over the internet with pay-as-you-go pricing. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['IaaS, PaaS, SaaS', 'Deployment Models']
+                parentGroup: 'group-cloud',
+                markdown: `
+<h3 id="cloud-models">Service & Delivery Models</h3>
+Infrastructure-as-a-Service, managed platform layers, declarative provisioning, and cloud resource abstraction.
+                `,
+                toc: [
+                    { label: 'Cloud Models', target: 'cloud-models' }
+                ]
             },
             'what-is-aws': {
                 title: 'What is AWS',
-                content: 'Amazon Web Services (AWS) is a comprehensive, evolving, and widely adopted cloud computing platform provided by Amazon that offers a mix of infrastructure as a service (IaaS) and platform as a service (PaaS) offerings. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Core Services', 'Global Infrastructure']
+                parentGroup: 'group-cloud',
+                markdown: `
+<h3 id="aws-core">Core Infrastructure</h3>
+Virtual private clouds (VPCs), EC2 compute instances, IAM policy evaluation, and resilient object storage with S3.
+                `,
+                toc: [
+                    { label: 'Core Infrastructure', target: 'aws-core' }
+                ]
             },
             'what-is-gcp': {
                 title: 'What is GCP',
-                content: 'Google Cloud Platform (GCP) is a suite of cloud computing services that runs on the same internal infrastructure that Google uses for its end-user products like Google Search and YouTube. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Compute Engine', 'Data & AI Services']
+                parentGroup: 'group-cloud',
+                markdown: `
+<h3 id="gcp-arch">Google Cloud Platform</h3>
+Software-defined networking, Compute Engine resources, and distributed big-data execution pipelines.
+                `,
+                toc: [
+                    { label: 'Architecture', target: 'gcp-arch' }
+                ]
             },
             'what-is-azure': {
                 title: 'What is Azure',
-                content: 'Microsoft Azure is a public cloud computing platform that provides a broad range of cloud services, including compute, analytics, storage, and networking tailored for enterprise integration. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Azure Ecosystem', 'Hybrid Cloud']
+                parentGroup: 'group-azure',
+                markdown: `
+<h3 id="azure-core">Microsoft Azure Overview</h3>
+Enterprise directory integration with Entra ID, virtual network peering, and managed cloud environments.
+                `,
+                toc: [
+                    { label: 'Overview', target: 'azure-core' }
+                ]
             },
             'what-is-devops': {
                 title: 'What is DevOps',
-                content: 'DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the systems development life cycle and provide continuous delivery with high software quality. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['CI/CD Pipelines', 'Infrastructure as Code']
+                parentGroup: 'group-devops',
+                markdown: `
+<h3 id="cicd-pipeline">CI/CD Pipelines</h3>
+Automating testing validation, artifact packaging, container image builds, and declarative infrastructure deployments.
+
+<h3 id="iac-concept">Infrastructure as Code</h3>
+Managing physical and virtual topologies using codified configurations, state locking, and idempotent provisioning.
+                `,
+                toc: [
+                    { label: 'CI/CD Pipelines', target: 'cicd-pipeline' },
+                    { label: 'Infrastructure as Code', target: 'iac-concept' }
+                ]
             },
             'what-is-mlops': {
                 title: 'What is MLOps',
-                content: 'MLOps (Machine Learning Operations) focuses on streamlining the process of deploying, testing, and maintaining machine learning models in production environments reliably and efficiently. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Model Lifecycle', 'Experiment Tracking']
+                parentGroup: 'group-mlops',
+                markdown: `
+<h3 id="model-lifecycle">Model Lifecycle Operations</h3>
+Managing pipeline versioning, training runs, artifact registries, inference metrics, and automated deployment checks.
+                `,
+                toc: [
+                    { label: 'Model Lifecycle', target: 'model-lifecycle' }
+                ]
             },
             'what-is-rag': {
                 title: 'What is RAG',
-                content: 'Retrieval-Augmented Generation (RAG) is an AI framework that improves the quality of LLM-generated responses by grounding the model on external sources of knowledge fetched in real-time. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Vector Databases', 'Prompt Augmentation']
+                parentGroup: 'group-rag',
+                markdown: `
+<h3 id="vector-pipeline">Vector Retrieval Pipelines</h3>
+Chunking unstructured content, creating vector embeddings, index querying via similarity metrics, and context injection.
+                `,
+                toc: [
+                    { label: 'Vector Pipelines', target: 'vector-pipeline' }
+                ]
             },
             'what-is-hpc': {
                 title: 'What is HPC',
-                content: 'High-Performance Computing (HPC) involves aggregating computing power to deliver much higher performance than typical desktop computers, solving complex scientific and engineering problems. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Cluster Architecture', 'Job Scheduling']
+                parentGroup: 'group-hpc',
+                markdown: `
+<h3 id="cluster-sched">Cluster Scheduling</h3>
+Resource negotiation, queue allocation, batch processing, and workload orchestration across multi-socket computing nodes.
+                `,
+                toc: [
+                    { label: 'Workload Schedulers', target: 'cluster-sched' }
+                ]
             },
             'what-is-aiml': {
                 title: 'What is AI/ML',
-                content: 'Artificial Intelligence (AI) and Machine Learning (ML) involve developing computer systems capable of performing tasks that typically require human intelligence by learning from large datasets. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Neural Networks', 'Training vs Inference']
+                parentGroup: 'group-aiml',
+                markdown: `
+<h3 id="tensor-compute">Tensor Architectures</h3>
+Deep learning model optimization, precision quantization (FP16, INT8, INT4), and distributed training setups.
+                `,
+                toc: [
+                    { label: 'Tensor Operations', target: 'tensor-compute' }
+                ]
             },
             'what-is-bigdata': {
                 title: 'What is BIGDATA',
-                content: 'Big Data refers to extremely large and complex data sets that are analyzed computationally to reveal patterns, trends, and associations, especially relating to human behavior and interactions. (ADD YOUR FULL MARKDOWN HERE)',
-                toc: ['Volume, Velocity, Variety', 'Data Warehousing']
+                parentGroup: 'group-bigdata',
+                markdown: `
+<h3 id="dist-storage">Distributed Storage & Ingestion</h3>
+Managing high-throughput logs, real-time message streams, columnar disk layouts, and partitioned lakehouse tables.
+                `,
+                toc: [
+                    { label: 'Storage & Ingestion', target: 'dist-storage' }
+                ]
             }
         };
 
-        // --- Google Sheets Form Submission Handler ---
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const btn = form.querySelector('.submit-btn');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Sending...';
-            btn.disabled = true;
-
-            const formData = new FormData(form);
-            const scriptURL = form.action;
-
-            fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' })
-                .then(() => {
-                    btn.innerText = 'Success! We will reach out soon.';
-                    btn.style.backgroundColor = '#27ae60'; 
-                    form.reset();
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.style.backgroundColor = 'var(--accent-color)'; 
-                        btn.disabled = false;
-                    }, 3000);
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    btn.innerText = 'Error! Please try again.';
-                    btn.style.backgroundColor = '#e74c3c'; 
-                    setTimeout(() => {
-                        btn.innerText = originalText;
-                        btn.style.backgroundColor = 'var(--accent-color)'; 
-                        btn.disabled = false;
-                    }, 3000);
-                });
-        }
-
-        // --- TOC Smooth Scrolling function ---
         function scrollToSection(targetId, event) {
-            if(event) event.preventDefault();
+            if (event) event.preventDefault();
             const el = document.getElementById(targetId);
-            if(el) {
+            if (el) {
                 el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
         function loadPage(pageId, element, event) {
-            if(event) event.preventDefault();
+            if (event) event.preventDefault();
 
             const data = pageData[pageId];
-            if(!data) return;
+            if (!data) return;
 
             const contentDiv = document.getElementById('dynamic-content');
 
             if (data.isContact) {
                 contentDiv.innerHTML = `
-                    <h1 style="text-align: left; margin-bottom: 40px;">${data.title}</h1>
-                    <div class="contact-container">
-                        <div class="contact-info">
-                            <p>Contact us for tutorial inquiries, enterprise training, or mentorship programs.</p>
-                            <ul>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                        <circle cx="12" cy="10" r="3"></circle>
-                                    </svg>
-                                    Bengaluru, Karnataka, India, Pin-560070.
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                                    </svg>
-                                    +91 80 2654 2726
-                                </li>
-                                <li>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg>
-                                    azilehub@gmail.com
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <form class="contact-form" action="YOUR_GOOGLE_SCRIPT_WEB_APP_URL" method="POST" onsubmit="handleContactSubmit(event)">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label>First Name</label>
-                                    <input type="text" name="firstName" placeholder="First Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>Last Name</label>
-                                    <input type="text" name="lastName" placeholder="Last Name" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" name="email" placeholder="Email Address" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="tel" name="phone" placeholder="Phone Number">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Reason for Contact</label>
-                                <select name="reason" required>
-                                    <option value="" disabled selected>Choose your reason for contacting us</option>
-                                    <option value="Tutorial Inquiry">Tutorial Inquiry</option>
-                                    <option value="Enterprise Training">Enterprise Training</option>
-                                    <option value="Mentorship">Mentorship Program</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">Contact Us</button>
-                        </form>
+                    <h1 style="margin-bottom: 24px;">${data.title}</h1>
+                    <p>For tutorial inquiries, curriculum questions, or direct correspondence, contact us below:</p>
+                    <div class="contact-details-box">
+                        <ul>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>Bengaluru, Karnataka, India, Pin-560070</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                </svg>
+                                <span>+91 80 2654 2726</span>
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <span>azilehub@gmail.com</span>
+                            </li>
+                        </ul>
                     </div>
                 `;
             } else {
-                // Parse markdown if exists, else wrap normal text in <p>
                 const pageBody = data.markdown ? marked.parse(data.markdown) : (data.content ? `<p>${data.content}</p>` : '');
-
                 contentDiv.innerHTML = `
                     <h1 style="margin-bottom: 24px;">${data.title}</h1>
                     ${pageBody}
                 `;
             }
 
+            // Sync Table of Contents (On this page)
             const rightSidebar = document.getElementById('rightSidebar');
             const tocList = document.getElementById('toc-list');
             const mobileTocBtn = document.getElementById('mobileTocBtn');
 
             if (data.toc && data.toc.length > 0) {
                 rightSidebar.style.display = 'block';
-                if(mobileTocBtn) mobileTocBtn.style.display = 'flex';
+                if (mobileTocBtn) mobileTocBtn.style.display = 'flex';
                 
                 tocList.innerHTML = '';
                 data.toc.forEach(item => {
-                    if (typeof item === 'object') {
-                        tocList.innerHTML += `<li><a href="#" onclick="scrollToSection('${item.target}', event)">${item.label}</a></li>`;
-                    } else {
-                        tocList.innerHTML += `<li><a href="#">${item}</a></li>`;
-                    }
+                    tocList.innerHTML += `<li><a href="#" onclick="scrollToSection('${item.target}', event)">${item.label}</a></li>`;
                 });
             } else {
                 rightSidebar.style.display = 'none';
-                if(mobileTocBtn) mobileTocBtn.style.display = 'none';
+                if (mobileTocBtn) mobileTocBtn.style.display = 'none';
             }
 
-            // Highlight Active Menu visually
-            if(element && !element.closest('.global-footer')) {
-                document.querySelectorAll('.sub-menu a, .nav-links a, .mobile-fullscreen-menu a').forEach(el => el.classList.remove('active'));
-                if(!element.classList.contains('nav-brand')){
-                    element.classList.add('active');
+            // Open parent accordion if loading a sub-topic
+            if (data.parentGroup) {
+                const parentAccordion = document.getElementById(data.parentGroup);
+                if (parentAccordion) parentAccordion.open = true;
+            }
+
+            // Scroll left sidebar smoothly to matching section
+            if (data.sidebarSection) {
+                const targetSection = document.getElementById(data.sidebarSection);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            }
+
+            // Update active menu link styling
+            document.querySelectorAll('.sub-menu a, .nav-links a, .mobile-fullscreen-menu a').forEach(el => el.classList.remove('active'));
+            if (element && !element.closest('.global-footer') && !element.classList.contains('nav-brand')) {
+                element.classList.add('active');
             }
 
             closeAllMenus();
@@ -1340,7 +1164,7 @@ RHEL 9 System Ready
             const overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
             
-            if(sidebar.classList.contains('open')) {
+            if (sidebar.classList.contains('open')) {
                 overlay.classList.add('active');
                 document.getElementById('rightSidebar').classList.remove('open');
                 document.getElementById('mobileMainMenu').classList.remove('active');
@@ -1354,7 +1178,7 @@ RHEL 9 System Ready
             const overlay = document.getElementById('sidebarOverlay');
             sidebar.classList.toggle('open');
             
-            if(sidebar.classList.contains('open')) {
+            if (sidebar.classList.contains('open')) {
                 overlay.classList.add('active');
                 document.getElementById('leftSidebar').classList.remove('open');
                 document.getElementById('mobileMainMenu').classList.remove('active');
