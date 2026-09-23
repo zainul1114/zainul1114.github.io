@@ -2006,15 +2006,612 @@ Executes initialization targets in parallel, mounting auxiliary filesystems, sta
                 title: 'Basic Commands',
                 parentGroup: 'group-linux',
                 markdown: `
-<h3 id="nav-cmd">Navigation</h3>
-Fundamental file system navigation utilities including \`cd\`, \`pwd\`, and listing utilities such as \`ls -la\`.
+<h3 id="what-are-cmds">What Are Linux Commands?</h3>
+Linux commands are text-based instructions used in the Linux terminal to perform tasks like file management, software installation, networking, process monitoring, troubleshooting, and system administration. These commands help users interact directly with the operating system efficiently without relying on a graphical interface.
 
-<h3 id="file-cmd">File Manipulation</h3>
-Manipulating object trees using standard posix primitives like \`cp\`, \`mv\`, \`touch\`, and directory removal with \`rm -rf\`.
+**Most Used Linux Commands for Daily Tasks**
+If you are just starting with Linux, these are the commands you’ll use most frequently for navigation, troubleshooting, networking, and system management.
+
+| Command | Purpose | Example |
+| --- | --- | --- |
+| ls | List files and folders | \`ls -la\` |
+| cd | Change directory | \`cd /var/log\` |
+| pwd | Show current directory | \`pwd\` |
+| grep | Search text inside files | \`grep "ERROR" app.log\` |
+| find | Search files and folders | \`find /home -name "*.txt"\` |
+| chmod | Change permissions | \`chmod +x script.sh\` |
+| top | Monitor system processes | \`top\` |
+| ssh | Connect to the remote server | \`ssh user@server-ip\` |
+| systemctl | Manage services | \`systemctl restart nginx\` |
+| df -h | Check disk space | \`df -h\` |
+
+<h3 id="nav-cmd">1. Linux File Management Commands Every Beginner Should Know</h3>
+Managing files and directories is one of the first skills every Linux user should learn. These Linux file management commands help you navigate folders, organize files, search data, and work efficiently inside the terminal.
+
+| Command | Description | Real Example |
+| --- | --- | --- |
+| ls | List files and directories | \`ls -la /var/log\` |
+| pwd | Show current directory | \`pwd\` |
+| cd | Change directory | \`cd /etc/nginx\` |
+| mkdir | Create a new directory | \`mkdir project-backup\` |
+| touch | Create an empty file | \`touch notes.txt\` |
+| cp | Copy files and folders | \`cp config.conf backup.conf\` |
+| mv | Move or rename files | \`mv old.log archive.log\` |
+| rm | Delete files | \`rm unwanted.txt\` |
+| tree | Show directory structure | \`tree /var/www\` |
+| find | Search files | \`find /home -name "*.pdf"\` |
+| locate | Search indexed files | \`locate nginx.conf\` |
+| stat | Show file metadata | \`stat access.log\` |
+| basename | Extract filename | \`basename /etc/nginx/nginx.conf\` |
+| dirname | Show parent directory | \`dirname /var/www/html/index.html\` |
+| file | Identify file type | \`file backup.tar.gz\` |
+| ln | Create links | \`ln -s app.log latest.log\` |
+| realpath | Display absolute path | \`realpath script.sh\` |
+| shred | Securely delete files | \`shred -u confidential.txt\` |
+
+**Practical Example: Find Large Files Consuming Disk Space**
+\`\`\`bash
+find / -type f -size +500M
+\`\`\`
+This command helps system administrators locate files larger than 500 MB that may be consuming unnecessary disk space.
+
+**Useful Linux File Management Workflow**
+\`\`\`bash
+# Navigate to logs
+cd /var/log
+
+# List files by size
+ls -lh
+
+# Find old log files
+find . -name "*.log" -mtime +30
+
+# Delete unnecessary files
+rm old.log
+\`\`\`
+
+<h3 id="file-cmd">2. Linux File Viewing and Editing Commands</h3>
+Linux provides powerful terminal-based tools for viewing logs, editing configuration files, and analyzing text quickly. These commands are extremely useful while troubleshooting servers or working remotely through SSH.
+
+| Command | Purpose | Real Example |
+| --- | --- | --- |
+| cat | View file content | \`cat config.yml\` |
+| tac | Reverse-view file | \`tac logs.txt\` |
+| head | Show first lines | \`head -20 app.log\` |
+| tail | Show last lines | \`tail -f /var/log/syslog\` |
+| less | Open large files | \`less nginx.log\` |
+| more | Basic file viewer | \`more hosts\` |
+| grep | Search text patterns | \`grep "ERROR" nginx.log\` |
+| sed | Edit text streams | \`sed 's/http/https/g' file.txt\` |
+| awk | Pattern scanning | \`awk '{print $1}' access.log\` |
+| sort | Sort lines | \`sort users.txt\` |
+| uniq | Remove duplicate lines | \`uniq names.txt\` |
+| diff | Compare files | \`diff old.conf new.conf\` |
+| vim | Advanced text editor | \`vim docker-compose.yml\` |
+| nano | Simple editor | \`nano hosts\` |
+| wc | Count lines and words | \`wc -l access.log\` |
+| cut | Extract columns | \`cut -d: -f1 /etc/passwd\` |
+| paste | Merge files line-wise | \`paste file1.txt file2.txt\` |
+| column | Format columns neatly | \`column -t users.txt\` |
+
+**Real-Time Log Monitoring Example**
+\`\`\`bash
+tail -f /var/log/nginx/error.log
+\`\`\`
+This command continuously displays new log entries in real time and is commonly used while debugging websites or APIs.
+
+**Command Chaining Example**
+\`\`\`bash
+cat access.log | grep 404
+\`\`\`
+This command helps identify all “404 Not Found” errors inside a web server log file.
+
+**Another Useful Linux Log Analysis Example**
+\`\`\`bash
+grep "Failed password" /var/log/auth.log
+\`\`\`
+This command helps identify failed SSH login attempts on Linux servers.
+
+<h3 id="permissions-cmd">3. Linux User and Permission Commands</h3>
+Linux follows a strong permission-based security model. These commands help manage users, groups, and access rights securely across Linux systems and servers. Understanding permissions is essential for developers, Linux administrators, and DevOps engineers working with shared environments.
+
+| Command | Description | Real Example |
+| --- | --- | --- |
+| chmod | Change file permissions | \`chmod 755 deploy.sh\` |
+| chown | Change ownership | \`chown ubuntu:ubuntu app.log\` |
+| chgrp | Change group ownership | \`chgrp developers script.sh\` |
+| id | Display user information | \`id ubuntu\` |
+| sudo | Run the command as administrator | \`sudo apt update\` |
+| su | Switch user | \`su root\` |
+| useradd | Create a new user | \`useradd devops\` |
+| userdel | Delete user | \`userdel testuser\` |
+| passwd | Change password | \`passwd ubuntu\` |
+| groups | Show user groups | \`groups devops\` |
+| visudo | Edit sudo configuration | \`visudo\` |
+
+**Fix “Permission Denied” Error in Linux**
+\`\`\`bash
+chmod +x deploy.sh
+\`\`\`
+This command adds executable permission to a shell script and fixes one of the most common Linux permission errors.
+
+**Check File Permissions**
+\`\`\`bash
+ls -l script.sh
+\`\`\`
+This command displays file ownership and permission details in Linux.
+
+**Linux Permission Workflow Example**
+\`\`\`bash
+# Create user
+sudo useradd developer
+
+# Set password
+sudo passwd developer
+
+# Give sudo access
+sudo usermod -aG sudo developer
+
+# Verify groups
+groups developer
+\`\`\`
+
+<h3 id="monitor-cmd">4. Linux System Monitoring and Troubleshooting Commands</h3>
+System monitoring commands help administrators analyze CPU usage, RAM consumption, running services, system uptime, and hardware information. These Linux troubleshooting commands are extremely useful while maintaining production servers and cloud environments.
+
+| Command | Purpose | Example |
+| --- | --- | --- |
+| top | Monitor running processes | \`top\` |
+| htop | Interactive process viewer | \`htop\` |
+| uname | Display Linux system information | \`uname -a\` |
+| hostname | Display hostname | \`hostnamectl\` |
+| uptime | Check server uptime | \`uptime\` |
+| lscpu | Display CPU information | \`lscpu\` |
+| lsblk | Display disk partitions | \`lsblk -f\` |
+| df | Check disk usage | \`df -h\` |
+| du | Check folder size | \`du -sh /var/log\` |
+| free | Check memory usage | \`free -h\` |
+| dmidecode | Display hardware metadata | \`sudo dmidecode\` |
+| ps | Show running processes | \`ps aux\` |
+| env | Display environment variables | \`env\` |
+| printenv | Print environment variable | \`printenv PATH\` |
+| journalctl | View system logs | \`journalctl -xe\` |
+| dmesg | View kernel logs | \`dmesg | tail\` |
+
+**Find High CPU Usage Processes**
+\`\`\`bash
+ps aux --sort=-%cpu | head
+\`\`\`
+This command displays the processes consuming the highest CPU resources.
+
+**Find High Memory Usage Processes**
+\`\`\`bash
+ps aux --sort=-%mem | head
+\`\`\`
+This Linux command helps identify memory-intensive applications running on a server.
+
+**Check Linux Disk Usage Quickly**
+\`\`\`bash
+df -h
+\`\`\`
+This command displays human-readable disk usage statistics for all mounted drives.
+
+**Linux Troubleshooting Workflow Example**
+\`\`\`bash
+# Check uptime
+uptime
+
+# Check memory usage
+free -h
+
+# Check disk usage
+df -h
+
+# Check top processes
+top
+
+# Review logs
+journalctl -xe
+\`\`\`
+
+<h3 id="network-cmd">5. Essential Linux Networking Commands for Troubleshooting</h3>
+Linux networking commands are used to troubleshoot internet connectivity, verify DNS resolution, analyze active ports, transfer files securely, and connect to remote Linux servers. These commands are commonly used by network engineers, cloud administrators, and DevOps professionals.
+
+| Command | Description | Real Example |
+| --- | --- | --- |
+| ping | Test network connectivity | \`ping google.com\` |
+| ifconfig | Display network interfaces | \`ifconfig eth0\` |
+| ip | Modern networking utility | \`ip addr\` |
+| netstat | Show active connections | \`netstat -tulpn\` |
+| ss | Socket statistics | \`ss -lntu\` |
+| curl | Send HTTP requests | \`curl https://api.github.com\` |
+| wget | Download files | \`wget backup.zip\` |
+| traceroute | Trace packet route | \`traceroute google.com\` |
+| dig | DNS lookup | \`dig gmail.com\` |
+| host | DNS utility | \`host yahoo.com\` |
+| arp | Display ARP table | \`arp -a\` |
+| nmcli | Manage network connections | \`nmcli connection show\` |
+| ssh | Remote server login | \`ssh ubuntu@server-ip\` |
+| scp | Secure file transfer | \`scp app.zip user@server:/home\` |
+
+**Check Open Ports in Linux**
+\`\`\`bash
+ss -tulpn
+\`\`\`
+This command shows listening ports and active network services running on a Linux system.
+
+**Test API or Website Availability**
+\`\`\`bash
+curl -I https://example.com
+\`\`\`
+This command checks HTTP response headers and verifies whether a website or API endpoint is accessible.
+
+**Copy Files Securely Between Servers**
+\`\`\`bash
+scp backup.tar.gz ubuntu@192.168.1.10:/home/ubuntu
+\`\`\`
+This Linux command securely transfers files between local and remote systems using SSH.
+
+**Linux Networking Troubleshooting Workflow**
+\`\`\`bash
+# Test internet connectivity
+ping google.com
+
+# Check IP address
+ip addr
+
+# Check DNS resolution
+dig google.com
+
+# Verify open ports
+ss -tulpn
+
+# Test API connectivity
+curl -I https://example.com
+\`\`\`
+
+<h3 id="pkg-cmd">6. Linux Package Management Commands</h3>
+Package management commands help Linux users install, update, upgrade, and remove software packages efficiently. Different Linux distributions use different package managers such as apt, yum, dnf, rpm, and snap.
+
+| Command | Purpose | Real Example |
+| --- | --- | --- |
+| apt | Ubuntu/Debian package manager | \`sudo apt install nginx\` |
+| apt-get | Advanced package utility | \`sudo apt-get clean\` |
+| dpkg | Install .deb packages | \`dpkg -i app.deb\` |
+| snap | Universal Linux packages | \`snap install postman\` |
+| yum | RHEL/CentOS package manager | \`yum install git\` |
+| dnf | Fedora package manager | \`dnf install docker\` |
+| rpm | Install RPM packages | \`rpm -ivh package.rpm\` |
+| flatpak | Install Flatpak applications | \`flatpak install app\` |
+
+**Update Linux Packages**
+\`\`\`bash
+sudo apt update && sudo apt upgrade -y
+\`\`\`
+This command refreshes package indexes and upgrades installed packages on Ubuntu or Debian systems.
+
+**Fix Broken Packages in Ubuntu**
+\`\`\`bash
+sudo apt --fix-broken install
+\`\`\`
+This Linux command resolves dependency and package installation issues.
+
+**Difference Between apt and yum**
+The \`apt\` package manager is used mainly in Ubuntu and Debian-based Linux distributions, while \`yum\` is used in CentOS and Red Hat Enterprise Linux systems.
+
+<h3 id="archive-cmd">7. Linux Compression and Archiving Commands</h3>
+Compression and archiving commands help Linux users reduce file sizes, transfer backups efficiently, and organize project files. These commands are commonly used in server management, cloud deployments, and backup automation workflows.
+
+| Command | Description | Real Example |
+| --- | --- | --- |
+| tar | Create or extract archives | \`tar -czf backup.tar.gz project/\` |
+| zip | Create ZIP archive | \`zip project.zip src/\` |
+| unzip | Extract the ZIP archive | \`unzip project.zip\` |
+| gzip | Compress files | \`gzip server.log\` |
+| gunzip | Decompress GZIP files | \`gunzip backup.gz\` |
+| 7z | Create 7zip archive | \`7z a files.7z data/\` |
+| rar | Create RAR archive | \`rar a archive.rar files/\` |
+
+**Create a Compressed Backup in Linux**
+\`\`\`bash
+tar -czf website-backup.tar.gz /var/www/html
+\`\`\`
+This command creates a compressed backup archive of a website directory.
+
+**Extract a Tar.gz Archive**
+\`\`\`bash
+tar -xvf backup.tar.gz
+\`\`\`
+This Linux command extracts compressed archive files into the current directory.
+
+**Compression Workflow Example**
+\`\`\`bash
+# Compress logs
+tar -czf logs.tar.gz /var/log
+
+# Transfer backup
+scp logs.tar.gz user@server:/backup
+
+# Extract backup
+tar -xvf logs.tar.gz
+\`\`\`
+
+<h3 id="proc-cmd">8. Linux Process and Service Management Commands</h3>
+Linux gives administrators deep control over running applications, services, and background jobs. These commands help monitor processes, stop unresponsive applications, manage priorities, and restart Linux services efficiently.
+
+| Command | Purpose | Real Example |
+| --- | --- | --- |
+| ps | View running processes | \`ps aux\` |
+| kill | Terminate the process using PID | \`kill 1234\` |
+| killall | Kill process by name | \`killall firefox\` |
+| bg | Move the process to the background | \`bg\` |
+| fg | Bring the process to the foreground | \`fg\` |
+| jobs | View background jobs | \`jobs\` |
+| nice | Set process priority | \`nice -n 10 python app.py\` |
+| renice | Modify process priority | \`renice 10 1234\` |
+| systemctl | Manage Linux services | \`systemctl restart nginx\` |
+| service | Older Linux service manager | \`service apache2 restart\` |
+
+**Restart a Failed Linux Service**
+\`\`\`bash
+systemctl restart nginx
+\`\`\`
+This command restarts the Nginx service after configuration changes or server failures.
+
+**Find a Running Process**
+\`\`\`bash
+ps aux | grep nginx
+\`\`\`
+This command searches for active Nginx processes on a Linux server.
+
+**Kill an Unresponsive Process**
+\`\`\`bash
+kill -9 1234
+\`\`\`
+This command forcefully terminates a frozen process using its process ID.
+
+**Linux Process Monitoring Workflow**
+\`\`\`bash
+# View running processes
+ps aux
+
+# Monitor live processes
+top
+
+# Search process
+ps aux | grep apache
+
+# Restart service
+systemctl restart apache2
+
+# Check service status
+systemctl status apache2
+\`\`\`
+
+<h3 id="admin-cmd">9. Daily Linux Admin Workflow Commands</h3>
+Linux administrators often repeat the same troubleshooting and monitoring tasks every day. These commands form a practical Linux workflow for checking system health, server availability, and service status quickly.
+\`\`\`bash
+# Check uptime
+uptime
+
+# Check memory usage
+free -h
+
+# Check disk space
+df -h
+
+# Monitor CPU processes
+top
+
+# Review logs
+journalctl -xe
+
+# Check open ports
+ss -tulpn
+
+# Verify services
+systemctl status nginx
+\`\`\`
+
+<h3 id="dir-struct">10. Linux Directory Structure Cheat Sheet</h3>
+Linux organizes files and system resources using a hierarchical directory structure that starts from the root (\`/\`) directory. Each folder has a specific purpose, making it easier to locate configuration files, user data, applications, logs, and system resources. Understanding the Linux filesystem is essential for developers, system administrators, and DevOps engineers because many commands require navigating these directories efficiently.
+
+| Directory | Purpose | Example |
+| --- | --- | --- |
+| \`/\` | Root directory that contains the entire Linux filesystem | \`cd /\` |
+| \`/home\` | Stores personal files and folders for users | \`cd /home/ubuntu\` |
+| \`/root\` | Home directory of the root user | \`cd /root\` |
+| \`/etc\` | Contains system configuration files | \`cd /etc/nginx\` |
+| \`/var\` | Stores logs, caches, and variable application data | \`cd /var/log\` |
+| \`/usr\` | Contains installed applications, libraries, and binaries | \`ls /usr/bin\` |
+| \`/bin\` | Essential Linux command binaries | \`ls /bin\` |
+| \`/sbin\` | Administrative system binaries | \`ls /sbin\` |
+| \`/tmp\` | Temporary files created by applications | \`cd /tmp\` |
+| \`/opt\` | Optional third-party software installations | \`cd /opt\` |
+| \`/boot\` | Bootloader and kernel files | \`ls /boot\` |
+| \`/dev\` | Represents hardware devices as files | \`ls /dev\` |
+| \`/proc\` | Virtual filesystem containing process and kernel information | \`cat /proc/cpuinfo\` |
+| \`/mnt\` | Temporary mount point for storage devices | \`cd /mnt\` |
+| \`/media\` | Automatically mounted removable media such as USB drives | \`cd /media\` |
+
+**Check the Contents of the Root Directory**
+\`\`\`bash
+ls /
+\`\`\`
+This command lists all top-level directories in the Linux filesystem, helping you understand how the operating system is organized.
+
+**Navigate to the System Log Directory**
+\`\`\`bash
+cd /var/log
+\`\`\`
+This command opens the directory where Linux stores application and system log files, making it useful for troubleshooting and monitoring.
+
+<h3 id="perm-numbers">11. Linux Permission Numbers Explained</h3>
+Linux uses a permission-based security model to control who can read, write, or execute files and directories. Permissions are represented using both symbolic notation and numeric values. Learning these permission numbers helps you manage access securely, avoid permission errors, and protect important files from unauthorized modifications.
+
+| Permission | Numeric Value | Meaning |
+| --- | --- | --- |
+| Read (r) | 4 | View the contents of a file |
+| Write (w) | 2 | Modify or delete a file |
+| Execute (x) | 1 | Run a file as a program or enter a directory |
+
+**Common Linux Permission Numbers**
+| Permission | Owner | Group | Others | Typical Use |
+| --- | --- | --- | --- | --- |
+| \`777\` | rwx | rwx | rwx | Full access for everyone (not recommended) |
+| \`755\` | rwx | r-x | r-x | Executable scripts and directories |
+| \`744\` | rwx | r-- | r-- | Private executable files |
+| \`700\` | rwx | --- | --- | Private user files |
+| \`644\` | rw- | r-- | r-- | Most text and configuration files |
+| \`600\` | rw- | --- | --- | Passwords and sensitive files |
+| \`400\` | r-- | --- | --- | Read-only confidential files |
+
+**Change File Permissions**
+\`\`\`bash
+chmod 755 deploy.sh
+\`\`\`
+This command allows the file owner to read, write, and execute the script while granting read and execute permissions to everyone else.
+
+**View Current File Permissions**
+\`\`\`bash
+ls -l deploy.sh
+\`\`\`
+This command displays the current owner, group, and permission settings assigned to a file or directory.
+
+<h3 id="bash-shortcuts">12. Bash Shortcuts Cheat Sheet</h3>
+Bash keyboard shortcuts help Linux users work faster by reducing repetitive typing and simplifying command-line navigation. Instead of retyping commands or manually moving the cursor, you can quickly edit commands, search command history, and control running processes using keyboard shortcuts.
+
+| Shortcut | Purpose | When to Use |
+| --- | --- | --- |
+| \`Ctrl + C\` | Stop the running command | Cancel a long-running process |
+| \`Ctrl + Z\` | Suspend the current process | Move a process to the background |
+| \`Ctrl + L\` | Clear the terminal screen | Clean the terminal display |
+| \`Ctrl + A\` | Move the cursor to the beginning of the line | Edit long commands |
+| \`Ctrl + E\` | Move the cursor to the end of the line | Quick navigation |
+| \`Ctrl + U\` | Delete text before the cursor | Clear the current command quickly |
+| \`Ctrl + K\` | Delete text after the cursor | Remove unwanted command text |
+| \`Ctrl + R\` | Search command history | Find previously executed commands |
+| \`Tab\` | Auto-complete commands and file names | Save typing time |
+| \`↑ / ↓\` | Browse command history | Reuse recent commands |
+| \`!!\` | Repeat the previous command | Run the last command again |
+| \`exit\` | Close the terminal session | End the current shell |
+
+**Search Previously Executed Commands**
+\`\`\`text
+Ctrl + R
+\`\`\`
+Press this shortcut and start typing part of a previous command to search your Bash command history instantly.
+
+**Automatically Complete File Names**
+\`\`\`text
+cd /var/lo<Tab>
+\`\`\`
+Pressing the Tab key automatically completes matching directory and file names, reducing typing effort and preventing spelling mistakes.
+
+<h3 id="chain-cmd">Useful Linux Command Chaining Examples</h3>
+Linux command chaining allows users to combine multiple commands together for filtering, automation, and faster troubleshooting. These examples are widely used in DevOps, Linux administration, and server management.
+
+**Find Running Processes**
+\`\`\`bash
+ps aux | grep docker
+\`\`\`
+
+**Search Error Logs**
+\`\`\`bash
+cat /var/log/nginx/error.log | grep "500"
+\`\`\`
+
+**Delete Old Log Files**
+\`\`\`bash
+find /var/log -name "*.log" -mtime +30 -delete
+\`\`\`
+
+**Display Top Memory-Consuming Processes**
+\`\`\`bash
+ps aux --sort=-%mem | head
+\`\`\`
+
+**Monitor Real-Time Logs**
+\`\`\`bash
+tail -f /var/log/syslog
+\`\`\`
+
+<h3 id="errors">Common Linux Errors and Their Solutions</h3>
+While learning Linux commands, beginners and professionals often encounter errors related to permissions, missing packages, networking issues, or incorrect file paths. Understanding these common Linux problems helps improve troubleshooting skills significantly.
+
+| Error | Cause | Solution |
+| --- | --- | --- |
+| Permission denied | Missing execute permission | \`chmod +x script.sh\` |
+| Command not found | Package not installed | Install package or verify PATH variable |
+| No such file or directory | Incorrect path | Verify file path using \`pwd\` and \`ls\` |
+| Connection refused | Service not running | Restart service using \`systemctl\` |
+| Disk full | Storage exhausted | Check usage with \`df -h\` |
+| Broken package | Dependency conflict | \`sudo apt --fix-broken install\` |
+| Host unreachable | Network issue | Verify connectivity using \`ping\` |
+| Port already in use | Service conflict | Check active ports using \`ss -tulpn\` |
+
+<h3 id="danger-cmd">Dangerous Linux Commands Beginners Should Avoid</h3>
+Some Linux commands can permanently delete files or damage operating system configurations if used incorrectly. Beginners should understand these commands carefully before executing them on production systems.
+
+| Command | Risk | Safer Alternative |
+| --- | --- | --- |
+| \`rm -rf /\` | Deletes the entire system | Always verify path before deletion |
+| \`chmod -R 777\` | Creates security vulnerabilities | Use permissions like 755 or 644 |
+| \`dd if=/dev/zero\` | Can overwrite storage devices | Verify target disk carefully |
+| \`:(){ :|:& };:\` | Fork bomb that crashes system | Avoid running unknown scripts |
+
+<h3 id="why-cmd">Why and for Whom Does This Linux Commands Cheat Sheet Matter?</h3>
+This Linux command cheat sheet is useful for anyone who wants to improve productivity and confidently work with Linux systems. Whether you are learning Linux for the first time or managing production servers, these commands will help simplify your workflow.
+* Beginners and students learning Linux basics
+* Developers working with Ubuntu or Linux servers
+* System administrators managing infrastructure
+* DevOps Engineers handling deployments and automation
+* Cybersecurity professionals analyzing systems and logs
+* Cloud engineers working with AWS, Azure, or Kubernetes
+* IT professionals troubleshooting Linux environments
+
+<h3 id="cmd-syntax">Understanding Linux Command Syntax</h3>
+\`\`\`text
+Syntax: command [options] [arguments]
+Example: ls -la /home/user
+Breakdown:
+• ls → command
+• -la → options
+• /home/user → argument
+\`\`\`
+
+<h3 id="learn-path">Recommended Linux Command Learning Path</h3>
+If you are learning Linux for the first time, following a structured roadmap can help you master Linux commands faster and avoid confusion.
+1. Learn Linux navigation commands
+2. Understand file and directory management
+3. Practice file viewing and editing commands
+4. Learn permissions and user management
+5. Master Linux networking commands
+6. Understand system monitoring and troubleshooting
+7. Learn package management tools
+8. Practice shell scripting basics
+9. Explore DevOps and cloud-related Linux tools
                 `,
                 toc: [
-                    { label: 'Navigation', target: 'nav-cmd' },
-                    { label: 'File Manipulation', target: 'file-cmd' }
+                    { label: 'What Are Linux Commands', target: 'what-are-cmds' },
+                    { label: 'File Management', target: 'nav-cmd' },
+                    { label: 'File Viewing & Editing', target: 'file-cmd' },
+                    { label: 'User & Permissions', target: 'permissions-cmd' },
+                    { label: 'System Monitoring', target: 'monitor-cmd' },
+                    { label: 'Networking', target: 'network-cmd' },
+                    { label: 'Package Management', target: 'pkg-cmd' },
+                    { label: 'Compression & Archiving', target: 'archive-cmd' },
+                    { label: 'Process Management', target: 'proc-cmd' },
+                    { label: 'Daily Admin Workflow', target: 'admin-cmd' },
+                    { label: 'Directory Structure', target: 'dir-struct' },
+                    { label: 'Permission Numbers', target: 'perm-numbers' },
+                    { label: 'Bash Shortcuts', target: 'bash-shortcuts' },
+                    { label: 'Command Chaining', target: 'chain-cmd' },
+                    { label: 'Common Errors', target: 'errors' },
+                    { label: 'Dangerous Commands', target: 'danger-cmd' },
+                    { label: 'Why This Matters', target: 'why-cmd' },
+                    { label: 'Command Syntax', target: 'cmd-syntax' },
+                    { label: 'Learning Path', target: 'learn-path' }
                 ]
             },
             'linux-installation': {
