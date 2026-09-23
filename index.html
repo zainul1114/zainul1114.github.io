@@ -1987,19 +1987,129 @@ These tools provide dashboards and alerts when thresholds are breached (e.g., hi
                 title: 'How it works and its Types',
                 parentGroup: 'group-linux',
                 markdown: `
-<h3 id="boot-sequence">RHEL 9 Boot Sequence</h3>
-The standard enterprise initialization begins when machine firmware initiates power checks and transfers execution to GRUB2.
+The **RHEL 9 boot process** starts when the system is powered on or restarted and continues until the system reaches its configured operating state[cite: 28].
+The boot sequence can be explained in the following stages[cite: 28]:
 
-<h3 id="initramfs">initramfs Early Userspace</h3>
-Initializes storage array drivers, decrypts encrypted volumes, reads LVM mappings, and hands control to the primary root volume.
+<h3 id="power-on">1. Power On / Reboot</h3>
+The boot process begins when the RHEL 9 system is powered on or restarted[cite: 28].
+The system firmware starts executing the initial hardware and boot operations[cite: 28].
 
-<h3 id="systemd-init">systemd (PID 1) Execution</h3>
-Executes initialization targets in parallel, mounting auxiliary filesystems, starting networking sockets, and reaching the configured runlevel target.
+<h3 id="uefi-bios">2. UEFI / BIOS and POST</h3>
+The firmware, typically **UEFI** on modern RHEL 9 systems, performs the **Power-On Self-Test (POST)**[cite: 28].
+POST checks and initializes essential hardware such as[cite: 28]:
+* CPU[cite: 28]
+* Memory[cite: 28]
+* Storage devices[cite: 28]
+* Keyboard and other basic hardware[cite: 28]
+
+After successful hardware initialization, the firmware identifies the configured boot device and transfers control to the bootloader[cite: 28].
+
+<h3 id="grub2">3. GRUB2 Bootloader</h3>
+RHEL 9 uses **GRUB2 (GRand Unified Bootloader 2)** as its bootloader[cite: 28].
+GRUB2 is responsible for loading the selected Linux kernel and the initial RAM filesystem into memory[cite: 28].
+It can also display a boot menu where the administrator can select a kernel or modify kernel boot parameters[cite: 28].
+GRUB2 loads[cite: 28]:
+* Linux kernel[cite: 28]
+* \`initramfs\`[cite: 28]
+* Kernel parameters[cite: 28]
+
+It then transfers control to the Linux kernel[cite: 28].
+
+<h3 id="kernel-init">4. Linux Kernel Initialization</h3>
+The Linux kernel starts executing after GRUB2 transfers control to it[cite: 28].
+The kernel initializes important parts of the operating system, including[cite: 28]:
+* CPU management[cite: 28]
+* Memory management[cite: 28]
+* Device drivers[cite: 28]
+* Hardware interfaces[cite: 28]
+* Kernel subsystems[cite: 28]
+* Process management[cite: 28]
+
+The kernel also uses the **initramfs** environment during early boot to access the required storage devices and locate the root filesystem[cite: 28].
+
+<h3 id="initramfs">5. initramfs / Early Userspace</h3>
+\`initramfs\` provides a temporary filesystem and the tools required during the early boot stage[cite: 28].
+It helps the system perform tasks such as[cite: 28]:
+* Loading required storage drivers[cite: 28]
+* Detecting storage devices[cite: 28]
+* Activating LVM volumes[cite: 28]
+* Configuring software RAID when required[cite: 28]
+* Unlocking encrypted storage when configured[cite: 28]
+* Locating and preparing the root filesystem[cite: 28]
+
+After the root filesystem is available, control moves to the normal userspace initialization process[cite: 28].
+
+<h3 id="systemd-pid1">6. systemd — PID 1</h3>
+The kernel starts **systemd**, which becomes the first userspace process and normally runs as **PID 1**[cite: 28].
+systemd is the initialization and service-management system used by RHEL 9[cite: 28].
+It is responsible for bringing the system from the basic kernel environment to a usable operating state[cite: 28].
+
+<h3 id="systemd-services">7. systemd Starts Services</h3>
+systemd starts the services and resources required by the system[cite: 28].
+Depending on the configuration, this can include[cite: 28]:
+* Mounting filesystems[cite: 28]
+* Starting networking[cite: 28]
+* Starting SSH[cite: 28]
+* Starting logging services[cite: 28]
+* Starting scheduled services[cite: 28]
+* Starting security-related services[cite: 28]
+* Starting other enabled system services[cite: 28]
+
+systemd uses dependencies and parallel service startup where possible to efficiently initialize the system[cite: 28].
+
+<h3 id="systemd-target">8. systemd Reaches the Target</h3>
+Finally, systemd reaches the system's configured target[cite: 28].
+For a typical RHEL 9 server, the target is[cite: 28]:
+**\`multi-user.target\`**[cite: 28]
+
+This provides a fully operational multi-user server environment without a graphical desktop[cite: 28].
+For a RHEL 9 graphical workstation, the target may be[cite: 28]:
+**\`graphical.target\`**[cite: 28]
+
+Once the required target and services are active, the RHEL 9 system is ready for users and applications[cite: 28].
+
+<h3 id="complete-sequence">Complete RHEL 9 Boot Sequence</h3>
+
+\`\`\`text
+Power On / Reboot
+        ↓
+UEFI / BIOS
+        ↓
+POST
+        ↓
+GRUB2
+        ↓
+Linux Kernel + initramfs
+        ↓
+Kernel Initialization
+        ↓
+Early Userspace / Root Filesystem
+        ↓
+systemd (PID 1)
+        ↓
+Start System Services
+        ↓
+Reach systemd Target
+        ↓
+multi-user.target / graphical.target
+        ↓
+RHEL 9 System Ready
+\`\`\`
+
+<h3 id="easy-remember">Easy Way to Remember</h3>
+> **Firmware → GRUB2 → Kernel → initramfs → systemd → Services → Target → Login/Ready**[cite: 28]
                 `,
                 toc: [
-                    { label: 'Boot Sequence', target: 'boot-sequence' },
-                    { label: 'initramfs', target: 'initramfs' },
-                    { label: 'systemd (PID 1)', target: 'systemd-init' }
+                    { label: '1. Power On / Reboot', target: 'power-on' },
+                    { label: '2. UEFI / BIOS and POST', target: 'uefi-bios' },
+                    { label: '3. GRUB2 Bootloader', target: 'grub2' },
+                    { label: '4. Kernel Initialization', target: 'kernel-init' },
+                    { label: '5. initramfs / Early Userspace', target: 'initramfs' },
+                    { label: '6. systemd — PID 1', target: 'systemd-pid1' },
+                    { label: '7. systemd Starts Services', target: 'systemd-services' },
+                    { label: '8. systemd Reaches Target', target: 'systemd-target' },
+                    { label: 'Complete Sequence', target: 'complete-sequence' },
+                    { label: 'Easy Way to Remember', target: 'easy-remember' }
                 ]
             },
             'linux-commands': {
@@ -2007,53 +2117,63 @@ Executes initialization targets in parallel, mounting auxiliary filesystems, sta
                 parentGroup: 'group-linux',
                 markdown: `
 <h3 id="what-are-cmds">What Are Linux Commands?</h3>
-Linux commands are text-based instructions used in the Linux terminal to perform tasks like file management, software installation, networking, process monitoring, troubleshooting, and system administration. These commands help users interact directly with the operating system efficiently without relying on a graphical interface.
+Linux commands are text-based instructions used in the Linux terminal to perform tasks like file management, software installation, networking, process monitoring, troubleshooting, and system administration[cite: 27]. These commands help users interact directly with the operating system efficiently without relying on a graphical interface[cite: 27].
 
-**Most Used Linux Commands for Daily Tasks**
-If you are just starting with Linux, these are the commands you’ll use most frequently for navigation, troubleshooting, networking, and system management.
+<h3 id="daily-tasks">Most Used Linux Commands for Daily Tasks</h3>
+If you are just starting with Linux, these are the commands you’ll use most frequently for navigation, troubleshooting, networking, and system management[cite: 27].
 
-| Command | Purpose | Example |
-| --- | --- | --- |
-| ls | List files and folders | \`ls -la\` |
-| cd | Change directory | \`cd /var/log\` |
-| pwd | Show current directory | \`pwd\` |
-| grep | Search text inside files | \`grep "ERROR" app.log\` |
-| find | Search files and folders | \`find /home -name "*.txt"\` |
-| chmod | Change permissions | \`chmod +x script.sh\` |
-| top | Monitor system processes | \`top\` |
-| ssh | Connect to the remote server | \`ssh user@server-ip\` |
-| systemctl | Manage services | \`systemctl restart nginx\` |
-| df -h | Check disk space | \`df -h\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Purpose[cite: 27]</th><th>Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ls[cite: 27]</td><td>List files and folders[cite: 27]</td><td><code>ls -la</code>[cite: 27]</td></tr>
+    <tr><td>cd[cite: 27]</td><td>Change directory[cite: 27]</td><td><code>cd /var/log</code>[cite: 27]</td></tr>
+    <tr><td>pwd[cite: 27]</td><td>Show current directory[cite: 27]</td><td><code>pwd</code>[cite: 27]</td></tr>
+    <tr><td>grep[cite: 27]</td><td>Search text inside files[cite: 27]</td><td><code>grep "ERROR" app.log</code>[cite: 27]</td></tr>
+    <tr><td>find[cite: 27]</td><td>Search files and folders[cite: 27]</td><td><code>find /home -name "*.txt"</code>[cite: 27]</td></tr>
+    <tr><td>chmod[cite: 27]</td><td>Change permissions[cite: 27]</td><td><code>chmod +x script.sh</code>[cite: 27]</td></tr>
+    <tr><td>top[cite: 27]</td><td>Monitor system processes[cite: 27]</td><td><code>top</code>[cite: 27]</td></tr>
+    <tr><td>ssh[cite: 27]</td><td>Connect to the remote server[cite: 27]</td><td><code>ssh user@server-ip</code>[cite: 27]</td></tr>
+    <tr><td>systemctl[cite: 27]</td><td>Manage services[cite: 27]</td><td><code>systemctl restart nginx</code>[cite: 27]</td></tr>
+    <tr><td>df -h[cite: 27]</td><td>Check disk space[cite: 27]</td><td><code>df -h</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 <h3 id="nav-cmd">1. Linux File Management Commands Every Beginner Should Know</h3>
-Managing files and directories is one of the first skills every Linux user should learn. These Linux file management commands help you navigate folders, organize files, search data, and work efficiently inside the terminal.
+Managing files and directories is one of the first skills every Linux user should learn[cite: 27]. These Linux file management commands help you navigate folders, organize files, search data, and work efficiently inside the terminal[cite: 27].
 
-| Command | Description | Real Example |
-| --- | --- | --- |
-| ls | List files and directories | \`ls -la /var/log\` |
-| pwd | Show current directory | \`pwd\` |
-| cd | Change directory | \`cd /etc/nginx\` |
-| mkdir | Create a new directory | \`mkdir project-backup\` |
-| touch | Create an empty file | \`touch notes.txt\` |
-| cp | Copy files and folders | \`cp config.conf backup.conf\` |
-| mv | Move or rename files | \`mv old.log archive.log\` |
-| rm | Delete files | \`rm unwanted.txt\` |
-| tree | Show directory structure | \`tree /var/www\` |
-| find | Search files | \`find /home -name "*.pdf"\` |
-| locate | Search indexed files | \`locate nginx.conf\` |
-| stat | Show file metadata | \`stat access.log\` |
-| basename | Extract filename | \`basename /etc/nginx/nginx.conf\` |
-| dirname | Show parent directory | \`dirname /var/www/html/index.html\` |
-| file | Identify file type | \`file backup.tar.gz\` |
-| ln | Create links | \`ln -s app.log latest.log\` |
-| realpath | Display absolute path | \`realpath script.sh\` |
-| shred | Securely delete files | \`shred -u confidential.txt\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Description[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ls[cite: 27]</td><td>List files and directories[cite: 27]</td><td><code>ls -la /var/log</code>[cite: 27]</td></tr>
+    <tr><td>pwd[cite: 27]</td><td>Show current directory[cite: 27]</td><td><code>pwd</code>[cite: 27]</td></tr>
+    <tr><td>cd[cite: 27]</td><td>Change directory[cite: 27]</td><td><code>cd /etc/nginx</code>[cite: 27]</td></tr>
+    <tr><td>mkdir[cite: 27]</td><td>Create a new directory[cite: 27]</td><td><code>mkdir project-backup</code>[cite: 27]</td></tr>
+    <tr><td>touch[cite: 27]</td><td>Create an empty file[cite: 27]</td><td><code>touch notes.txt</code>[cite: 27]</td></tr>
+    <tr><td>cp[cite: 27]</td><td>Copy files and folders[cite: 27]</td><td><code>cp config.conf backup.conf</code>[cite: 27]</td></tr>
+    <tr><td>mv[cite: 27]</td><td>Move or rename files[cite: 27]</td><td><code>mv old.log archive.log</code>[cite: 27]</td></tr>
+    <tr><td>rm[cite: 27]</td><td>Delete files[cite: 27]</td><td><code>rm unwanted.txt</code>[cite: 27]</td></tr>
+    <tr><td>tree[cite: 27]</td><td>Show directory structure[cite: 27]</td><td><code>tree /var/www</code>[cite: 27]</td></tr>
+    <tr><td>find[cite: 27]</td><td>Search files[cite: 27]</td><td><code>find /home -name "*.pdf"</code>[cite: 27]</td></tr>
+    <tr><td>locate[cite: 27]</td><td>Search indexed files[cite: 27]</td><td><code>locate nginx.conf</code>[cite: 27]</td></tr>
+    <tr><td>stat[cite: 27]</td><td>Show file metadata[cite: 27]</td><td><code>stat access.log</code>[cite: 27]</td></tr>
+    <tr><td>basename[cite: 27]</td><td>Extract filename[cite: 27]</td><td><code>basename /etc/nginx/nginx.conf</code>[cite: 27]</td></tr>
+    <tr><td>dirname[cite: 27]</td><td>Show parent directory[cite: 27]</td><td><code>dirname /var/www/html/index.html</code>[cite: 27]</td></tr>
+    <tr><td>file[cite: 27]</td><td>Identify file type[cite: 27]</td><td><code>file backup.tar.gz</code>[cite: 27]</td></tr>
+    <tr><td>ln[cite: 27]</td><td>Create links[cite: 27]</td><td><code>ln -s app.log latest.log</code>[cite: 27]</td></tr>
+    <tr><td>realpath[cite: 27]</td><td>Display absolute path[cite: 27]</td><td><code>realpath script.sh</code>[cite: 27]</td></tr>
+    <tr><td>shred[cite: 27]</td><td>Securely delete files[cite: 27]</td><td><code>shred -u confidential.txt</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Practical Example: Find Large Files Consuming Disk Space**
 \`\`\`bash
 find / -type f -size +500M
 \`\`\`
-This command helps system administrators locate files larger than 500 MB that may be consuming unnecessary disk space.
+This command helps system administrators locate files larger than 500 MB that may be consuming unnecessary disk space[cite: 27].
 
 **Useful Linux File Management Workflow**
 \`\`\`bash
@@ -2071,75 +2191,85 @@ rm old.log
 \`\`\`
 
 <h3 id="file-cmd">2. Linux File Viewing and Editing Commands</h3>
-Linux provides powerful terminal-based tools for viewing logs, editing configuration files, and analyzing text quickly. These commands are extremely useful while troubleshooting servers or working remotely through SSH.
+Linux provides powerful terminal-based tools for viewing logs, editing configuration files, and analyzing text quickly[cite: 27]. These commands are extremely useful while troubleshooting servers or working remotely through SSH[cite: 27].
 
-| Command | Purpose | Real Example |
-| --- | --- | --- |
-| cat | View file content | \`cat config.yml\` |
-| tac | Reverse-view file | \`tac logs.txt\` |
-| head | Show first lines | \`head -20 app.log\` |
-| tail | Show last lines | \`tail -f /var/log/syslog\` |
-| less | Open large files | \`less nginx.log\` |
-| more | Basic file viewer | \`more hosts\` |
-| grep | Search text patterns | \`grep "ERROR" nginx.log\` |
-| sed | Edit text streams | \`sed 's/http/https/g' file.txt\` |
-| awk | Pattern scanning | \`awk '{print $1}' access.log\` |
-| sort | Sort lines | \`sort users.txt\` |
-| uniq | Remove duplicate lines | \`uniq names.txt\` |
-| diff | Compare files | \`diff old.conf new.conf\` |
-| vim | Advanced text editor | \`vim docker-compose.yml\` |
-| nano | Simple editor | \`nano hosts\` |
-| wc | Count lines and words | \`wc -l access.log\` |
-| cut | Extract columns | \`cut -d: -f1 /etc/passwd\` |
-| paste | Merge files line-wise | \`paste file1.txt file2.txt\` |
-| column | Format columns neatly | \`column -t users.txt\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Purpose[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>cat[cite: 27]</td><td>View file content[cite: 27]</td><td><code>cat config.yml</code>[cite: 27]</td></tr>
+    <tr><td>tac[cite: 27]</td><td>Reverse-view file[cite: 27]</td><td><code>tac logs.txt</code>[cite: 27]</td></tr>
+    <tr><td>head[cite: 27]</td><td>Show first lines[cite: 27]</td><td><code>head -20 app.log</code>[cite: 27]</td></tr>
+    <tr><td>tail[cite: 27]</td><td>Show last lines[cite: 27]</td><td><code>tail -f /var/log/syslog</code>[cite: 27]</td></tr>
+    <tr><td>less[cite: 27]</td><td>Open large files[cite: 27]</td><td><code>less nginx.log</code>[cite: 27]</td></tr>
+    <tr><td>more[cite: 27]</td><td>Basic file viewer[cite: 27]</td><td><code>more hosts</code>[cite: 27]</td></tr>
+    <tr><td>grep[cite: 27]</td><td>Search text patterns[cite: 27]</td><td><code>grep "ERROR" nginx.log</code>[cite: 27]</td></tr>
+    <tr><td>sed[cite: 27]</td><td>Edit text streams[cite: 27]</td><td><code>sed 's/http/https/g' file.txt</code>[cite: 27]</td></tr>
+    <tr><td>awk[cite: 27]</td><td>Pattern scanning[cite: 27]</td><td><code>awk '{print $1}' access.log</code>[cite: 27]</td></tr>
+    <tr><td>sort[cite: 27]</td><td>Sort lines[cite: 27]</td><td><code>sort users.txt</code>[cite: 27]</td></tr>
+    <tr><td>uniq[cite: 27]</td><td>Remove duplicate lines[cite: 27]</td><td><code>uniq names.txt</code>[cite: 27]</td></tr>
+    <tr><td>diff[cite: 27]</td><td>Compare files[cite: 27]</td><td><code>diff old.conf new.conf</code>[cite: 27]</td></tr>
+    <tr><td>vim[cite: 27]</td><td>Advanced text editor[cite: 27]</td><td><code>vim docker-compose.yml</code>[cite: 27]</td></tr>
+    <tr><td>nano[cite: 27]</td><td>Simple editor[cite: 27]</td><td><code>nano hosts</code>[cite: 27]</td></tr>
+    <tr><td>wc[cite: 27]</td><td>Count lines and words[cite: 27]</td><td><code>wc -l access.log</code>[cite: 27]</td></tr>
+    <tr><td>cut[cite: 27]</td><td>Extract columns[cite: 27]</td><td><code>cut -d: -f1 /etc/passwd</code>[cite: 27]</td></tr>
+    <tr><td>paste[cite: 27]</td><td>Merge files line-wise[cite: 27]</td><td><code>paste file1.txt file2.txt</code>[cite: 27]</td></tr>
+    <tr><td>column[cite: 27]</td><td>Format columns neatly[cite: 27]</td><td><code>column -t users.txt</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Real-Time Log Monitoring Example**
 \`\`\`bash
 tail -f /var/log/nginx/error.log
 \`\`\`
-This command continuously displays new log entries in real time and is commonly used while debugging websites or APIs.
+This command continuously displays new log entries in real time and is commonly used while debugging websites or APIs[cite: 27].
 
 **Command Chaining Example**
 \`\`\`bash
 cat access.log | grep 404
 \`\`\`
-This command helps identify all “404 Not Found” errors inside a web server log file.
+This command helps identify all “404 Not Found” errors inside a web server log file[cite: 27].
 
 **Another Useful Linux Log Analysis Example**
 \`\`\`bash
 grep "Failed password" /var/log/auth.log
 \`\`\`
-This command helps identify failed SSH login attempts on Linux servers.
+This command helps identify failed SSH login attempts on Linux servers[cite: 27].
 
 <h3 id="permissions-cmd">3. Linux User and Permission Commands</h3>
-Linux follows a strong permission-based security model. These commands help manage users, groups, and access rights securely across Linux systems and servers. Understanding permissions is essential for developers, Linux administrators, and DevOps engineers working with shared environments.
+Linux follows a strong permission-based security model[cite: 27]. These commands help manage users, groups, and access rights securely across Linux systems and servers[cite: 27]. Understanding permissions is essential for developers, Linux administrators, and DevOps engineers working with shared environments[cite: 27].
 
-| Command | Description | Real Example |
-| --- | --- | --- |
-| chmod | Change file permissions | \`chmod 755 deploy.sh\` |
-| chown | Change ownership | \`chown ubuntu:ubuntu app.log\` |
-| chgrp | Change group ownership | \`chgrp developers script.sh\` |
-| id | Display user information | \`id ubuntu\` |
-| sudo | Run the command as administrator | \`sudo apt update\` |
-| su | Switch user | \`su root\` |
-| useradd | Create a new user | \`useradd devops\` |
-| userdel | Delete user | \`userdel testuser\` |
-| passwd | Change password | \`passwd ubuntu\` |
-| groups | Show user groups | \`groups devops\` |
-| visudo | Edit sudo configuration | \`visudo\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Description[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>chmod[cite: 27]</td><td>Change file permissions[cite: 27]</td><td><code>chmod 755 deploy.sh</code>[cite: 27]</td></tr>
+    <tr><td>chown[cite: 27]</td><td>Change ownership[cite: 27]</td><td><code>chown ubuntu:ubuntu app.log</code>[cite: 27]</td></tr>
+    <tr><td>chgrp[cite: 27]</td><td>Change group ownership[cite: 27]</td><td><code>chgrp developers script.sh</code>[cite: 27]</td></tr>
+    <tr><td>id[cite: 27]</td><td>Display user information[cite: 27]</td><td><code>id ubuntu</code>[cite: 27]</td></tr>
+    <tr><td>sudo[cite: 27]</td><td>Run the command as administrator[cite: 27]</td><td><code>sudo apt update</code>[cite: 27]</td></tr>
+    <tr><td>su[cite: 27]</td><td>Switch user[cite: 27]</td><td><code>su root</code>[cite: 27]</td></tr>
+    <tr><td>useradd[cite: 27]</td><td>Create a new user[cite: 27]</td><td><code>useradd devops</code>[cite: 27]</td></tr>
+    <tr><td>userdel[cite: 27]</td><td>Delete user[cite: 27]</td><td><code>userdel testuser</code>[cite: 27]</td></tr>
+    <tr><td>passwd[cite: 27]</td><td>Change password[cite: 27]</td><td><code>passwd ubuntu</code>[cite: 27]</td></tr>
+    <tr><td>groups[cite: 27]</td><td>Show user groups[cite: 27]</td><td><code>groups devops</code>[cite: 27]</td></tr>
+    <tr><td>visudo[cite: 27]</td><td>Edit sudo configuration[cite: 27]</td><td><code>visudo</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Fix “Permission Denied” Error in Linux**
 \`\`\`bash
 chmod +x deploy.sh
 \`\`\`
-This command adds executable permission to a shell script and fixes one of the most common Linux permission errors.
+This command adds executable permission to a shell script and fixes one of the most common Linux permission errors[cite: 27].
 
 **Check File Permissions**
 \`\`\`bash
 ls -l script.sh
 \`\`\`
-This command displays file ownership and permission details in Linux.
+This command displays file ownership and permission details in Linux[cite: 27].
 
 **Linux Permission Workflow Example**
 \`\`\`bash
@@ -2157,44 +2287,49 @@ groups developer
 \`\`\`
 
 <h3 id="monitor-cmd">4. Linux System Monitoring and Troubleshooting Commands</h3>
-System monitoring commands help administrators analyze CPU usage, RAM consumption, running services, system uptime, and hardware information. These Linux troubleshooting commands are extremely useful while maintaining production servers and cloud environments.
+System monitoring commands help administrators analyze CPU usage, RAM consumption, running services, system uptime, and hardware information[cite: 27]. These Linux troubleshooting commands are extremely useful while maintaining production servers and cloud environments[cite: 27].
 
-| Command | Purpose | Example |
-| --- | --- | --- |
-| top | Monitor running processes | \`top\` |
-| htop | Interactive process viewer | \`htop\` |
-| uname | Display Linux system information | \`uname -a\` |
-| hostname | Display hostname | \`hostnamectl\` |
-| uptime | Check server uptime | \`uptime\` |
-| lscpu | Display CPU information | \`lscpu\` |
-| lsblk | Display disk partitions | \`lsblk -f\` |
-| df | Check disk usage | \`df -h\` |
-| du | Check folder size | \`du -sh /var/log\` |
-| free | Check memory usage | \`free -h\` |
-| dmidecode | Display hardware metadata | \`sudo dmidecode\` |
-| ps | Show running processes | \`ps aux\` |
-| env | Display environment variables | \`env\` |
-| printenv | Print environment variable | \`printenv PATH\` |
-| journalctl | View system logs | \`journalctl -xe\` |
-| dmesg | View kernel logs | \`dmesg | tail\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Purpose[cite: 27]</th><th>Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>top[cite: 27]</td><td>Monitor running processes[cite: 27]</td><td><code>top</code>[cite: 27]</td></tr>
+    <tr><td>htop[cite: 27]</td><td>Interactive process viewer[cite: 27]</td><td><code>htop</code>[cite: 27]</td></tr>
+    <tr><td>uname[cite: 27]</td><td>Display Linux system information[cite: 27]</td><td><code>uname -a</code>[cite: 27]</td></tr>
+    <tr><td>hostname[cite: 27]</td><td>Display hostname[cite: 27]</td><td><code>hostnamectl</code>[cite: 27]</td></tr>
+    <tr><td>uptime[cite: 27]</td><td>Check server uptime[cite: 27]</td><td><code>uptime</code>[cite: 27]</td></tr>
+    <tr><td>lscpu[cite: 27]</td><td>Display CPU information[cite: 27]</td><td><code>lscpu</code>[cite: 27]</td></tr>
+    <tr><td>lsblk[cite: 27]</td><td>Display disk partitions[cite: 27]</td><td><code>lsblk -f</code>[cite: 27]</td></tr>
+    <tr><td>df[cite: 27]</td><td>Check disk usage[cite: 27]</td><td><code>df -h</code>[cite: 27]</td></tr>
+    <tr><td>du[cite: 27]</td><td>Check folder size[cite: 27]</td><td><code>du -sh /var/log</code>[cite: 27]</td></tr>
+    <tr><td>free[cite: 27]</td><td>Check memory usage[cite: 27]</td><td><code>free -h</code>[cite: 27]</td></tr>
+    <tr><td>dmidecode[cite: 27]</td><td>Display hardware metadata[cite: 27]</td><td><code>sudo dmidecode</code>[cite: 27]</td></tr>
+    <tr><td>ps[cite: 27]</td><td>Show running processes[cite: 27]</td><td><code>ps aux</code>[cite: 27]</td></tr>
+    <tr><td>env[cite: 27]</td><td>Display environment variables[cite: 27]</td><td><code>env</code>[cite: 27]</td></tr>
+    <tr><td>printenv[cite: 27]</td><td>Print environment variable[cite: 27]</td><td><code>printenv PATH</code>[cite: 27]</td></tr>
+    <tr><td>journalctl[cite: 27]</td><td>View system logs[cite: 27]</td><td><code>journalctl -xe</code>[cite: 27]</td></tr>
+    <tr><td>dmesg[cite: 27]</td><td>View kernel logs[cite: 27]</td><td><code>dmesg | tail</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Find High CPU Usage Processes**
 \`\`\`bash
 ps aux --sort=-%cpu | head
 \`\`\`
-This command displays the processes consuming the highest CPU resources.
+This command displays the processes consuming the highest CPU resources[cite: 27].
 
 **Find High Memory Usage Processes**
 \`\`\`bash
 ps aux --sort=-%mem | head
 \`\`\`
-This Linux command helps identify memory-intensive applications running on a server.
+This Linux command helps identify memory-intensive applications running on a server[cite: 27].
 
 **Check Linux Disk Usage Quickly**
 \`\`\`bash
 df -h
 \`\`\`
-This command displays human-readable disk usage statistics for all mounted drives.
+This command displays human-readable disk usage statistics for all mounted drives[cite: 27].
 
 **Linux Troubleshooting Workflow Example**
 \`\`\`bash
@@ -2215,42 +2350,47 @@ journalctl -xe
 \`\`\`
 
 <h3 id="network-cmd">5. Essential Linux Networking Commands for Troubleshooting</h3>
-Linux networking commands are used to troubleshoot internet connectivity, verify DNS resolution, analyze active ports, transfer files securely, and connect to remote Linux servers. These commands are commonly used by network engineers, cloud administrators, and DevOps professionals.
+Linux networking commands are used to troubleshoot internet connectivity, verify DNS resolution, analyze active ports, transfer files securely, and connect to remote Linux servers[cite: 27]. These commands are commonly used by network engineers, cloud administrators, and DevOps professionals[cite: 27].
 
-| Command | Description | Real Example |
-| --- | --- | --- |
-| ping | Test network connectivity | \`ping google.com\` |
-| ifconfig | Display network interfaces | \`ifconfig eth0\` |
-| ip | Modern networking utility | \`ip addr\` |
-| netstat | Show active connections | \`netstat -tulpn\` |
-| ss | Socket statistics | \`ss -lntu\` |
-| curl | Send HTTP requests | \`curl https://api.github.com\` |
-| wget | Download files | \`wget backup.zip\` |
-| traceroute | Trace packet route | \`traceroute google.com\` |
-| dig | DNS lookup | \`dig gmail.com\` |
-| host | DNS utility | \`host yahoo.com\` |
-| arp | Display ARP table | \`arp -a\` |
-| nmcli | Manage network connections | \`nmcli connection show\` |
-| ssh | Remote server login | \`ssh ubuntu@server-ip\` |
-| scp | Secure file transfer | \`scp app.zip user@server:/home\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Description[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ping[cite: 27]</td><td>Test network connectivity[cite: 27]</td><td><code>ping google.com</code>[cite: 27]</td></tr>
+    <tr><td>ifconfig[cite: 27]</td><td>Display network interfaces[cite: 27]</td><td><code>ifconfig eth0</code>[cite: 27]</td></tr>
+    <tr><td>ip[cite: 27]</td><td>Modern networking utility[cite: 27]</td><td><code>ip addr</code>[cite: 27]</td></tr>
+    <tr><td>netstat[cite: 27]</td><td>Show active connections[cite: 27]</td><td><code>netstat -tulpn</code>[cite: 27]</td></tr>
+    <tr><td>ss[cite: 27]</td><td>Socket statistics[cite: 27]</td><td><code>ss -lntu</code>[cite: 27]</td></tr>
+    <tr><td>curl[cite: 27]</td><td>Send HTTP requests[cite: 27]</td><td><code>curl https://api.github.com</code>[cite: 27]</td></tr>
+    <tr><td>wget[cite: 27]</td><td>Download files[cite: 27]</td><td><code>wget backup.zip</code>[cite: 27]</td></tr>
+    <tr><td>traceroute[cite: 27]</td><td>Trace packet route[cite: 27]</td><td><code>traceroute google.com</code>[cite: 27]</td></tr>
+    <tr><td>dig[cite: 27]</td><td>DNS lookup[cite: 27]</td><td><code>dig gmail.com</code>[cite: 27]</td></tr>
+    <tr><td>host[cite: 27]</td><td>DNS utility[cite: 27]</td><td><code>host yahoo.com</code>[cite: 27]</td></tr>
+    <tr><td>arp[cite: 27]</td><td>Display ARP table[cite: 27]</td><td><code>arp -a</code>[cite: 27]</td></tr>
+    <tr><td>nmcli[cite: 27]</td><td>Manage network connections[cite: 27]</td><td><code>nmcli connection show</code>[cite: 27]</td></tr>
+    <tr><td>ssh[cite: 27]</td><td>Remote server login[cite: 27]</td><td><code>ssh ubuntu@server-ip</code>[cite: 27]</td></tr>
+    <tr><td>scp[cite: 27]</td><td>Secure file transfer[cite: 27]</td><td><code>scp app.zip user@server:/home</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Check Open Ports in Linux**
 \`\`\`bash
 ss -tulpn
 \`\`\`
-This command shows listening ports and active network services running on a Linux system.
+This command shows listening ports and active network services running on a Linux system[cite: 27].
 
 **Test API or Website Availability**
 \`\`\`bash
 curl -I https://example.com
 \`\`\`
-This command checks HTTP response headers and verifies whether a website or API endpoint is accessible.
+This command checks HTTP response headers and verifies whether a website or API endpoint is accessible[cite: 27].
 
 **Copy Files Securely Between Servers**
 \`\`\`bash
 scp backup.tar.gz ubuntu@192.168.1.10:/home/ubuntu
 \`\`\`
-This Linux command securely transfers files between local and remote systems using SSH.
+This Linux command securely transfers files between local and remote systems using SSH[cite: 27].
 
 **Linux Networking Troubleshooting Workflow**
 \`\`\`bash
@@ -2271,58 +2411,68 @@ curl -I https://example.com
 \`\`\`
 
 <h3 id="pkg-cmd">6. Linux Package Management Commands</h3>
-Package management commands help Linux users install, update, upgrade, and remove software packages efficiently. Different Linux distributions use different package managers such as apt, yum, dnf, rpm, and snap.
+Package management commands help Linux users install, update, upgrade, and remove software packages efficiently[cite: 27]. Different Linux distributions use different package managers such as apt, yum, dnf, rpm, and snap[cite: 27].
 
-| Command | Purpose | Real Example |
-| --- | --- | --- |
-| apt | Ubuntu/Debian package manager | \`sudo apt install nginx\` |
-| apt-get | Advanced package utility | \`sudo apt-get clean\` |
-| dpkg | Install .deb packages | \`dpkg -i app.deb\` |
-| snap | Universal Linux packages | \`snap install postman\` |
-| yum | RHEL/CentOS package manager | \`yum install git\` |
-| dnf | Fedora package manager | \`dnf install docker\` |
-| rpm | Install RPM packages | \`rpm -ivh package.rpm\` |
-| flatpak | Install Flatpak applications | \`flatpak install app\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Purpose[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>apt[cite: 27]</td><td>Ubuntu/Debian package manager[cite: 27]</td><td><code>sudo apt install nginx</code>[cite: 27]</td></tr>
+    <tr><td>apt-get[cite: 27]</td><td>Advanced package utility[cite: 27]</td><td><code>sudo apt-get clean</code>[cite: 27]</td></tr>
+    <tr><td>dpkg[cite: 27]</td><td>Install .deb packages[cite: 27]</td><td><code>dpkg -i app.deb</code>[cite: 27]</td></tr>
+    <tr><td>snap[cite: 27]</td><td>Universal Linux packages[cite: 27]</td><td><code>snap install postman</code>[cite: 27]</td></tr>
+    <tr><td>yum[cite: 27]</td><td>RHEL/CentOS package manager[cite: 27]</td><td><code>yum install git</code>[cite: 27]</td></tr>
+    <tr><td>dnf[cite: 27]</td><td>Fedora package manager[cite: 27]</td><td><code>dnf install docker</code>[cite: 27]</td></tr>
+    <tr><td>rpm[cite: 27]</td><td>Install RPM packages[cite: 27]</td><td><code>rpm -ivh package.rpm</code>[cite: 27]</td></tr>
+    <tr><td>flatpak[cite: 27]</td><td>Install Flatpak applications[cite: 27]</td><td><code>flatpak install app</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Update Linux Packages**
 \`\`\`bash
 sudo apt update && sudo apt upgrade -y
 \`\`\`
-This command refreshes package indexes and upgrades installed packages on Ubuntu or Debian systems.
+This command refreshes package indexes and upgrades installed packages on Ubuntu or Debian systems[cite: 27].
 
 **Fix Broken Packages in Ubuntu**
 \`\`\`bash
 sudo apt --fix-broken install
 \`\`\`
-This Linux command resolves dependency and package installation issues.
+This Linux command resolves dependency and package installation issues[cite: 27].
 
 **Difference Between apt and yum**
-The \`apt\` package manager is used mainly in Ubuntu and Debian-based Linux distributions, while \`yum\` is used in CentOS and Red Hat Enterprise Linux systems.
+The \`apt\` package manager is used mainly in Ubuntu and Debian-based Linux distributions, while \`yum\` is used in CentOS and Red Hat Enterprise Linux systems[cite: 27].
 
 <h3 id="archive-cmd">7. Linux Compression and Archiving Commands</h3>
-Compression and archiving commands help Linux users reduce file sizes, transfer backups efficiently, and organize project files. These commands are commonly used in server management, cloud deployments, and backup automation workflows.
+Compression and archiving commands help Linux users reduce file sizes, transfer backups efficiently, and organize project files[cite: 27]. These commands are commonly used in server management, cloud deployments, and backup automation workflows[cite: 27].
 
-| Command | Description | Real Example |
-| --- | --- | --- |
-| tar | Create or extract archives | \`tar -czf backup.tar.gz project/\` |
-| zip | Create ZIP archive | \`zip project.zip src/\` |
-| unzip | Extract the ZIP archive | \`unzip project.zip\` |
-| gzip | Compress files | \`gzip server.log\` |
-| gunzip | Decompress GZIP files | \`gunzip backup.gz\` |
-| 7z | Create 7zip archive | \`7z a files.7z data/\` |
-| rar | Create RAR archive | \`rar a archive.rar files/\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Description[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>tar[cite: 27]</td><td>Create or extract archives[cite: 27]</td><td><code>tar -czf backup.tar.gz project/</code>[cite: 27]</td></tr>
+    <tr><td>zip[cite: 27]</td><td>Create ZIP archive[cite: 27]</td><td><code>zip project.zip src/</code>[cite: 27]</td></tr>
+    <tr><td>unzip[cite: 27]</td><td>Extract the ZIP archive[cite: 27]</td><td><code>unzip project.zip</code>[cite: 27]</td></tr>
+    <tr><td>gzip[cite: 27]</td><td>Compress files[cite: 27]</td><td><code>gzip server.log</code>[cite: 27]</td></tr>
+    <tr><td>gunzip[cite: 27]</td><td>Decompress GZIP files[cite: 27]</td><td><code>gunzip backup.gz</code>[cite: 27]</td></tr>
+    <tr><td>7z[cite: 27]</td><td>Create 7zip archive[cite: 27]</td><td><code>7z a files.7z data/</code>[cite: 27]</td></tr>
+    <tr><td>rar[cite: 27]</td><td>Create RAR archive[cite: 27]</td><td><code>rar a archive.rar files/</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Create a Compressed Backup in Linux**
 \`\`\`bash
 tar -czf website-backup.tar.gz /var/www/html
 \`\`\`
-This command creates a compressed backup archive of a website directory.
+This command creates a compressed backup archive of a website directory[cite: 27].
 
 **Extract a Tar.gz Archive**
 \`\`\`bash
 tar -xvf backup.tar.gz
 \`\`\`
-This Linux command extracts compressed archive files into the current directory.
+This Linux command extracts compressed archive files into the current directory[cite: 27].
 
 **Compression Workflow Example**
 \`\`\`bash
@@ -2337,38 +2487,43 @@ tar -xvf logs.tar.gz
 \`\`\`
 
 <h3 id="proc-cmd">8. Linux Process and Service Management Commands</h3>
-Linux gives administrators deep control over running applications, services, and background jobs. These commands help monitor processes, stop unresponsive applications, manage priorities, and restart Linux services efficiently.
+Linux gives administrators deep control over running applications, services, and background jobs[cite: 27]. These commands help monitor processes, stop unresponsive applications, manage priorities, and restart Linux services efficiently[cite: 27].
 
-| Command | Purpose | Real Example |
-| --- | --- | --- |
-| ps | View running processes | \`ps aux\` |
-| kill | Terminate the process using PID | \`kill 1234\` |
-| killall | Kill process by name | \`killall firefox\` |
-| bg | Move the process to the background | \`bg\` |
-| fg | Bring the process to the foreground | \`fg\` |
-| jobs | View background jobs | \`jobs\` |
-| nice | Set process priority | \`nice -n 10 python app.py\` |
-| renice | Modify process priority | \`renice 10 1234\` |
-| systemctl | Manage Linux services | \`systemctl restart nginx\` |
-| service | Older Linux service manager | \`service apache2 restart\` |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Purpose[cite: 27]</th><th>Real Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>ps[cite: 27]</td><td>View running processes[cite: 27]</td><td><code>ps aux</code>[cite: 27]</td></tr>
+    <tr><td>kill[cite: 27]</td><td>Terminate the process using PID[cite: 27]</td><td><code>kill 1234</code>[cite: 27]</td></tr>
+    <tr><td>killall[cite: 27]</td><td>Kill process by name[cite: 27]</td><td><code>killall firefox</code>[cite: 27]</td></tr>
+    <tr><td>bg[cite: 27]</td><td>Move the process to the background[cite: 27]</td><td><code>bg</code>[cite: 27]</td></tr>
+    <tr><td>fg[cite: 27]</td><td>Bring the process to the foreground[cite: 27]</td><td><code>fg</code>[cite: 27]</td></tr>
+    <tr><td>jobs[cite: 27]</td><td>View background jobs[cite: 27]</td><td><code>jobs</code>[cite: 27]</td></tr>
+    <tr><td>nice[cite: 27]</td><td>Set process priority[cite: 27]</td><td><code>nice -n 10 python app.py</code>[cite: 27]</td></tr>
+    <tr><td>renice[cite: 27]</td><td>Modify process priority[cite: 27]</td><td><code>renice 10 1234</code>[cite: 27]</td></tr>
+    <tr><td>systemctl[cite: 27]</td><td>Manage Linux services[cite: 27]</td><td><code>systemctl restart nginx</code>[cite: 27]</td></tr>
+    <tr><td>service[cite: 27]</td><td>Older Linux service manager[cite: 27]</td><td><code>service apache2 restart</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Restart a Failed Linux Service**
 \`\`\`bash
 systemctl restart nginx
 \`\`\`
-This command restarts the Nginx service after configuration changes or server failures.
+This command restarts the Nginx service after configuration changes or server failures[cite: 27].
 
 **Find a Running Process**
 \`\`\`bash
 ps aux | grep nginx
 \`\`\`
-This command searches for active Nginx processes on a Linux server.
+This command searches for active Nginx processes on a Linux server[cite: 27].
 
 **Kill an Unresponsive Process**
 \`\`\`bash
 kill -9 1234
 \`\`\`
-This command forcefully terminates a frozen process using its process ID.
+This command forcefully terminates a frozen process using its process ID[cite: 27].
 
 **Linux Process Monitoring Workflow**
 \`\`\`bash
@@ -2389,7 +2544,7 @@ systemctl status apache2
 \`\`\`
 
 <h3 id="admin-cmd">9. Daily Linux Admin Workflow Commands</h3>
-Linux administrators often repeat the same troubleshooting and monitoring tasks every day. These commands form a practical Linux workflow for checking system health, server availability, and service status quickly.
+Linux administrators often repeat the same troubleshooting and monitoring tasks every day[cite: 27]. These commands form a practical Linux workflow for checking system health, server availability, and service status quickly[cite: 27].
 \`\`\`bash
 # Check uptime
 uptime
@@ -2414,102 +2569,122 @@ systemctl status nginx
 \`\`\`
 
 <h3 id="dir-struct">10. Linux Directory Structure Cheat Sheet</h3>
-Linux organizes files and system resources using a hierarchical directory structure that starts from the root (\`/\`) directory. Each folder has a specific purpose, making it easier to locate configuration files, user data, applications, logs, and system resources. Understanding the Linux filesystem is essential for developers, system administrators, and DevOps engineers because many commands require navigating these directories efficiently.
+Linux organizes files and system resources using a hierarchical directory structure that starts from the root (\`/\`) directory[cite: 27]. Each folder has a specific purpose, making it easier to locate configuration files, user data, applications, logs, and system resources[cite: 27]. Understanding the Linux filesystem is essential for developers, system administrators, and DevOps engineers because many commands require navigating these directories efficiently[cite: 27].
 
-| Directory | Purpose | Example |
-| --- | --- | --- |
-| \`/\` | Root directory that contains the entire Linux filesystem | \`cd /\` |
-| \`/home\` | Stores personal files and folders for users | \`cd /home/ubuntu\` |
-| \`/root\` | Home directory of the root user | \`cd /root\` |
-| \`/etc\` | Contains system configuration files | \`cd /etc/nginx\` |
-| \`/var\` | Stores logs, caches, and variable application data | \`cd /var/log\` |
-| \`/usr\` | Contains installed applications, libraries, and binaries | \`ls /usr/bin\` |
-| \`/bin\` | Essential Linux command binaries | \`ls /bin\` |
-| \`/sbin\` | Administrative system binaries | \`ls /sbin\` |
-| \`/tmp\` | Temporary files created by applications | \`cd /tmp\` |
-| \`/opt\` | Optional third-party software installations | \`cd /opt\` |
-| \`/boot\` | Bootloader and kernel files | \`ls /boot\` |
-| \`/dev\` | Represents hardware devices as files | \`ls /dev\` |
-| \`/proc\` | Virtual filesystem containing process and kernel information | \`cat /proc/cpuinfo\` |
-| \`/mnt\` | Temporary mount point for storage devices | \`cd /mnt\` |
-| \`/media\` | Automatically mounted removable media such as USB drives | \`cd /media\` |
+<table>
+  <thead>
+    <tr><th>Directory[cite: 27]</th><th>Purpose[cite: 27]</th><th>Example[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>/</code>[cite: 27]</td><td>Root directory that contains the entire Linux filesystem[cite: 27]</td><td><code>cd /</code>[cite: 27]</td></tr>
+    <tr><td><code>/home</code>[cite: 27]</td><td>Stores personal files and folders for users[cite: 27]</td><td><code>cd /home/ubuntu</code>[cite: 27]</td></tr>
+    <tr><td><code>/root</code>[cite: 27]</td><td>Home directory of the root user[cite: 27]</td><td><code>cd /root</code>[cite: 27]</td></tr>
+    <tr><td><code>/etc</code>[cite: 27]</td><td>Contains system configuration files[cite: 27]</td><td><code>cd /etc/nginx</code>[cite: 27]</td></tr>
+    <tr><td><code>/var</code>[cite: 27]</td><td>Stores logs, caches, and variable application data[cite: 27]</td><td><code>cd /var/log</code>[cite: 27]</td></tr>
+    <tr><td><code>/usr</code>[cite: 27]</td><td>Contains installed applications, libraries, and binaries[cite: 27]</td><td><code>ls /usr/bin</code>[cite: 27]</td></tr>
+    <tr><td><code>/bin</code>[cite: 27]</td><td>Essential Linux command binaries[cite: 27]</td><td><code>ls /bin</code>[cite: 27]</td></tr>
+    <tr><td><code>/sbin</code>[cite: 27]</td><td>Administrative system binaries[cite: 27]</td><td><code>ls /sbin</code>[cite: 27]</td></tr>
+    <tr><td><code>/tmp</code>[cite: 27]</td><td>Temporary files created by applications[cite: 27]</td><td><code>cd /tmp</code>[cite: 27]</td></tr>
+    <tr><td><code>/opt</code>[cite: 27]</td><td>Optional third-party software installations[cite: 27]</td><td><code>cd /opt</code>[cite: 27]</td></tr>
+    <tr><td><code>/boot</code>[cite: 27]</td><td>Bootloader and kernel files[cite: 27]</td><td><code>ls /boot</code>[cite: 27]</td></tr>
+    <tr><td><code>/dev</code>[cite: 27]</td><td>Represents hardware devices as files[cite: 27]</td><td><code>ls /dev</code>[cite: 27]</td></tr>
+    <tr><td><code>/proc</code>[cite: 27]</td><td>Virtual filesystem containing process and kernel information[cite: 27]</td><td><code>cat /proc/cpuinfo</code>[cite: 27]</td></tr>
+    <tr><td><code>/mnt</code>[cite: 27]</td><td>Temporary mount point for storage devices[cite: 27]</td><td><code>cd /mnt</code>[cite: 27]</td></tr>
+    <tr><td><code>/media</code>[cite: 27]</td><td>Automatically mounted removable media such as USB drives[cite: 27]</td><td><code>cd /media</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Check the Contents of the Root Directory**
 \`\`\`bash
 ls /
 \`\`\`
-This command lists all top-level directories in the Linux filesystem, helping you understand how the operating system is organized.
+This command lists all top-level directories in the Linux filesystem, helping you understand how the operating system is organized[cite: 27].
 
 **Navigate to the System Log Directory**
 \`\`\`bash
 cd /var/log
 \`\`\`
-This command opens the directory where Linux stores application and system log files, making it useful for troubleshooting and monitoring.
+This command opens the directory where Linux stores application and system log files, making it useful for troubleshooting and monitoring[cite: 27].
 
 <h3 id="perm-numbers">11. Linux Permission Numbers Explained</h3>
-Linux uses a permission-based security model to control who can read, write, or execute files and directories. Permissions are represented using both symbolic notation and numeric values. Learning these permission numbers helps you manage access securely, avoid permission errors, and protect important files from unauthorized modifications.
+Linux uses a permission-based security model to control who can read, write, or execute files and directories[cite: 27]. Permissions are represented using both symbolic notation and numeric values[cite: 27]. Learning these permission numbers helps you manage access securely, avoid permission errors, and protect important files from unauthorized modifications[cite: 27].
 
-| Permission | Numeric Value | Meaning |
-| --- | --- | --- |
-| Read (r) | 4 | View the contents of a file |
-| Write (w) | 2 | Modify or delete a file |
-| Execute (x) | 1 | Run a file as a program or enter a directory |
+<table>
+  <thead>
+    <tr><th>Permission[cite: 27]</th><th>Numeric Value[cite: 27]</th><th>Meaning[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Read (r)[cite: 27]</td><td>4[cite: 27]</td><td>View the contents of a file[cite: 27]</td></tr>
+    <tr><td>Write (w)[cite: 27]</td><td>2[cite: 27]</td><td>Modify or delete a file[cite: 27]</td></tr>
+    <tr><td>Execute (x)[cite: 27]</td><td>1[cite: 27]</td><td>Run a file as a program or enter a directory[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Common Linux Permission Numbers**
-| Permission | Owner | Group | Others | Typical Use |
-| --- | --- | --- | --- | --- |
-| \`777\` | rwx | rwx | rwx | Full access for everyone (not recommended) |
-| \`755\` | rwx | r-x | r-x | Executable scripts and directories |
-| \`744\` | rwx | r-- | r-- | Private executable files |
-| \`700\` | rwx | --- | --- | Private user files |
-| \`644\` | rw- | r-- | r-- | Most text and configuration files |
-| \`600\` | rw- | --- | --- | Passwords and sensitive files |
-| \`400\` | r-- | --- | --- | Read-only confidential files |
+<table>
+  <thead>
+    <tr><th>Permission[cite: 27]</th><th>Owner[cite: 27]</th><th>Group[cite: 27]</th><th>Others[cite: 27]</th><th>Typical Use[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>777</code>[cite: 27]</td><td>rwx[cite: 27]</td><td>rwx[cite: 27]</td><td>rwx[cite: 27]</td><td>Full access for everyone (not recommended)[cite: 27]</td></tr>
+    <tr><td><code>755</code>[cite: 27]</td><td>rwx[cite: 27]</td><td>r-x[cite: 27]</td><td>r-x[cite: 27]</td><td>Executable scripts and directories[cite: 27]</td></tr>
+    <tr><td><code>744</code>[cite: 27]</td><td>rwx[cite: 27]</td><td>r--[cite: 27]</td><td>r--[cite: 27]</td><td>Private executable files[cite: 27]</td></tr>
+    <tr><td><code>700</code>[cite: 27]</td><td>rwx[cite: 27]</td><td>---[cite: 27]</td><td>---[cite: 27]</td><td>Private user files[cite: 27]</td></tr>
+    <tr><td><code>644</code>[cite: 27]</td><td>rw-[cite: 27]</td><td>r--[cite: 27]</td><td>r--[cite: 27]</td><td>Most text and configuration files[cite: 27]</td></tr>
+    <tr><td><code>600</code>[cite: 27]</td><td>rw-[cite: 27]</td><td>---[cite: 27]</td><td>---[cite: 27]</td><td>Passwords and sensitive files[cite: 27]</td></tr>
+    <tr><td><code>400</code>[cite: 27]</td><td>r--[cite: 27]</td><td>---[cite: 27]</td><td>---[cite: 27]</td><td>Read-only confidential files[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Change File Permissions**
 \`\`\`bash
 chmod 755 deploy.sh
 \`\`\`
-This command allows the file owner to read, write, and execute the script while granting read and execute permissions to everyone else.
+This command allows the file owner to read, write, and execute the script while granting read and execute permissions to everyone else[cite: 27].
 
 **View Current File Permissions**
 \`\`\`bash
 ls -l deploy.sh
 \`\`\`
-This command displays the current owner, group, and permission settings assigned to a file or directory.
+This command displays the current owner, group, and permission settings assigned to a file or directory[cite: 27].
 
 <h3 id="bash-shortcuts">12. Bash Shortcuts Cheat Sheet</h3>
-Bash keyboard shortcuts help Linux users work faster by reducing repetitive typing and simplifying command-line navigation. Instead of retyping commands or manually moving the cursor, you can quickly edit commands, search command history, and control running processes using keyboard shortcuts.
+Bash keyboard shortcuts help Linux users work faster by reducing repetitive typing and simplifying command-line navigation[cite: 27]. Instead of retyping commands or manually moving the cursor, you can quickly edit commands, search command history, and control running processes using keyboard shortcuts[cite: 27].
 
-| Shortcut | Purpose | When to Use |
-| --- | --- | --- |
-| \`Ctrl + C\` | Stop the running command | Cancel a long-running process |
-| \`Ctrl + Z\` | Suspend the current process | Move a process to the background |
-| \`Ctrl + L\` | Clear the terminal screen | Clean the terminal display |
-| \`Ctrl + A\` | Move the cursor to the beginning of the line | Edit long commands |
-| \`Ctrl + E\` | Move the cursor to the end of the line | Quick navigation |
-| \`Ctrl + U\` | Delete text before the cursor | Clear the current command quickly |
-| \`Ctrl + K\` | Delete text after the cursor | Remove unwanted command text |
-| \`Ctrl + R\` | Search command history | Find previously executed commands |
-| \`Tab\` | Auto-complete commands and file names | Save typing time |
-| \`↑ / ↓\` | Browse command history | Reuse recent commands |
-| \`!!\` | Repeat the previous command | Run the last command again |
-| \`exit\` | Close the terminal session | End the current shell |
+<table>
+  <thead>
+    <tr><th>Shortcut[cite: 27]</th><th>Purpose[cite: 27]</th><th>When to Use[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>Ctrl + C</code>[cite: 27]</td><td>Stop the running command[cite: 27]</td><td>Cancel a long-running process[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + Z</code>[cite: 27]</td><td>Suspend the current process[cite: 27]</td><td>Move a process to the background[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + L</code>[cite: 27]</td><td>Clear the terminal screen[cite: 27]</td><td>Clean the terminal display[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + A</code>[cite: 27]</td><td>Move the cursor to the beginning of the line[cite: 27]</td><td>Edit long commands[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + E</code>[cite: 27]</td><td>Move the cursor to the end of the line[cite: 27]</td><td>Quick navigation[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + U</code>[cite: 27]</td><td>Delete text before the cursor[cite: 27]</td><td>Clear the current command quickly[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + K</code>[cite: 27]</td><td>Delete text after the cursor[cite: 27]</td><td>Remove unwanted command text[cite: 27]</td></tr>
+    <tr><td><code>Ctrl + R</code>[cite: 27]</td><td>Search command history[cite: 27]</td><td>Find previously executed commands[cite: 27]</td></tr>
+    <tr><td><code>Tab</code>[cite: 27]</td><td>Auto-complete commands and file names[cite: 27]</td><td>Save typing time[cite: 27]</td></tr>
+    <tr><td><code>↑ / ↓</code>[cite: 27]</td><td>Browse command history[cite: 27]</td><td>Reuse recent commands[cite: 27]</td></tr>
+    <tr><td><code>!!</code>[cite: 27]</td><td>Repeat the previous command[cite: 27]</td><td>Run the last command again[cite: 27]</td></tr>
+    <tr><td><code>exit</code>[cite: 27]</td><td>Close the terminal session[cite: 27]</td><td>End the current shell[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 **Search Previously Executed Commands**
 \`\`\`text
 Ctrl + R
 \`\`\`
-Press this shortcut and start typing part of a previous command to search your Bash command history instantly.
+Press this shortcut and start typing part of a previous command to search your Bash command history instantly[cite: 27].
 
 **Automatically Complete File Names**
 \`\`\`text
 cd /var/lo<Tab>
 \`\`\`
-Pressing the Tab key automatically completes matching directory and file names, reducing typing effort and preventing spelling mistakes.
+Pressing the Tab key automatically completes matching directory and file names, reducing typing effort and preventing spelling mistakes[cite: 27].
 
 <h3 id="chain-cmd">Useful Linux Command Chaining Examples</h3>
-Linux command chaining allows users to combine multiple commands together for filtering, automation, and faster troubleshooting. These examples are widely used in DevOps, Linux administration, and server management.
+Linux command chaining allows users to combine multiple commands together for filtering, automation, and faster troubleshooting[cite: 27]. These examples are widely used in DevOps, Linux administration, and server management[cite: 27].
 
 **Find Running Processes**
 \`\`\`bash
@@ -2537,38 +2712,48 @@ tail -f /var/log/syslog
 \`\`\`
 
 <h3 id="errors">Common Linux Errors and Their Solutions</h3>
-While learning Linux commands, beginners and professionals often encounter errors related to permissions, missing packages, networking issues, or incorrect file paths. Understanding these common Linux problems helps improve troubleshooting skills significantly.
+While learning Linux commands, beginners and professionals often encounter errors related to permissions, missing packages, networking issues, or incorrect file paths[cite: 27]. Understanding these common Linux problems helps improve troubleshooting skills significantly[cite: 27].
 
-| Error | Cause | Solution |
-| --- | --- | --- |
-| Permission denied | Missing execute permission | \`chmod +x script.sh\` |
-| Command not found | Package not installed | Install package or verify PATH variable |
-| No such file or directory | Incorrect path | Verify file path using \`pwd\` and \`ls\` |
-| Connection refused | Service not running | Restart service using \`systemctl\` |
-| Disk full | Storage exhausted | Check usage with \`df -h\` |
-| Broken package | Dependency conflict | \`sudo apt --fix-broken install\` |
-| Host unreachable | Network issue | Verify connectivity using \`ping\` |
-| Port already in use | Service conflict | Check active ports using \`ss -tulpn\` |
+<table>
+  <thead>
+    <tr><th>Error[cite: 27]</th><th>Cause[cite: 27]</th><th>Solution[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Permission denied[cite: 27]</td><td>Missing execute permission[cite: 27]</td><td><code>chmod +x script.sh</code>[cite: 27]</td></tr>
+    <tr><td>Command not found[cite: 27]</td><td>Package not installed[cite: 27]</td><td>Install package or verify PATH variable[cite: 27]</td></tr>
+    <tr><td>No such file or directory[cite: 27]</td><td>Incorrect path[cite: 27]</td><td>Verify file path using <code>pwd</code> and <code>ls</code>[cite: 27]</td></tr>
+    <tr><td>Connection refused[cite: 27]</td><td>Service not running[cite: 27]</td><td>Restart service using <code>systemctl</code>[cite: 27]</td></tr>
+    <tr><td>Disk full[cite: 27]</td><td>Storage exhausted[cite: 27]</td><td>Check usage with <code>df -h</code>[cite: 27]</td></tr>
+    <tr><td>Broken package[cite: 27]</td><td>Dependency conflict[cite: 27]</td><td><code>sudo apt --fix-broken install</code>[cite: 27]</td></tr>
+    <tr><td>Host unreachable[cite: 27]</td><td>Network issue[cite: 27]</td><td>Verify connectivity using <code>ping</code>[cite: 27]</td></tr>
+    <tr><td>Port already in use[cite: 27]</td><td>Service conflict[cite: 27]</td><td>Check active ports using <code>ss -tulpn</code>[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 <h3 id="danger-cmd">Dangerous Linux Commands Beginners Should Avoid</h3>
-Some Linux commands can permanently delete files or damage operating system configurations if used incorrectly. Beginners should understand these commands carefully before executing them on production systems.
+Some Linux commands can permanently delete files or damage operating system configurations if used incorrectly[cite: 27]. Beginners should understand these commands carefully before executing them on production systems[cite: 27].
 
-| Command | Risk | Safer Alternative |
-| --- | --- | --- |
-| \`rm -rf /\` | Deletes the entire system | Always verify path before deletion |
-| \`chmod -R 777\` | Creates security vulnerabilities | Use permissions like 755 or 644 |
-| \`dd if=/dev/zero\` | Can overwrite storage devices | Verify target disk carefully |
-| \`:(){ :|:& };:\` | Fork bomb that crashes system | Avoid running unknown scripts |
+<table>
+  <thead>
+    <tr><th>Command[cite: 27]</th><th>Risk[cite: 27]</th><th>Safer Alternative[cite: 27]</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>rm -rf /</code>[cite: 27]</td><td>Deletes the entire system[cite: 27]</td><td>Always verify path before deletion[cite: 27]</td></tr>
+    <tr><td><code>chmod -R 777</code>[cite: 27]</td><td>Creates security vulnerabilities[cite: 27]</td><td>Use permissions like 755 or 644[cite: 27]</td></tr>
+    <tr><td><code>dd if=/dev/zero</code>[cite: 27]</td><td>Can overwrite storage devices[cite: 27]</td><td>Verify target disk carefully[cite: 27]</td></tr>
+    <tr><td><code>:(){ :|:& };:</code>[cite: 27]</td><td>Fork bomb that crashes system[cite: 27]</td><td>Avoid running unknown scripts[cite: 27]</td></tr>
+  </tbody>
+</table>
 
 <h3 id="why-cmd">Why and for Whom Does This Linux Commands Cheat Sheet Matter?</h3>
-This Linux command cheat sheet is useful for anyone who wants to improve productivity and confidently work with Linux systems. Whether you are learning Linux for the first time or managing production servers, these commands will help simplify your workflow.
-* Beginners and students learning Linux basics
-* Developers working with Ubuntu or Linux servers
-* System administrators managing infrastructure
-* DevOps Engineers handling deployments and automation
-* Cybersecurity professionals analyzing systems and logs
-* Cloud engineers working with AWS, Azure, or Kubernetes
-* IT professionals troubleshooting Linux environments
+This Linux command cheat sheet is useful for anyone who wants to improve productivity and confidently work with Linux systems[cite: 27]. Whether you are learning Linux for the first time or managing production servers, these commands will help simplify your workflow[cite: 27].
+* Beginners and students learning Linux basics[cite: 27]
+* Developers working with Ubuntu or Linux servers[cite: 27]
+* System administrators managing infrastructure[cite: 27]
+* DevOps Engineers handling deployments and automation[cite: 27]
+* Cybersecurity professionals analyzing systems and logs[cite: 27]
+* Cloud engineers working with AWS, Azure, or Kubernetes[cite: 27]
+* IT professionals troubleshooting Linux environments[cite: 27]
 
 <h3 id="cmd-syntax">Understanding Linux Command Syntax</h3>
 \`\`\`text
@@ -2581,19 +2766,20 @@ Breakdown:
 \`\`\`
 
 <h3 id="learn-path">Recommended Linux Command Learning Path</h3>
-If you are learning Linux for the first time, following a structured roadmap can help you master Linux commands faster and avoid confusion.
-1. Learn Linux navigation commands
-2. Understand file and directory management
-3. Practice file viewing and editing commands
-4. Learn permissions and user management
-5. Master Linux networking commands
-6. Understand system monitoring and troubleshooting
-7. Learn package management tools
-8. Practice shell scripting basics
-9. Explore DevOps and cloud-related Linux tools
+If you are learning Linux for the first time, following a structured roadmap can help you master Linux commands faster and avoid confusion[cite: 27].
+1. Learn Linux navigation commands[cite: 27]
+2. Understand file and directory management[cite: 27]
+3. Practice file viewing and editing commands[cite: 27]
+4. Learn permissions and user management[cite: 27]
+5. Master Linux networking commands[cite: 27]
+6. Understand system monitoring and troubleshooting[cite: 27]
+7. Learn package management tools[cite: 27]
+8. Practice shell scripting basics[cite: 27]
+9. Explore DevOps and cloud-related Linux tools[cite: 27]
                 `,
                 toc: [
                     { label: 'What Are Linux Commands', target: 'what-are-cmds' },
+                    { label: 'Most Used for Daily Tasks', target: 'daily-tasks' },
                     { label: 'File Management', target: 'nav-cmd' },
                     { label: 'File Viewing & Editing', target: 'file-cmd' },
                     { label: 'User & Permissions', target: 'permissions-cmd' },
@@ -2618,11 +2804,897 @@ If you are learning Linux for the first time, following a structured roadmap can
                 title: 'Installation of OS',
                 parentGroup: 'group-linux',
                 markdown: `
-<h3 id="os-prep">Prerequisites</h3>
-Setting up partition tables (GPT/MBR), configuring boot devices, UEFI secure boot policies, and writing boot media.
+<h3 id="overview">Overview</h3>
+Installing **RHEL 9** or **Rocky Linux 9** follows a similar process because both use the Red Hat Enterprise Linux family architecture and the **Anaconda** installer[cite: 24].
+The overall installation flow is[cite: 24]:
+
+\`\`\`text
+Download ISO
+    ↓
+Create Bootable USB / VM
+    ↓
+Boot from ISO
+    ↓
+Start Anaconda Installer
+    ↓
+Select Language
+    ↓
+Configure Keyboard
+    ↓
+Configure Installation Source
+    ↓
+Configure Software Selection
+    ↓
+Configure Installation Destination
+    ↓
+Configure Network & Hostname
+    ↓
+Configure Root Password
+    ↓
+Create User
+    ↓
+Begin Installation
+    ↓
+Reboot
+    ↓
+First Boot
+    ↓
+Verify System
+    ↓
+Post-Installation Configuration
+\`\`\`
+
+<h3 id="requirements">1. Installation Requirements</h3>
+Before installing RHEL/Rocky Linux 9, prepare[cite: 24]:
+* RHEL 9 or Rocky Linux 9 ISO[cite: 24]
+* Physical server, virtual machine, or workstation[cite: 24]
+* CPU with virtualization support if using a VM[cite: 24]
+* Minimum required RAM[cite: 24]
+* Sufficient disk space[cite: 24]
+* Network connection if required[cite: 24]
+* Bootable USB/DVD or VM ISO attachment[cite: 24]
+
+For a lab environment, a virtual machine is commonly used[cite: 24].
+Example VM configuration[cite: 24]:
+
+<table>
+  <thead>
+    <tr><th>Resource</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>CPU</td><td>2–4 vCPU</td></tr>
+    <tr><td>Memory</td><td>4–8 GB RAM</td></tr>
+    <tr><td>Disk</td><td>40 GB+</td></tr>
+    <tr><td>Network</td><td>NAT or Bridged</td></tr>
+    <tr><td>Firmware</td><td>UEFI</td></tr>
+    <tr><td>ISO</td><td>RHEL/Rocky Linux 9 ISO</td></tr>
+  </tbody>
+</table>
+
+<h3 id="obtain-iso">2. Obtain the Installation ISO</h3>
+For **RHEL 9**, obtain the installation ISO from Red Hat[cite: 24].
+For **Rocky Linux 9**, obtain the installation ISO from the Rocky Linux project[cite: 24].
+
+Common ISO types include[cite: 24]:
+* DVD ISO[cite: 24]
+* Boot ISO[cite: 24]
+* Minimal/installation media depending on the distribution[cite: 24]
+
+For a standard lab installation, the DVD installation ISO is convenient because it contains a larger set of packages locally[cite: 24].
+
+<h3 id="bootable-media">3. Create a Bootable Installation Media</h3>
+For a physical server, the ISO can be written to a USB drive[cite: 24].
+The general process is[cite: 24]:
+
+\`\`\`text
+RHEL/Rocky Linux 9 ISO
+        ↓
+Bootable USB
+        ↓
+Physical Server
+        ↓
+UEFI Boot Menu
+        ↓
+Linux Installer
+\`\`\`
+
+For a virtual machine, attach the ISO directly to the VM's virtual CD/DVD device[cite: 24].
+
+<h3 id="boot-system">4. Boot the System from the ISO</h3>
+Start the physical server or virtual machine[cite: 24].
+Open the boot menu if required and select the installation media[cite: 24].
+Typical boot options may include[cite: 24]:
+
+\`\`\`text
+UEFI: USB Drive
+Virtual CD/DVD
+Network Boot
+Local Disk
+\`\`\`
+
+Select the ISO/USB installation media[cite: 24].
+The system loads the Linux installation environment[cite: 24].
+
+<h3 id="anaconda">5. Start the Anaconda Installer</h3>
+RHEL 9 and Rocky Linux 9 use the **Anaconda installer**[cite: 24].
+The boot menu normally provides options such as[cite: 24]:
+
+\`\`\`text
+Install Red Hat Enterprise Linux 9
+Test this media & install
+Troubleshooting
+\`\`\`
+
+For Rocky Linux, the distribution name will appear accordingly[cite: 24].
+Select the installation option[cite: 24].
+The installer starts the graphical installation environment[cite: 24].
+
+<h3 id="language">6. Select Installation Language</h3>
+The installer asks for the preferred language[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+English
+English (United States)
+\`\`\`
+
+Select the appropriate language and continue[cite: 24].
+The selected language determines the language used by the installation environment[cite: 24].
+
+<h3 id="summary-screen">7. Installation Summary</h3>
+The Anaconda installer presents an **Installation Summary** screen[cite: 24].
+Important configuration areas include[cite: 24]:
+* Keyboard[cite: 24]
+* Language Support[cite: 24]
+* Time & Date[cite: 24]
+* Installation Source[cite: 24]
+* Software Selection[cite: 24]
+* Installation Destination[cite: 24]
+* Network & Host Name[cite: 24]
+* Root Password[cite: 24]
+* User Creation[cite: 24]
+
+Before beginning the installation, review these settings carefully[cite: 24].
+
+<h3 id="keyboard">8. Configure Keyboard</h3>
+Select the keyboard layout[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+English (US)
+\`\`\`
+
+Additional keyboard layouts can be added if required[cite: 24].
+
+<h3 id="time-date">9. Configure Time and Date</h3>
+Configure[cite: 24]:
+* Region[cite: 24]
+* City[cite: 24]
+* Time zone[cite: 24]
+* Network Time Protocol (NTP)[cite: 24]
+
+Example[cite: 24]:
+
+\`\`\`text
+Region: Asia
+City: Kolkata
+\`\`\`
+
+Enable network time synchronization when appropriate[cite: 24].
+Correct time configuration is important for[cite: 24]:
+* Authentication[cite: 24]
+* Kerberos[cite: 24]
+* TLS certificates[cite: 24]
+* Logs[cite: 24]
+* Distributed systems[cite: 24]
+* Cluster environments[cite: 24]
+
+<h3 id="install-source">10. Configure Installation Source</h3>
+The installer needs to know where the operating system packages will come from[cite: 24].
+For an ISO-based installation, the installation source is normally the attached installation media[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+Local media
+\`\`\`
+
+The installer verifies that the installation source is available[cite: 24].
+
+<h3 id="software-sel">11. Configure Software Selection</h3>
+Select the required software environment[cite: 24].
+Examples may include[cite: 24]:
+* Minimal Install[cite: 24]
+* Server[cite: 24]
+* Server with GUI[cite: 24]
+* Workstation[cite: 24]
+* Custom software selection[cite: 24]
+
+For a production server, a minimal installation is often preferred when only required components should be installed[cite: 24].
+For a graphical workstation, select an appropriate graphical environment[cite: 24].
+
+<h3 id="install-dest">12. Configure Installation Destination</h3>
+Select the disk where RHEL/Rocky Linux 9 will be installed[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+/dev/sda
+\`\`\`
+
+The installer provides options for storage configuration[cite: 24].
+Typical choices include[cite: 24]:
+* Automatic partitioning[cite: 24]
+* Manual partitioning[cite: 24]
+* Custom storage layout[cite: 24]
+
+<h3 id="auto-part">13. Automatic Partitioning</h3>
+With automatic partitioning, the installer creates an appropriate storage layout automatically[cite: 24].
+This is convenient for[cite: 24]:
+* Lab environments[cite: 24]
+* Test VMs[cite: 24]
+* Simple server installations[cite: 24]
+
+The exact layout can vary depending on installer configuration and storage requirements[cite: 24].
+
+<h3 id="manual-part">14. Manual Partitioning</h3>
+Manual partitioning provides more control over the filesystem layout[cite: 24].
+Common mount points include[cite: 24]:
+
+\`\`\`text
+/
+ /boot
+ /boot/efi
+/home
+/var
+/tmp
+swap
+\`\`\`
+
+On UEFI systems, an EFI System Partition is normally required[cite: 24].
+
+Example conceptual layout[cite: 24]:
+<table>
+  <thead>
+    <tr><th>Mount Point</th><th>Example Size</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>/boot/efi</code></td><td>600 MiB</td><td>UEFI boot files</td></tr>
+    <tr><td><code>/boot</code></td><td>1 GiB</td><td>Kernel and boot files</td></tr>
+    <tr><td><code>/</code></td><td>20+ GiB</td><td>Root filesystem</td></tr>
+    <tr><td><code>/home</code></td><td>10+ GiB</td><td>User data</td></tr>
+    <tr><td><code>/var</code></td><td>10+ GiB</td><td>Variable data and logs</td></tr>
+    <tr><td><code>swap</code></td><td>Depends on workload</td><td>Swap space</td></tr>
+  </tbody>
+</table>
+
+The exact sizes should be based on the workload and storage requirements[cite: 24].
+
+<h3 id="lvm">15. LVM Storage</h3>
+RHEL/Rocky Linux commonly use **LVM (Logical Volume Manager)**[cite: 24].
+A conceptual layout is[cite: 24]:
+
+\`\`\`text
+Physical Disk
+     ↓
+Partition
+     ↓
+Physical Volume (PV)
+     ↓
+Volume Group (VG)
+     ↓
+Logical Volume (LV)
+     ↓
+Filesystem
+\`\`\`
+
+Example[cite: 24]:
+
+\`\`\`text
+/dev/sda
+   ↓
+PV
+   ↓
+rhel_vg
+   ↓
+root_lv
+   ↓
+XFS
+   ↓
+/
+\`\`\`
+
+LVM makes storage management more flexible because logical volumes can be resized and managed independently[cite: 24].
+
+<h3 id="filesystem">16. Filesystem Selection</h3>
+RHEL/Rocky Linux 9 commonly use **XFS** as the default filesystem for many installations[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+Logical Volume
+      ↓
+     XFS
+      ↓
+      /
+\`\`\`
+
+Other filesystems may be available depending on the installation requirements[cite: 24].
+
+<h3 id="network">17. Configure Network and Hostname</h3>
+Open the **Network & Host Name** section[cite: 24].
+Configure the network interface[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+Hostname:
+server01.example.com
+\`\`\`
+
+Enable the network interface[cite: 24].
+For a server, configure networking appropriately using[cite: 24]:
+* DHCP[cite: 24]
+* Static IP[cite: 24]
+* DNS[cite: 24]
+* Gateway[cite: 24]
+
+Example conceptual configuration[cite: 24]:
+
+\`\`\`text
+IP Address : 192.168.1.100
+Prefix      : 24
+Gateway     : 192.168.1.1
+DNS         : 8.8.8.8
+Hostname    : server01.example.com
+\`\`\`
+
+The actual values depend on the network environment[cite: 24].
+
+<h3 id="root-pass">18. Configure Root Password</h3>
+Set the password for the \`root\` account[cite: 24].
+The root user has administrative privileges[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+Username: root
+Password: ********
+\`\`\`
+
+Use a strong administrative password[cite: 24].
+
+<h3 id="create-user">19. Create a Normal User</h3>
+Create a regular administrative or standard user[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+Full Name: DevOps Admin
+Username: devops
+\`\`\`
+
+If required, configure the user to have administrative privileges[cite: 24].
+After installation, administrative tasks can normally be performed using[cite: 24]:
+
+\`\`\`bash
+sudo command
+\`\`\`
+
+rather than logging in directly as root[cite: 24].
+
+<h3 id="begin-install">20. Begin Installation</h3>
+After configuring all required settings, select[cite: 24]:
+
+\`\`\`text
+Begin Installation
+\`\`\`
+
+The installer performs tasks such as[cite: 24]:
+1. Partitioning storage[cite: 24]
+2. Creating filesystems[cite: 24]
+3. Installing packages[cite: 24]
+4. Installing the bootloader[cite: 24]
+5. Creating users[cite: 24]
+6. Applying configuration[cite: 24]
+7. Creating the initial system environment[cite: 24]
+
+The installation progress is displayed by Anaconda[cite: 24].
+
+<h3 id="complete">21. Installation Complete</h3>
+After the installation finishes, the installer indicates that the system is ready[cite: 24].
+The system should then be rebooted[cite: 24].
+Remove the installation ISO or USB when necessary so that the system boots from the installed disk[cite: 24].
+
+<h3 id="first-boot">22. First Boot</h3>
+After reboot, the system starts from the installed RHEL/Rocky Linux 9 disk[cite: 24].
+The basic boot flow is[cite: 24]:
+
+\`\`\`text
+UEFI
+  ↓
+GRUB2
+  ↓
+Linux Kernel
+  ↓
+initramfs
+  ↓
+systemd
+  ↓
+System Services
+  ↓
+Login
+\`\`\`
+
+For a server installation, you may receive a text-based login prompt[cite: 24].
+Example[cite: 24]:
+
+\`\`\`text
+server01 login:
+\`\`\`
+
+<h3 id="login">23. Log In to the System</h3>
+Log in using the user created during installation[cite: 24].
+Example[cite: 24]:
+
+\`\`\`bash
+ssh devops@192.168.1.100
+\`\`\`
+
+For local console access[cite: 24]:
+
+\`\`\`text
+server01 login: devops
+Password: ********
+\`\`\`
+
+<h3 id="verify-os">24. Verify the Operating System</h3>
+Check the OS version[cite: 24]:
+
+\`\`\`bash
+cat /etc/redhat-release
+\`\`\`
+
+or[cite: 24]:
+
+\`\`\`bash
+cat /etc/os-release
+\`\`\`
+
+Check the kernel[cite: 24]:
+
+\`\`\`bash
+uname -r
+\`\`\`
+
+Check system information[cite: 24]:
+
+\`\`\`bash
+hostnamectl
+\`\`\`
+
+<h3 id="verify-cpu">25. Verify CPU and Memory</h3>
+Check CPU[cite: 24]:
+
+\`\`\`bash
+lscpu
+\`\`\`
+
+Check memory[cite: 24]:
+
+\`\`\`bash
+free -h
+\`\`\`
+
+Check running processes[cite: 24]:
+
+\`\`\`bash
+ps aux
+\`\`\`
+
+Monitor the system[cite: 24]:
+
+\`\`\`bash
+top
+\`\`\`
+
+<h3 id="verify-disk">26. Verify Disk and Filesystems</h3>
+Check block devices[cite: 24]:
+
+\`\`\`bash
+lsblk
+\`\`\`
+
+Check mounted filesystems[cite: 24]:
+
+\`\`\`bash
+df -h
+\`\`\`
+
+Check filesystem types[cite: 24]:
+
+\`\`\`bash
+lsblk -f
+\`\`\`
+
+If LVM is used[cite: 24]:
+
+\`\`\`bash
+pvs
+vgs
+lvs
+\`\`\`
+
+<h3 id="verify-net">27. Verify Network Configuration</h3>
+Check network interfaces[cite: 24]:
+
+\`\`\`bash
+ip addr
+\`\`\`
+
+Check routes[cite: 24]:
+
+\`\`\`bash
+ip route
+\`\`\`
+
+Check DNS configuration[cite: 24]:
+
+\`\`\`bash
+cat /etc/resolv.conf
+\`\`\`
+
+Check hostname[cite: 24]:
+
+\`\`\`bash
+hostnamectl
+\`\`\`
+
+Test connectivity[cite: 24]:
+
+\`\`\`bash
+ping -c 4 8.8.8.8
+\`\`\`
+
+Test DNS[cite: 24]:
+
+\`\`\`bash
+ping -c 4 google.com
+\`\`\`
+
+<h3 id="net-mgr">28. Verify NetworkManager</h3>
+RHEL/Rocky Linux 9 uses **NetworkManager** for network configuration[cite: 24].
+Check its status[cite: 24]:
+
+\`\`\`bash
+systemctl status NetworkManager
+\`\`\`
+
+List network connections[cite: 24]:
+
+\`\`\`bash
+nmcli connection show
+\`\`\`
+
+Show device status[cite: 24]:
+
+\`\`\`bash
+nmcli device status
+\`\`\`
+
+<h3 id="update">29. Update the System</h3>
+After installation, update the system using the appropriate package manager[cite: 24].
+For RHEL/Rocky Linux 9[cite: 24]:
+
+\`\`\`bash
+sudo dnf update
+\`\`\`
+
+To automatically answer yes[cite: 24]:
+
+\`\`\`bash
+sudo dnf update -y
+\`\`\`
+
+Check enabled repositories[cite: 24]:
+
+\`\`\`bash
+sudo dnf repolist
+\`\`\`
+
+<h3 id="verify-sysd">30. Verify systemd</h3>
+Check systemd[cite: 24]:
+
+\`\`\`bash
+systemctl --version
+\`\`\`
+
+Check the current system state[cite: 24]:
+
+\`\`\`bash
+systemctl get-default
+\`\`\`
+
+Typical server target[cite: 24]:
+
+\`\`\`text
+multi-user.target
+\`\`\`
+
+Graphical system[cite: 24]:
+
+\`\`\`text
+graphical.target
+\`\`\`
+
+<h3 id="verify-svc">31. Verify Important Services</h3>
+Check SSH[cite: 24]:
+
+\`\`\`bash
+systemctl status sshd
+\`\`\`
+
+Check NetworkManager[cite: 24]:
+
+\`\`\`bash
+systemctl status NetworkManager
+\`\`\`
+
+Check firewall[cite: 24]:
+
+\`\`\`bash
+systemctl status firewalld
+\`\`\`
+
+<h3 id="firewall">32. Configure Firewall</h3>
+RHEL/Rocky Linux 9 commonly use **firewalld**[cite: 24].
+Check status[cite: 24]:
+
+\`\`\`bash
+sudo firewall-cmd --state
+\`\`\`
+
+List active zones[cite: 24]:
+
+\`\`\`bash
+sudo firewall-cmd --get-active-zones
+\`\`\`
+
+List allowed services[cite: 24]:
+
+\`\`\`bash
+sudo firewall-cmd --list-services
+\`\`\`
+
+For example, to permanently allow HTTP[cite: 24]:
+
+\`\`\`bash
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload
+\`\`\`
+
+<h3 id="selinux">33. Configure SELinux</h3>
+Check SELinux status[cite: 24]:
+
+\`\`\`bash
+getenforce
+\`\`\`
+
+Typical production configuration[cite: 24]:
+
+\`\`\`text
+Enforcing
+\`\`\`
+
+View detailed status[cite: 24]:
+
+\`\`\`bash
+sestatus
+\`\`\`
+
+SELinux provides mandatory access control mechanisms that help protect the system and services[cite: 24].
+
+<h3 id="hostname">34. Configure Hostname</h3>
+Set a hostname[cite: 24]:
+
+\`\`\`bash
+sudo hostnamectl set-hostname server01.example.com
+\`\`\`
+
+Verify[cite: 24]:
+
+\`\`\`bash
+hostnamectl
+\`\`\`
+
+<h3 id="time-sync">35. Configure Time Synchronization</h3>
+RHEL/Rocky Linux 9 commonly use **chrony** for time synchronization[cite: 24].
+Check the service[cite: 24]:
+
+\`\`\`bash
+systemctl status chronyd
+\`\`\`
+
+Check synchronization[cite: 24]:
+
+\`\`\`bash
+chronyc tracking
+\`\`\`
+
+View configured sources[cite: 24]:
+
+\`\`\`bash
+chronyc sources
+\`\`\`
+
+<h3 id="ssh">36. Verify SSH Access</h3>
+Check SSH service[cite: 24]:
+
+\`\`\`bash
+systemctl status sshd
+\`\`\`
+
+Check the listening port[cite: 24]:
+
+\`\`\`bash
+ss -tlnp | grep :22
+\`\`\`
+
+From another system[cite: 24]:
+
+\`\`\`bash
+ssh devops@192.168.1.100
+\`\`\`
+
+<h3 id="checklist">37. Basic Post-Installation Checklist</h3>
+After installation, verify[cite: 24]:
+
+\`\`\`text
+[ ] OS version
+[ ] Kernel version
+[ ] Hostname
+[ ] CPU
+[ ] Memory
+[ ] Disk
+[ ] Filesystems
+[ ] Network interface
+[ ] IP address
+[ ] Default route
+[ ] DNS
+[ ] SSH
+[ ] NetworkManager
+[ ] firewalld
+[ ] SELinux
+[ ] chronyd
+[ ] DNF repositories
+[ ] Systemd target
+\`\`\`
+
+<h3 id="flow">38. Complete RHEL/Rocky Linux 9 Installation Flow</h3>
+\`\`\`text
+RHEL/Rocky Linux 9 ISO
+        ↓
+Create Bootable USB / Attach ISO to VM
+        ↓
+Boot System
+        ↓
+UEFI / BIOS
+        ↓
+Anaconda Installer
+        ↓
+Select Language
+        ↓
+Configure Keyboard
+        ↓
+Configure Time & Date
+        ↓
+Configure Installation Source
+        ↓
+Select Software
+        ↓
+Configure Disk / LVM / Filesystem
+        ↓
+Configure Network & Hostname
+        ↓
+Set Root Password
+        ↓
+Create User
+        ↓
+Begin Installation
+        ↓
+Install Packages
+        ↓
+Install GRUB2
+        ↓
+Reboot
+        ↓
+First Boot
+        ↓
+Login
+        ↓
+Verify OS / CPU / Memory / Disk / Network
+        ↓
+Configure Firewall / SELinux / Chrony / SSH
+        ↓
+Update System
+        ↓
+RHEL/Rocky Linux 9 Ready
+\`\`\`
+
+<h3 id="post-cmd">39. Important Commands After Installation</h3>
+<table>
+  <thead>
+    <tr><th>Purpose</th><th>Command</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>OS version</td><td><code>cat /etc/redhat-release</code></td></tr>
+    <tr><td>Detailed OS information</td><td><code>cat /etc/os-release</code></td></tr>
+    <tr><td>Kernel</td><td><code>uname -r</code></td></tr>
+    <tr><td>Hostname</td><td><code>hostnamectl</code></td></tr>
+    <tr><td>CPU</td><td><code>lscpu</code></td></tr>
+    <tr><td>Memory</td><td><code>free -h</code></td></tr>
+    <tr><td>Disk</td><td><code>df -h</code></td></tr>
+    <tr><td>Block devices</td><td><code>lsblk</code></td></tr>
+    <tr><td>IP address</td><td><code>ip addr</code></td></tr>
+    <tr><td>Routing</td><td><code>ip route</code></td></tr>
+    <tr><td>DNS</td><td><code>cat /etc/resolv.conf</code></td></tr>
+    <tr><td>NetworkManager</td><td><code>systemctl status NetworkManager</code></td></tr>
+    <tr><td>SSH</td><td><code>systemctl status sshd</code></td></tr>
+    <tr><td>Firewall</td><td><code>firewall-cmd --state</code></td></tr>
+    <tr><td>SELinux</td><td><code>getenforce</code></td></tr>
+    <tr><td>Time sync</td><td><code>chronyc tracking</code></td></tr>
+    <tr><td>LVM PV</td><td><code>pvs</code></td></tr>
+    <tr><td>LVM VG</td><td><code>vgs</code></td></tr>
+    <tr><td>LVM LV</td><td><code>lvs</code></td></tr>
+    <tr><td>System target</td><td><code>systemctl get-default</code></td></tr>
+    <tr><td>Update packages</td><td><code>sudo dnf update -y</code></td></tr>
+  </tbody>
+</table>
+
+<h3 id="summary">40. Interview Summary</h3>
+A good interview explanation is[cite: 24]:
+> **RHEL/Rocky Linux 9 installation starts by booting the system from the installation ISO using UEFI. The Anaconda installer then collects the installation configuration, including language, keyboard, time zone, software selection, storage, networking, root password, and user configuration. The installer partitions the disk, creates the required filesystems and LVM configuration, installs packages and GRUB2, and then reboots the system. During the first boot, UEFI starts GRUB2, GRUB2 loads the kernel and initramfs, the kernel initializes the system, and systemd starts as PID 1. After services and the configured system target are reached, the administrator verifies networking, storage, SSH, firewalld, SELinux, time synchronization, and system resources.**[cite: 24]
+
+<h3 id="remember">Easy Way to Remember</h3>
+> **ISO → Boot → Anaconda → Storage → Network → Users → Install → GRUB2 → Kernel → systemd → Services → Verify → Ready**[cite: 24]
                 `,
                 toc: [
-                    { label: 'Prerequisites', target: 'os-prep' }
+                    { label: 'Overview', target: 'overview' },
+                    { label: '1. Installation Requirements', target: 'requirements' },
+                    { label: '2. Obtain the Installation ISO', target: 'obtain-iso' },
+                    { label: '3. Create Bootable Media', target: 'bootable-media' },
+                    { label: '4. Boot the System', target: 'boot-system' },
+                    { label: '5. Anaconda Installer', target: 'anaconda' },
+                    { label: '6. Select Language', target: 'language' },
+                    { label: '7. Installation Summary', target: 'summary-screen' },
+                    { label: '8. Configure Keyboard', target: 'keyboard' },
+                    { label: '9. Time and Date', target: 'time-date' },
+                    { label: '10. Installation Source', target: 'install-source' },
+                    { label: '11. Software Selection', target: 'software-sel' },
+                    { label: '12. Installation Destination', target: 'install-dest' },
+                    { label: '13. Automatic Partitioning', target: 'auto-part' },
+                    { label: '14. Manual Partitioning', target: 'manual-part' },
+                    { label: '15. LVM Storage', target: 'lvm' },
+                    { label: '16. Filesystem Selection', target: 'filesystem' },
+                    { label: '17. Network and Hostname', target: 'network' },
+                    { label: '18. Root Password', target: 'root-pass' },
+                    { label: '19. Create a Normal User', target: 'create-user' },
+                    { label: '20. Begin Installation', target: 'begin-install' },
+                    { label: '21. Installation Complete', target: 'complete' },
+                    { label: '22. First Boot', target: 'first-boot' },
+                    { label: '23. Log In to the System', target: 'login' },
+                    { label: '24. Verify the OS', target: 'verify-os' },
+                    { label: '25. Verify CPU & Memory', target: 'verify-cpu' },
+                    { label: '26. Verify Disk & FS', target: 'verify-disk' },
+                    { label: '27. Verify Network Config', target: 'verify-net' },
+                    { label: '28. Verify NetworkManager', target: 'net-mgr' },
+                    { label: '29. Update the System', target: 'update' },
+                    { label: '30. Verify systemd', target: 'verify-sysd' },
+                    { label: '31. Verify Important Services', target: 'verify-svc' },
+                    { label: '32. Configure Firewall', target: 'firewall' },
+                    { label: '33. Configure SELinux', target: 'selinux' },
+                    { label: '34. Configure Hostname', target: 'hostname' },
+                    { label: '35. Configure Time Sync', target: 'time-sync' },
+                    { label: '36. Verify SSH Access', target: 'ssh' },
+                    { label: '37. Checklist', target: 'checklist' },
+                    { label: '38. Complete Flow', target: 'flow' },
+                    { label: '39. Post-Install Commands', target: 'post-cmd' },
+                    { label: '40. Interview Summary', target: 'summary' },
+                    { label: 'Easy Way to Remember', target: 'remember' }
                 ]
             },
             'what-is-git': {
