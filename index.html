@@ -907,69 +907,69 @@ Distributed storage architectures, fault-tolerant message brokers, and horizonta
                 parentGroup: 'group-linux',
                 markdown: `
 <h3 id="what-is-linux-intro">What is Linux?</h3>
-Linux is an open-source operating system that acts as the backbone for most modern infrastructure[cite: 23]. Think of it as the layer that sits between your applications and the hardware, managing resources, users, and permissions[cite: 23]. It handles memory allocation, process scheduling, file access, device control, and networking[cite: 23]. Its modular, secure, and flexible design is why it's the go-to OS for DevOps, developers, and system administrators around the world[cite: 23].
+Linux is an open-source operating system that acts as the backbone for most modern infrastructure. Think of it as the layer that sits between your applications and the hardware, managing resources, users, and permissions. It handles memory allocation, process scheduling, file access, device control, and networking. Its modular, secure, and flexible design is why it's the go-to OS for DevOps, developers, and system administrators around the world.
 
 **Why It Matters in DevOps:**
-* **Ubiquity**: Most production servers run on Linux, not Windows or macOS[cite: 23].
-* **Containers**: Docker, Podman, and container runtimes leverage Linux kernel features like namespaces and cgroups[cite: 23].
-* **Automation**: Bash scripts, cron jobs, and configuration tools like Ansible work seamlessly on Linux[cite: 23].
-* **Cloud-native**: The major cloud providers (AWS, Azure, GCP) offer default Linux-based instances[cite: 23].
-* **Security & Access**: Permissions, firewalls, and auditing in Linux give you fine-grained control over system security[cite: 23].
+* **Ubiquity**: Most production servers run on Linux, not Windows or macOS.
+* **Containers**: Docker, Podman, and container runtimes leverage Linux kernel features like namespaces and cgroups.
+* **Automation**: Bash scripts, cron jobs, and configuration tools like Ansible work seamlessly on Linux.
+* **Cloud-native**: The major cloud providers (AWS, Azure, GCP) offer default Linux-based instances.
+* **Security & Access**: Permissions, firewalls, and auditing in Linux give you fine-grained control over system security.
 
-Simply put, understanding Linux gives you the keys to everything else in DevOps[cite: 23].
+Simply put, understanding Linux gives you the keys to everything else in DevOps.
 
 <h3 id="filesystem">1. The Filesystem: Where Everything Lives</h3>
-In Linux, everything is treated as a file - even hardware devices, sockets, and processes[cite: 23]. These files and folders are arranged in a single hierarchical structure that starts at the root directory \`/\`[cite: 23].
+In Linux, everything is treated as a file - even hardware devices, sockets, and processes. These files and folders are arranged in a single hierarchical structure that starts at the root directory \`/\`.
 
-Imagine the Linux filesystem like a family tree[cite: 23]:
-* \`/\` is the root - the top-most “parent” directory[cite: 23].
-* Every other directory and file is a “child” or “descendant” of \`/\`[cite: 23].
+Imagine the Linux filesystem like a family tree:
+* \`/\` is the root - the top-most “parent” directory.
+* Every other directory and file is a “child” or “descendant” of \`/\`.
 
-This structure is very different from Windows, where you might have \`C:\\\`, \`D:\\\`, and so on[cite: 23]. In Linux, it’s all one unified structure[cite: 23].
+This structure is very different from Windows, where you might have \`C:\\\`, \`D:\\\`, and so on. In Linux, it’s all one unified structure.
 
 **Understanding Key Directories (Beginner’s Guide)**
 | Directory | What It Contains | Real Use Cases |
 | --- | --- | --- |
-| \`/\` | Root directory. Everything starts here.[cite: 23] | The base of the entire system.[cite: 23] |
-| \`/home/\` | User folders (\`/home/nimesha\`, etc.)[cite: 23] | Store personal files, scripts, downloads.[cite: 23] |
-| \`/etc/\` | Configuration files[cite: 23] | Configure services like Nginx, SSH, cron, firewall, etc.[cite: 23] |
-| \`/var/\` | Variable data: logs, mail, spools[cite: 23] | Monitor logs (\`/var/log\`), troubleshoot crashes.[cite: 23] |
-| \`/usr/\` | User-installed software and system-wide resources[cite: 23] | Holds app binaries and libraries.[cite: 23] |
-| \`/bin/\` and \`/sbin/\` | Essential system binaries and system commands[cite: 23] | Contains tools like \`ls\`, \`cp\`, \`shutdown\`.[cite: 23] |
-| \`/tmp/\` | Temporary files (deleted on reboot)[cite: 23] | Store transient files like downloaded archives.[cite: 23] |
-| \`/opt/\` | Optional third-party software[cite: 23] | Install tools like Anaconda, or custom server software.[cite: 23] |
-| \`/dev/\` | Device files for hardware (like USB, disks)[cite: 23] | Interact with drives and peripherals.[cite: 23] |
-| \`/proc/\` and \`/sys/\` | Kernel and process info presented as virtual files[cite: 23] | Useful for system monitoring and diagnostics.[cite: 23] |
+| \`/\` | Root directory. Everything starts here. | The base of the entire system. |
+| \`/home/\` | User folders (\`/home/nimesha\`, etc.) | Store personal files, scripts, downloads. |
+| \`/etc/\` | Configuration files | Configure services like Nginx, SSH, cron, firewall, etc. |
+| \`/var/\` | Variable data: logs, mail, spools | Monitor logs (\`/var/log\`), troubleshoot crashes. |
+| \`/usr/\` | User-installed software and system-wide resources | Holds app binaries and libraries. |
+| \`/bin/\` and \`/sbin/\` | Essential system binaries and system commands | Contains tools like \`ls\`, \`cp\`, \`shutdown\`. |
+| \`/tmp/\` | Temporary files (deleted on reboot) | Store transient files like downloaded archives. |
+| \`/opt/\` | Optional third-party software | Install tools like Anaconda, or custom server software. |
+| \`/dev/\` | Device files for hardware (like USB, disks) | Interact with drives and peripherals. |
+| \`/proc/\` and \`/sys/\` | Kernel and process info presented as virtual files | Useful for system monitoring and diagnostics. |
 
 **Real-World Example: Configuring a Web Server**
-Let’s say you’re deploying a web server using Nginx[cite: 23]. Here’s where you’ll interact with the filesystem[cite: 23]:
-* View Nginx config[cite: 23]:
+Let’s say you’re deploying a web server using Nginx. Here’s where you’ll interact with the filesystem:
+* View Nginx config:
 \`\`\`bash
 cd /etc/nginx/
 ls -l
 nano nginx.conf
 \`\`\`
-* Serve HTML from[cite: 23]:
+* Serve HTML from:
 \`\`\`bash
 cd /var/www/html/
 \`\`\`
-* Check logs[cite: 23]:
+* Check logs:
 \`\`\`bash
 tail -f /var/log/nginx/access.log
 \`\`\`
 
-Knowing *where* these files live saves you hours of guessing and lets you troubleshoot confidently[cite: 23].
+Knowing *where* these files live saves you hours of guessing and lets you troubleshoot confidently.
 
 **How to Explore the Filesystem**
-Where am I?[cite: 23]
+Where am I?
 \`\`\`bash
 pwd
 \`\`\`
-What’s here?[cite: 23]
+What’s here?
 \`\`\`bash
 ls -l
 \`\`\`
-Move around[cite: 23]:
+Move around:
 \`\`\`bash
 cd /etc
 cd ~/Downloads
@@ -977,51 +977,51 @@ cd ..
 \`\`\`
 
 **Tips:**
-* \`..\` moves you up one directory level[cite: 23].
-* \`~\` brings you back to your home directory[cite: 23].
-* Tab key = auto-complete paths. Use it always![cite: 23]
+* \`..\` moves you up one directory level.
+* \`~\` brings you back to your home directory.
+* Tab key = auto-complete paths. Use it always!
 
 **Clean Structure = Cleaner Scripts**
-When writing Bash scripts or automation code, referencing the correct path is key[cite: 23]:
+When writing Bash scripts or automation code, referencing the correct path is key:
 \`\`\`bash
 cp /etc/nginx/nginx.conf /home/nimesha/backup/
 \`\`\`
-Misplacing even a single \`/\` can break your automation[cite: 23].
+Misplacing even a single \`/\` can break your automation.
 
 **Best Practices for Beginners**
-* Don't delete or modify anything in \`/etc\` or \`/bin\` unless you know what it does[cite: 23].
-* Keep your personal work (scripts, labs, etc.) in \`/home/yourname/\`[cite: 23].
-* Create a \`/home/yourname/projects/\` folder to separate each task or project[cite: 23].
-* Back up important configs before editing: \`cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak\`[cite: 23].
+* Don't delete or modify anything in \`/etc\` or \`/bin\` unless you know what it does.
+* Keep your personal work (scripts, labs, etc.) in \`/home/yourname/\`.
+* Create a \`/home/yourname/projects/\` folder to separate each task or project.
+* Back up important configs before editing: \`cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak\`.
 
 <h3 id="terminal">2. The Terminal: Your New Home</h3>
-The terminal (also known as the shell or command line) is where you type commands to talk to the Linux system[cite: 23].
-In DevOps, the terminal is your primary interface - even on remote cloud servers, you'll often log in via SSH and use only the terminal[cite: 23].
-While desktop users might prefer clicking through graphical menus, DevOps engineers prefer commands over clicks - because it's[cite: 23]:
-* faster[cite: 23]
-* scriptable[cite: 23]
-* repeatable[cite: 23]
-* works on any server[cite: 23]
+The terminal (also known as the shell or command line) is where you type commands to talk to the Linux system.
+In DevOps, the terminal is your primary interface - even on remote cloud servers, you'll often log in via SSH and use only the terminal.
+While desktop users might prefer clicking through graphical menus, DevOps engineers prefer commands over clicks - because it's:
+* faster
+* scriptable
+* repeatable
+* works on any server
 
-Most Linux terminals use the Bash shell by default[cite: 23]. It interprets your commands and runs them[cite: 23].
+Most Linux terminals use the Bash shell by default. It interprets your commands and runs them.
 
 **Why the Terminal Is So Important in DevOps**
-Every real-world task - from editing configurations, checking logs, restarting services, managing containers - is done in the terminal[cite: 23].
-You’ll often be working on[cite: 23]:
-* Headless cloud servers (no GUI)[cite: 23]
-* Docker containers (only CLI access)[cite: 23]
-* CI/CD runners (text-only environments)[cite: 23]
+Every real-world task - from editing configurations, checking logs, restarting services, managing containers - is done in the terminal.
+You’ll often be working on:
+* Headless cloud servers (no GUI)
+* Docker containers (only CLI access)
+* CI/CD runners (text-only environments)
 
-Being comfortable in the terminal is non-negotiable[cite: 23].
+Being comfortable in the terminal is non-negotiable.
 
 **Basic Terminal Commands (With Explanations)**
-Let’s walk through the most essential commands, along with what they do and when you’ll use them[cite: 23].
+Let’s walk through the most essential commands, along with what they do and when you’ll use them.
 
 **Where Am I?**
 \`\`\`bash
 pwd
 \`\`\`
-Prints the current directory you're in[cite: 23]. Great for orientation[cite: 23].
+Prints the current directory you're in. Great for orientation.
 
 **What’s Here?**
 \`\`\`bash
@@ -1029,7 +1029,7 @@ ls
 ls -l
 ls -a
 \`\`\`
-Lists files in the current directory[cite: 23]. The \`-l\` shows details (owner, size, date)[cite: 23]. \`-a\` includes hidden files[cite: 23].
+Lists files in the current directory. The \`-l\` shows details (owner, size, date). \`-a\` includes hidden files.
 
 **Move Around**
 \`\`\`bash
@@ -1037,51 +1037,51 @@ cd /etc
 cd ~/Downloads
 cd ..
 \`\`\`
-Changes directory[cite: 23]. \`..\` moves up one level[cite: 23]. \`~\` is your home directory[cite: 23].
+Changes directory. \`..\` moves up one level. \`~\` is your home directory.
 
 **Clear the Clutter**
 \`\`\`bash
 clear
 \`\`\`
-Wipes the screen clean[cite: 23]. Good for focus during long sessions[cite: 23].
+Wipes the screen clean. Good for focus during long sessions.
 
 **Need Help?**
 \`\`\`bash
 man ls
 \`\`\`
-Shows the manual page for any command[cite: 23]. Use \`q\` to quit[cite: 23].
+Shows the manual page for any command. Use \`q\` to quit.
 
 **Navigating to Find and Edit a Config File**
-You’ve been told that your Nginx configuration file might be broken[cite: 23]. Here’s how you’d investigate[cite: 23]:
+You’ve been told that your Nginx configuration file might be broken. Here’s how you’d investigate:
 \`\`\`bash
 cd /etc/nginx
 ls -l
 sudo nano nginx.conf
 \`\`\`
-After editing, you can restart the service[cite: 23]:
+After editing, you can restart the service:
 \`\`\`bash
 sudo systemctl restart nginx
 \`\`\`
-Without the terminal, this would take much longer-or might not even be possible on a remote server[cite: 23].
+Without the terminal, this would take much longer-or might not even be possible on a remote server.
 
 **Tip: Tab Completion Is Your Best Friend**
-Typing long paths or filenames?[cite: 23] Just press \`Tab\` and Bash will auto-complete the word[cite: 23]. If it’s ambiguous, pressing \`Tab\` twice shows all options[cite: 23].
-> \`cd /var/lo<TAB> → /var/log/\`[cite: 23]
+Typing long paths or filenames? Just press \`Tab\` and Bash will auto-complete the word. If it’s ambiguous, pressing \`Tab\` twice shows all options.
+> \`cd /var/lo<TAB> → /var/log/\`
 
 **Repeating and Reusing Commands**
-* Press **up arrow** to cycle through previous commands[cite: 23].
-* \`!!\` runs your last command again[cite: 23].
-* Use \`history\` to view your command history[cite: 23]:
+* Press **up arrow** to cycle through previous commands.
+* \`!!\` runs your last command again.
+* Use \`history\` to view your command history:
 \`\`\`bash
 history | grep ssh
 \`\`\`
-You can even re-run a specific past command[cite: 23]:
+You can even re-run a specific past command:
 \`\`\`bash
 !45   # runs command number 45 from history
 \`\`\`
 
 **Practice Task for Beginners**
-Try navigating to your home directory and creating a practice folder[cite: 23]:
+Try navigating to your home directory and creating a practice folder:
 \`\`\`bash
 cd ~
 mkdir mypractice
@@ -1089,58 +1089,58 @@ cd mypractice
 touch notes.txt
 ls -l
 \`\`\`
-Then open \`notes.txt\` using a terminal-based text editor[cite: 23]:
+Then open \`notes.txt\` using a terminal-based text editor:
 \`\`\`bash
 nano notes.txt
 \`\`\`
-Type something[cite: 23]. Press \`Ctrl + O\` to save, \`Enter\`, and \`Ctrl + X\` to exit[cite: 23].
+Type something. Press \`Ctrl + O\` to save, \`Enter\`, and \`Ctrl + X\` to exit.
 
 <h3 id="files-dirs">3. Files and Directories: Creating, Moving, Removing</h3>
-In Linux, almost everything is a file - configuration files, user data, logs, and even representations of hardware[cite: 23]. So, knowing how to manage files and directories is the foundation of everything else you'll do[cite: 23].
-Whether you're setting up a web server, writing a script, or debugging a container - you'll be[cite: 23]:
-* Creating and editing files[cite: 23]
-* Organizing them into folders (directories)[cite: 23]
-* Moving, renaming, or deleting them[cite: 23]
+In Linux, almost everything is a file - configuration files, user data, logs, and even representations of hardware. So, knowing how to manage files and directories is the foundation of everything else you'll do.
+Whether you're setting up a web server, writing a script, or debugging a container - you'll be:
+* Creating and editing files
+* Organizing them into folders (directories)
+* Moving, renaming, or deleting them
 
 **Create a New Directory (Folder)**
 \`\`\`bash
 mkdir myproject
 \`\`\`
-Creates a new folder called \`myproject\` in the current location[cite: 23].
+Creates a new folder called \`myproject\` in the current location.
 
-**Real-world use:** You’re starting a new script-based automation[cite: 23]. You create a folder for it[cite: 23]:
+**Real-world use:** You’re starting a new script-based automation. You create a folder for it:
 \`\`\`bash
 mkdir ~/projects/docker-cleanup
 cd ~/projects/docker-cleanup
 \`\`\`
-You can also create nested directories[cite: 23]:
+You can also create nested directories:
 \`\`\`bash
 mkdir -p reports/2025/July
 \`\`\`
-This creates \`reports\`, then \`2025\` inside it, and \`July\` inside that - all in one command[cite: 23].
+This creates \`reports\`, then \`2025\` inside it, and \`July\` inside that - all in one command.
 
 **Create a New File**
 \`\`\`bash
 touch notes.txt
 \`\`\`
-Creates an empty file named \`notes.txt\`[cite: 23]. Often used to create placeholder files, logs, or quick test files[cite: 23].
-**DevOps use case:** Create a placeholder config file before writing[cite: 23]:
+Creates an empty file named \`notes.txt\`. Often used to create placeholder files, logs, or quick test files.
+**DevOps use case:** Create a placeholder config file before writing:
 \`\`\`bash
 touch docker-compose.yml
 \`\`\`
 
 **Edit a File**
-Use a terminal editor like \`nano\` or \`vim\`[cite: 23]:
+Use a terminal editor like \`nano\` or \`vim\`:
 \`\`\`bash
 nano notes.txt
 \`\`\`
-* Type your content[cite: 23].
-* Press \`Ctrl + O\` to save, then \`Enter\`[cite: 23].
-* Press \`Ctrl + X\` to exit[cite: 23].
-This is where you’ll often write[cite: 23]:
-* Bash scripts[cite: 23]
-* Configuration files[cite: 23]
-* Log notes[cite: 23]
+* Type your content.
+* Press \`Ctrl + O\` to save, then \`Enter\`.
+* Press \`Ctrl + X\` to exit.
+This is where you’ll often write:
+* Bash scripts
+* Configuration files
+* Log notes
 
 **View File Content**
 \`\`\`bash
@@ -1149,22 +1149,22 @@ less filename.txt    # Opens in scrollable view
 head filename.txt    # Shows first 10 lines
 tail filename.txt    # Shows last 10 lines
 \`\`\`
-**Tail in action:**[cite: 23]
+**Tail in action:**
 \`\`\`bash
 tail -f /var/log/syslog
 \`\`\`
-Live-streams system logs - very handy when debugging[cite: 23].
+Live-streams system logs - very handy when debugging.
 
 **Rename or Move a File/Folder**
 \`\`\`bash
 mv oldname.txt newname.txt
 \`\`\`
-Renames the file[cite: 23].
-You can also move it to another location[cite: 23]:
+Renames the file.
+You can also move it to another location:
 \`\`\`bash
 mv notes.txt /home/nimesha/documents/
 \`\`\`
-Rename while moving[cite: 23]:
+Rename while moving:
 \`\`\`bash
 mv config.yml /etc/nginx/nginx.conf
 \`\`\`
@@ -1173,12 +1173,12 @@ mv config.yml /etc/nginx/nginx.conf
 \`\`\`bash
 cp source.txt destination.txt
 \`\`\`
-To copy a whole folder[cite: 23]:
+To copy a whole folder:
 \`\`\`bash
 cp -r folder1 folder2
 \`\`\`
-The \`-r\` means recursive - required for directories[cite: 23].
-**Example:** You want to back up a config file before editing[cite: 23]:
+The \`-r\` means recursive - required for directories.
+**Example:** You want to back up a config file before editing:
 \`\`\`bash
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 \`\`\`
@@ -1187,222 +1187,222 @@ cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
 \`\`\`bash
 rm file.txt
 \`\`\`
-To remove a folder and its contents[cite: 23]:
+To remove a folder and its contents:
 \`\`\`bash
 rm -r myfolder/
 \`\`\`
-To force delete without confirmation[cite: 23]:
+To force delete without confirmation:
 \`\`\`bash
 rm -rf myfolder/
 \`\`\`
-⚠️ Be very careful with \`rm -rf\`[cite: 23]. It permanently deletes files - there’s no undo![cite: 23]
+⚠️ Be very careful with \`rm -rf\`. It permanently deletes files - there’s no undo!
 
 **Pro Tip: Use \`ls\` After Every Action**
-Whenever you create, delete, or move something, run \`ls\` to verify[cite: 23]:
+Whenever you create, delete, or move something, run \`ls\` to verify:
 \`\`\`bash
 ls -l
 \`\`\`
-This builds your confidence and helps you avoid mistakes[cite: 23].
+This builds your confidence and helps you avoid mistakes.
 
-**Real-World Task**[cite: 23]
-1. Create a project directory[cite: 23]:
+**Real-World Task**
+1. Create a project directory:
 \`\`\`bash
 mkdir ~/devops/log-rotator
 cd ~/devops/log-rotator
 \`\`\`
-2. Create and edit a file[cite: 23]:
+2. Create and edit a file:
 \`\`\`bash
 touch rotate.sh
 nano rotate.sh
 \`\`\`
-3. Back it up[cite: 23]:
+3. Back it up:
 \`\`\`bash
 cp rotate.sh rotate_backup.sh
 \`\`\`
-4. Move it to another folder[cite: 23]:
+4. Move it to another folder:
 \`\`\`bash
 mv rotate_backup.sh ~/backups/
 \`\`\`
-5. Clean up[cite: 23]:
+5. Clean up:
 \`\`\`bash
 rm rotate.sh
 \`\`\`
 
 <h3 id="users-groups">4. Users and Groups: Managing Access</h3>
-Linux is a multi-user system - even if you’re the only one using it, processes and services often run under different users[cite: 23]. As a DevOps engineer, you’ll frequently[cite: 23]:
-* Create system users for apps and services (e.g., \`nginx\`, \`postgres\`)[cite: 23]
-* Manage user access to files and commands[cite: 23]
-* Control who can do what[cite: 23]
+Linux is a multi-user system - even if you’re the only one using it, processes and services often run under different users. As a DevOps engineer, you’ll frequently:
+* Create system users for apps and services (e.g., \`nginx\`, \`postgres\`)
+* Manage user access to files and commands
+* Control who can do what
 
-Understanding users and groups is the first step toward secure, multi-user systems[cite: 23].
+Understanding users and groups is the first step toward secure, multi-user systems.
 
 **Users**
-Every user in Linux has[cite: 23]:
-* A username[cite: 23]
-* A home directory (\`/home/username\`)[cite: 23]
-* A UID (User ID)[cite: 23]
-* A default shell[cite: 23]
+Every user in Linux has:
+* A username
+* A home directory (\`/home/username\`)
+* A UID (User ID)
+* A default shell
 
-To see who you are[cite: 23]:
+To see who you are:
 \`\`\`bash
 whoami
 \`\`\`
-List all users[cite: 23]:
+List all users:
 \`\`\`bash
 cat /etc/passwd
 \`\`\`
-Create a new user[cite: 23]:
+Create a new user:
 \`\`\`bash
 sudo adduser john
 \`\`\`
-Switch to that user[cite: 23]:
+Switch to that user:
 \`\`\`bash
 su - john
 \`\`\`
 
 **Groups**
-Groups help you assign permissions to multiple users at once[cite: 23].
-View current groups[cite: 23]:
+Groups help you assign permissions to multiple users at once.
+View current groups:
 \`\`\`bash
 groups
 \`\`\`
-Add user to a group[cite: 23]:
+Add user to a group:
 \`\`\`bash
 sudo usermod -aG docker john
 \`\`\`
-Here, John can now use Docker without \`sudo\`[cite: 23].
+Here, John can now use Docker without \`sudo\`.
 
-Common groups[cite: 23]:
-* \`sudo\`: can run commands as root[cite: 23]
-* \`docker\`: can run Docker[cite: 23]
-* \`www-data\`: used by web servers[cite: 23]
+Common groups:
+* \`sudo\`: can run commands as root
+* \`docker\`: can run Docker
+* \`www-data\`: used by web servers
 
 **Real-World Example**
-You have a shared project directory[cite: 23]:
+You have a shared project directory:
 \`\`\`bash
 sudo mkdir /var/shared_project
 sudo groupadd devs
 sudo chgrp devs /var/shared_project
 sudo chmod 770 /var/shared_project
 \`\`\`
-Now add your team members to the \`devs\` group[cite: 23]:
+Now add your team members to the \`devs\` group:
 \`\`\`bash
 sudo usermod -aG devs alice
 sudo usermod -aG devs bob
 \`\`\`
-Everyone in \`devs\` can now read/write in \`/var/shared_project\`[cite: 23].
+Everyone in \`devs\` can now read/write in \`/var/shared_project\`.
 
 **The Superuser**
-The \`root\` user has full control[cite: 23]. You should avoid using root directly, and instead use[cite: 23]:
+The \`root\` user has full control. You should avoid using root directly, and instead use:
 \`\`\`bash
 sudo somecommand
 \`\`\`
-To run a command as admin[cite: 23].
+To run a command as admin.
 
 <h3 id="permissions">5. Permissions and Ownership: Controlling Access</h3>
-Linux uses a permission system to control who can read, write, or execute a file or directory[cite: 23]. Without proper permissions[cite: 23]:
-* Your app might not start[cite: 23].
-* Logs may fail to write[cite: 23].
-* Hackers might exploit loose access[cite: 23].
+Linux uses a permission system to control who can read, write, or execute a file or directory. Without proper permissions:
+* Your app might not start.
+* Logs may fail to write.
+* Hackers might exploit loose access.
 
-Understanding permissions is non-negotiable for system security and reliability[cite: 23].
+Understanding permissions is non-negotiable for system security and reliability.
 
 **Permission Breakdown: \`-rwxr-xr--\`**
-This is what you see when you run[cite: 23]:
+This is what you see when you run:
 \`\`\`bash
 ls -l somefile.txt
 \`\`\`
-Sample output[cite: 23]:
+Sample output:
 \`\`\`bash
 -rwxr-xr– 1 nimesha devs 1200 Jul 23 12:00 somefile.txt
 \`\`\`
-Breakdown of \`-rwxr-xr--\`[cite: 23]:
-* First character: \`-\` = regular file (\`d\` = directory)[cite: 23]
-* Next 3: \`rwx\` → owner can read, write, execute[cite: 23]
-* Next 3: \`r-x\` → group can read, execute[cite: 23]
-* Final 3: \`r--\` → others can only read[cite: 23]
+Breakdown of \`-rwxr-xr--\`:
+* First character: \`-\` = regular file (\`d\` = directory)
+* Next 3: \`rwx\` → owner can read, write, execute
+* Next 3: \`r-x\` → group can read, execute
+* Final 3: \`r--\` → others can only read
 
-So[cite: 23]:
-* \`nimesha\` (owner) has full access[cite: 23]
-* Group \`devs\` can read and execute[cite: 23]
-* Everyone else can only read[cite: 23]
+So:
+* \`nimesha\` (owner) has full access
+* Group \`devs\` can read and execute
+* Everyone else can only read
 
 **Numeric Permissions: 777, 755, 644**
-Every permission group is a number[cite: 23]:
-* \`r\` = 4[cite: 23]
-* \`w\` = 2[cite: 23]
-* \`x\` = 1[cite: 23]
+Every permission group is a number:
+* \`r\` = 4
+* \`w\` = 2
+* \`x\` = 1
 
-Add them up[cite: 23]:
-* \`rwx\` = 4+2+1 = **7**[cite: 23]
-* \`rw-\` = 4+2 = **6**[cite: 23]
-* \`r--\` = 4 = **4**[cite: 23]
+Add them up:
+* \`rwx\` = 4+2+1 = **7**
+* \`rw-\` = 4+2 = **6**
+* \`r--\` = 4 = **4**
 
-Common combos[cite: 23]:
-* \`755\`: Owner full (\`7\`), group and others can read/execute (\`5\`)[cite: 23]
-* \`644\`: Owner can read/write, others can only read[cite: 23]
-* \`777\`: Everyone can do everything ❌ (avoid in production)[cite: 23]
+Common combos:
+* \`755\`: Owner full (\`7\`), group and others can read/execute (\`5\`)
+* \`644\`: Owner can read/write, others can only read
+* \`777\`: Everyone can do everything ❌ (avoid in production)
 
 **Changing Permissions**
 \`\`\`bash
 chmod 755 script.sh
 \`\`\`
-Gives owner full rights, others read/execute only[cite: 23].
+Gives owner full rights, others read/execute only.
 
-Make a script executable[cite: 23]:
+Make a script executable:
 \`\`\`bash
 chmod +x deploy.sh
 \`\`\`
 
 **Changing Ownership**
-To change the file’s owner and group[cite: 23]:
+To change the file’s owner and group:
 \`\`\`bash
 sudo chown alice:devs report.txt
 \`\`\`
-Use \`-R\` for folders[cite: 23]:
+Use \`-R\` for folders:
 \`\`\`bash
 sudo chown -R www-data:www-data /var/www/html/
 \`\`\`
 
 **Real-World Example: Fixing Broken Web App**
-You deployed a Flask app and got a 403 Forbidden error[cite: 23].
-Solution[cite: 23]:
+You deployed a Flask app and got a 403 Forbidden error.
+Solution:
 \`\`\`bash
 sudo chown -R www-data:www-data /var/www/myapp
 sudo chmod -R 755 /var/www/myapp
 \`\`\`
-You're giving ownership to the web server user and proper permissions to read/execute the files[cite: 23].
+You're giving ownership to the web server user and proper permissions to read/execute the files.
 
 <h3 id="software">6. Installing Software: Package Managers</h3>
-Linux doesn’t have an “App Store” like Windows or macOS[cite: 23]. Instead, it uses package managers - powerful tools that let you[cite: 23]:
-* Install new software[cite: 23]
-* Remove it cleanly[cite: 23]
-* Update it safely[cite: 23]
-* Manage dependencies automatically[cite: 23]
+Linux doesn’t have an “App Store” like Windows or macOS. Instead, it uses package managers - powerful tools that let you:
+* Install new software
+* Remove it cleanly
+* Update it safely
+* Manage dependencies automatically
 
-Whether you're setting up Docker, Nginx, Python tools, or even VS Code - it all goes through your package manager[cite: 23].
+Whether you're setting up Docker, Nginx, Python tools, or even VS Code - it all goes through your package manager.
 
-**Popular Package Managers**[cite: 23]
-* **APT** (Advanced Package Tool) → for Debian-based systems (Ubuntu, Kali, etc.)[cite: 23]
-* **YUM / DNF** → for Red Hat-based systems (CentOS, Fedora, RHEL)[cite: 23]
-* **Zypper** → for SUSE[cite: 23]
-* **Pacman** → for Arch Linux[cite: 23]
+**Popular Package Managers**
+* **APT** (Advanced Package Tool) → for Debian-based systems (Ubuntu, Kali, etc.)
+* **YUM / DNF** → for Red Hat-based systems (CentOS, Fedora, RHEL)
+* **Zypper** → for SUSE
+* **Pacman** → for Arch Linux
 
-In DevOps, Ubuntu is most common - so we’ll use **APT** examples here[cite: 23].
+In DevOps, Ubuntu is most common - so we’ll use **APT** examples here.
 
 **Installing Software**
 \`\`\`bash
 sudo apt update          # Refreshes package list
 sudo apt install nginx   # Installs Nginx web server
 \`\`\`
-**Why \`apt update\`?**[cite: 23]
-This pulls the latest list of available software and versions from your configured repositories[cite: 23]. Think of it as syncing your app store[cite: 23].
+**Why \`apt update\`?**
+This pulls the latest list of available software and versions from your configured repositories. Think of it as syncing your app store.
 
-Want to install Git?[cite: 23]
+Want to install Git?
 \`\`\`bash
 sudo apt install git
 \`\`\`
-Need Python tools?[cite: 23]
+Need Python tools?
 \`\`\`bash
 sudo apt install python3-pip
 \`\`\`
@@ -1411,85 +1411,85 @@ sudo apt install python3-pip
 \`\`\`bash
 sudo apt upgrade
 \`\`\`
-Upgrades all installed packages to the latest versions[cite: 23].
+Upgrades all installed packages to the latest versions.
 
-Upgrade everything in one go[cite: 23]:
+Upgrade everything in one go:
 \`\`\`bash
 sudo apt update && sudo apt upgrade -y
 \`\`\`
-The \`-y\` flag automatically says “yes” to all prompts - useful in scripts[cite: 23].
+The \`-y\` flag automatically says “yes” to all prompts - useful in scripts.
 
 **Removing Software**
 \`\`\`bash
 sudo apt remove nginx
 \`\`\`
-This removes the program, but keeps config files[cite: 23].
+This removes the program, but keeps config files.
 
-To delete everything (including config)[cite: 23]:
+To delete everything (including config):
 \`\`\`bash
 sudo apt purge nginx
 \`\`\`
-Clean up unused files[cite: 23]:
+Clean up unused files:
 \`\`\`bash
 sudo apt autoremove
 \`\`\`
 
 **Real-World DevOps Example: Installing Docker**
-Let’s say you want to install Docker[cite: 23]:
+Let’s say you want to install Docker:
 \`\`\`bash
 sudo apt update
 sudo apt install docker.io
 sudo systemctl enable docker
 sudo systemctl start docker
 \`\`\`
-Verify it's working[cite: 23]:
+Verify it's working:
 \`\`\`bash
 docker --version
 \`\`\`
-Done! You’re now ready to build containers[cite: 23].
+Done! You’re now ready to build containers.
 
 **Adding External Repositories (Advanced)**
-Some software (like Node.js or VS Code) isn’t in the default list[cite: 23]. You can add third-party repositories like this[cite: 23]:
+Some software (like Node.js or VS Code) isn’t in the default list. You can add third-party repositories like this:
 \`\`\`bash
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
 \`\`\`
-This allows you to access more up-to-date or non-default software safely[cite: 23].
+This allows you to access more up-to-date or non-default software safely.
 
 <h3 id="services">7. Services and Processes: Keeping Things Running</h3>
-When you start a web server, a database, or even a background script - it becomes a process running on your system[cite: 23].
-If you want these services to[cite: 23]:
-* Start automatically on boot[cite: 23]
-* Restart if they crash[cite: 23]
-* Be managed securely by the system[cite: 23]
+When you start a web server, a database, or even a background script - it becomes a process running on your system.
+If you want these services to:
+* Start automatically on boot
+* Restart if they crash
+* Be managed securely by the system
 
-…then you’ll use services, managed by a tool called systemd (most modern Linux systems use it)[cite: 23].
-Mastering services means you can manage what’s running on your system - and that’s DevOps gold[cite: 23].
+…then you’ll use services, managed by a tool called systemd (most modern Linux systems use it).
+Mastering services means you can manage what’s running on your system - and that’s DevOps gold.
 
-**Processes vs Services**[cite: 23]
-* **Process**: An individual running task (e.g., your Python script)[cite: 23].
-* **Service**: A managed process under systemd (e.g., Nginx, Docker)[cite: 23].
+**Processes vs Services**
+* **Process**: An individual running task (e.g., your Python script).
+* **Service**: A managed process under systemd (e.g., Nginx, Docker).
 
-List processes[cite: 23]:
+List processes:
 \`\`\`bash
 ps aux          # View all running processes
 top             # Real-time view of resource usage
 htop            # Enhanced top (install with \`sudo apt install htop\`)
 \`\`\`
 
-Kill a process[cite: 23]:
+Kill a process:
 \`\`\`bash
 kill <PID>
 kill -9 <PID>   # Forcefully stop (only if needed)
 \`\`\`
 
-Find a process[cite: 23]:
+Find a process:
 \`\`\`bash
 ps aux | grep nginx
 \`\`\`
 
 **Managing Services with systemctl**
-To interact with services[cite: 23]:
+To interact with services:
 | Action | Command |
 | --- | --- |
 | Start | \`sudo systemctl start nginx\` |
@@ -1499,60 +1499,60 @@ To interact with services[cite: 23]:
 | Enable on boot | \`sudo systemctl enable nginx\` |
 | Disable | \`sudo systemctl disable nginx\` |
 
-Example[cite: 23]:
+Example:
 \`\`\`bash
 sudo systemctl status docker
 \`\`\`
-Shows if Docker is running, enabled at boot, and logs any failures[cite: 23].
+Shows if Docker is running, enabled at boot, and logs any failures.
 
 **Enable Autostart**
-Want your service to auto-start after a reboot?[cite: 23]
+Want your service to auto-start after a reboot?
 \`\`\`bash
 sudo systemctl enable yourservice
 \`\`\`
-Disable it from boot[cite: 23]:
+Disable it from boot:
 \`\`\`bash
 sudo systemctl disable yourservice
 \`\`\`
-This is crucial for production - you don’t want to manually restart everything after a crash[cite: 23].
+This is crucial for production - you don’t want to manually restart everything after a crash.
 
 **Real-World Example: Restarting a Failed App**
-Let’s say your web server crashed, and you want to[cite: 23]:
-1. Check its status[cite: 23]
-2. Restart it[cite: 23]
-3. View logs[cite: 23]
+Let’s say your web server crashed, and you want to:
+1. Check its status
+2. Restart it
+3. View logs
 \`\`\`bash
 sudo systemctl status apache2
 sudo systemctl restart apache2
 journalctl -u apache2 --since today
 \`\`\`
-This helps you troubleshoot and get back online quickly[cite: 23].
+This helps you troubleshoot and get back online quickly.
 
 **Bonus Tip: Kill Unresponsive Services**
-Sometimes a service hangs[cite: 23]. You can stop it hard[cite: 23]:
+Sometimes a service hangs. You can stop it hard:
 \`\`\`bash
 sudo systemctl stop nginx
 sudo killall nginx
 \`\`\`
-Or reboot the whole system (last resort)[cite: 23]:
+Or reboot the whole system (last resort):
 \`\`\`bash
 sudo reboot
 \`\`\`
 
 <h3 id="bash">8. Bash Scripting: Automate Everything</h3>
-Tired of repeating the same commands every time you spin up a server, install dependencies, or deploy an app?[cite: 23]
-That’s where Bash scripting comes in[cite: 23]. With just a few lines, you can automate tasks like[cite: 23]:
-* Installing packages[cite: 23]
-* Backing up files[cite: 23]
-* Deploying code[cite: 23]
-* Running cron jobs[cite: 23]
-* Checking service health[cite: 23]
+Tired of repeating the same commands every time you spin up a server, install dependencies, or deploy an app?
+That’s where Bash scripting comes in. With just a few lines, you can automate tasks like:
+* Installing packages
+* Backing up files
+* Deploying code
+* Running cron jobs
+* Checking service health
 
-Bash is your Linux automation superpower[cite: 23]. DevOps without Bash is like a pilot without a checklist[cite: 23].
+Bash is your Linux automation superpower. DevOps without Bash is like a pilot without a checklist.
 
 **What is a Bash Script?**
-A Bash script is simply a file with Linux commands, executed in order, line by line[cite: 23].
-Sample[cite: 23]:
+A Bash script is simply a file with Linux commands, executed in order, line by line.
+Sample:
 \`\`\`bash
 #!/bin/bash
 
@@ -1560,28 +1560,28 @@ echo "Updating system..."
 sudo apt update && sudo apt upgrade -y
 echo "Done!"
 \`\`\`
-* The first line \`#!/bin/bash\` is called a shebang - it tells the system to use Bash to interpret the file[cite: 23].
-* \`echo\` prints text to the screen[cite: 23].
+* The first line \`#!/bin/bash\` is called a shebang - it tells the system to use Bash to interpret the file.
+* \`echo\` prints text to the screen.
 
-**How to Create & Run a Script**[cite: 23]
-1. Create the file[cite: 23]:
+**How to Create & Run a Script**
+1. Create the file:
 \`\`\`bash
 nano myscript.sh
 \`\`\`
-2. Add your commands, then save (\`Ctrl+O\`, \`Enter\`, \`Ctrl+X\` in nano)[cite: 23]
-3. Make it executable[cite: 23]:
+2. Add your commands, then save (\`Ctrl+O\`, \`Enter\`, \`Ctrl+X\` in nano)
+3. Make it executable:
 \`\`\`bash
 chmod +x myscript.sh
 \`\`\`
-4. Run it[cite: 23]:
+4. Run it:
 \`\`\`bash
 ./myscript.sh
 \`\`\`
 
 **Add Logic: Conditions and Loops**
-You can add intelligence to your scripts[cite: 23]:
+You can add intelligence to your scripts:
 
-**Conditionals:**[cite: 23]
+**Conditionals:**
 \`\`\`bash
 if [ -f /etc/passwd ]; then
   echo "User file exists."
@@ -1590,7 +1590,7 @@ else
 fi
 \`\`\`
 
-**Loops:**[cite: 23]
+**Loops:**
 \`\`\`bash
 for file in *.log
 do
@@ -1598,7 +1598,7 @@ do
 done
 \`\`\`
 
-**Variables:**[cite: 23]
+**Variables:**
 \`\`\`bash
 name="Nimesha"
 echo "Hello, \\$name!"
@@ -1616,11 +1616,11 @@ git pull origin main
 sudo systemctl restart flaskapp
 echo "Deployment complete!"
 \`\`\`
-This script[cite: 23]:
-* Navigates to the project directory[cite: 23]
-* Pulls the latest code from GitHub[cite: 23]
-* Restarts the Flask service[cite: 23]
-💡 You could schedule this with a cron job (covered in Section 10)[cite: 23].
+This script:
+* Navigates to the project directory
+* Pulls the latest code from GitHub
+* Restarts the Flask service
+💡 You could schedule this with a cron job (covered in Section 10).
 
 **Add Error Handling**
 \`\`\`bash
@@ -1634,142 +1634,142 @@ tar -czf /backup/home.tar.gz /home || {
 
 echo "Backup complete."
 \`\`\`
-The \`||\` ensures you catch errors if something goes wrong[cite: 23].
+The \`||\` ensures you catch errors if something goes wrong.
 
 **Pro Tips**
-* Always start with \`#!/bin/bash\`[cite: 23]
-* Use \`set -e\` to make the script exit on any error[cite: 23]
-* Comment your code with \`#\` so future-you can understand it[cite: 23]
-* Don’t run destructive commands (like \`rm -rf\`) without confirmation[cite: 23]
+* Always start with \`#!/bin/bash\`
+* Use \`set -e\` to make the script exit on any error
+* Comment your code with \`#\` so future-you can understand it
+* Don’t run destructive commands (like \`rm -rf\`) without confirmation
 
 <h3 id="networking">9. Linux Networking Essentials: Know Your Connections</h3>
-Networking is the heart of DevOps[cite: 23]. Whether you're[cite: 23]:
-* Deploying a web server,[cite: 23]
-* Debugging app latency,[cite: 23]
-* Exposing services via Kubernetes,[cite: 23]
-* Or connecting containers...[cite: 23]
+Networking is the heart of DevOps. Whether you're:
+* Deploying a web server,
+* Debugging app latency,
+* Exposing services via Kubernetes,
+* Or connecting containers...
 
-…you must understand how Linux handles networking[cite: 23]. This section gives you the essentials to survive and thrive in DevOps environments[cite: 23].
+…you must understand how Linux handles networking. This section gives you the essentials to survive and thrive in DevOps environments.
 
 **How Linux Sees Networking**
-In Linux, everything is a file - even networks![cite: 23]
-Here’s how the system understands its connectivity[cite: 23]:
+In Linux, everything is a file - even networks!
+Here’s how the system understands its connectivity:
 | Concept | What It Does | Command Example |
 | --- | --- | --- |
-| IP Address | Identifies your machine[cite: 23] | \`ip a\` or \`ifconfig\`[cite: 23] |
-| Hostname | Your system’s network name[cite: 23] | \`hostname\`[cite: 23] |
-| DNS | Converts domain names to IPs[cite: 23] | \`/etc/resolv.conf\`, \`nslookup\`[cite: 23] |
-| Routing Table | Defines paths for packets[cite: 23] | \`ip route\`[cite: 23] |
-| Network Interfaces | Physical or virtual devices (eth0, lo)[cite: 23] | \`ip link\`, \`ifconfig\`[cite: 23] |
+| IP Address | Identifies your machine | \`ip a\` or \`ifconfig\` |
+| Hostname | Your system’s network name | \`hostname\` |
+| DNS | Converts domain names to IPs | \`/etc/resolv.conf\`, \`nslookup\` |
+| Routing Table | Defines paths for packets | \`ip route\` |
+| Network Interfaces | Physical or virtual devices (eth0, lo) | \`ip link\`, \`ifconfig\` |
 
 **Check IP Address**
 \`\`\`bash
 ip a
 \`\`\`
-Shows all interfaces and their assigned IPs[cite: 23].
-Look for \`eth0\` or \`ens33\` - that's usually your network interface[cite: 23]. \`127.0.0.1\` is your localhost[cite: 23].
-Alternative[cite: 23]:
+Shows all interfaces and their assigned IPs.
+Look for \`eth0\` or \`ens33\` - that's usually your network interface. \`127.0.0.1\` is your localhost.
+Alternative:
 \`\`\`bash
 ifconfig
 \`\`\`
 
 **Test Connectivity**
-**Ping a website:**[cite: 23]
+**Ping a website:**
 \`\`\`bash
 ping google.com
 \`\`\`
-**Ping an IP address:**[cite: 23]
+**Ping an IP address:**
 \`\`\`bash
 ping 8.8.8.8
 \`\`\`
-If DNS is down, pinging domain names fails but IPs may work[cite: 23].
-**Check DNS resolution:**[cite: 23]
+If DNS is down, pinging domain names fails but IPs may work.
+**Check DNS resolution:**
 \`\`\`bash
 nslookup google.com
 \`\`\`
-**Trace a route:**[cite: 23]
+**Trace a route:**
 \`\`\`bash
 traceroute google.com
 \`\`\`
-This shows every hop your request takes - useful for spotting slow points[cite: 23].
+This shows every hop your request takes - useful for spotting slow points.
 
 **Open Ports and Listening Services**
-What services are listening for connections?[cite: 23]
+What services are listening for connections?
 \`\`\`bash
 ss -tuln
 \`\`\`
-* \`t\` = TCP, \`u\` = UDP, \`l\` = Listening, \`n\` = numeric (don't resolve hostnames)[cite: 23]
-Example output[cite: 23]:
+* \`t\` = TCP, \`u\` = UDP, \`l\` = Listening, \`n\` = numeric (don't resolve hostnames)
+Example output:
 \`\`\`bash
 State      Recv-Q Send-Q Local Address:Port  Peer Address:Port
 LISTEN     0      128    0.0.0.0:80          0.0.0.0:*
 \`\`\`
-That means something (probably Nginx or Apache) is listening on port 80[cite: 23].
+That means something (probably Nginx or Apache) is listening on port 80.
 
-**Want to see who’s using port 80?**[cite: 23]
+**Want to see who’s using port 80?**
 \`\`\`bash
 sudo lsof -i :80
 \`\`\`
 
 **Firewall: Managing Access**
-Most Linux distros use UFW (Uncomplicated Firewall) on top of \`iptables\`[cite: 23].
-**Enable firewall:**[cite: 23]
+Most Linux distros use UFW (Uncomplicated Firewall) on top of \`iptables\`.
+**Enable firewall:**
 \`\`\`bash
 sudo ufw enable
 \`\`\`
-**Allow traffic to port 22 (SSH):**[cite: 23]
+**Allow traffic to port 22 (SSH):**
 \`\`\`bash
 sudo ufw allow 22
 \`\`\`
-**Deny traffic to port 80:**[cite: 23]
+**Deny traffic to port 80:**
 \`\`\`bash
 sudo ufw deny 80
 \`\`\`
-**View current rules:**[cite: 23]
+**View current rules:**
 \`\`\`bash
 sudo ufw status
 \`\`\`
 
 **Real-World Scenario: Exposing a Web App**
-Let’s say you deploy a Node.js app on port 3000[cite: 23].
-1. Run the app[cite: 23]:
+Let’s say you deploy a Node.js app on port 3000.
+1. Run the app:
 \`\`\`bash
 node app.js
 \`\`\`
-2. Ensure it’s listening[cite: 23]:
+2. Ensure it’s listening:
 \`\`\`bash
 ss -tuln | grep 3000
 \`\`\`
-3. Allow external access (if needed)[cite: 23]:
+3. Allow external access (if needed):
 \`\`\`bash
 sudo ufw allow 3000
 \`\`\`
-4. Test locally[cite: 23]:
+4. Test locally:
 \`\`\`bash
 curl http://localhost:3000
 \`\`\`
-5. Test from another machine (replace with IP)[cite: 23]:
+5. Test from another machine (replace with IP):
 \`\`\`bash
 curl http://192.168.1.100:3000
 \`\`\`
-Done! You just exposed a local app over the network[cite: 23].
+Done! You just exposed a local app over the network.
 
 <h3 id="crontab">10. Crontab - Scheduling Repetitive Tasks</h3>
-In the world of DevOps, automation isn’t just about running tasks it’s about running them at the right time without human intervention[cite: 23].
-Want to[cite: 23]:
-* Back up logs every night?[cite: 23]
-* Run health checks every 5 minutes?[cite: 23]
-* Clean up temp files weekly?[cite: 23]
+In the world of DevOps, automation isn’t just about running tasks it’s about running them at the right time without human intervention.
+Want to:
+* Back up logs every night?
+* Run health checks every 5 minutes?
+* Clean up temp files weekly?
 
-You don’t need a fancy scheduler[cite: 23]. Just use cron - the built-in job scheduler for Unix/Linux[cite: 23].
+You don’t need a fancy scheduler. Just use cron - the built-in job scheduler for Unix/Linux.
 
 **What is Crontab?**
-* **Cron** is the background daemon that runs scheduled tasks[cite: 23].
-* **Crontab** (short for “cron table”) is the file where you define those tasks[cite: 23].
-Every user (even \`root\`) can have their own crontab[cite: 23].
+* **Cron** is the background daemon that runs scheduled tasks.
+* **Crontab** (short for “cron table”) is the file where you define those tasks.
+Every user (even \`root\`) can have their own crontab.
 
 **Crontab Syntax**
-Each line in a crontab follows this format[cite: 23]:
+Each line in a crontab follows this format:
 \`\`\`bash
 * * * * * command_to_run
 | | | | |
@@ -1779,194 +1779,194 @@ Each line in a crontab follows this format[cite: 23]:
 | +----------- Hour (0 - 23)
 +------------- Minute (0 - 59)
 \`\`\`
-Examples[cite: 23]:
+Examples:
 | Schedule | Crontab Expression |
 | --- | --- |
-| Every minute | \`* * * * *\`[cite: 23] |
-| Every hour | \`0 * * * *\`[cite: 23] |
-| Every day at 2:00 AM | \`0 2 * * *\`[cite: 23] |
-| Every Monday at 5:30 PM | \`30 17 * * 1\`[cite: 23] |
-| Every Sunday at midnight | \`0 0 * * 0\`[cite: 23] |
+| Every minute | \`* * * * *\` |
+| Every hour | \`0 * * * *\` |
+| Every day at 2:00 AM | \`0 2 * * *\` |
+| Every Monday at 5:30 PM | \`30 17 * * 1\` |
+| Every Sunday at midnight | \`0 0 * * 0\` |
 
 **Creating and Editing a Crontab**
-To edit your crontab[cite: 23]:
+To edit your crontab:
 \`\`\`bash
 crontab -e
 \`\`\`
-Choose a text editor (if prompted), then add your scheduled commands[cite: 23].
-To view your crontab[cite: 23]:
+Choose a text editor (if prompted), then add your scheduled commands.
+To view your crontab:
 \`\`\`bash
 crontab -l
 \`\`\`
-To remove your crontab[cite: 23]:
+To remove your crontab:
 \`\`\`bash
 crontab -r
 \`\`\`
 
 **Pro Tip: Use Full Paths**
-When using cron, always use full paths to files and commands, because it doesn't load your normal shell environment[cite: 23].
-For example, instead of[cite: 23]:
+When using cron, always use full paths to files and commands, because it doesn't load your normal shell environment.
+For example, instead of:
 \`\`\`bash
 python script.py
 \`\`\`
-Use[cite: 23]:
+Use:
 \`\`\`bash
 /usr/bin/python3 /home/ubuntu/scripts/backup.py
 \`\`\`
-Use \`which python3\` or \`which node\` to find full paths[cite: 23].
+Use \`which python3\` or \`which node\` to find full paths.
 
 **Real-World Example: Log Backup Script**
-Let’s say you want to back up logs every night at 11 PM[cite: 23].
-1. Create a script[cite: 23]:
+Let’s say you want to back up logs every night at 11 PM.
+1. Create a script:
 \`\`\`bash
 #!/bin/bash
 tar -czf /backups/logs_\\$(date +\\%F).tar.gz /var/log
 \`\`\`
-2. Make it executable[cite: 23]:
+2. Make it executable:
 \`\`\`bash
 chmod +x /home/ubuntu/scripts/log_backup.sh
 \`\`\`
-3. Add to crontab[cite: 23]:
+3. Add to crontab:
 \`\`\`bash
 crontab -e
 \`\`\`
-Add this line[cite: 23]:
+Add this line:
 \`\`\`bash
 0 23 * * * /home/ubuntu/scripts/log_backup.sh >> /var/log/cronlog.log 2>&1
 \`\`\`
-This runs at 11:00 PM every day and logs output/errors[cite: 23].
+This runs at 11:00 PM every day and logs output/errors.
 
-**Automate Temp File Cleanup (Bonus Example)**[cite: 23]
+**Automate Temp File Cleanup (Bonus Example)**
 \`\`\`bash
 0 2 * * * find /tmp -type f -mtime +7 -delete
 \`\`\`
-Deletes files older than 7 days in \`/tmp\` every day at 2 AM[cite: 23].
+Deletes files older than 7 days in \`/tmp\` every day at 2 AM.
 
-**Debugging Cron Jobs**[cite: 23]
-* Log output by appending \`>> /path/to/logfile 2>&1\`[cite: 23]
-* Check cron logs[cite: 23]:
+**Debugging Cron Jobs**
+* Log output by appending \`>> /path/to/logfile 2>&1\`
+* Check cron logs:
 \`\`\`bash
 grep CRON /var/log/syslog  # On Ubuntu/Debian
 \`\`\`
 
 <h3 id="monitoring">11. Monitoring Basics - Watching Your System's Health</h3>
-Whether you're managing a local VM, a bare-metal server, or a Kubernetes node - your system is only as reliable as your ability to monitor it[cite: 23].
-In real-world DevOps, it’s not enough to deploy an app - you need to know[cite: 23]:
-* Is it consuming too much memory?[cite: 23]
-* Is disk space running low?[cite: 23]
-* Is the CPU being maxed out?[cite: 23]
-* Which process is causing issues?[cite: 23]
+Whether you're managing a local VM, a bare-metal server, or a Kubernetes node - your system is only as reliable as your ability to monitor it.
+In real-world DevOps, it’s not enough to deploy an app - you need to know:
+* Is it consuming too much memory?
+* Is disk space running low?
+* Is the CPU being maxed out?
+* Which process is causing issues?
 
-Linux provides built-in tools that give you real-time and historical system health insights[cite: 23].
+Linux provides built-in tools that give you real-time and historical system health insights.
 
 **Check CPU & Memory Usage**
-**View live system stats:**[cite: 23]
+**View live system stats:**
 \`\`\`bash
 top
 \`\`\`
-Shows real-time updates on CPU usage, memory, and running processes[cite: 23]. You’ll see[cite: 23]:
-* **%CPU**: how much of the processor is being used[cite: 23]
-* **%MEM**: memory usage[cite: 23]
-* **COMMAND**: what is using the resources[cite: 23]
+Shows real-time updates on CPU usage, memory, and running processes. You’ll see:
+* **%CPU**: how much of the processor is being used
+* **%MEM**: memory usage
+* **COMMAND**: what is using the resources
 
-**More readable version:**[cite: 23]
+**More readable version:**
 \`\`\`bash
 htop
 \`\`\`
-🛠️ If it’s not installed[cite: 23]:
+🛠️ If it’s not installed:
 \`\`\`bash
 sudo apt install htop   # Debian/Ubuntu
 sudo yum install htop   # CentOS/RHEL
 \`\`\`
-Use arrow keys to sort by CPU or memory usage[cite: 23]. Press \`F9\` to kill a process[cite: 23].
+Use arrow keys to sort by CPU or memory usage. Press \`F9\` to kill a process.
 
 **Monitor Disk Usage**
-**Check free space:**[cite: 23]
+**Check free space:**
 \`\`\`bash
 df -h
 \`\`\`
-* \`-h\`: human-readable (MB, GB)[cite: 23]
-* Useful to check if \`/\` or \`/home\` is almost full[cite: 23]
+* \`-h\`: human-readable (MB, GB)
+* Useful to check if \`/\` or \`/home\` is almost full
 
-Example output[cite: 23]:
+Example output:
 \`\`\`bash
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda1        50G   45G  2.5G  95% /
 \`\`\`
-Here, you're in trouble - only 5% free[cite: 23]. You’d better clean up logs or expand storage[cite: 23].
+Here, you're in trouble - only 5% free. You’d better clean up logs or expand storage.
 
-**Check folder size:**[cite: 23]
+**Check folder size:**
 \`\`\`bash
 du -sh /var/log
 \`\`\`
-* \`-s\`: summary only[cite: 23]
-* \`-h\`: human-readable[cite: 23]
-* Shows how much space logs or a specific folder takes[cite: 23]
+* \`-s\`: summary only
+* \`-h\`: human-readable
+* Shows how much space logs or a specific folder takes
 
-To list top disk-consuming directories[cite: 23]:
+To list top disk-consuming directories:
 \`\`\`bash
 du -sh /* | sort -hr | head -10
 \`\`\`
 
 **Monitor Network Usage**
-**Real-time network:**[cite: 23]
+**Real-time network:**
 \`\`\`bash
 iftop
 \`\`\`
-This shows which IPs/ports are using your bandwidth[cite: 23].
-🛠️ To install[cite: 23]:
+This shows which IPs/ports are using your bandwidth.
+🛠️ To install:
 \`\`\`bash
 sudo apt install iftop
 \`\`\`
 
-**Check port usage:**[cite: 23]
+**Check port usage:**
 \`\`\`bash
 netstat -tulnp
 \`\`\`
-Shows open ports and listening services[cite: 23].
-Or use[cite: 23]:
+Shows open ports and listening services.
+Or use:
 \`\`\`bash
 ss -tuln
 \`\`\`
-More modern and faster than \`netstat\`[cite: 23].
+More modern and faster than \`netstat\`.
 
 **Real-World Scenario: Troubleshoot a Slow Server**
-Imagine your web app is slow[cite: 23].
-1. Check CPU usage[cite: 23]:
+Imagine your web app is slow.
+1. Check CPU usage:
 \`\`\`bash
 top
 \`\`\`
-→ You find a Python process using 98% CPU[cite: 23].
-2. Kill it[cite: 23]:
+→ You find a Python process using 98% CPU.
+2. Kill it:
 \`\`\`bash
 kill -9 <PID>
 \`\`\`
-3. Check disk space[cite: 23]:
+3. Check disk space:
 \`\`\`bash
 df -h
 \`\`\`
-→ You see \`/var\` is full[cite: 23]. You find large log files[cite: 23]:
+→ You see \`/var\` is full. You find large log files:
 \`\`\`bash
 du -sh /var/log/*
 \`\`\`
-→ Clear unnecessary logs[cite: 23]:
+→ Clear unnecessary logs:
 \`\`\`bash
 sudo rm /var/log/old-app.log
 \`\`\`
-4. Restart service[cite: 23]:
+4. Restart service:
 \`\`\`bash
 sudo systemctl restart nginx
 \`\`\`
-Problem resolved in 5 minutes[cite: 23]. That’s DevOps[cite: 23].
+Problem resolved in 5 minutes. That’s DevOps.
 
 **Setup Alerts (Optional)**
-Once you're familiar with manual tools, level up with automatic monitoring tools[cite: 23]:
-* **Nagios**[cite: 23]
-* **Prometheus + Grafana**[cite: 23]
-* **Zabbix**[cite: 23]
-* **Netdata**[cite: 23]
+Once you're familiar with manual tools, level up with automatic monitoring tools:
+* **Nagios**
+* **Prometheus + Grafana**
+* **Zabbix**
+* **Netdata**
 
-These tools provide dashboards and alerts when thresholds are breached (e.g., high CPU or low disk)[cite: 23].
+These tools provide dashboards and alerts when thresholds are breached (e.g., high CPU or low disk).
                 `,
                 toc: [
                     { label: 'What is Linux?', target: 'what-is-linux-intro' },
