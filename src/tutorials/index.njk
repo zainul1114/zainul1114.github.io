@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Tutorials
+description: Practical tutorials covering Linux, scripting, Git, containers, Kubernetes, AI/ML, NVIDIA infrastructure, MLOps, and monitoring.
+permalink: /tutorials/index.html
+---
+<section class="article tutorials-index">
+  <p class="eyebrow">LEARN BY DOING</p>
+  <h1>Tutorials</h1>
+  <p class="lead">Step-by-step technical guides designed to help you understand concepts, practice commands, and validate results in your own lab.</p>
+
+  <h2 class="topic-list-heading">Browse learning paths</h2>
+  <div class="topic-grid tutorial-path-grid">
+    <a class="topic-card" href="/tutorials/linux/"><h3>Linux</h3><p>Linux fundamentals, commands, permissions, services, and troubleshooting.</p><span class="card-arrow">Explore Linux →</span></a>
+    <a class="topic-card" href="/tutorials/shell-scripting/"><h3>Shell Scripting</h3><p>Automate repeatable administration tasks with Bash scripts.</p><span class="card-arrow">Explore Shell Scripting →</span></a>
+    <a class="topic-card" href="/tutorials/python-scripting/"><h3>Python Scripting</h3><p>Use Python to automate DevOps and platform engineering tasks.</p><span class="card-arrow">Explore Python →</span></a>
+    <a class="topic-card" href="/tutorials/git/"><h3>Git</h3><p>Version control, branching, collaboration, and repository workflows.</p><span class="card-arrow">Explore Git →</span></a>
+    <a class="topic-card" href="/tutorials/docker/"><h3>Docker</h3><p>Build images, run containers, and compose multi-service applications.</p><span class="card-arrow">Explore Docker →</span></a>
+    <a class="topic-card" href="/tutorials/kubernetes/"><h3>Kubernetes</h3><p>Deployments, services, networking, and cluster operations.</p><span class="card-arrow">Explore Kubernetes →</span></a>
+    <a class="topic-card" href="/tutorials/devops/"><h3>DevOps</h3><p>CI/CD, automation, and reliable software delivery.</p><span class="card-arrow">Explore DevOps →</span></a>
+    <a class="topic-card" href="/tutorials/mlops/"><h3>MLOps</h3><p>MLflow experiments, model registries, and reproducible pipelines.</p><span class="card-arrow">Explore MLOps →</span></a>
+    <a class="topic-card" href="/tutorials/ai-ml/"><h3>AI/ML</h3><p>Machine learning workflows, model inference, and LLM serving.</p><span class="card-arrow">Explore AI/ML →</span></a>
+    <a class="topic-card" href="/tutorials/nvidia-ecosystem/"><h3>NVIDIA Ecosystem</h3><p>GPU drivers, CUDA, GPU Operator, DCGM, and NVIDIA platform tools.</p><span class="card-arrow">Explore NVIDIA →</span></a>
+    <a class="topic-card" href="/tutorials/monitoring/"><h3>Monitoring</h3><p>Prometheus metrics, Grafana dashboards, and alerting.</p><span class="card-arrow">Explore Monitoring →</span></a>
+  </div>
+
+  <h2 class="topic-list-heading">All technical guides</h2>
+  <div class="tutorial-list">{% for item in collections.tutorials | reverse %}<a class="tutorial-card" href="{{ item.url }}"><div class="tutorial-card-top"><span class="article-category">{{ item.data.category }}</span><small>{{ item.date | readableDate }}</small></div><h2>{{ item.data.title }}</h2><p>{{ item.data.description }}</p><span class="card-arrow">Read tutorial →</span></a>{% endfor %}</div>
+</section>

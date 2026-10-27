@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+---
+<section class="article topic-page">
+  <p class="eyebrow">LEARNING PATH</p>
+  <h1>{{ title }}</h1>
+  {% if description %}<p class="lead">{{ description }}</p>{% endif %}
+  <div class="topic-intro">{{ content | safe }}</div>
+  <div class="section-heading topic-list-heading"><div><p class="eyebrow">HANDS-ON GUIDES</p><h2>Tutorials in this path</h2></div><p>Short, practical articles with commands and examples you can adapt to your lab.</p></div>
+  <div class="tutorial-list">
+  {% for item in collections[collectionName] | reverse %}
+    <a class="tutorial-card" href="{{ item.url }}"><div class="tutorial-card-top"><span class="article-category">{{ title }}</span><span class="card-arrow">Read guide ↗</span></div><h3>{{ item.data.title }}</h3><p>{{ item.data.description or "Open this hands-on tutorial." }}</p><small>{% if item.date %}{{ item.date | readableDate }}{% endif %}</small></a>
+  {% else %}<p>Tutorials for this learning path will be added here.</p>{% endfor %}
+  </div>
+</section>

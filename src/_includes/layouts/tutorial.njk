@@ -1,0 +1,11 @@
+---
+layout: layouts/base.njk
+---
+<article class="article tutorial-article">
+  <p class="eyebrow"><a href="/tutorials/">Tutorials</a>{% if category %} <span class="crumb-separator">/</span> <a href="{{ categoryUrl }}">{{ category }}</a>{% endif %}</p>
+  <h1>{{ title }}</h1>
+  <div class="article-meta">{% if date %}<time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>{% endif %}{% if readingTime %}<span>{{ readingTime }} min read</span>{% endif %}{% if category %}<span class="article-category">{{ category }}</span>{% endif %}</div>
+  {% if description %}<p class="lead article-lead">{{ description }}</p>{% endif %}
+  <div class="article-body">{{ content | safe }}</div>
+  <nav class="post-navigation" aria-label="Tutorial navigation"><a href="{{ categoryUrl or '/tutorials/' }}">← More {{ category or "tutorials" }}</a><a href="/tutorials/">Browse all tutorials →</a></nav>
+</article>

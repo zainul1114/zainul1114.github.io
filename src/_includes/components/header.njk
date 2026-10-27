@@ -1,0 +1,6 @@
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="/" aria-label="Azilehub Academy home">Azilehub <span>Academy</span></a>
+  <nav aria-label="Main navigation">
+    {% for item in navigation %}<a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>{% endfor %}
+  </nav>
+</div></header>
