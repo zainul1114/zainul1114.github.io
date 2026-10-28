@@ -358,8 +358,15 @@ header nav a:hover {
   background-color: transparent !important; /* Ensures it stays blue on hover */
 }
 
-/* Increase the width of the main content container for all pages */
-main {
+/* 1. Ensure all page containers are consistently 1000px wide */
+main, .container, .wrapper, .page-container, article {
   max-width: 1000px !important;
   margin: 0 auto !important;
+}
+
+/* 2. Force paragraphs, headings, and lists to fill the entire container width */
+main p, main h1, main h2, main h3, main ul, main ol,
+article p, article h1, article h2, article h3, article ul, article ol,
+.content p, .content ul, .content ol {
+  max-width: 100% !important;
 }
