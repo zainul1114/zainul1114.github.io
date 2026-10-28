@@ -370,3 +370,11 @@ article p, article h1, article h2, article h3, article ul, article ol,
 .content p, .content ul, .content ol {
   max-width: 100% !important;
 }
+
+/* Standardize paragraph font size and line height across all pages */
+main p, article p, .content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
