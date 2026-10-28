@@ -378,14 +378,16 @@ main p, article p, .content p, .page-container p, .tmpl-home p {
 /* --- Home Page Banner Image --- */
 .hero-image-container {
   width: 100%;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  text-align: center;
+  max-width: 100%; /* Prevents the container from breaking the page width */
+  margin: 0 auto 40px auto;
+  overflow: hidden; /* Clips any accidental overflow */
 }
 
 .hero-image {
-  max-width: 100%;
-  height: auto; /* Maintains aspect ratio */
-  border-radius: 8px; /* Optional: adds nice rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle depth shadow */
+  width: 100%;
+  max-width: 1000px; /* Matches your main text container width */
+  height: auto;
+  display: block; /* Removes default inline spacing issues */
+  margin: 0 auto; /* Centers the image perfectly */
+  border-radius: 8px;
 }
