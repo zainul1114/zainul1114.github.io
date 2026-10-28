@@ -357,3 +357,9 @@ header nav a:hover {
   text-decoration-thickness: 2px !important;
   background-color: transparent !important; /* Ensures it stays blue on hover */
 }
+
+/* Increase the width of the main content container for all pages */
+main {
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+}
