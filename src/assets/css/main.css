@@ -374,3 +374,18 @@ main p, article p, .content p, .page-container p, .tmpl-home p {
   color: #444;
   margin-bottom: 20px;
 }
+
+/* --- Home Page Banner Image --- */
+.hero-image-container {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 8px; /* Optional: adds nice rounded corners */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle depth shadow */
+}
