@@ -338,13 +338,22 @@ main.page .article-body code {
   }
 }
 
-/* Update your active navigation link selector (e.g., nav a.active or nav a[aria-current="page"]) */
+/* 1. Reset all header links (Logo and Navigation) to have NO background and NO underline by default */
+header a,
+header nav a,
 header nav a.active,
 header nav a[aria-current="page"] {
-  background-color: transparent; /* Removes the white box */
-  color: white;                  /* Keeps the text white */
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 2px;
+  background-color: transparent !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+/* 2. Apply the underline ONLY when hovering over any header link (including the Logo) */
+header a:hover,
+header nav a:hover {
+  text-decoration: underline !important;
+  text-decoration-color: white !important;
+  text-underline-offset: 6px !important;
+  text-decoration-thickness: 2px !important;
+  background-color: transparent !important; /* Ensures it stays blue on hover */
 }
