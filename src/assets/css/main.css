@@ -374,20 +374,20 @@ main p, article p, .content p, .page-container p, .tmpl-home p {
   color: #444;
   margin-bottom: 20px;
 }
-
 /* --- Home Page Banner Image --- */
 .hero-image-container {
-  width: 100%;
-  max-width: 100%; /* Prevents the container from breaking the page width */
-  margin: 0 auto 40px auto;
-  overflow: hidden; /* Clips any accidental overflow */
+  width: 100vw; /* Forces the container to be the exact width of the screen */
+  margin-left: calc(-50vw + 50%); /* Pulls the image out to the left edge */
+  margin-right: calc(-50vw + 50%); /* Pulls the image out to the right edge */
+  margin-top: 0;
+  margin-bottom: 15px !important; /* Reduced space below the image */
+  overflow: hidden;
 }
 
 .hero-image {
   width: 100%;
-  max-width: 1000px; /* Matches your main text container width */
+  max-width: 100%; /* Removes the 1000px limit */
   height: auto;
-  display: block; /* Removes default inline spacing issues */
-  margin: 0 auto; /* Centers the image perfectly */
-  border-radius: 8px;
+  display: block;
+  border-radius: 0; /* Removed rounded corners so it sits flush against the screen edges */
 }
