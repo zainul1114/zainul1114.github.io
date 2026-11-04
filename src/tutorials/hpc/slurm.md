@@ -3,18 +3,17 @@ layout: layouts/tutorial.njk
 title: "SLURM – HPC Workload Manager"
 description: "Learn Slurm installation, configuration, scheduling, CPU/GPU jobs, troubleshooting and benchmarking."
 category: HPC
-tags: hpc
 categoryUrl: /tutorials/hpc/
+tags: hpc
 date: 2026-11-06
 permalink: /tutorials/hpc/slurm/
 ---
 
+# NVIDIA Technical Support Engineer – Slurm: Complete Interview Preparation Roadmap
 
-# NVIDIA Technical Support Engineer -- Slurm: Complete Interview Preparation Roadmap
+## HPC / Slurm Interview Preparation – Senior Engineer Level
 
-## HPC / Slurm Interview Preparation -- Senior Engineer Level
-
-Based on the NVIDIA Technical Support Engineer -- Slurm job description,
+Based on the NVIDIA Technical Support Engineer – Slurm job description,
 prepare as an **HPC Systems Engineer + Slurm Administrator + Production
 Support Engineer**, rather than preparing only for Slurm installation.
 
@@ -39,42 +38,42 @@ resolution.
 
 Divide preparation into six practical phases.
 
-### Phase 1 -- Linux and HPC fundamentals
+### Phase 1 – Linux and HPC fundamentals
 
 Rocky Linux 9, systemd, SSH, DNS, NTP, users, groups, networking,
 filesystems and shared storage.
 
-### Phase 2 -- Slurm installation and architecture
+### Phase 2 – Slurm installation and architecture
 
 slurmctld, slurmd, slurmdbd, MariaDB, MUNGE, partitions, nodes and
 configuration.
 
-### Phase 3 -- Job scheduling and administration
+### Phase 3 – Job scheduling and administration
 
 sbatch, srun, salloc, queues, priorities, fair-share, QoS, reservations
 and job accounting.
 
-### Phase 4 -- Troubleshooting and failure analysis
+### Phase 4 – Troubleshooting and failure analysis
 
 Node failures, pending jobs, communication errors, scheduling problems,
 database failures and performance.
 
-### Phase 5 -- GPU and container integration
+### Phase 5 – GPU and container integration
 
 NVIDIA drivers, CUDA, GPU scheduling, GRES, Pyxis, Enroot and
 Singularity/Apptainer.
 
-### Phase 6 -- Benchmarking and production operations
+### Phase 6 – Benchmarking and production operations
 
 Scheduler performance, job throughput, monitoring, logging, capacity
 planning and incident handling.
 
 Suggested preparation allocation:
 
--   40%: practical installation and troubleshooting.
--   30%: architecture and scheduling.
--   Remaining time: GPU integration, benchmarking and customer-facing
-    scenarios.
+- 40%: practical installation and troubleshooting.
+- 30%: architecture and scheduling.
+- Remaining time: GPU integration, benchmarking and customer-facing
+  scenarios.
 
 ------------------------------------------------------------------------
 
@@ -85,61 +84,44 @@ on Rocky Linux 9.
 
 ### 2.1 Lab architecture
 
-  Hostname     Role                      Suggested resources
-  ------------ ------------------------- ---------------------
-  slurmctl     Controller / management   4 vCPU, 8 GB RAM
-  slurm01      Compute node 1            8 vCPU, 16 GB RAM
-  slurm02      Compute node 2            8 vCPU, 16 GB RAM
-  slurmlogin   Login / submission        2 vCPU, 4 GB RAM
+| Hostname   | Role                    | Suggested resources |
+|:-----------|:------------------------|:--------------------|
+| slurmctl   | Controller / management | 4 vCPU, 8 GB RAM    |
+| slurm01    | Compute node 1          | 8 vCPU, 16 GB RAM   |
+| slurm02    | Compute node 2          | 8 vCPU, 16 GB RAM   |
+| slurmlogin | Login / submission      | 2 vCPU, 4 GB RAM    |
 
 For the first lab, combine the login and controller roles to reduce
 infrastructure requirements.
 
 ### 2.2 Software stack
 
-  Component              Purpose
-  ---------------------- -----------------------------------
-  Rocky Linux 9          Operating system
-  Slurm                  Workload manager
-  MUNGE                  Authentication
-  MariaDB                Accounting database
-  slurmctld              Central scheduler
-  slurmd                 Compute node daemon
-  slurmdbd               Accounting database service
-  Prometheus             Metrics collection
-  Grafana                Monitoring dashboard
-  NVIDIA Driver / CUDA   GPU compute environment (GPU lab)
+| Component            | Purpose                           |
+|:---------------------|:----------------------------------|
+| Rocky Linux 9        | Operating system                  |
+| Slurm                | Workload manager                  |
+| MUNGE                | Authentication                    |
+| MariaDB              | Accounting database               |
+| slurmctld            | Central scheduler                 |
+| slurmd               | Compute node daemon               |
+| slurmdbd             | Accounting database service       |
+| Prometheus           | Metrics collection                |
+| Grafana              | Monitoring dashboard              |
+| NVIDIA Driver / CUDA | GPU compute environment (GPU lab) |
 
 ------------------------------------------------------------------------
 
 ## 3. Understand every Slurm component
 
-  -----------------------------------------------------------------------
-  Component               Function                Runs on
-  ----------------------- ----------------------- -----------------------
-  slurmctld               Controls scheduling,    Controller
-                          resources and job       
-                          allocation              
-
-  slurmd                  Executes and manages    Compute
-                          jobs on compute nodes   
-
-  slurmdbd                Stores and manages      Database node
-                          accounting information  
-
-  slurmrestd              Provides REST API       API node
-                          access                  
-
-  MUNGE                   Authenticates           All relevant nodes
-                          communication between   
-                          cluster components      
-
-  slurmstepd              Manages job steps and   Compute
-                          their processes         
-
-  MariaDB                 Stores accounting       Database node
-                          records                 
-  -----------------------------------------------------------------------
+| Component  | Function                                               | Runs on            |
+|:-----------|:-------------------------------------------------------|:-------------------|
+| slurmctld  | Controls scheduling, resources and job allocation      | Controller         |
+| slurmd     | Executes and manages jobs on compute nodes             | Compute            |
+| slurmdbd   | Stores and manages accounting information              | Database node      |
+| slurmrestd | Provides REST API access                               | API node           |
+| MUNGE      | Authenticates communication between cluster components | All relevant nodes |
+| slurmstepd | Manages job steps and their processes                  | Compute            |
+| MariaDB    | Stores accounting records                              | Database node      |
 
 ### 3.1 Complete job execution workflow
 
@@ -148,8 +130,8 @@ infrastructure requirements.
     the job.
 3.  **Scheduling Engine:** Selects partition, nodes, CPUs, memory and
     GPUs.
-4.  **slurmd -- Compute Node 1:** Launches allocated tasks.
-5.  **slurmd -- Compute Node 2:** Launches allocated tasks when the job
+4.  **slurmd – Compute Node 1:** Launches allocated tasks.
+5.  **slurmd – Compute Node 2:** Launches allocated tasks when the job
     spans multiple nodes.
 6.  **Job Execution and Accounting:** The job completes, resource usage
     is collected and records are stored through slurmdbd in MariaDB.
@@ -173,14 +155,14 @@ Read the [Slurm documentation](https://slurm.schedmd.com/).
 
 ------------------------------------------------------------------------
 
-## 4. Install Slurm on Rocky Linux 9 -- practical sequence
+## 4. Install Slurm on Rocky Linux 9 – practical sequence
 
 Use a consistent, supported Slurm release across all nodes. Build or
 obtain appropriate RPM packages for the selected Rocky Linux version.
 For production, use a supported packaging approach and avoid
 independently compiling different binaries on each node.
 
-### Step 1 -- Prepare all Linux nodes
+### Step 1 – Prepare all Linux nodes
 
 Run on all nodes:
 
@@ -231,7 +213,7 @@ chronyc tracking
 Ensure consistent user IDs, group IDs, clock synchronization and
 authentication configuration across all nodes.
 
-### Step 2 -- Configure MUNGE authentication
+### Step 2 – Configure MUNGE authentication
 
 Generate the authentication key on the controller:
 
@@ -269,27 +251,27 @@ munge -n | ssh slurm01 unmunge
 
 If this fails, investigate:
 
--   Clock synchronization.
--   MUNGE key mismatch.
--   File ownership and permissions.
--   DNS and hostname resolution.
--   Firewall connectivity.
+- Clock synchronization.
+- MUNGE key mismatch.
+- File ownership and permissions.
+- DNS and hostname resolution.
+- Firewall connectivity.
 
-### Step 3 -- Install Slurm
+### Step 3 – Install Slurm
 
 Install consistent packages on the appropriate hosts:
 
--   Slurm client utilities.
--   slurmctld.
--   slurmd.
--   slurmdbd, when accounting is enabled.
+- Slurm client utilities.
+- slurmctld.
+- slurmd.
+- slurmdbd, when accounting is enabled.
 
 Do not mix Slurm versions or plugin libraries between nodes.
 
 Official installation guidance: [SchedMD Slurm
 documentation](https://slurm.schedmd.com/).
 
-### Step 4 -- Create Slurm users and directories
+### Step 4 – Create Slurm users and directories
 
 Create the service account consistently:
 
@@ -312,10 +294,10 @@ chown -R slurm:slurm /var/log/slurm
 chown -R slurm:slurm /var/lib/slurm
 ```
 
-The compute node's slurmd spool directory needs appropriate permissions
+The compute node’s slurmd spool directory needs appropriate permissions
 for its daemon, which runs as root.
 
-### Step 5 -- Configure slurm.conf
+### Step 5 – Configure slurm.conf
 
 Create the configuration directory and file:
 
@@ -379,7 +361,7 @@ This is a teaching configuration, not a complete production security or
 performance configuration. Validate exact parameters and installed
 plugin support against the selected Slurm release.
 
-### Step 6 -- Start Slurm services
+### Step 6 – Start Slurm services
 
 On the controller:
 
@@ -408,18 +390,18 @@ the `compute` partition.
 
 ------------------------------------------------------------------------
 
-## 5. Configure Slurm accounting -- MariaDB + slurmdbd
+## 5. Configure Slurm accounting – MariaDB + slurmdbd
 
 Accounting is an important interview topic because the role mentions
 accounting and database-backed services.
 
 ### 5.1 Architecture
 
--   `slurmctld` manages scheduling and job allocation.
--   `slurmdbd` provides the accounting database service interface.
--   MariaDB stores accounting data.
--   Slurm commands such as `sacct`, `sacctmgr` and `sreport` query
-    accounting information.
+- `slurmctld` manages scheduling and job allocation.
+- `slurmdbd` provides the accounting database service interface.
+- MariaDB stores accounting data.
+- Slurm commands such as `sacct`, `sacctmgr` and `sreport` query
+  accounting information.
 
 ### 5.2 Example database setup
 
@@ -524,7 +506,7 @@ mkdir -p ~/slurm-lab/jobs
 cd ~/slurm-lab/jobs
 ```
 
-### Test 1 -- Basic batch job
+### Test 1 – Basic batch job
 
 Create `hello.sh`:
 
@@ -569,7 +551,7 @@ Check output:
 cat hello-<JOB_ID>.out
 ```
 
-### Test 2 -- Interactive job
+### Test 2 – Interactive job
 
 ``` bash
 srun \
@@ -593,7 +575,7 @@ Exit:
 exit
 ```
 
-### Test 3 -- Multi-node job
+### Test 3 – Multi-node job
 
 ``` bash
 srun \
@@ -605,7 +587,7 @@ srun \
 
 Expected: output from both compute nodes.
 
-### Test 4 -- Resource allocation
+### Test 4 – Resource allocation
 
 ``` bash
 srun \
@@ -619,14 +601,14 @@ srun \
 
 Understand the difference between:
 
--   `--nodes`
--   `--ntasks`
--   `--cpus-per-task`
--   `--mem`
--   `--time`
--   `--gres`
+- `--nodes`
+- `--ntasks`
+- `--cpus-per-task`
+- `--mem`
+- `--time`
+- `--gres`
 
-### Test 5 -- Job arrays
+### Test 5 – Job arrays
 
 Create `array.sh`:
 
@@ -653,14 +635,14 @@ squeue
 sacct
 ```
 
-### Test 6 -- Job accounting
+### Test 6 – Job accounting
 
 ``` bash
 sacct -j <JOB_ID> \
   --format=JobID,JobName,Partition,State,Elapsed,AllocCPUS,MaxRSS,ExitCode
 ```
 
-### Test 7 -- Scheduling visibility
+### Test 7 – Scheduling visibility
 
 ``` bash
 sinfo -Nel
@@ -676,25 +658,25 @@ These seven tests should become part of daily interview practice.
 
 ------------------------------------------------------------------------
 
-## 7. Configure GPU scheduling -- NVIDIA-specific preparation
+## 7. Configure GPU scheduling – NVIDIA-specific preparation
 
 Go beyond basic Slurm administration and understand how Slurm allocates
 NVIDIA GPUs to users and jobs.
 
 ### 7.1 GPU architecture
 
-  Layer            Technology                  Responsibility
-  ---------------- --------------------------- ------------------------------------
-  Hardware         NVIDIA H100 / L40S / A100   GPU compute
-  Driver           NVIDIA Driver               GPU device access
-  Runtime          CUDA                        GPU programming
-  Monitoring       NVML / `nvidia-smi`         GPU discovery and telemetry
-  Slurm            GRES                        GPU resource allocation
-  Compute daemon   slurmd                      Job execution
-  Isolation        cgroups                     Resource and device access control
-  Job              sbatch / srun               GPU workload submission
+| Layer          | Technology                | Responsibility                     |
+|:---------------|:--------------------------|:-----------------------------------|
+| Hardware       | NVIDIA H100 / L40S / A100 | GPU compute                        |
+| Driver         | NVIDIA Driver             | GPU device access                  |
+| Runtime        | CUDA                      | GPU programming                    |
+| Monitoring     | NVML / `nvidia-smi`       | GPU discovery and telemetry        |
+| Slurm          | GRES                      | GPU resource allocation            |
+| Compute daemon | slurmd                    | Job execution                      |
+| Isolation      | cgroups                   | Resource and device access control |
+| Job            | sbatch / srun             | GPU workload submission            |
 
-### Step 1 -- Validate GPU hardware
+### Step 1 – Validate GPU hardware
 
 On a GPU compute node:
 
@@ -711,7 +693,7 @@ Check CUDA:
 nvcc --version
 ```
 
-### Step 2 -- Configure GRES
+### Step 2 – Configure GRES
 
 Example GPU node configuration:
 
@@ -739,7 +721,7 @@ AutoDetect=nvml
 This requires a Slurm build with NVML support and the appropriate NVIDIA
 driver libraries.
 
-### Step 3 -- Submit GPU jobs
+### Step 3 – Submit GPU jobs
 
 Create `gpu-test.sh`:
 
@@ -780,32 +762,18 @@ scontrol show job <JOB_ID>
 nvidia-smi
 ```
 
-### Step 4 -- Understand advanced GPU scheduling
+### Step 4 – Understand advanced GPU scheduling
 
-  -----------------------------------------------------------------------
-  Topic                               What to explain
-  ----------------------------------- -----------------------------------
-  GRES                                Generic resource scheduling
-
-  TRES                                Trackable resources, including GPU,
-                                      CPU and memory
-
-  GPU binding                         Assigning GPUs to individual tasks
-
-  GPU isolation                       Preventing jobs from accessing
-                                      unallocated GPU devices
-
-  MIG                                 Partitioning supported NVIDIA GPUs
-                                      into instances
-
-  NVML                                GPU discovery and monitoring
-
-  GPU topology                        Understanding PCIe, NVLink and NUMA
-                                      locality
-
-  GPU sharing                         Configuring supported sharing and
-                                      allocation policies
-  -----------------------------------------------------------------------
+| Topic         | What to explain                                        |
+|:--------------|:-------------------------------------------------------|
+| GRES          | Generic resource scheduling                            |
+| TRES          | Trackable resources, including GPU, CPU and memory     |
+| GPU binding   | Assigning GPUs to individual tasks                     |
+| GPU isolation | Preventing jobs from accessing unallocated GPU devices |
+| MIG           | Partitioning supported NVIDIA GPUs into instances      |
+| NVML          | GPU discovery and monitoring                           |
+| GPU topology  | Understanding PCIe, NVLink and NUMA locality           |
+| GPU sharing   | Configuring supported sharing and allocation policies  |
 
 For an H100 cluster, understand MIG, GPU affinity, NVLink and multi-GPU
 communication.
@@ -820,43 +788,28 @@ device constraints work together.
 
 The NVIDIA job description explicitly mentions:
 
--   Scheduler performance.
--   Job throughput.
--   Controller load.
--   Database scaling.
--   Large-scale Slurm environments.
+- Scheduler performance.
+- Job throughput.
+- Controller load.
+- Database scaling.
+- Large-scale Slurm environments.
 
 Do not restrict your benchmark to CPU or GPU computation. Benchmark the
 scheduler itself.
 
 ### 8.1 Benchmark categories
 
-  -----------------------------------------------------------------------
-  Benchmark               What to measure         Commands / tools
-  ----------------------- ----------------------- -----------------------
-  Job submission          Submission latency      sbatch
-
-  Job scheduling          Pending-to-running      squeue, scontrol
-                          latency                 
-
-  Job throughput          Completed jobs per hour sacct
-
-  Job launch              Time to start tasks     srun
-
-  Controller performance  CPU, memory, daemon     top, pidstat
-                          activity                
-
-  Database performance    Accounting query        sacct, sacctmgr
-                          latency                 
-
-  GPU performance         Utilization, memory,    nvidia-smi
-                          compute                 
-
-  Network performance     Node-to-node bandwidth  iperf3
-
-  MPI performance         Communication latency   OSU Micro-Benchmarks
-                          and bandwidth           
-  -----------------------------------------------------------------------
+| Benchmark              | What to measure                     | Commands / tools     |
+|:-----------------------|:------------------------------------|:---------------------|
+| Job submission         | Submission latency                  | sbatch               |
+| Job scheduling         | Pending-to-running latency          | squeue, scontrol     |
+| Job throughput         | Completed jobs per hour             | sacct                |
+| Job launch             | Time to start tasks                 | srun                 |
+| Controller performance | CPU, memory, daemon activity        | top, pidstat         |
+| Database performance   | Accounting query latency            | sacct, sacctmgr      |
+| GPU performance        | Utilization, memory, compute        | nvidia-smi           |
+| Network performance    | Node-to-node bandwidth              | iperf3               |
+| MPI performance        | Communication latency and bandwidth | OSU Micro-Benchmarks |
 
 ### 8.2 Build a Slurm benchmark script
 
@@ -934,21 +887,20 @@ sacct -X \
 
 Record:
 
--   Number of jobs submitted.
--   Number of jobs completed.
--   Time taken for all jobs to finish.
--   Average submission-to-start delay.
--   Maximum simultaneous running jobs.
--   Controller CPU and memory consumption.
+- Number of jobs submitted.
+- Number of jobs completed.
+- Time taken for all jobs to finish.
+- Average submission-to-start delay.
+- Maximum simultaneous running jobs.
+- Controller CPU and memory consumption.
 
 Calculate:
 
-\[ Throughput = `\frac{Completed\ Jobs}{Total\ Benchmark\ Time}`{=tex}
-\]
+\[ Throughput = \]
 
 For example, if 100 jobs finish in 200 seconds:
 
-\[ Throughput = `\frac{100}{200}`{=tex}=0.5 \]
+\[ Throughput = =0.5 \]
 
 That is 0.5 completed jobs per second, or 30 jobs per minute.
 
@@ -1011,23 +963,23 @@ incidents independently.
 
 Prepare these 15 scenarios:
 
-  \#   Incident                       Investigation
-  ---- ------------------------------ -------------------------------------
-  1    Node in DOWN state             `sinfo`, `scontrol show node`
-  2    Node in DRAIN state            `scontrol show node`, slurmd logs
-  3    Jobs stuck in PENDING          `squeue -l`, job reason
-  4    slurmctld not starting         `journalctl`, controller logs
-  5    slurmd not starting            systemd, daemon logs
-  6    MUNGE authentication failure   `munge`, key, time sync
-  7    Job launch failure             slurmd and slurmstepd logs
-  8    Out of memory                  cgroup memory and job accounting
-  9    Job stuck in CG state          Node health and job cleanup
-  10   Database unavailable           slurmdbd and MariaDB
-  11   GPU not detected               `nvidia-smi`, GRES, NVML
-  12   GPU not allocated              GRES and TRES configuration
-  13   Scheduler slow                 Controller load and scheduling logs
-  14   Jobs failing across nodes      DNS, networking and authentication
-  15   Incorrect job accounting       slurmdbd, storage configuration
+| \#  | Incident                     | Investigation                       |
+|:----|:-----------------------------|:------------------------------------|
+| 1   | Node in DOWN state           | `sinfo`, `scontrol show node`       |
+| 2   | Node in DRAIN state          | `scontrol show node`, slurmd logs   |
+| 3   | Jobs stuck in PENDING        | `squeue -l`, job reason             |
+| 4   | slurmctld not starting       | `journalctl`, controller logs       |
+| 5   | slurmd not starting          | systemd, daemon logs                |
+| 6   | MUNGE authentication failure | `munge`, key, time sync             |
+| 7   | Job launch failure           | slurmd and slurmstepd logs          |
+| 8   | Out of memory                | cgroup memory and job accounting    |
+| 9   | Job stuck in CG state        | Node health and job cleanup         |
+| 10  | Database unavailable         | slurmdbd and MariaDB                |
+| 11  | GPU not detected             | `nvidia-smi`, GRES, NVML            |
+| 12  | GPU not allocated            | GRES and TRES configuration         |
+| 13  | Scheduler slow               | Controller load and scheduling logs |
+| 14  | Jobs failing across nodes    | DNS, networking and authentication  |
+| 15  | Incorrect job accounting     | slurmdbd, storage configuration     |
 
 ### 9.1 Commands you must know
 
@@ -1082,17 +1034,17 @@ scontrol reconfigure
 
 ### 9.2 Understand Slurm job states
 
-  State   Meaning
-  ------- ---------------
-  PD      Pending
-  R       Running
-  CG      Completing
-  CD      Completed
-  F       Failed
-  TO      Timeout
-  CA      Cancelled
-  NF      Node failure
-  OOM     Out of memory
+| State | Meaning       |
+|:------|:--------------|
+| PD    | Pending       |
+| R     | Running       |
+| CG    | Completing    |
+| CD    | Completed     |
+| F     | Failed        |
+| TO    | Timeout       |
+| CA    | Cancelled     |
+| NF    | Node failure  |
+| OOM   | Out of memory |
 
 ### 9.3 Troubleshooting exercise: Job remains PENDING for 30 minutes
 
@@ -1106,45 +1058,45 @@ scontrol show job <JOB_ID>
 sinfo -Nel
 ```
 
-Look at the job's `Reason` field.
+Look at the job’s `Reason` field.
 
-  Pending reason           What to investigate
-  ------------------------ ----------------------------------
-  Resources                Available CPU, memory and GPU
-  Priority                 Job priority and fair-share
-  QOSMaxJobsPerUserLimit   User QoS limits
-  PartitionTimeLimit       Partition time constraints
-  Dependency               Parent job completion
-  ReqNodeNotAvail          Node availability or reservation
+| Pending reason         | What to investigate              |
+|:-----------------------|:---------------------------------|
+| Resources              | Available CPU, memory and GPU    |
+| Priority               | Job priority and fair-share      |
+| QOSMaxJobsPerUserLimit | User QoS limits                  |
+| PartitionTimeLimit     | Partition time constraints       |
+| Dependency             | Parent job completion            |
+| ReqNodeNotAvail        | Node availability or reservation |
 
 Interview answer:
 
-"I first inspect the pending reason, then compare the requested
-resources with the partition's available resources. I verify node
+“I first inspect the pending reason, then compare the requested
+resources with the partition’s available resources. I verify node
 states, scheduling policy, priority, QoS and dependencies. Once I
 isolate the constraint, I validate the resolution with a controlled test
-job."
+job.”
 
 ------------------------------------------------------------------------
 
 ## 10. Advanced topics: What separates a Slurm administrator from a senior Slurm engineer?
 
-  Topic                 Concepts to master
-  --------------------- --------------------------------------------
-  Scheduling            Backfill, priority, multifactor scheduling
-  Resource management   SelectType, cons_tres, CPU and memory
-  Fair-share            Shares, usage, account hierarchy
-  QoS                   Limits, priority, preemption
-  Reservations          Maintenance and exclusive resources
-  HA                    Primary and backup slurmctld
-  Accounting            slurmdbd, TRES, sacct, sreport
-  Cgroups               CPU, memory and device constraints
-  Networking            Controller/compute communication, DNS
-  MPI                   PMIx, MPI launch and interconnect
-  Containers            Pyxis, Enroot, Apptainer
-  GPU                   GRES, MIG, NVML, GPU topology
-  Performance           Job throughput and controller scalability
-  Customization         SPANK, Lua, job-submit plugins
+| Topic               | Concepts to master                         |
+|:--------------------|:-------------------------------------------|
+| Scheduling          | Backfill, priority, multifactor scheduling |
+| Resource management | SelectType, cons_tres, CPU and memory      |
+| Fair-share          | Shares, usage, account hierarchy           |
+| QoS                 | Limits, priority, preemption               |
+| Reservations        | Maintenance and exclusive resources        |
+| HA                  | Primary and backup slurmctld               |
+| Accounting          | slurmdbd, TRES, sacct, sreport             |
+| Cgroups             | CPU, memory and device constraints         |
+| Networking          | Controller/compute communication, DNS      |
+| MPI                 | PMIx, MPI launch and interconnect          |
+| Containers          | Pyxis, Enroot, Apptainer                   |
+| GPU                 | GRES, MIG, NVML, GPU topology              |
+| Performance         | Job throughput and controller scalability  |
+| Customization       | SPANK, Lua, job-submit plugins             |
 
 Especially study these three areas:
 
@@ -1167,29 +1119,20 @@ Documentation](https://slurm.schedmd.com/).
 
 ------------------------------------------------------------------------
 
-## 11. Container integration -- Pyxis, Enroot and Apptainer
+## 11. Container integration – Pyxis, Enroot and Apptainer
 
 The NVIDIA job description explicitly mentions Pyxis, Enroot, Apptainer
 and Singularity.
 
 Understand how containers work in HPC environments.
 
-  -----------------------------------------------------------------------
-  Technology                          Purpose
-  ----------------------------------- -----------------------------------
-  Pyxis                               Slurm SPANK plugin for container
-                                      integration
-
-  Enroot                              Lightweight container runtime
-
-  Apptainer                           Container runtime designed for HPC
-
-  Singularity                         Original container technology, now
-                                      associated with Apptainer
-
-  NVIDIA Container Toolkit            NVIDIA GPU support in OCI container
-                                      environments
-  -----------------------------------------------------------------------
+| Technology               | Purpose                                                      |
+|:-------------------------|:-------------------------------------------------------------|
+| Pyxis                    | Slurm SPANK plugin for container integration                 |
+| Enroot                   | Lightweight container runtime                                |
+| Apptainer                | Container runtime designed for HPC                           |
+| Singularity              | Original container technology, now associated with Apptainer |
+| NVIDIA Container Toolkit | NVIDIA GPU support in OCI container environments             |
 
 Prepare to explain:
 
@@ -1221,51 +1164,51 @@ access to the image registry.
 As a senior HPC engineer, be able to explain how you monitor a
 production cluster.
 
-  Component              Monitoring responsibility
-  ---------------------- -------------------------------------
-  Node Exporter          CPU, memory, filesystem and network
-  DCGM Exporter          NVIDIA GPU metrics
-  Prometheus             Metrics collection
-  Grafana                Dashboards
-  Slurm exporter         Slurm cluster and job metrics
-  Loki / Elasticsearch   Centralized logs
+| Component            | Monitoring responsibility           |
+|:---------------------|:------------------------------------|
+| Node Exporter        | CPU, memory, filesystem and network |
+| DCGM Exporter        | NVIDIA GPU metrics                  |
+| Prometheus           | Metrics collection                  |
+| Grafana              | Dashboards                          |
+| Slurm exporter       | Slurm cluster and job metrics       |
+| Loki / Elasticsearch | Centralized logs                    |
 
 Build these dashboards:
 
-### Dashboard 1 -- Cluster health
+### Dashboard 1 – Cluster health
 
--   Total nodes.
--   Available nodes.
--   Allocated nodes.
--   Down/drained nodes.
--   Partition availability.
+- Total nodes.
+- Available nodes.
+- Allocated nodes.
+- Down/drained nodes.
+- Partition availability.
 
-### Dashboard 2 -- Scheduler
+### Dashboard 2 – Scheduler
 
--   Pending jobs.
--   Running jobs.
--   Completed jobs.
--   Failed jobs.
--   Job throughput.
--   Scheduler CPU and memory.
+- Pending jobs.
+- Running jobs.
+- Completed jobs.
+- Failed jobs.
+- Job throughput.
+- Scheduler CPU and memory.
 
-### Dashboard 3 -- GPU
+### Dashboard 3 – GPU
 
--   GPU utilization.
--   GPU memory utilization.
--   GPU temperature.
--   Power consumption.
--   GPU allocation per job.
--   GPU health.
+- GPU utilization.
+- GPU memory utilization.
+- GPU temperature.
+- Power consumption.
+- GPU allocation per job.
+- GPU health.
 
-### Dashboard 4 -- Accounting
+### Dashboard 4 – Accounting
 
--   Jobs by user.
--   Jobs by account.
--   CPU-hours consumed.
--   GPU-hours consumed.
--   Failed jobs.
--   Resource utilization.
+- Jobs by user.
+- Jobs by account.
+- CPU-hours consumed.
+- GPU-hours consumed.
+- Failed jobs.
+- Resource utilization.
 
 This is an excellent demonstration project for the interview.
 
@@ -1275,92 +1218,92 @@ This is an excellent demonstration project for the interview.
 
 Use these 25 questions as a mock interview question bank.
 
-1.  **Explain Slurm architecture and its components.**\
+1.  **Explain Slurm architecture and its components.**  
     Explain slurmctld, slurmd, slurmstepd, slurmdbd, MUNGE and their
     communication.
 
-2.  **What happens when a user submits sbatch?**\
+2.  **What happens when a user submits sbatch?**  
     Explain validation, scheduling, allocation, launch, execution and
     accounting.
 
-3.  **Difference between sbatch, srun and salloc?**\
+3.  **Difference between sbatch, srun and salloc?**  
     Batch submission, job-step execution and interactive resource
     allocation.
 
-4.  **What is MUNGE?**\
+4.  **What is MUNGE?**  
     Authentication, shared key, UID/GID consistency and time
     synchronization.
 
-5.  **What is the difference between slurmctld and slurmd?**\
+5.  **What is the difference between slurmctld and slurmd?**  
     Controller scheduling versus compute-node job execution.
 
-6.  **How does Slurm schedule jobs?**\
+6.  **How does Slurm schedule jobs?**  
     Priority, resources, partitions, backfill and policy.
 
-7.  **What is backfill scheduling?**\
+7.  **What is backfill scheduling?**  
     Allowing smaller eligible jobs to run without delaying
     higher-priority reservations.
 
-8.  **What is fair-share scheduling?**\
+8.  **What is fair-share scheduling?**  
     Balancing resource consumption across users and accounts.
 
-9.  **What are QoS and TRES?**\
+9.  **What are QoS and TRES?**  
     Quality of Service and Trackable Resources.
 
-10. **How do you configure GPU scheduling?**\
+10. **How do you configure GPU scheduling?**  
     GRES, gres.conf, NVML, TRES and cgroups.
 
-11. **How do you configure MIG?**\
+11. **How do you configure MIG?**  
     GPU autodetection, MIG device discovery and resource configuration
     for the installed release.
 
-12. **Why is a node in DRAIN state?**\
+12. **Why is a node in DRAIN state?**  
     Identify the reason, inspect logs and node health, repair and
     resume.
 
-13. **How do you troubleshoot a pending job?**\
+13. **How do you troubleshoot a pending job?**  
     Check job reason, resources, priority, partition, dependencies and
     QoS.
 
-14. **What is slurmdbd?**\
+14. **What is slurmdbd?**  
     Database daemon responsible for accounting communication.
 
-15. **How do you troubleshoot accounting failures?**\
+15. **How do you troubleshoot accounting failures?**  
     Check slurmdbd, MariaDB, authentication, permissions and database
     connectivity.
 
-16. **How do you troubleshoot high controller CPU?**\
+16. **How do you troubleshoot high controller CPU?**  
     Analyze job submission rate, scheduling, controller logs, database
     and workload mix.
 
-17. **How do you troubleshoot a node communication issue?**\
+17. **How do you troubleshoot a node communication issue?**  
     DNS, routing, firewall, ports, time synchronization and MUNGE.
 
-18. **What are cgroups in Slurm?**\
+18. **What are cgroups in Slurm?**  
     Enforcement of CPU, memory and device resource constraints.
 
-19. **How do you configure HA?**\
+19. **How do you configure HA?**  
     Primary and backup controllers, shared configuration, state recovery
     and failover.
 
-20. **What is SPANK?**\
+20. **What is SPANK?**  
     Slurm Plugin Architecture for Node and job-step customization.
 
-21. **What are Pyxis and Enroot?**\
+21. **What are Pyxis and Enroot?**  
     HPC container integration and lightweight container execution.
 
-22. **How do you benchmark Slurm?**\
+22. **How do you benchmark Slurm?**  
     Job throughput, latency, scheduling cycles, controller utilization
     and accounting performance.
 
-23. **How do you troubleshoot GPU not detected?**\
+23. **How do you troubleshoot GPU not detected?**  
     Driver, NVML, GRES configuration, device visibility and slurmd logs.
 
-24. **How do you support thousands of nodes?**\
+24. **How do you support thousands of nodes?**  
     Controller scalability, scheduling configuration, database capacity,
     networking and monitoring.
 
-25. **How do you handle a critical customer incident?**\
+25. **How do you handle a critical customer incident?**  
     Impact assessment, evidence collection, isolation, mitigation,
     validation and RCA.
 
@@ -1424,47 +1367,47 @@ problem-solving, not random trial and error.
 
 ## 15. Your 30-day NVIDIA Slurm preparation plan
 
-### Week 1 -- Installation (Days 1--7)
+### Week 1 – Installation (Days 1–7)
 
 Build a working Rocky Linux cluster.
 
--   [ ] Linux administration and networking
--   [ ] MUNGE authentication
--   [ ] Install Slurm
--   [ ] Configure slurm.conf
--   [ ] Start controller and compute daemons
--   [ ] Submit batch and interactive jobs
--   [ ] Understand Slurm architecture
+- [ ] Linux administration and networking
+- [ ] MUNGE authentication
+- [ ] Install Slurm
+- [ ] Configure slurm.conf
+- [ ] Start controller and compute daemons
+- [ ] Submit batch and interactive jobs
+- [ ] Understand Slurm architecture
 
-### Week 2 -- Scheduling and accounting (Days 8--14)
+### Week 2 – Scheduling and accounting (Days 8–14)
 
--   [ ] Configure MariaDB and slurmdbd
--   [ ] Configure accounts and users
--   [ ] Learn partitions and reservations
--   [ ] Configure QoS and fair-share
--   [ ] Learn job priorities
--   [ ] Practise job arrays and MPI jobs
--   [ ] Understand resource allocation
+- [ ] Configure MariaDB and slurmdbd
+- [ ] Configure accounts and users
+- [ ] Learn partitions and reservations
+- [ ] Configure QoS and fair-share
+- [ ] Learn job priorities
+- [ ] Practise job arrays and MPI jobs
+- [ ] Understand resource allocation
 
-### Week 3 -- GPU and performance (Days 15--21)
+### Week 3 – GPU and performance (Days 15–21)
 
--   [ ] Configure NVIDIA GPU GRES
--   [ ] Learn GPU resource binding
--   [ ] Understand MIG
--   [ ] Learn Pyxis and Enroot
--   [ ] Benchmark scheduler throughput
--   [ ] Integrate Prometheus and Grafana
--   [ ] Practise MPI and network benchmarks
+- [ ] Configure NVIDIA GPU GRES
+- [ ] Learn GPU resource binding
+- [ ] Understand MIG
+- [ ] Learn Pyxis and Enroot
+- [ ] Benchmark scheduler throughput
+- [ ] Integrate Prometheus and Grafana
+- [ ] Practise MPI and network benchmarks
 
-### Week 4 -- Senior engineer preparation (Days 22--30)
+### Week 4 – Senior engineer preparation (Days 22–30)
 
--   [ ] Troubleshoot 15 failure scenarios
--   [ ] Understand controller HA
--   [ ] Investigate database scaling
--   [ ] Practise large-cluster architecture
--   [ ] Understand Slurm plugins and source code
--   [ ] Prepare three customer incident RCAs
--   [ ] Complete mock technical interviews
+- [ ] Troubleshoot 15 failure scenarios
+- [ ] Understand controller HA
+- [ ] Investigate database scaling
+- [ ] Practise large-cluster architecture
+- [ ] Understand Slurm plugins and source code
+- [ ] Prepare three customer incident RCAs
+- [ ] Complete mock technical interviews
 
 ------------------------------------------------------------------------
 
@@ -1472,7 +1415,7 @@ Build a working Rocky Linux cluster.
 
 Recommended project:
 
-**Enterprise HPC Cluster -- Slurm on Rocky Linux 9**
+**Enterprise HPC Cluster – Slurm on Rocky Linux 9**
 
 ``` text
 slurm-hpc-platform/
@@ -1572,22 +1515,13 @@ independently.
 Use the primary documentation and match it to the exact Slurm release
 deployed in your lab.
 
-  ---------------------------------------------------------------------------------------------
-  Resource                                                  What to study
-  --------------------------------------------------------- -----------------------------------
-  [Slurm Administrator                                      Installation and configuration
-  Guide](https://slurm.schedmd.com/quickstart_admin.html)   
-
-  [Slurm Documentation](https://slurm.schedmd.com/)         Administration topics
-
-  [Slurm Accounting                                         MariaDB and slurmdbd
-  Guide](https://slurm.schedmd.com/accounting.html)         
-
-  [Slurm Authentication                                     MUNGE and authentication
-  Guide](https://slurm.schedmd.com/authentication.html)     
-
-  [Slurm FAQ](https://slurm.schedmd.com/faq.html)           Operational issues
-  ---------------------------------------------------------------------------------------------
+| Resource                                                                     | What to study                  |
+|:-----------------------------------------------------------------------------|:-------------------------------|
+| [Slurm Administrator Guide](https://slurm.schedmd.com/quickstart_admin.html) | Installation and configuration |
+| [Slurm Documentation](https://slurm.schedmd.com/)                            | Administration topics          |
+| [Slurm Accounting Guide](https://slurm.schedmd.com/accounting.html)          | MariaDB and slurmdbd           |
+| [Slurm Authentication Guide](https://slurm.schedmd.com/authentication.html)  | MUNGE and authentication       |
+| [Slurm FAQ](https://slurm.schedmd.com/faq.html)                              | Operational issues             |
 
 The documentation site advertises version 26.05. Do not assume all
 parameters and plugin behaviors are identical in older releases.
@@ -1598,29 +1532,14 @@ parameters and plugin behaviors are identical in older releases.
 
 ### NVIDIA Slurm Engineer Training
 
-  -----------------------------------------------------------------------
-  Module                  Subject                 Practical outcome
-  ----------------------- ----------------------- -----------------------
-  Module 1                Linux + HPC             Understand Linux and
-                          architecture            cluster fundamentals
-
-  Module 2                Slurm installation      Deploy controller and
-                                                  compute nodes
-
-  Module 3                Scheduling and          Configure policies,
-                          accounting              accounts and database
-
-  Module 4                GPU and containers      Configure GRES and
-                                                  understand container
-                                                  integration
-
-  Module 5                Benchmarking and        Measure throughput and
-                          monitoring              monitor cluster health
-
-  Module 6                Troubleshooting and RCA Diagnose failures and
-                                                  prepare incident
-                                                  reports
-  -----------------------------------------------------------------------
+| Module   | Subject                     | Practical outcome                                   |
+|:---------|:----------------------------|:----------------------------------------------------|
+| Module 1 | Linux + HPC architecture    | Understand Linux and cluster fundamentals           |
+| Module 2 | Slurm installation          | Deploy controller and compute nodes                 |
+| Module 3 | Scheduling and accounting   | Configure policies, accounts and database           |
+| Module 4 | GPU and containers          | Configure GRES and understand container integration |
+| Module 5 | Benchmarking and monitoring | Measure throughput and monitor cluster health       |
+| Module 6 | Troubleshooting and RCA     | Diagnose failures and prepare incident reports      |
 
 ### Final assessment
 

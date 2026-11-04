@@ -3,15 +3,13 @@ layout: layouts/tutorial.njk
 title: "What is HPC"
 description: "Understand HPC architecture, parallel computing, CPU, GPU, networking, storage and benchmarking."
 category: HPC
-tags: hpc
 categoryUrl: /tutorials/hpc/
+tags: hpc
 date: 2026-11-04
 permalink: /tutorials/hpc/hpc/
 ---
 
-
-
-# High-Performance Computing (HPC) -- Complete Guide
+# High-Performance Computing (HPC) – Complete Guide
 
 ## 1. What is HPC?
 
@@ -43,16 +41,16 @@ simulations.
 Traditional computing systems can be insufficient for problems that
 require enormous computational power.
 
-  Use case              Why HPC is needed
-  --------------------- --------------------------------------------------------
-  Weather forecasting   Process large atmospheric and climate datasets
-  AI/ML                 Train large machine-learning and deep-learning models
-  Scientific research   Perform complex mathematical simulations
-  Healthcare            Analyze medical and biological datasets
-  Automotive            Run crash simulations and computational fluid dynamics
-  Aerospace             Simulate aircraft aerodynamics and spacecraft systems
-  Oil and gas           Perform seismic processing and reservoir simulation
-  Financial services    Execute complex financial risk models
+| Use case            | Why HPC is needed                                      |
+|:--------------------|:-------------------------------------------------------|
+| Weather forecasting | Process large atmospheric and climate datasets         |
+| AI/ML               | Train large machine-learning and deep-learning models  |
+| Scientific research | Perform complex mathematical simulations               |
+| Healthcare          | Analyze medical and biological datasets                |
+| Automotive          | Run crash simulations and computational fluid dynamics |
+| Aerospace           | Simulate aircraft aerodynamics and spacecraft systems  |
+| Oil and gas         | Perform seismic processing and reservoir simulation    |
+| Financial services  | Execute complex financial risk models                  |
 
 ### Example: AI model training
 
@@ -156,51 +154,28 @@ layers.
 
 ### 4.1 Main infrastructure components
 
-  -----------------------------------------------------------------------
-  Component               Purpose                 Examples
-  ----------------------- ----------------------- -----------------------
-  Login node              User access and job     SSH, Linux
-                          submission              
-
-  Management node         Cluster administration  Slurm controller, PBS
-                          and scheduler services  server
-
-  Compute nodes           Execute computational   CPU and GPU servers
-                          workloads               
-
-  CPU                     General-purpose         Intel Xeon, AMD EPYC
-                          calculations            
-
-  GPU                     Parallel mathematical   NVIDIA H100, L40S, GB10
-                          computations            
-
-  High-speed network      Low-latency             InfiniBand, RoCE
-                          communication between   
-                          nodes                   
-
-  Storage                 Store datasets, models, NFS, Lustre, BeeGFS
-                          and results             
-
-  Job scheduler           Allocate resources and  Slurm, PBS Pro, LSF
-                          manage queues           
-
-  MPI                     Communication between   Open MPI, Intel MPI
-                          parallel processes      
-
-  Monitoring              Monitor infrastructure  Prometheus, Grafana
-                          and workload            
-                          performance             
-  -----------------------------------------------------------------------
+| Component          | Purpose                                         | Examples                     |
+|:-------------------|:------------------------------------------------|:-----------------------------|
+| Login node         | User access and job submission                  | SSH, Linux                   |
+| Management node    | Cluster administration and scheduler services   | Slurm controller, PBS server |
+| Compute nodes      | Execute computational workloads                 | CPU and GPU servers          |
+| CPU                | General-purpose calculations                    | Intel Xeon, AMD EPYC         |
+| GPU                | Parallel mathematical computations              | NVIDIA H100, L40S, GB10      |
+| High-speed network | Low-latency communication between nodes         | InfiniBand, RoCE             |
+| Storage            | Store datasets, models, and results             | NFS, Lustre, BeeGFS          |
+| Job scheduler      | Allocate resources and manage queues            | Slurm, PBS Pro, LSF          |
+| MPI                | Communication between parallel processes        | Open MPI, Intel MPI          |
+| Monitoring         | Monitor infrastructure and workload performance | Prometheus, Grafana          |
 
 ### 4.2 Compute layer
 
 The compute layer performs the actual processing.
 
--   **CPU workloads:** General-purpose computing, simulations, and
-    numerical calculations.
--   **GPU workloads:** Deep learning, AI training, and GPU-accelerated
-    simulations.
--   **Hybrid workloads:** CPU and GPU resources work together.
+- **CPU workloads:** General-purpose computing, simulations, and
+  numerical calculations.
+- **GPU workloads:** Deep learning, AI training, and GPU-accelerated
+  simulations.
+- **Hybrid workloads:** CPU and GPU resources work together.
 
 ### 4.3 Network layer
 
@@ -209,11 +184,11 @@ High bandwidth and low latency are important.
 
 Key technologies include:
 
--   InfiniBand
--   RoCE (RDMA over Converged Ethernet)
--   RDMA (Remote Direct Memory Access)
--   NVIDIA ConnectX network adapters
--   High-speed InfiniBand switches
+- InfiniBand
+- RoCE (RDMA over Converged Ethernet)
+- RDMA (Remote Direct Memory Access)
+- NVIDIA ConnectX network adapters
+- High-speed InfiniBand switches
 
 RDMA enables data transfer between systems while reducing CPU
 involvement compared with conventional networking paths.
@@ -222,21 +197,13 @@ involvement compared with conventional networking paths.
 
 HPC workloads often read and write large datasets concurrently.
 
-  -----------------------------------------------------------------------
-  Storage technology                  Purpose
-  ----------------------------------- -----------------------------------
-  NFS                                 Shared network file storage
-
-  Lustre                              Parallel distributed file system
-
-  BeeGFS                              Parallel file system for HPC
-
-  IBM Storage Scale                   Enterprise-scale parallel file and
-                                      object storage
-
-  Azure Managed Lustre                Managed parallel file system for
-                                      Azure HPC
-  -----------------------------------------------------------------------
+| Storage technology   | Purpose                                           |
+|:---------------------|:--------------------------------------------------|
+| NFS                  | Shared network file storage                       |
+| Lustre               | Parallel distributed file system                  |
+| BeeGFS               | Parallel file system for HPC                      |
+| IBM Storage Scale    | Enterprise-scale parallel file and object storage |
+| Azure Managed Lustre | Managed parallel file system for Azure HPC        |
 
 Storage throughput, metadata performance, capacity, and concurrent
 access all affect application performance.
@@ -248,10 +215,10 @@ allocation, and job execution.
 
 Popular workload managers include:
 
--   Slurm
--   Altair PBS Professional
--   IBM Spectrum LSF
--   HTCondor
+- Slurm
+- Altair PBS Professional
+- IBM Spectrum LSF
+- HTCondor
 
 ### 4.6 Parallel programming layer
 
@@ -321,41 +288,23 @@ sacct
 
 The application and MPI installation must be configured for the cluster.
 The example assumes `mpi_application` has already been built and is
-available in the job's working directory.
+available in the job’s working directory.
 
 ## 6. HPC versus AI/ML infrastructure
 
 HPC and AI infrastructure share many components, but their workload
 characteristics and performance measures can differ.
 
-  -----------------------------------------------------------------------
-  Feature                 Traditional HPC         AI/ML infrastructure
-  ----------------------- ----------------------- -----------------------
-  Primary objective       Scientific and          Model training and
-                          engineering computation inference
-
-  Processing              CPU and GPU parallelism Often
-                                                  accelerator-intensive
-
-  Programming             MPI, OpenMP, CUDA       PyTorch, TensorFlow,
-                                                  CUDA
-
-  Network                 InfiniBand, RoCE,       InfiniBand, RoCE,
-                          Ethernet                Ethernet
-
-  Storage                 Parallel file systems   Datasets, model
-                          and datasets            checkpoints, object
-                                                  storage
-
-  Scheduling              Slurm, PBS Pro, LSF     Slurm, Kubernetes,
-                                                  cloud schedulers
-
-  Workloads               CFD, molecular          LLM training,
-                          dynamics, simulations   fine-tuning, inference
-
-  Performance metrics     FLOPS, bandwidth,       Tokens/sec, throughput,
-                          latency                 accelerator utilization
-  -----------------------------------------------------------------------
+| Feature             | Traditional HPC                        | AI/ML infrastructure                            |
+|:--------------------|:---------------------------------------|:------------------------------------------------|
+| Primary objective   | Scientific and engineering computation | Model training and inference                    |
+| Processing          | CPU and GPU parallelism                | Often accelerator-intensive                     |
+| Programming         | MPI, OpenMP, CUDA                      | PyTorch, TensorFlow, CUDA                       |
+| Network             | InfiniBand, RoCE, Ethernet             | InfiniBand, RoCE, Ethernet                      |
+| Storage             | Parallel file systems and datasets     | Datasets, model checkpoints, object storage     |
+| Scheduling          | Slurm, PBS Pro, LSF                    | Slurm, Kubernetes, cloud schedulers             |
+| Workloads           | CFD, molecular dynamics, simulations   | LLM training, fine-tuning, inference            |
+| Performance metrics | FLOPS, bandwidth, latency              | Tokens/sec, throughput, accelerator utilization |
 
 HPC is not limited to traditional scientific simulations. Modern HPC
 systems also support AI training, deep learning, large-scale inference,
@@ -363,46 +312,25 @@ and data analytics.
 
 ## 7. On-premises HPC versus cloud HPC
 
-  -----------------------------------------------------------------------
-  Feature                 On-premises HPC         Cloud HPC
-  ----------------------- ----------------------- -----------------------
-  Infrastructure          Physical servers in a   Cloud virtual machines
-                          data center             and services
-
-  Hardware ownership      Organization owns or    Cloud provider operates
-                          operates hardware       physical infrastructure
-
-  Scaling                 Often requires          Resources can be
-                          additional hardware     provisioned dynamically
-                          procurement             
-
-  Initial investment      Usually substantial     Lower upfront
-                                                  infrastructure
-                                                  investment
-
-  Maintenance             Organization manages    Shared responsibility
-                          hardware and software   
-
-  Storage                 Local or shared         Managed cloud storage
-                          parallel storage        and parallel file
-                                                  systems
-
-  Networking              Dedicated               Cloud-supported
-                          InfiniBand/RoCE fabrics high-performance
-                                                  networking
-
-  Cost                    Hardware, power,        Consumption-based and
-                          cooling, support        reservation options
-  -----------------------------------------------------------------------
+| Feature            | On-premises HPC                                | Cloud HPC                                       |
+|:-------------------|:-----------------------------------------------|:------------------------------------------------|
+| Infrastructure     | Physical servers in a data center              | Cloud virtual machines and services             |
+| Hardware ownership | Organization owns or operates hardware         | Cloud provider operates physical infrastructure |
+| Scaling            | Often requires additional hardware procurement | Resources can be provisioned dynamically        |
+| Initial investment | Usually substantial                            | Lower upfront infrastructure investment         |
+| Maintenance        | Organization manages hardware and software     | Shared responsibility                           |
+| Storage            | Local or shared parallel storage               | Managed cloud storage and parallel file systems |
+| Networking         | Dedicated InfiniBand/RoCE fabrics              | Cloud-supported high-performance networking     |
+| Cost               | Hardware, power, cooling, support              | Consumption-based and reservation options       |
 
 ### 7.1 Deployment models
 
--   **On-premises HPC:** The organization owns and operates the cluster
-    in its data center.
--   **Cloud HPC:** Compute, storage, and networking resources are
-    provisioned from a cloud provider.
--   **Hybrid HPC / cloud bursting:** An on-premises cluster uses cloud
-    resources when additional capacity is needed.
+- **On-premises HPC:** The organization owns and operates the cluster in
+  its data center.
+- **Cloud HPC:** Compute, storage, and networking resources are
+  provisioned from a cloud provider.
+- **Hybrid HPC / cloud bursting:** An on-premises cluster uses cloud
+  resources when additional capacity is needed.
 
 Cloud bursting requires compatible software, networking, identity, data
 movement, and scheduler integration. It is not automatically seamless.
@@ -412,39 +340,18 @@ movement, and scheduler integration. It is not automatically seamless.
 Azure provides compute, storage, networking, and cluster-management
 services for HPC workloads.
 
-  -----------------------------------------------------------------------
-  Layer                   Azure service /         Purpose
-                          technology              
-  ----------------------- ----------------------- -----------------------
-  Compute                 Azure HPC virtual       CPU-intensive workloads
-                          machines                
-
-  GPU compute             Azure N-series virtual  GPU-accelerated
-                          machines                workloads
-
-  Storage                 Azure Managed Lustre    High-performance
-                                                  parallel storage
-
-  Storage                 Azure NetApp Files      Enterprise file storage
-
-  Networking              RDMA-capable VM         High-performance node
-                          networking              communication
-
-  Connectivity            ExpressRoute / VPN      Connect on-premises
-                                                  infrastructure to Azure
-
-  Cluster management      Azure CycleCloud        Deploy and manage HPC
-                                                  clusters
-
-  Batch execution         Azure Batch             Managed batch job
-                                                  execution
-
-  Monitoring              Azure Monitor / Grafana Infrastructure and
-                                                  workload monitoring
-
-  Containers              Azure Kubernetes        Container orchestration
-                          Service (AKS)           
-  -----------------------------------------------------------------------
+| Layer              | Azure service / technology      | Purpose                                     |
+|:-------------------|:--------------------------------|:--------------------------------------------|
+| Compute            | Azure HPC virtual machines      | CPU-intensive workloads                     |
+| GPU compute        | Azure N-series virtual machines | GPU-accelerated workloads                   |
+| Storage            | Azure Managed Lustre            | High-performance parallel storage           |
+| Storage            | Azure NetApp Files              | Enterprise file storage                     |
+| Networking         | RDMA-capable VM networking      | High-performance node communication         |
+| Connectivity       | ExpressRoute / VPN              | Connect on-premises infrastructure to Azure |
+| Cluster management | Azure CycleCloud                | Deploy and manage HPC clusters              |
+| Batch execution    | Azure Batch                     | Managed batch job execution                 |
+| Monitoring         | Azure Monitor / Grafana         | Infrastructure and workload monitoring      |
+| Containers         | Azure Kubernetes Service (AKS)  | Container orchestration                     |
 
 Available VM families, networking features, regions, and service
 capabilities change over time. Validate the current Azure documentation
@@ -452,28 +359,14 @@ before designing a production cluster.
 
 ### 8.1 Azure Batch versus Azure CycleCloud
 
-  -----------------------------------------------------------------------
-  Feature                 Azure Batch             Azure CycleCloud
-  ----------------------- ----------------------- -----------------------
-  Type                    Managed batch computing HPC cluster
-                          service                 orchestration platform
-
-  Scheduling              Azure Batch scheduling  Supports schedulers
-                                                  such as Slurm and PBS
-                                                  Pro
-
-  Infrastructure          Managed compute pools   Deploys and manages HPC
-                                                  cluster infrastructure
-
-  Scaling                 Scales compute pools    Can scale cluster nodes
-                                                  based on workload
-
-  Workloads               Batch processing and    Traditional HPC and MPI
-                          parallel tasks          workloads
-
-  Target users            Developers and          HPC administrators and
-                          application teams       engineers
-  -----------------------------------------------------------------------
+| Feature        | Azure Batch                         | Azure CycleCloud                               |
+|:---------------|:------------------------------------|:-----------------------------------------------|
+| Type           | Managed batch computing service     | HPC cluster orchestration platform             |
+| Scheduling     | Azure Batch scheduling              | Supports schedulers such as Slurm and PBS Pro  |
+| Infrastructure | Managed compute pools               | Deploys and manages HPC cluster infrastructure |
+| Scaling        | Scales compute pools                | Can scale cluster nodes based on workload      |
+| Workloads      | Batch processing and parallel tasks | Traditional HPC and MPI workloads              |
+| Target users   | Developers and application teams    | HPC administrators and engineers               |
 
 **Azure Batch** is useful when an application needs managed execution of
 many batch tasks without operating a traditional HPC scheduler.
@@ -486,16 +379,16 @@ PBS Pro in Azure.
 
 These technologies solve different infrastructure problems.
 
-  Technology   Primary responsibility
-  ------------ -------------------------------------------------
-  HPC          Computing infrastructure and parallel workloads
-  Slurm        HPC job scheduling and resource management
-  PBS Pro      HPC job and resource management
-  LSF          Distributed workload management
-  Kubernetes   Container orchestration
-  OpenShift    Enterprise Kubernetes platform
-  MPI          Communication between parallel processes
-  CUDA         NVIDIA GPU programming platform
+| Technology | Primary responsibility                          |
+|:-----------|:------------------------------------------------|
+| HPC        | Computing infrastructure and parallel workloads |
+| Slurm      | HPC job scheduling and resource management      |
+| PBS Pro    | HPC job and resource management                 |
+| LSF        | Distributed workload management                 |
+| Kubernetes | Container orchestration                         |
+| OpenShift  | Enterprise Kubernetes platform                  |
+| MPI        | Communication between parallel processes        |
+| CUDA       | NVIDIA GPU programming platform                 |
 
 A simplified architecture:
 
@@ -525,43 +418,28 @@ resource and workload coordination.
 HPC administrators should measure infrastructure and application
 performance.
 
-  -----------------------------------------------------------------------
-  Benchmark category      What to measure         Example tools
-  ----------------------- ----------------------- -----------------------
-  CPU                     Floating-point          HPL, sysbench
-                          performance and CPU     
-                          throughput              
-
-  GPU                     GPU compute throughput  NVIDIA HPL, CUDA
-                                                  samples
-
-  Memory                  Memory bandwidth        STREAM
-
-  Network                 Bandwidth and latency   OSU Micro-Benchmarks,
-                                                  iperf3
-
-  MPI                     Inter-process           OSU MPI Benchmarks
-                          communication           
-
-  Storage                 Read/write throughput   IOR, fio
-                          and IOPS                
-
-  Application             Execution time and      Application-specific
-                          scalability             benchmarks
-  -----------------------------------------------------------------------
+| Benchmark category | What to measure                               | Example tools                   |
+|:-------------------|:----------------------------------------------|:--------------------------------|
+| CPU                | Floating-point performance and CPU throughput | HPL, sysbench                   |
+| GPU                | GPU compute throughput                        | NVIDIA HPL, CUDA samples        |
+| Memory             | Memory bandwidth                              | STREAM                          |
+| Network            | Bandwidth and latency                         | OSU Micro-Benchmarks, iperf3    |
+| MPI                | Inter-process communication                   | OSU MPI Benchmarks              |
+| Storage            | Read/write throughput and IOPS                | IOR, fio                        |
+| Application        | Execution time and scalability                | Application-specific benchmarks |
 
 ### 10.1 Important HPC performance metrics
 
--   **FLOPS:** Floating-point operations per second.
--   **TFLOPS:** Trillions of floating-point operations per second.
--   **PFLOPS:** Quadrillions of floating-point operations per second.
--   **Bandwidth:** Amount of data transferred per second.
--   **Latency:** Time required for communication.
--   **Scalability:** How application performance changes as resources
-    are added.
--   **GPU utilization:** How actively a GPU is being used.
--   **Parallel efficiency:** How effectively additional processing
-    resources contribute to performance.
+- **FLOPS:** Floating-point operations per second.
+- **TFLOPS:** Trillions of floating-point operations per second.
+- **PFLOPS:** Quadrillions of floating-point operations per second.
+- **Bandwidth:** Amount of data transferred per second.
+- **Latency:** Time required for communication.
+- **Scalability:** How application performance changes as resources are
+  added.
+- **GPU utilization:** How actively a GPU is being used.
+- **Parallel efficiency:** How effectively additional processing
+  resources contribute to performance.
 
 ### 10.2 Example: Calculate speedup
 
@@ -594,53 +472,32 @@ consistent measurement conditions when comparing results.
 
 A practical HPC deployment can be organized into these phases.
 
-  -----------------------------------------------------------------------
-  Phase                   Implementation activity Validation
-  ----------------------- ----------------------- -----------------------
-  1                       Understand workload     CPU/GPU, memory,
-                          requirements            storage requirements
-
-  2                       Design cluster          Architecture review
-                          architecture            
-
-  3                       Provision compute nodes Hardware validation
-
-  4                       Install Linux operating OS and kernel checks
-                          system                  
-
-  5                       Configure networking    Connectivity,
-                                                  bandwidth, and latency
-
-  6                       Configure shared        Mount and I/O tests
-                          storage                 
-
-  7                       Install CPU/GPU drivers Hardware detection
-
-  8                       Install MPI libraries   MPI validation
-
-  9                       Install Slurm/PBS Pro   Scheduler validation
-
-  10                      Configure users and     Job submission and
-                          queues                  execution
-
-  11                      Configure monitoring    Prometheus/Grafana
-                                                  dashboards
-
-  12                      Benchmark workloads     Performance and
-                                                  scalability reports
-  -----------------------------------------------------------------------
+| Phase | Implementation activity          | Validation                            |
+|:------|----------------------------------|:--------------------------------------|
+| 1     | Understand workload requirements | CPU/GPU, memory, storage requirements |
+| 2     | Design cluster architecture      | Architecture review                   |
+| 3     | Provision compute nodes          | Hardware validation                   |
+| 4     | Install Linux operating system   | OS and kernel checks                  |
+| 5     | Configure networking             | Connectivity, bandwidth, and latency  |
+| 6     | Configure shared storage         | Mount and I/O tests                   |
+| 7     | Install CPU/GPU drivers          | Hardware detection                    |
+| 8     | Install MPI libraries            | MPI validation                        |
+| 9     | Install Slurm/PBS Pro            | Scheduler validation                  |
+| 10    | Configure users and queues       | Job submission and execution          |
+| 11    | Configure monitoring             | Prometheus/Grafana dashboards         |
+| 12    | Benchmark workloads              | Performance and scalability reports   |
 
 ### 11.1 Suggested technologies for a practical HPC lab
 
-  Layer                Suggested technologies
-  -------------------- ------------------------------------
-  Operating system     Rocky Linux 9
-  Compute              Intel/AMD CPU and NVIDIA GPU
-  Networking           ConnectX, InfiniBand, RoCE
-  Storage              NFS, Lustre, BeeGFS
-  Scheduler            Slurm or PBS Professional
-  Parallel computing   Open MPI, OpenMP, CUDA
-  Monitoring           Prometheus, Grafana, DCGM Exporter
+| Layer              | Suggested technologies             |
+|:-------------------|:-----------------------------------|
+| Operating system   | Rocky Linux 9                      |
+| Compute            | Intel/AMD CPU and NVIDIA GPU       |
+| Networking         | ConnectX, InfiniBand, RoCE         |
+| Storage            | NFS, Lustre, BeeGFS                |
+| Scheduler          | Slurm or PBS Professional          |
+| Parallel computing | Open MPI, OpenMP, CUDA             |
+| Monitoring         | Prometheus, Grafana, DCGM Exporter |
 
 ## 12. Recommended HPC learning roadmap
 
@@ -670,36 +527,16 @@ For an infrastructure engineer, learn these areas in sequence:
 
 The two references complement one another:
 
-  -----------------------------------------------------------------------
-  Topic                   IBM perspective         Microsoft perspective
-  ----------------------- ----------------------- -----------------------
-  HPC definition          Parallel computing      Large-scale CPU/GPU
-                          using powerful          computing
-                          processors              
-
-  Architecture            Clusters, nodes, and    Compute, storage, and
-                          centralized scheduling  networking
-
-  Processing              Massively parallel      CPU/GPU-based computing
-                          computing               
-
-  Communication           MPI and                 MPI and RDMA-capable
-                          high-performance        networking
-                          networking              
-
-  Storage                 High-throughput,        Lustre, NetApp Files,
-                          low-latency storage     and other services
-
-  Deployment              On-premises and cloud   Azure cloud, hybrid,
-                          HPC                     and cloud bursting
-
-  Management              Cluster workload        Azure Batch and
-                          scheduling              CycleCloud
-
-  Applications            AI, genomics, finance,  AI, engineering,
-                          and simulations         weather, and scientific
-                                                  workloads
-  -----------------------------------------------------------------------
+| Topic          | IBM perspective                              | Microsoft perspective                              |
+|:---------------|:---------------------------------------------|:---------------------------------------------------|
+| HPC definition | Parallel computing using powerful processors | Large-scale CPU/GPU computing                      |
+| Architecture   | Clusters, nodes, and centralized scheduling  | Compute, storage, and networking                   |
+| Processing     | Massively parallel computing                 | CPU/GPU-based computing                            |
+| Communication  | MPI and high-performance networking          | MPI and RDMA-capable networking                    |
+| Storage        | High-throughput, low-latency storage         | Lustre, NetApp Files, and other services           |
+| Deployment     | On-premises and cloud HPC                    | Azure cloud, hybrid, and cloud bursting            |
+| Management     | Cluster workload scheduling                  | Azure Batch and CycleCloud                         |
+| Applications   | AI, genomics, finance, and simulations       | AI, engineering, weather, and scientific workloads |
 
 ### Key takeaway
 
@@ -713,9 +550,9 @@ Pro, MPI, GPU administration, monitoring, and performance benchmarking.
 
 ## 14. References
 
-1.  IBM -- [What is High-Performance Computing
+1.  IBM – [What is High-Performance Computing
     (HPC)?](https://www.ibm.com/think/topics/hpc)
-2.  Microsoft -- [High-Performance Computing (HPC) on
+2.  Microsoft – [High-Performance Computing (HPC) on
     Azure](https://learn.microsoft.com/en-us/azure/architecture/guide/compute/high-performance-computing)
 
 This guide consolidates the concepts from both references and adds
