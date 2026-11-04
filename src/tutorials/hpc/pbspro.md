@@ -3,6 +3,7 @@ layout: layouts/tutorial.njk
 title: "PBSPro – HPC Workload Manager"
 description: "Learn PBS architecture, installation, configuration, queues, job submission and monitoring."
 category: HPC
+tags: hpc
 categoryUrl: /tutorials/hpc/
 date: 2026-11-04
 permalink: /tutorials/hpc/pbspro/

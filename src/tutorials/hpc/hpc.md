@@ -3,6 +3,7 @@ layout: layouts/tutorial.njk
 title: "What is HPC"
 description: "Understand HPC architecture, parallel computing, CPU, GPU, networking, storage and benchmarking."
 category: HPC
+tags: hpc
 categoryUrl: /tutorials/hpc/
 date: 2026-11-04
 permalink: /tutorials/hpc/hpc/

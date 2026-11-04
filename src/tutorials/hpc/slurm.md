@@ -3,6 +3,7 @@ layout: layouts/tutorial.njk
 title: "SLURM – HPC Workload Manager"
 description: "Learn Slurm installation, configuration, scheduling, CPU/GPU jobs, troubleshooting and benchmarking."
 category: HPC
+tags: hpc
 categoryUrl: /tutorials/hpc/
 date: 2026-11-06
 permalink: /tutorials/hpc/slurm/
