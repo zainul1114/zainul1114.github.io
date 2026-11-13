@@ -1,0 +1,72 @@
+---
+layout: layouts/base.njk
+title: About Us
+---
+<div class="page-container">
+  
+  <!-- ABOUT SECTION -->
+  <section class="about-section">
+    <h4 class="section-subtitle">ABOUT US</h4>
+    <h1 class="about-title">Build, share, and learn together.</h1>
+    
+    <p>Are you passionate about DevOps automation, cluster orchestration, or AI model serving architectures? Azilehub Academy collaborates with experienced engineers and technical writers to build comprehensive open-source learning paths.</p>
+    
+    <p>We welcome community contributions, technical guides, and project walkthroughs. If you want to share your expertise or collaborate on curriculum development, reach out to our team at <a href="mailto:azilehub@gmail.com">azilehub@gmail.com</a>.</p>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <h2 class="contact-title">CONTACT</h2>
+    
+    <div class="contact-wrapper">
+      <!-- Left Column: Info -->
+      <div class="contact-info">
+        <p>Contact us for tutorial inquiries, enterprise training, or mentorship programs.</p>
+        <ul>
+          <li><span class="icon">📍</span> Bengaluru, Karnataka, India, Pin-560070.</li>
+          <li><span class="icon">📱</span> +91 80 2654 2726</li>
+          <li><span class="icon">✉️</span> azilehub@gmail.com</li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Form -->
+      <div class="contact-form-container">
+        
+        <!-- Replace YOUR_GOOGLE_TOKEN with your actual script token -->
+        <form action="https://script.google.com/macros/s/AKfycbxScp0Y2X3Pxitx2ucFSxzb8qFzzBfD0bAVlDl20WkQEvkIHmvh81Z-heNDVbjosyw/exec" method="POST">
+        
+        <div class="form-row">
+      <input type="text" name="First Name" placeholder="First Name" required>
+      <input type="text" name="Last Name" placeholder="Last Name" required>
+    </div>
+
+    <div class="form-row">
+      <input type="tel" name="Phone Number" placeholder="Phone Number">
+      <input type="email" name="Email" placeholder="Email" required>
+    </div>
+
+    <textarea
+      name="Message"
+      placeholder="Message / Tutorial Inquiry"
+      rows="6"
+      required></textarea>
+
+    <div class="submit-row">
+      <button type="submit" id="contactSubmit">Send</button>
+    </div>
+
+    <p id="formSuccess" class="form-success" role="status" hidden>
+      Thank you! Your message has been submitted successfully.
+    </p>
+
+    <p id="formError" class="form-error" role="alert" hidden>
+      Sorry, we couldn't submit your message. Please try again.
+    </p>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</div>
