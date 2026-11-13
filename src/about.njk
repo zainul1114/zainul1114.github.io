@@ -3,21 +3,21 @@ layout: layouts/base.njk
 title: About Us
 ---
 <div class="page-container">
-  
+
   <!-- ABOUT SECTION -->
   <section class="about-section">
     <h4 class="section-subtitle">ABOUT US</h4>
     <h1 class="about-title">Build, share, and learn together.</h1>
-    
+
     <p>Are you passionate about DevOps automation, cluster orchestration, or AI model serving architectures? Azilehub Academy collaborates with experienced engineers and technical writers to build comprehensive open-source learning paths.</p>
-    
+
     <p>We welcome community contributions, technical guides, and project walkthroughs. If you want to share your expertise or collaborate on curriculum development, reach out to our team at <a href="mailto:azilehub@gmail.com">azilehub@gmail.com</a>.</p>
   </section>
 
   <!-- CONTACT SECTION -->
   <section class="contact-section">
     <h2 class="contact-title">CONTACT</h2>
-    
+
     <div class="contact-wrapper">
       <!-- Left Column: Info -->
       <div class="contact-info">
@@ -31,37 +31,37 @@ title: About Us
 
       <!-- Right Column: Form -->
       <div class="contact-form-container">
-        
-        <!-- Replace YOUR_GOOGLE_TOKEN with your actual script token -->
-        <form action="https://script.google.com/macros/s/AKfycbxScp0Y2X3Pxitx2ucFSxzb8qFzzBfD0bAVlDl20WkQEvkIHmvh81Z-heNDVbjosyw/exec" method="POST">
-        
-        <div class="form-row">
-      <input type="text" name="First Name" placeholder="First Name" required>
-      <input type="text" name="Last Name" placeholder="Last Name" required>
-    </div>
 
-    <div class="form-row">
-      <input type="tel" name="Phone Number" placeholder="Phone Number">
-      <input type="email" name="Email" placeholder="Email" required>
-    </div>
+        <!-- Added ID to form and removed action/method attributes -->
+        <form id="azileContactForm">
 
-    <textarea
-      name="Message"
-      placeholder="Message / Tutorial Inquiry"
-      rows="6"
-      required></textarea>
+          <div class="form-row">
+            <input type="text" name="First Name" placeholder="First Name" required>
+            <input type="text" name="Last Name" placeholder="Last Name" required>
+          </div>
 
-    <div class="submit-row">
-      <button type="submit" id="contactSubmit">Send</button>
-    </div>
+          <div class="form-row">
+            <input type="tel" name="Phone Number" placeholder="Phone Number">
+            <input type="email" name="Email" placeholder="Email" required>
+          </div>
 
-    <p id="formSuccess" class="form-success" role="status" hidden>
-      Thank you! Your message has been submitted successfully.
-    </p>
+          <textarea
+            name="Message"
+            placeholder="Message / Tutorial Inquiry"
+            rows="6"
+            required></textarea>
 
-    <p id="formError" class="form-error" role="alert" hidden>
-      Sorry, we couldn't submit your message. Please try again.
-    </p>
+          <div class="submit-row">
+            <button type="submit" id="contactSubmit">Send</button>
+          </div>
+
+          <p id="formSuccess" class="form-success" role="status" hidden style="color: green; margin-top: 10px;">
+            Thank you! Your message has been submitted successfully.
+          </p>
+
+          <p id="formError" class="form-error" role="alert" hidden style="color: red; margin-top: 10px;">
+            Sorry, we couldn't submit your message. Please try again.
+          </p>
 
         </form>
 
@@ -70,3 +70,53 @@ title: About Us
   </section>
 
 </div>
+
+<!-- JavaScript to handle silent form submission -->
+<script>
+  const form = document.getElementById("azileContactForm");
+  const submitBtn = document.getElementById("contactSubmit");
+  const successMsg = document.getElementById("formSuccess");
+  const errorMsg = document.getElementById("formError");
+
+  // The Google Apps Script URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxScp0Y2X3Pxitx2ucFSxzb8qFzzBfD0bAVlDl20WkQEvkIHmvh81Z-heNDVbjosyw/exec';
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    
+    // Update button text and disable it during submission to prevent double-clicks
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+    
+    // Hide any previous messages
+    successMsg.hidden = true;
+    errorMsg.hidden = true;
+
+    fetch(scriptURL, { 
+      method: 'POST', 
+      body: new FormData(form) 
+    })
+    .then(response => {
+      // Show success message and clear form fields
+      successMsg.hidden = false;
+      form.reset();
+      
+      // Reset button state
+      submitBtn.textContent = "Send";
+      submitBtn.disabled = false;
+      
+      // Automatically hide the success message after 5 seconds
+      setTimeout(() => {
+        successMsg.hidden = true;
+      }, 5000);
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      
+      // Show error message and reset button state
+      errorMsg.hidden = false;
+      submitBtn.textContent = "Send";
+      submitBtn.disabled = false;
+    });
+  });
+</script>
