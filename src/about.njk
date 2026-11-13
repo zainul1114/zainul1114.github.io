@@ -94,6 +94,7 @@ title: About Us
 
     fetch(scriptURL, { 
       method: 'POST', 
+      mode: 'no-cors', // Add this exact line to bypass CORS errors 
       body: new FormData(form) 
     })
     .then(response => {
