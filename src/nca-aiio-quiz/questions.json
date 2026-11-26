@@ -1927,7 +1927,7 @@
     ]
   },
   {
-    "title": "Remember how Pyxis acts as a Slurm plugin allowing srun to natively invoke Enroot containers with GPU GRES flags.",
+    "title": "21.",
     "questions": [
       {
         "q": "What causes a shared memory \"bank conflict\" in a CUDA kernel running on a Streaming Multiprocessor?",
