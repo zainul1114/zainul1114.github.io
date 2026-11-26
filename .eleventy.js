@@ -1,6 +1,7 @@
 module.exports = function (eleventyConfig) {
   // Copy static assets into the generated website.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy({ "src/nca-aiio-quiz": "nca-aiio-quiz" });
 
   // Human-readable dates for article lists.
   eleventyConfig.addFilter("readableDate", (value) => {
