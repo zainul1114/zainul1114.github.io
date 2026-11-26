@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NCA-AIIO — Comprehensive Mock Exam</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f1f1f;
+      --muted: #5f6368;
+      --card-bg: #f1f3f4;
+      --card-hover: #e8eaed;
+      --correct-bg: #ceead6;
+      --correct-border: #1e8e3e;
+      --wrong-bg: #fce8e6;
+      --wrong-border: #d93025;
+      --primary: #0b57d0;
+      --progress-inactive: #e0e0e0;
+    }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { background: var(--bg); color: var(--text); margin: 0; padding: 32px 16px; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 760px; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .header h1 { font-size: 1.35rem; margin: 0; line-height: 1.35; }
+    .text-view-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.9rem; white-space: nowrap; padding: 6px 10px; border-radius: 8px; }
+    .text-view-btn:hover { background: var(--card-bg); color: var(--text); }
+
+    /* Segmented Progress Bar */
+    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .segments { display: flex; flex: 1; gap: 4px; }
+    .segment { flex: 1; height: 5px; background: var(--progress-inactive); border-radius: 3px; cursor: pointer; transition: opacity 0.15s; }
+    .segment:hover { opacity: 0.75; }
+    .segment.active { background: var(--primary); }
+    .segment.correct-seg { background: var(--correct-border); }
+    .segment.wrong-seg { background: var(--wrong-border); }
+    .counter { font-size: 0.9rem; color: var(--muted); white-space: nowrap; }
+
+    /* Question & Options */
+    .question-text { font-size: 1.12rem; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option { background: var(--card-bg); border: 2px solid transparent; border-radius: 12px; padding: 14px 18px; cursor: pointer; text-align: left; transition: background 0.15s; }
+    .option:hover:not(.locked) { background: var(--card-hover); }
+    .option.correct { background: var(--correct-bg); }
+    .option.wrong { background: var(--wrong-bg); }
+    .option-header { display: flex; gap: 10px; font-size: 0.98rem; font-weight: 500; line-height: 1.45; }
+    .feedback { margin-top: 8px; margin-left: 24px; font-size: 0.9rem; line-height: 1.45; color: #3c4043; display: none; }
+    .option.show-feedback .feedback { display: block; }
+
+    /* Hint & Navigation */
+    .footer { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 24px; gap: 16px; }
+    .hint-box { flex: 1; }
+    .hint-toggle { background: none; border: none; color: var(--text); font-weight: 500; cursor: pointer; padding: 0; font-size: 0.95rem; }
+    .hint-text { margin-top: 8px; font-size: 0.92rem; color: var(--muted); line-height: 1.45; display: none; }
+    .hint-text.open { display: block; }
+    .nav-btns { display: flex; gap: 10px; }
+    .btn { border: none; border-radius: 24px; padding: 10px 22px; font-size: 0.95rem; font-weight: 500; cursor: pointer; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-secondary { background: var(--card-bg); color: var(--text); }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Score Summary */
+    .summary-card { background: var(--card-bg); border-radius: 14px; padding: 28px; text-align: center; }
+    .summary-card h2 { margin-top: 0; }
+    .score-big { font-size: 2.4rem; font-weight: 700; color: var(--primary); margin: 12px 0; }
+
+    /* Text View Mode */
+    .text-view-item { border-bottom: 1px solid #e0e0e0; padding: 16px 0; }
+    .text-view-item p { margin: 8px 0 0; font-size: 0.95rem; line-height: 1.5; color: #3c4043; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>NVIDIA-Certified Associate: AI Infrastructure and Operations (NCA-AIIO) — Comprehensive Mock Exam</h1>
+      <button class="text-view-btn" id="toggleViewBtn">☰ Text view</button>
+    </div>
+
+    <div id="interactiveView">
+      <div class="progress-row">
+        <div class="segments" id="segments"></div>
+        <div class="counter" id="counter"></div>
+      </div>
+
+      <div id="quizBody">
+        <div class="question-text" id="questionText"></div>
+        <div class="options" id="optionsContainer"></div>
+
+        <div class="footer">
+          <div class="hint-box">
+            <button class="hint-toggle" id="hintToggle">Show hint ⌄</button>
+            <div class="hint-text" id="hintText"></div>
+          </div>
+          <div class="nav-btns">
+            <button class="btn btn-secondary" id="prevBtn">Back</button>
+            <button class="btn btn-primary" id="nextBtn">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="summaryView" class="summary-card hidden">
+        <h2>Mock Exam Complete</h2>
+        <div class="score-big" id="scoreDisplay"></div>
+        <p id="scoreSubtext"></p>
+        <button class="btn btn-primary" id="restartBtn">Restart Quiz</button>
+      </div>
+    </div>
+
+    <div id="textView" class="hidden"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "When comparing an enterprise GPU (such as an NVIDIA H200/B200) to a dual-socket x86 CPU, what fundamental architectural design choice explains why the GPU achieves orders-of-magnitude higher throughput on deep learning matrix multiplications?",
+        options: [
+          "GPUs dedicate the majority of their silicon area to massive branch prediction, out-of-order execution, and multi-megabyte shared L1 cache trees.",
+          "GPUs trade large control logic and branch-prediction units for thousands of smaller arithmetic logic units (ALUs) and high-bandwidth memory (HBM) interfaces designed for data-parallelism.",
+          "GPUs operate entirely without volatile memory registers, executing all arithmetic directly from non-volatile storage.",
+          "CPUs lack hardware floating-point units entirely and emulate all vector math via software microcode."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! GPUs maximize arithmetic density by dedicating silicon area to compute and wide memory buses rather than complex thread-control structures.",
+        hint: "Consider how a GPU Streaming Multiprocessor (SM) handles thousands of concurrent threads compared to a CPU core optimized for single-thread clock speed."
+      },
+      {
+        q: "Why is the operational performance profile of autoregressive Large Language Model (LLM) inference (decoding phase) predominantly memory-bandwidth-bound, whereas training is typically compute-bound?",
+        options: [
+          "Inference requires computing full gradient tensors and optimizer moments for every user prompt, whereas training freezes parameters.",
+          "Autoregressive decoding processes all input tokens in parallel using massive matrix-matrix multiplications with a high arithmetic intensity.",
+          "During token-by-token decoding, batch sizes are small and arithmetic intensity per token is low, forcing the GPU to spend most of its time waiting to fetch model weights from HBM to SRAM.",
+          "Inference workloads execute exclusively on the host CPU, bypassing GPU VRAM."
+        ],
+        correctIndex: 2,
+        explanation: "Correct! Because every single token generation step requires reading the entire model parameters from HBM into on-chip SRAM for minimal FLOPs, memory bandwidth is the primary bottleneck.",
+        hint: "Apply the Roofline model: think about how many bytes of weights you must load from VRAM per token generated versus how many arithmetic operations you perform on those bytes."
+      },
+      {
+        q: "What is the primary architectural advantage of the Brain Floating Point (BF16) format over standard IEEE 754 half-precision (FP16) in deep learning training?",
+        options: [
+          "BF16 uses a 32-bit mantissa to completely eliminate quantization noise.",
+          "FP16 has a wider dynamic range than BF16, making gradient underflow impossible.",
+          "BF16 stores all numbers as fixed-point integers.",
+          "BF16 preserves the exact same 8-bit exponent range as FP32, eliminating the underflow and overflow issues common in FP16 without requiring complex loss scaling."
+        ],
+        correctIndex: 3,
+        explanation: "Correct! By sharing FP32's 8-bit exponent width, BF16 avoids dynamic loss scaling while still halving memory and doubling Tensor Core throughput compared to FP32.",
+        hint: "Compare how bit allocation is split between the sign, exponent, and mantissa fields in FP32 versus FP16 and BF16. Which field determines the numerical range?"
+      },
+      {
+        q: "What is the primary distinction between the CUDA Driver API and the CUDA Runtime API in the NVIDIA software stack?",
+        options: [
+          "The Driver API is a low-level, C-style API providing fine-grained context and module management, whereas the Runtime API is a higher-level C++ API built on top of the Driver API for simplified memory and kernel launch management.",
+          "The Driver API executes code on the host CPU, while the Runtime API executes code exclusively on host PCIe buses.",
+          "The Runtime API is deprecated and replaced by legacy OpenCL bindings.",
+          "The Driver API only supports single-thread execution, whereas the Runtime API supports multi-node InfiniBand clusters."
+        ],
+        correctIndex: 0,
+        explanation: "Correct! The Runtime API simplifies development with automatic context initialization and implicit memory operations, while the Driver API offers explicit low-level control.",
+        hint: "Think about convenience versus granular control: one API manages contexts explicitly, while the other abstracts context initialization for ease of use."
+      },
+      {
+        q: "Which optimization technique implemented by NVIDIA TensorRT involves combining adjacent neural network layers (such as Convolution, Bias, and ReLU) into a single GPU kernel to reduce HBM read/write traffic?",
+        options: [
+          "Weight Pruning",
+          "Layer and Tensor Fusion",
+          "Gradient Checkpointing",
+          "Asynchronous CUDA Streams"
+        ],
+        correctIndex: 1,
+        explanation: "Correct! Vertical and horizontal layer fusion combine operations into a single kernel pass, eliminating intermediate memory round-trips to HBM.",
+        hint: "Instead of writing output tensors from a convolution to HBM just for the next activation function to immediately read them back, what fuses them into one pass?"
+      },
+      {
+        q: "How does NVIDIA Triton Inference Server's dynamic batching feature improve GPU utilization in production serving environments?",
+        options: [
+          "It permanently converts all PyTorch models into static C++ binaries offline.",
+          "It coalesces individual incoming inference requests arriving within a short time window into a single combined batch before dispatching them to the GPU.",
+          "It disables multi-model concurrent execution on the GPU.",
+          "It executes model inference exclusively on host CPU threads."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! Dynamic batching groups independent client requests into a larger batch to maximize hardware parallelism without requiring clients to send batched payloads.",
+        hint: "Imagine 10 users send single prompts to an API within a 5-millisecond window; dynamic batching groups them together before running inference."
+      },
+      {
+        q: "What is the primary value proposition of deploying foundation models using NVIDIA Inference Microservices (NIM)?",
+        options: [
+          "NIM replaces the GPU VRAM requirement by streaming model weights from public cloud disk over HTTP.",
+          "It packages pre-trained, hardware-optimized runtime engines (such as TensorRT/vLLM) with standardized OpenAI-compatible REST/gRPC microservice APIs and enterprise security.",
+          "NIM is an offline distributed training framework designed for multi-node gradient descent.",
+          "NIM requires custom bare-metal C++ kernel writing for every new model architecture."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! NIM encapsulates optimized inference engines and standard APIs into portable, containerized microservices ready for enterprise deployment.",
+        hint: "Think about containerized microservice standards combined with pre-tuned, high-throughput inference backends."
+      },
+      {
+        q: "Which Python data science library in the NVIDIA RAPIDS ecosystem provides a GPU-accelerated DataFrame API designed as a drop-in equivalent replacement for pandas?",
+        options: ["cuML", "cuDF", "cuGraph", "TensorRT"],
+        correctIndex: 1,
+        explanation: "Correct! cuDF provides a pandas-like DataFrame API that executes on GPU memory using Apache Arrow columnar memory structures.",
+        hint: "Think of the first two letters representing CUDA and the next letters representing DataFrames."
+      },
+      {
+        q: "What is the core structural difference between an NVIDIA HGX baseboard system and an NVIDIA DGX integrated appliance?",
+        options: [
+          "HGX systems include integrated x86 server nodes and DGX systems are naked 8-GPU boards sold to third-party OEMs.",
+          "HGX is a high-density 8-GPU/NVSwitch modular baseboard supplied to OEM partners (e.g., Dell, HPE) to build custom servers, whereas DGX is NVIDIA’s turnkey, factory-integrated enterprise server system.",
+          "HGX supports NVLink while DGX is restricted to PCIe Gen1 connectivity.",
+          "DGX systems cannot be used in data center rack clusters."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! HGX provides the modular accelerated building block for OEM ecosystem partners, while DGX is NVIDIA's branded turnkey accelerated computing appliance.",
+        hint: "Consider OEM integration vs. NVIDIA's proprietary turnkey server engineering."
+      },
+      {
+        q: "In an NVIDIA 8-GPU HGX/DGX node, why is the NVLink and NVSwitch interconnect fabric superior to standard PCIe Gen5 switches for multi-GPU training?",
+        options: [
+          "NVLink converts all GPU traffic into Wi-Fi 7 wireless packets.",
+          "NVSwitch provides a high-bandwidth, non-blocking, all-to-all GPU-to-GPU interconnect fabric that bypasses the host CPU and PCIe bottlenecks.",
+          "PCIe Gen5 provides higher bi-directional bandwidth per GPU than NVLink.",
+          "NVSwitch is used exclusively for routing out-of-band IPMI sensor data."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! NVSwitch allows any GPU in the node to communicate directly with any other GPU at terabit-per-second speeds without traversing the CPU or PCIe switch hierarchy.",
+        hint: "Think about tensor-parallelism and pipeline-parallelism across 8 GPUs inside a single enclosure without CPU bottlenecks."
+      },
+      {
+        q: "What distinct advantage does NVIDIA Spectrum-X provide for enterprise AI clusters compared to standard traditional Ethernet?",
+        options: [
+          "It completely eliminates all switches in favor of direct serial cables.",
+          "It converts Ethernet into low-power Bluetooth signals.",
+          "It brings AI-optimized adaptive routing, congestion control, and Direct Data Placement to enterprise Ethernet fabrics.",
+          "It is physically incompatible with Linux kernel network interfaces."
+        ],
+        correctIndex: 2,
+        explanation: "Correct! Spectrum-X enhances standard Ethernet with InfiniBand-like telemetry, adaptive routing, and performance isolation for AI workloads.",
+        hint: "Think of bringing InfiniBand-grade congestion management and adaptive routing to Ethernet-based data centers."
+      },
+      {
+        q: "When configuring a RoCEv2 (RDMA over Converged Ethernet) network for distributed GPU training, which two Ethernet features are mandatory on switches and network adapters to prevent packet loss during congestion?",
+        options: [
+          "Telnet and SNMPv1",
+          "Spanning Tree Protocol (STP) and HTTP/2",
+          "Priority-Based Flow Control (PFC) and Explicit Congestion Notification (ECN)",
+          "IPsec encryption and NAT traversal"
+        ],
+        correctIndex: 2,
+        explanation: "Correct! PFC provides lossless link-level pause frames per priority queue, while ECN signals congestion early to end-hosts to throttle send rates without dropping packets.",
+        hint: "One feature pauses traffic at the link layer when buffers fill, and the other marks congestion flags on IP headers before queues overflow."
+      },
+      {
+        q: "What is the primary role of an NVIDIA BlueField Data Processing Unit (DPU) inside an AI supercomputing node?",
+        options: [
+          "To offload, accelerate, and isolate infrastructure tasks—such as software-defined networking, NVMe-oF storage access, telemetry, and zero-trust security—from the host CPU and GPU.",
+          "To replace GPU Tensor Cores during FP8 training passes.",
+          "To act as an auxiliary x86 BIOS boot ROM.",
+          "To store model checkpoints on magnetic tape."
+        ],
+        correctIndex: 0,
+        explanation: "Correct! BlueField DPUs combine embedded ARM cores and hardware accelerators to handle infrastructure services, freeing 100% of host CPU/GPU cycles for AI computation.",
+        hint: "Think of a 'DPU' as an on-card computer dedicated to infrastructure tasks (networking, security, storage) so the host CPU/GPU doesn't waste cycles on them."
+      },
+      {
+        q: "How does NVIDIA GPUDirect Storage (GDS) accelerate I/O throughput between storage subsystems and GPU VRAM?",
+        options: [
+          "It routes all NVMe data through the CPU L3 cache before writing to GPU VRAM.",
+          "It establishes a direct DMA (Direct Memory Access) path between local or network NVMe storage and GPU memory via PCIe, bypassing host CPU bounce buffers.",
+          "It decompresses ZIP files using host Python threads.",
+          "It converts SSD storage blocks into optical wireless signals."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! GDS eliminates CPU memory copies, dramatically lowering latency and CPU overhead when loading massive training datasets.",
+        hint: "Where does the traditional POSIX file read go? Storage -> CPU RAM -> GPU VRAM. GDS cuts out the middleman (CPU RAM)."
+      },
+      {
+        q: "What distinguishes an NVIDIA DGX BasePOD blueprint from an NVIDIA DGX SuperPOD blueprint?",
+        options: [
+          "DGX BasePOD uses liquid cooling while SuperPOD uses only passive air cooling.",
+          "BasePOD is a flexible, modular enterprise reference architecture for smaller clusters, whereas SuperPOD is an ultra-scale, highly standardized, turnkey supercomputing architecture designed for thousands of GPUs.",
+          "BasePOD only supports CPUs and cannot contain DGX systems.",
+          "SuperPOD does not use InfiniBand or Spectrum-X networking."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! SuperPOD defines a strict, massive-scale reference topology with dedicated scaling ratios, while BasePOD offers modular enterprise flexibility.",
+        hint: "Think of 'Base' as a flexible modular starting block for enterprise vs 'Super' as a hyperscale turnkey reference supercomputer design."
+      },
+      {
+        q: "Why are modern high-density AI server platforms (such as NVIDIA Blackwell B200 / NVL72 racks) increasingly adopting direct-to-chip or immersion liquid cooling instead of traditional air cooling?",
+        options: [
+          "Liquid cooling eliminates the need for any electrical power supplies in the rack.",
+          "Thermal Design Power (TDP) per rack now exceeds 100–120 kW, surpassing the heat-dissipation limits of forced-air cooling systems.",
+          "Liquid cooling increases PCIe Gen5 signal latency.",
+          "Air cooling is illegal in modern data centers."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! Modern multi-GPU racks dissipate over 100 kilowatts, making liquid cooling mandatory to maintain safe junction temperatures and peak clock speeds.",
+        hint: "Consider the thermal envelope (kW per rack) of a 72-GPU NVLink domain like NVL72."
+      },
+      {
+        q: "What is the primary function of the NVIDIA GPU Operator in a Kubernetes cluster?",
+        options: [
+          "It compiles PyTorch source code into C++ binaries inside user pods.",
+          "It automates the management of NVIDIA software components in Kubernetes—including NVIDIA drivers, the Container Toolkit, DCGM exporter, and device plugins—using Kubernetes Operator patterns.",
+          "It replaces the Kubernetes kube-apiserver with an NVIDIA-proprietary scheduler.",
+          "It runs virtual machines instead of containers."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! The GPU Operator automates node provisioning and lifecycle management of GPU drivers and container runtimes on Kubernetes clusters.",
+        hint: "Think of Helm-driven automation that installs GPU drivers, Container Toolkit, and Kubernetes Device Plugins automatically on worker nodes."
+      },
+      {
+        q: "What is the fundamental difference between NVIDIA Multi-Instance GPU (MIG) and GPU Time-Slicing?",
+        options: [
+          "MIG shares a single GPU temporally across multiple processes, while Time-Slicing physically partitions the GPU silicon into isolated fault-domain instances.",
+          "MIG physically partitions a GPU into hardware-isolated instances with dedicated SMs, memory controllers, and cache, whereas Time-Slicing multiplexes multiple processes onto the same physical GPU over time.",
+          "MIG only works on CPUs and Time-Slicing requires special InfiniBand switches.",
+          "Neither feature supports containerized workloads in Kubernetes."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! MIG provides true hardware-level isolation, QoS, and fault containment per slice, whereas Time-Slicing context-switches processes on the shared GPU.",
+        hint: "Ask yourself: does the feature slice physical silicon (SMs + memory controllers) or does it rapidly share the whole GPU in time slices?"
+      },
+      {
+        q: "What is the purpose of NVIDIA Data Center GPU Manager (DCGM) in an AI data center?",
+        options: [
+          "It compiles CUDA C++ code into machine assembly instructions.",
+          "It provides comprehensive in-band and out-of-band GPU telemetry, hardware diagnostics, power/thermal monitoring, and automated policy enforcement for enterprise clusters.",
+          "It replaces the Slurm scheduler on login nodes.",
+          "It encrypts network packets traveling over InfiniBand switches."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! DCGM (paired with DCGM Exporter and Prometheus/Grafana) is the industry standard for monitoring GPU utilization, ECC errors, thermal throttles, and health checks.",
+        hint: "Think about Prometheus scraping GPU temperature, power draw, XID errors, and utilization metrics in real time."
+      },
+      {
+        q: "When configuring a Slurm Workload Manager script to allocate GPUs on an enterprise cluster, which generic resource (GRES) flag is used to request 4 NVIDIA GPUs of a specific type (e.g., h100)?",
+        options: [
+          "#SBATCH --nodes=4",
+          "#SBATCH --cpus-per-task=4",
+          "#SBATCH --gres=gpu:h100:4",
+          "#SBATCH --cuda-devices=4"
+        ],
+        correctIndex: 2,
+        explanation: "Correct! Slurm uses the Generic Resource (--gres) parameter formatted as gpu:[type]:count to allocate specific GPU models and counts to a job.",
+        hint: "Look for the Slurm directive starting with --gres=gpu:...."
+      },
+      {
+        q: "What is the primary role of NVIDIA Base Command Manager (BCM) in a large-scale enterprise or HPC cluster?",
+        options: [
+          "It serves REST API prompts for LLM chat interfaces.",
+          "It provides bare-metal cluster provisioning, OS image management, network/storage configuration, and health monitoring from a single management plane.",
+          "It is a Python library for training transformer attention layers.",
+          "It runs exclusively inside Docker containers on a single workstation."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! BCM (formerly Bright Cluster Manager) automates cluster deployment, PXE booting, software image updates, and hardware monitoring across hundreds of nodes.",
+        hint: "Think of bare-metal OS provisioning, cluster health checks, and lifecycle management across hundreds of DGX/HGX nodes."
+      },
+      {
+        q: "In a multi-GPU distributed training job using PyTorch and NVIDIA NCCL, which collective communication primitive is used during Data Parallelism (DDP/FSDP) to sum gradients across all GPU ranks and distribute the aggregated result back to every rank?",
+        options: ["ncclBroadcast", "ncclAllGather", "ncclAllReduce", "ncclReduceScatter"],
+        correctIndex: 2,
+        explanation: "Correct! AllReduce performs an in-place reduction (e.g., sum or mean) of tensors across all ranks and makes the final result available on every GPU.",
+        hint: "Think of the collective operation that combines ('reduces') gradient tensors from every GPU and broadcasts ('all') the result back to all GPUs."
+      },
+      {
+        q: "During a multi-node 1,000-GPU pre-training run, what is the primary operational challenge that distributed asynchronous checkpointing (such as PyTorch FSDP distributed checkpointing) addresses?",
+        options: [
+          "It prevents InfiniBand packets from exceeding 1500 bytes.",
+          "Writing multi-terabyte model and optimizer states synchronously from all ranks can stall cluster compute for minutes; distributed asynchronous checkpointing offloads and parallelizes I/O without blocking training loops.",
+          "It converts all FP32 weights to INT4 automatically during a crash.",
+          "It eliminates the need for persistent storage volumes."
+        ],
+        correctIndex: 1,
+        explanation: "Correct! Distributed checkpointing shards the model state across ranks and writes out-of-band or asynchronously, minimizing MTTR (Mean Time to Repair/Resume) after hardware faults.",
+        hint: "When you have a 100-billion parameter model with Adam optimizer states, saving a checkpoint across 1,000 GPUs can cause massive I/O stalls unless done asynchronously and distributively."
+      }
+    ];
+
+    const labels = ["A", "B", "C", "D"];
+    let current = 0;
+    let userAnswers = new Array(questions.length).fill(null);
+    let isTextView = false;
+
+    const segmentsEl = document.getElementById("segments");
+    const counterEl = document.getElementById("counter");
+    const questionEl = document.getElementById("questionText");
+    const optionsEl = document.getElementById("optionsContainer");
+    const hintToggle = document.getElementById("hintToggle");
+    const hintText = document.getElementById("hintText");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const quizBody = document.getElementById("quizBody");
+    const summaryView = document.getElementById("summaryView");
+
+    function renderQuestion() {
+      quizBody.classList.remove("hidden");
+      summaryView.classList.add("hidden");
+
+      const item = questions[current];
+      const chosen = userAnswers[current];
+
+      counterEl.textContent = `${current + 1} / ${questions.length}`;
+      questionEl.textContent = `${current + 1}. ${item.q}`;
+
+      // Progress segments
+      segmentsEl.innerHTML = "";
+      questions.forEach((q, i) => {
+        const seg = document.createElement("div");
+        seg.className = "segment";
+        if (i === current) seg.classList.add("active");
+        else if (userAnswers[i] !== null) {
+          seg.classList.add(userAnswers[i] === q.correctIndex ? "correct-seg" : "wrong-seg");
+        }
+        seg.title = `Question ${i + 1}`;
+        seg.onclick = () => { current = i; renderQuestion(); };
+        segmentsEl.appendChild(seg);
+      });
+
+      // Options
+      optionsEl.innerHTML = "";
+      item.options.forEach((optText, idx) => {
+        const div = document.createElement("div");
+        div.className = "option";
+        const isCorrect = idx === item.correctIndex;
+        const feedbackMsg = isCorrect ? item.explanation : "Incorrect. Review the highlighted correct answer and explanation.";
+
+        div.innerHTML = `
+          <div class="option-header"><span>${labels[idx]}.</span><span>${optText}</span></div>
+          <div class="feedback">${feedbackMsg}</div>
+        `;
+
+        if (chosen !== null) {
+          div.classList.add("locked");
+          if (idx === item.correctIndex) div.classList.add("correct", "show-feedback");
+          else if (idx === chosen) div.classList.add("wrong", "show-feedback");
+        } else {
+          div.onclick = () => {
+            userAnswers[current] = idx;
+            renderQuestion();
+          };
+        }
+        optionsEl.appendChild(div);
+      });
+
+      // Hint & nav buttons
+      hintText.textContent = item.hint;
+      hintText.classList.remove("open");
+      hintToggle.textContent = "Show hint ⌄";
+      prevBtn.disabled = current === 0;
+      nextBtn.textContent = current === questions.length - 1 ? "Finish" : "Next";
+    }
+
+    function showSummary() {
+      quizBody.classList.add("hidden");
+      summaryView.classList.remove("hidden");
+      const correctCount = userAnswers.filter((ans, i) => ans === questions[i].correctIndex).length;
+      const pct = Math.round((correctCount / questions.length) * 100);
+      document.getElementById("scoreDisplay").textContent = `${correctCount} / ${questions.length} (${pct}%)`;
+      document.getElementById("scoreSubtext").textContent = pct >= 70
+        ? "Solid pass! You are well-prepared for the NCA-AIIO domains."
+        : "Review the missed questions using the progress bar or Text view.";
+    }
+
+    hintToggle.onclick = () => {
+      const open = hintText.classList.toggle("open");
+      hintToggle.textContent = open ? "Hide hint ⌃" : "Show hint ⌄";
+    };
+
+    prevBtn.onclick = () => { if (current > 0) { current--; renderQuestion(); } };
+    nextBtn.onclick = () => {
+      if (current < questions.length - 1) { current++; renderQuestion(); }
+      else { showSummary(); }
+    };
+
+    document.getElementById("restartBtn").onclick = () => {
+      current = 0;
+      userAnswers = new Array(questions.length).fill(null);
+      renderQuestion();
+    };
+
+    document.getElementById("toggleViewBtn").onclick = () => {
+      isTextView = !isTextView;
+      document.getElementById("interactiveView").classList.toggle("hidden", isTextView);
+      const tv = document.getElementById("textView");
+      tv.classList.toggle("hidden", !isTextView);
+      document.getElementById("toggleViewBtn").textContent = isTextView ? "Interactive view" : "☰ Text view";
+
+      if (isTextView) {
+        tv.innerHTML = questions.map((item, i) => `
+          <div class="text-view-item">
+            <strong>${i + 1}. ${item.q}</strong>
+            <p><strong>Answer: ${labels[item.correctIndex]})</strong> ${item.options[item.correctIndex]}</p>
+            <p>${item.explanation}</p>
+          </div>
+        `).join("");
+      }
+    };
+
+    renderQuestion();
+  </script>
+</body>
+</html>
