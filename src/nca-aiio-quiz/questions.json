@@ -1,6 +1,6 @@
 [
   {
-    "title": "NCA-AIIO Foundational Quiz - Beginner (13 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Beginner",
     "questions": [
       {
         "q": "Which of the following best describes the relationship between Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)?",
@@ -161,7 +161,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Beginner (13 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Beginner",
     "questions": [
       {
         "q": "Which of the following best describes the hierarchical relationship between Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL)?",
@@ -322,7 +322,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Beginner (8 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Beginner",
     "questions": [
       {
         "q": "Which 8-bit floating-point format native to NVIDIA Hopper and Blackwell architectures is designed to accelerate AI training and inference while preserving dynamic range?",
@@ -423,7 +423,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Beginner (16 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Beginner",
     "questions": [
       {
         "q": "Which of the following best distinguishes Deep Learning from traditional Machine Learning?",
@@ -620,7 +620,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Beginner (15 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Beginner",
     "questions": [
       {
         "q": "What is the primary difference between the training phase and the inference phase in a deep learning model?",
@@ -805,7 +805,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Intermediate (10 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Intermediate",
     "questions": [
       {
         "q": "Which of the following best characterizes the primary operational and architectural distinction between AI model training and AI model inference?",
@@ -930,7 +930,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Training vs. Inference Intermediate (10 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Training vs. Inference Intermediate",
     "questions": [
       {
         "q": "Which of the following best describes the difference in computational workload between training a large language model and running inference with it?",
@@ -1055,7 +1055,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - AI Systems & Infrastructure Intermediate (10 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - AI Systems & Infrastructure Intermediate",
     "questions": [
       {
         "q": "For a standard dense transformer layer, what is the theoretical ratio of floating-point operations (FLOPs) required for the backward pass (computing gradients with respect to weights and activations) compared to the forward pass?",
@@ -1180,7 +1180,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Intermediate (17 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Intermediate",
     "questions": [
       {
         "q": "An AI systems architect is explaining to a junior infrastructure engineer why training a deep neural network on an NVIDIA GPU is orders of magnitude faster than on a dual-socket x86 CPU. Which architectural difference is the primary driver of this throughput advantage?",
@@ -1389,7 +1389,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Intermediate (20 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Intermediate",
     "questions": [
       {
         "q": "When comparing an enterprise GPU (such as an NVIDIA H200/B200) to a dual-socket x86 CPU, what fundamental architectural design choice explains why the GPU achieves orders-of-magnitude higher throughput on deep learning matrix multiplications?",
@@ -1634,7 +1634,7 @@
     ]
   },
   {
-    "title": "NCA-AIIO Foundational Quiz - Advanced (24 Questions)",
+    "title": "NCA-AIIO Foundational Quiz - Advanced",
     "questions": [
       {
         "q": "An enterprise architecture team is designing an 8-GPU node configuration for large language model (LLM) training. They need a ultra-high-speed, low-latency fabric that allows all 8 GPUs inside the same chassis to act as a single logical processor with direct memory access between GPU memory spaces. Which NVIDIA interconnect technology satisfies this requirement?",

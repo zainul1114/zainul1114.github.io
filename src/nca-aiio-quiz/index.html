@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NCA-AIIO — Complete Practice Bank</title>
+  <title>NCA-AIIO — Interactive Practice Quiz</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -12,55 +12,56 @@
       --card-bg: #f1f3f4;
       --card-hover: #e8eaed;
       --correct-bg: #ceead6;
-      --correct-border: #1e8e3e;
-      --wrong-bg: #fce8e6;
-      --wrong-border: #d93025;
+      --correct-accent: #1e8e3e;
+      --wrong-bg: #f1f3f4;
+      --wrong-accent: #d93025;
       --primary: #0b57d0;
       --progress-inactive: #e0e0e0;
     }
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    * { box-sizing: border-box; font-family: "Google Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
     body { background: var(--bg); color: var(--text); margin: 0; padding: 32px 16px; display: flex; justify-content: center; }
-    .container { width: 100%; max-width: 780px; }
+    .container { width: 100%; max-width: 740px; }
 
+    /* Header */
     .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
-    .header h1 { font-size: 1.3rem; margin: 0; line-height: 1.35; }
+    .header h1 { font-size: 1.4rem; font-weight: 600; margin: 0; line-height: 1.35; }
     .text-view-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.9rem; white-space: nowrap; padding: 6px 10px; border-radius: 8px; }
     .text-view-btn:hover { background: var(--card-bg); color: var(--text); }
 
     /* Quiz Selector */
-    .controls-row { display: flex; width: 100%; margin-bottom: 20px; }
-    .quiz-select { width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #dadce0;
-  font-size: 0.95rem;
-  background: #fff;
-  color: var(--text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    .controls-row { display: flex; width: 100%; margin-bottom: 24px; }
+    .quiz-select {
+      width: 100%; max-width: 100%; min-width: 0;
+      padding: 10px 14px; border-radius: 10px; border: 1px solid #dadce0;
+      font-size: 0.95rem; background: #fff; color: var(--text);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
 
-    /* Progress Bar */
-    .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .segments { display: flex; flex: 1; gap: 3px; flex-wrap: nowrap; overflow: hidden; }
-    .segment { flex: 1; height: 5px; background: var(--progress-inactive); border-radius: 3px; cursor: pointer; min-width: 3px; }
+    /* Segmented Progress Bar with Checkmarks */
+    .progress-row { display: flex; align-items: flex-end; gap: 12px; margin-bottom: 26px; }
+    .segments { display: flex; flex: 1; gap: 5px; align-items: flex-end; }
+    .seg-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; cursor: pointer; min-width: 4px; }
+    .seg-icon { font-size: 0.72rem; height: 14px; line-height: 14px; margin-bottom: 3px; font-weight: 700; }
+    .seg-icon.ok { color: var(--correct-accent); }
+    .seg-icon.err { color: var(--wrong-accent); }
+    .segment { width: 100%; height: 4px; background: var(--progress-inactive); border-radius: 2px; }
     .segment.active { background: var(--primary); }
-    .segment.correct-seg { background: var(--correct-border); }
-    .segment.wrong-seg { background: var(--wrong-border); }
-    .counter { font-size: 0.9rem; color: var(--muted); white-space: nowrap; }
+    .segment.done-ok { background: var(--correct-accent); }
+    .segment.done-err { background: var(--wrong-accent); }
+    .counter { font-size: 0.9rem; color: var(--muted); white-space: nowrap; padding-bottom: 1px; }
 
     /* Question & Options */
-    .question-text { font-size: 1.12rem; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+    .question-text { font-size: 1.15rem; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
     .options { display: flex; flex-direction: column; gap: 12px; }
-    .option { background: var(--card-bg); border: 2px solid transparent; border-radius: 12px; padding: 14px 18px; cursor: pointer; text-align: left; transition: background 0.15s; }
+    .option {
+      background: var(--card-bg); border: 1.5px solid transparent; border-radius: 12px;
+      padding: 14px 18px; cursor: pointer; text-align: left; transition: background 0.15s;
+    }
     .option:hover:not(.locked) { background: var(--card-hover); }
     .option.correct { background: var(--correct-bg); }
-    .option.wrong { background: var(--wrong-bg); }
+    .option.wrong { background: var(--wrong-bg); border-color: #dadce0; }
     .option-header { display: flex; gap: 10px; font-size: 0.98rem; font-weight: 500; line-height: 1.45; }
-    .feedback { margin-top: 8px; margin-left: 24px; font-size: 0.9rem; line-height: 1.45; color: #3c4043; display: none; }
+    .feedback { margin-top: 8px; margin-left: 24px; font-size: 0.92rem; line-height: 1.45; color: #3c4043; display: none; }
     .option.show-feedback .feedback { display: block; }
 
     /* Footer */
@@ -70,11 +71,12 @@
     .hint-text { margin-top: 8px; font-size: 0.92rem; color: var(--muted); line-height: 1.45; display: none; }
     .hint-text.open { display: block; }
     .nav-btns { display: flex; gap: 10px; }
-    .btn { border: none; border-radius: 24px; padding: 10px 22px; font-size: 0.95rem; font-weight: 500; cursor: pointer; }
+    .btn { border: none; border-radius: 24px; padding: 10px 24px; font-size: 0.95rem; font-weight: 500; cursor: pointer; }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-secondary { background: var(--card-bg); color: var(--text); }
     .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    /* Summary & Text View */
     .summary-card { background: var(--card-bg); border-radius: 14px; padding: 28px; text-align: center; }
     .score-big { font-size: 2.4rem; font-weight: 700; color: var(--primary); margin: 12px 0; }
     .text-view-item { border-bottom: 1px solid #e0e0e0; padding: 16px 0; }
@@ -131,7 +133,7 @@
     let allSets = [];
     let questions = [];
     let current = 0;
-    let userAnswers = [];
+    let states = []; // { solved: bool, hadWrong: bool, tried: Set<number> }
     let isTextView = false;
 
     const quizSelect = document.getElementById("quizSelect");
@@ -168,7 +170,7 @@
         questions = set.questions;
       }
       current = 0;
-      userAnswers = new Array(questions.length).fill(null);
+      states = questions.map(() => ({ solved: false, hadWrong: false, tried: new Set() }));
       if (isTextView) renderTextView();
       renderQuestion();
     }
@@ -180,43 +182,60 @@
       summaryView.classList.add("hidden");
 
       const item = questions[current];
-      const chosen = userAnswers[current];
+      const st = states[current];
 
       counterEl.textContent = `${current + 1} / ${questions.length}`;
       questionEl.textContent = `${current + 1}. ${item.q}`;
 
+      // Render segments (show icons when <= 30 questions so it stays readable)
+      const showIcons = questions.length <= 30;
       segmentsEl.innerHTML = "";
-      questions.forEach((q, i) => {
-        const seg = document.createElement("div");
-        seg.className = "segment";
-        if (i === current) seg.classList.add("active");
-        else if (userAnswers[i] !== null) {
-          seg.classList.add(userAnswers[i] === q.correctIndex ? "correct-seg" : "wrong-seg");
+      questions.forEach((_, i) => {
+        const s = states[i];
+        const wrap = document.createElement("div");
+        wrap.className = "seg-wrap";
+        wrap.title = `Question ${i + 1}`;
+        wrap.onclick = () => { current = i; renderQuestion(); };
+
+        let iconHtml = "";
+        let segClass = "segment";
+        if (i === current) segClass += " active";
+        if (s.solved && !s.hadWrong) {
+          if (showIcons) iconHtml = `<div class="seg-icon ok">✓</div>`;
+          if (i !== current) segClass += " done-ok";
+        } else if (s.hadWrong) {
+          if (showIcons) iconHtml = `<div class="seg-icon err">${s.solved ? "✓" : "✕"}</div>`;
+          if (i !== current) segClass += s.solved ? " done-ok" : " done-err";
+        } else if (showIcons) {
+          iconHtml = `<div class="seg-icon"></div>`;
         }
-        seg.title = `Question ${i + 1}`;
-        seg.onclick = () => { current = i; renderQuestion(); };
-        segmentsEl.appendChild(seg);
+
+        wrap.innerHTML = `${iconHtml}<div class="${segClass}"></div>`;
+        segmentsEl.appendChild(wrap);
       });
 
+      // Render options
       optionsEl.innerHTML = "";
       item.options.forEach((optText, idx) => {
         const div = document.createElement("div");
         div.className = "option";
         const isCorrect = idx === item.correctIndex;
-        const feedbackMsg = isCorrect ? item.explanation : "Incorrect. Review the highlighted correct answer and explanation.";
+        const feedbackMsg = isCorrect ? item.explanation : "Incorrect. Try another option.";
 
         div.innerHTML = `
           <div class="option-header"><span>${labels[idx]}.</span><span>${optText}</span></div>
           <div class="feedback">${feedbackMsg}</div>
         `;
 
-        if (chosen !== null) {
+        if (st.tried.has(idx)) {
+          div.classList.add("show-feedback", "locked", isCorrect ? "correct" : "wrong");
+        } else if (st.solved) {
           div.classList.add("locked");
-          if (idx === item.correctIndex) div.classList.add("correct", "show-feedback");
-          else if (idx === chosen) div.classList.add("wrong", "show-feedback");
         } else {
           div.onclick = () => {
-            userAnswers[current] = idx;
+            st.tried.add(idx);
+            if (isCorrect) st.solved = true;
+            else st.hadWrong = true;
             renderQuestion();
           };
         }
@@ -251,12 +270,12 @@
       else {
         quizBody.classList.add("hidden");
         summaryView.classList.remove("hidden");
-        const correctCount = userAnswers.filter((ans, i) => ans === questions[i].correctIndex).length;
-        const pct = Math.round((correctCount / questions.length) * 100);
-        document.getElementById("scoreDisplay").textContent = `${correctCount} / ${questions.length} (${pct}%)`;
+        const firstTryCorrect = states.filter(s => s.solved && !s.hadWrong).length;
+        const pct = Math.round((firstTryCorrect / questions.length) * 100);
+        document.getElementById("scoreDisplay").textContent = `${firstTryCorrect} / ${questions.length} (${pct}%)`;
         document.getElementById("scoreSubtext").textContent = pct >= 70
-          ? "Solid pass! You are well-prepared for these NCA-AIIO topics."
-          : "Review missed questions using the progress bar or Text view.";
+          ? "First-try score looks strong! You are well-prepared for these NCA-AIIO topics."
+          : "First-try score: review missed questions using the progress bar or Text view.";
       }
     };
 
