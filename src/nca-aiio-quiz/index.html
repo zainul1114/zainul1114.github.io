@@ -28,8 +28,20 @@
     .text-view-btn:hover { background: var(--card-bg); color: var(--text); }
 
     /* Quiz Selector */
-    .controls-row { display: flex; gap: 10px; margin-bottom: 20px; }
-    .quiz-select { flex: 1; padding: 10px 12px; border-radius: 10px; border: 1px solid #dadce0; font-size: 0.95rem; background: #fff; color: var(--text); }
+    .controls-row { display: flex; width: 100%; margin-bottom: 20px; }
+    .quiz-select { width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dadce0;
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+    }
 
     /* Progress Bar */
     .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
