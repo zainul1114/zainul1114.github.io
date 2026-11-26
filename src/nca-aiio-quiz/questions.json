@@ -1927,7 +1927,7 @@
     ]
   },
   {
-    "title": "Remember how Pyxis acts as a Slurm plugin allowing srun to natively invoke Enroot containers with GPU GRES flags.",
+    "title": "Hint: Remember how Pyxis acts as a Slurm plugin allowing srun to natively invoke Enroot containers with GPU GRES flags.",
     "questions": [
       {
         "q": "What causes a shared memory \"bank conflict\" in a CUDA kernel running on a Streaming Multiprocessor?",
@@ -2022,35 +2022,6 @@
           "E4M3 requires 16-bit NVLink lanes whereas E5M2 requires 8-bit NVLink lanes"
         ],
         "hint": "Break down the naming convention: E4M3 means 4 Exponent bits + 3 Mantissa bits; E5M2 means 5 Exponent bits + 2 Mantissa bits.",
-        "correctIndex": 0,
-        "explanation": ""
-      },
-      {
-        "q": "When launching a multi-node distributed training job in Slurm with NVIDIA GPUs, what command and flag combination properly allocates 8 GPUs per node with Pyxis/Enroot container runtime integration?",
-        "options": [
-          "sbatch --gres=gpu:8 --container-image=nvcr.io/nvidia/pytorch:24.01-py3 my_job.sh",
-          "srun --nodes=2 --ntasks-per-node=8 --gpus-per-node=8 --container-image=... --container-mounts=... python train.py",
-          "mpirun -np 16 --nvidia-docker-runtime python train.py",
-          "kubeadm apply -f slurm-gpu-deployment.yaml"
-        ],
-        "hint": "Remember how Pyxis acts as a Slurm plugin allowing srun to natively invoke Enroot containers with GPU GRES flags.",
-        "correctIndex": 0,
-        "explanation": ""
-      }
-    ]
-  },
-  {
-    "title": "Compare the exponent bit-widths between FP16 (5 bits) and BF16 (8 bits) and think about what happens to very small gradient values during backpropagation.",
-    "questions": [
-      {
-        "q": "Why is dynamic \"loss scaling\" mandatory when training deep learning models with FP16 in Automatic Mixed Precision (unlike when using BF16)?",
-        "options": [
-          "BF16 has a smaller exponent range than FP16, making BF16 more prone to gradient underflow.",
-          "FP16 has a narrow dynamic range and small 5-bit exponent, causing small gradients to underflow to zero; scaling the loss magnifies gradients before backward propagation and un-scales them before the optimizer step.",
-          "Loss scaling automatically converts all tensor operations inside Tensor Cores to FP64 on the fly.",
-          "Loss scaling replaces the need for any gradient clipping or weight decay in optimizers like AdamW."
-        ],
-        "hint": "Compare the exponent bit-widths between FP16 (5 bits) and BF16 (8 bits) and think about what happens to very small gradient values during backpropagation.",
         "correctIndex": 0,
         "explanation": ""
       }
