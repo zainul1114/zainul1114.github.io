@@ -11,8 +11,8 @@
           "Machine Learning is only used for rule-based expert systems without data."
         ],
         "hint": "Think of these three terms as concentric circles from the largest scope down to the most specialized deep neural network techniques.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! AI is the overarching concept, ML is a specific approach within AI, and Deep Learning uses deep neural networks as a specialized branch of Machine Learning."
       },
       {
         "q": "What is the primary architectural difference that makes a GPU better suited for deep learning training than a traditional CPU?",
@@ -23,8 +23,8 @@
           "GPUs can only run operating systems and web servers, while CPUs are exclusively used for neural networks."
         ],
         "hint": "Consider how a CPU handles a few complex tasks very quickly in sequence versus how a GPU handles thousands of simple math operations simultaneously.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! GPUs excel at parallel matrix multiplications, which form the backbone of deep learning workloads."
       },
       {
         "q": "What is the primary function of an NVIDIA DPU (Data Processing Unit) in an AI data center?",
@@ -35,8 +35,8 @@
           "Offloading networking, storage, and security infrastructure tasks from the host CPU."
         ],
         "hint": "Think about data movement and security at the node boundary—what chip acts as a smart network adapter that handles infrastructure overhead?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! NVIDIA BlueField DPUs offload, accelerate, and isolate networking, storage, and security services, freeing up CPU cycles for application logic."
       },
       {
         "q": "Which phase of the AI lifecycle involves a neural network learning patterns from a large dataset by iteratively updating its internal weights?",
@@ -48,7 +48,7 @@
         ],
         "hint": "One phase is like \"studying for an exam\" to build knowledge, while the other is \"taking the exam\" in production.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Training is the compute-intensive phase where a model processes data and adjusts its weights via backpropagation."
       },
       {
         "q": "What is NVIDIA CUDA?",
@@ -59,8 +59,8 @@
           "A command-line tool used exclusively for checking GPU temperature and fan speed."
         ],
         "hint": "Think of this as the foundational software layer that unlocked general-purpose GPU (GPGPU) programming beyond just graphics rendering.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! CUDA is NVIDIA's software layer that enables developers to program GPUs using C, C++, Python, and other languages."
       },
       {
         "q": "Which NVIDIA software tool is specifically mapped to high-performance deep learning inference optimization and runtime execution?",
@@ -71,8 +71,8 @@
           "Slurm"
         ],
         "hint": "Look for the tool whose name explicitly hints at \"Tensor\" operations combined with \"RT\" (Runtime/Real-Time inference).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! TensorRT takes a trained neural network and optimizes layer fusion, precision calibration (FP16/INT8), and runtime execution for low-latency inference."
       },
       {
         "q": "What is the primary purpose of the NVIDIA Triton Inference Server?",
@@ -83,8 +83,8 @@
           "To monitor power usage and fan RPM of individual GPU cards."
         ],
         "hint": "Think of an enterprise software service that acts as a unified API endpoint to run AI models in production.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Triton Inference Server lets you host, scale, and serve models from various frameworks on GPU and CPU infrastructure."
       },
       {
         "q": "Which NVIDIA software suite is mapped to accelerating traditional data science, pandas-like dataframes, and machine learning workflows (like XGBoost or cuDF) on GPUs?",
@@ -95,8 +95,8 @@
           "NVSwitch"
         ],
         "hint": "This suite allows data scientists accustomed to Pandas and Scikit-Learn to run their data preparation and tabular ML directly on GPUs.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! RAPIDS provides GPU-accelerated counterparts to popular data science libraries (such as cuDF and cuML)."
       },
       {
         "q": "What is NVIDIA NGC (NVIDIA GPU Cloud / NVIDIA NGC Catalog)?",
@@ -108,7 +108,7 @@
         ],
         "hint": "Think of an \"App Store\" or container registry specifically curated by NVIDIA for accelerated AI workloads.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NGC is NVIDIA's catalog providing tuned, tested, and certified software containers and models ready to deploy on GPUs."
       },
       {
         "q": "What is an NVIDIA DGX system?",
@@ -119,8 +119,8 @@
           "A software license manager for CUDA development kits."
         ],
         "hint": "Think of a turn-key rack unit (like DGX H100 or DGX B200) that arrives as an engineered AI powerhouse.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! DGX systems are pre-built, full-stack AI infrastructure appliances designed out-of-the-box for deep learning workloads."
       },
       {
         "q": "What is the primary role of NVIDIA NVLink within an AI server node (such as a DGX)?",
@@ -131,8 +131,8 @@
           "Connecting the GPU to the local SATA hard disk drive."
         ],
         "hint": "When you have 8 GPUs in a single DGX chassis, NVLink acts as their high-speed conversation bridge.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! NVLink allows GPUs to communicate directly with each other at ultra-high speeds, bypassing the slower PCIe bus."
       },
       {
         "q": "Which networking technology is primarily used for ultra-low latency, high-throughput inter-node scaling across multiple GPU servers in a large AI cluster?",
@@ -143,8 +143,8 @@
           "HDMI 2.1"
         ],
         "hint": "When scaling training jobs across 32 or 512 servers simultaneously, NVIDIA relies on Quantum InfiniBand for node-to-node communication.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! NVIDIA Quantum InfiniBand provides ultra-low latency and RDMA capabilities essential for multi-node distributed training."
       },
       {
         "q": "What does RoCE (RDMA over Converged Ethernet) allow data centers to do?",
@@ -156,7 +156,7 @@
         ],
         "hint": "Look at the name: it combines RDMA with Converged Ethernet.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! RoCE brings low-latency, high-throughput RDMA benefits to traditional Ethernet-based data center fabrics."
       }
     ]
   },
@@ -172,8 +172,8 @@
           "Artificial Intelligence and Deep Learning are identical terms, while Machine Learning is unrelated."
         ],
         "hint": "Think of these concepts as Russian nesting dolls, where the broadest concept encompasses statistical learning methods, which in turn encompass multi-layered neural networks.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Deep Learning is a specialized technique within Machine Learning, and Machine Learning is a discipline within the broader field of Artificial Intelligence."
       },
       {
         "q": "What is the fundamental architectural difference that makes GPUs well-suited for deep learning workloads compared to traditional CPUs?",
@@ -184,8 +184,8 @@
           "GPUs process all data strictly in a serial, single-threaded fashion at a much higher clock speed than CPUs."
         ],
         "hint": "Consider how a CPU handles a few complex control-flow tasks versus how a GPU handles thousands of matrix multiplications at the same time.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! GPUs excel at parallel matrix and vector math required by neural networks, whereas CPUs are optimized for latency-sensitive, serial instructions."
       },
       {
         "q": "In the AI lifecycle, what is the primary operational characteristic that distinguishes model inference from model training?",
@@ -196,8 +196,8 @@
           "Training requires no floating-point calculations, whereas inference is exclusively integer-based."
         ],
         "hint": "Think about whether the neural network is actively learning and adjusting its internal weights or just applying already-learned patterns to produce an output.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! During inference, the network applies its learned weights to produce outputs on unseen data without modifying those weights."
       },
       {
         "q": "What is the primary role of the CUDA platform in the NVIDIA software ecosystem?",
@@ -208,8 +208,8 @@
           "It is an enterprise network switch operating system for InfiniBand fabrics."
         ],
         "hint": "CUDA acts as the foundational software layer bridging general programming languages and GPU hardware execution.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! CUDA provides the foundational drivers, APIs, and runtime layer that enable software to harness GPU parallel processing."
       },
       {
         "q": "What is the primary purpose of NVIDIA TensorRT in an AI deployment pipeline?",
@@ -220,8 +220,8 @@
           "To orchestrate multi-node Kubernetes container scheduling across a data center."
         ],
         "hint": "TensorRT is an SDK focused on high-performance deep learning inference optimization and model execution.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! TensorRT performs layer fusion, kernel tuning, and precision calibration (FP16/INT8) to accelerate deep learning inference."
       },
       {
         "q": "Which of the following best describes NVIDIA Triton Inference Server?",
@@ -233,7 +233,7 @@
         ],
         "hint": "Think of Triton as a serving engine that standardizes how clients send inference requests to various backend frameworks.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Triton provides a unified production serving architecture for multi-framework model deployment."
       },
       {
         "q": "What is NVIDIA NGC (NVIDIA GPU Cloud)?",
@@ -244,8 +244,8 @@
           "A real-time telemetry dashboard for monitoring single-node power consumption."
         ],
         "hint": "NGC acts as a central catalog/registry for GPU-optimized software artifacts and container images.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! NGC is NVIDIA’s catalog and registry for curated, GPU-accelerated software containers and models."
       },
       {
         "q": "What is the main objective of the NVIDIA RAPIDS suite of open-source software libraries?",
@@ -256,8 +256,8 @@
           "To perform hardware-level encryption on network packets passing through a DPU."
         ],
         "hint": "RAPIDS accelerates data preparation and tabular machine learning workflows using GPU acceleration.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! RAPIDS accelerates traditional data science and tabular ML workflows (cuDF, cuML) using GPU parallelism."
       },
       {
         "q": "Why are lower-precision numerical formats (such as FP16, BF16, and INT8) widely adopted in modern AI training and inference?",
@@ -269,7 +269,7 @@
         ],
         "hint": "Using fewer bits per number means fitting larger models into memory and performing math operations faster.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Lower-precision data types consume less VRAM bandwidth and allow Tensor Cores to process operations significantly faster."
       },
       {
         "q": "What is the key distinction between scale-up and scale-out architectures in an AI cluster?",
@@ -280,8 +280,8 @@
           "Scale-up and scale-out are identical terms used interchangeably in enterprise storage systems."
         ],
         "hint": "Scale-up is about making one node bigger/stronger inside the box, whereas scale-out is scaling across multiple boxes via the network.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Scale-up concentrates resources inside a single chassis/node, while scale-out distributes workloads across multiple networked nodes."
       },
       {
         "q": "What is an NVIDIA DGX system?",
@@ -292,8 +292,8 @@
           "An open-source hypervisor based on KVM for cloud virtual machines."
         ],
         "hint": "DGX systems are purpose-built supercomputing building blocks delivered as integrated AI appliances.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! DGX systems are purpose-built AI supercomputers engineered for large-scale training and inference."
       },
       {
         "q": "What problem do NVIDIA NVLink and NVSwitch technologies solve in multi-GPU systems?",
@@ -304,8 +304,8 @@
           "They automatically partition a single GPU into multiple isolated virtual instances."
         ],
         "hint": "Standard PCIe goes through the CPU; NVLink/NVSwitch lets GPUs talk directly to each other at high speed.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVLink and NVSwitch create high-speed GPU peer-to-peer links essential for scale-up training."
       },
       {
         "q": "Why is InfiniBand preferred over standard Ethernet for large-scale distributed AI training clusters?",
@@ -317,7 +317,7 @@
         ],
         "hint": "RDMA over InfiniBand allows GPUs on separate nodes to read/write each other's memory directly with minimal CPU overhead.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! InfiniBand with RoCE/RDMA enables node-to-node GPU memory transfers with minimal CPU overhead and deterministic low latency."
       }
     ]
   },
@@ -333,8 +333,8 @@
           "TF32"
         ],
         "hint": "Look for the low-precision floating-point format that specifies two variants (E4M3 and E5M2) for weights/activations versus gradients.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! FP8 (with E4M3 and E5M2 variants) is natively supported by Hopper and Blackwell Tensor Cores to dramatically speed up deep learning training and inference."
       },
       {
         "q": "In the CUDA programming model, what is the group of 32 parallel threads that execute simultaneously in lockstep on a Streaming Multiprocessor (SM)?",
@@ -345,8 +345,8 @@
           "Grid"
         ],
         "hint": "Think about the SIMT execution scheduler inside an SM that bundles threads into groups of 32.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! A warp is the fundamental unit of execution in an SM, consisting of 32 concurrent threads running in SIMT (Single Instruction, Multiple Threads) fashion."
       },
       {
         "q": "Which performance metric is typically the primary Quality of Service (QoS) objective when serving an interactive LLM chatbot rather than running offline batch pre-training?",
@@ -357,8 +357,8 @@
           "Total training loss convergence per epoch"
         ],
         "hint": "Consider what a human end-user notices most when typing a prompt into an AI assistant.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Interactive inference prioritizes low latency (how fast the first token appears and how smoothly subsequent tokens stream) over raw throughput."
       },
       {
         "q": "During autoregressive generation with large language models, what data structure stored in VRAM grows linearly with the context sequence length and often becomes the primary memory bottleneck?",
@@ -369,8 +369,8 @@
           "CUDA stream synchronization logs"
         ],
         "hint": "This cache allows the attention mechanism to avoid recalculating past token representations at every generation step.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! The KV cache stores historical key and value activation tensors for all context tokens across attention layers, scaling linearly with sequence length."
       },
       {
         "q": "Which NVIDIA technology provides high-bandwidth, direct GPU-to-GPU communication within a multi-GPU node like an HGX baseboard, bypassing the CPU and PCIe bus?",
@@ -382,7 +382,7 @@
         ],
         "hint": "This is NVIDIA's proprietary high-speed interconnect fabric used inside DGX/HGX systems to connect 8 GPUs in a full-mesh topology.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NVLink combined with NVSwitch provides ultra-high-speed, low-latency all-to-all communication directly between GPUs inside the node."
       },
       {
         "q": "Which capability allows an NVIDIA Quantum InfiniBand or ConnectX/BlueField NIC to directly read and write GPU memory across a network fabric without CPU intervention?",
@@ -393,8 +393,8 @@
           "RoCEv2 Packet Splitting"
         ],
         "hint": "Combine the concept of Remote Direct Memory Access with NVIDIA's hardware integration for GPU memory spaces.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! GPUDirect RDMA enables direct memory access between a network adapter and GPU memory across PCIe without copying data through host CPU RAM."
       },
       {
         "q": "How does NVIDIA GPUDirect Storage (GDS) accelerate data movement between storage media and GPU memory?",
@@ -405,8 +405,8 @@
           "By translating POSIX file read requests into SQL queries on Tensor Cores"
         ],
         "hint": "Think about eliminating the traditional \"bounce buffer\" where storage data had to pass through host system RAM first.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! GDS eliminates the traditional bounce buffer through host CPU RAM, enabling direct DMA transfers between storage and GPU VRAM."
       },
       {
         "q": "What is the primary function of the Baseboard Management Controller (BMC) and Redfish interface on an NVIDIA DGX system?",
@@ -417,8 +417,8 @@
           "Out-of-band hardware monitoring, power control, and firmware management"
         ],
         "hint": "This controller operates independently of the host OS and allows lights-out management even if the main OS crashes.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! The BMC and Redfish API provide independent out-of-band management for sensors, power cycles, thermal monitoring, and firmware updates."
       }
     ]
   },
@@ -434,8 +434,8 @@
           "Deep Learning algorithms do not require any training data."
         ],
         "hint": "Think about whether humans have to hand-code the features for neural networks or if the network discovers them on its own.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Multi-layer neural networks automatically discover relevant representations and features directly from unstructured data like images or text."
       },
       {
         "q": "During the AI lifecycle, what is the primary difference between the training phase and the inference phase?",
@@ -447,7 +447,7 @@
         ],
         "hint": "Consider whether the model's internal parameters are being modified or kept fixed when generating new answers or predictions.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Training computes gradients and updates weights iteratively, while inference freezes weights to evaluate new input data."
       },
       {
         "q": "What is the primary purpose of an activation function (such as ReLU or GeLU) in a neural network?",
@@ -458,8 +458,8 @@
           "To replace the need for an optimizer like Adam or SGD."
         ],
         "hint": "Without this component, stacking multiple linear layers together would just behave like a single linear equation.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Without non-linear activation functions, stacked linear layers would simply collapse into a single linear transformation."
       },
       {
         "q": "Which core architectural component introduced by the Transformer model allows it to weigh the importance of different words in a sequence relative to each other?",
@@ -470,8 +470,8 @@
           "Self-attention mechanism"
         ],
         "hint": "It allows the model to look at all parts of an input sentence at the same time rather than processing it strictly word-by-word sequentially.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! The self-attention mechanism lets the model relate different tokens in a sequence simultaneously regardless of distance."
       },
       {
         "q": "What does a loss function measure during the training of a neural network?",
@@ -483,7 +483,7 @@
         ],
         "hint": "It is a mathematical score that guides the optimizer on how \"wrong\" the model currently is during each step.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! The loss function outputs a numerical value representing how far off the model's prediction is from the ground truth."
       },
       {
         "q": "In deep learning frameworks like PyTorch or TensorFlow, what is a \"tensor\"?",
@@ -494,8 +494,8 @@
           "A network security protocol for distributed training."
         ],
         "hint": "Think of it as a generalization of a matrix to higher dimensions (scalars, vectors, matrices, and beyond).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! A tensor generalizes scalars (0D), vectors (1D), and matrices (2D) to arbitrary dimensions."
       },
       {
         "q": "Why are GPUs fundamentally better suited for deep learning workloads than traditional CPUs?",
@@ -506,8 +506,8 @@
           "GPUs have a massive number of smaller, specialized cores designed for parallel math operations."
         ],
         "hint": "Contrast a CPU’s few powerful sequential cores with a GPU’s thousands of concurrent execution units.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! GPUs excel at SIMD/SIMT massive parallelism, making them ideal for simultaneous matrix multiplications."
       },
       {
         "q": "What is NVIDIA CUDA?",
@@ -519,7 +519,7 @@
         ],
         "hint": "It is the software bridge and SDK that unlocks NVIDIA GPU hardware for C++, Python, and deep learning frameworks.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! CUDA is the software layer/SDK enabling developers to program GPU cores directly for general-purpose computing."
       },
       {
         "q": "What is the primary purpose of NVIDIA NVLink in a multi-GPU server?",
@@ -530,8 +530,8 @@
           "To manage user authentication and SSH access."
         ],
         "hint": "Think about how tightly coupled GPUs share gradients and data rapidly without bottle-necking through the motherboard PCIe slots.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVLink offers direct, high-speed peer-to-peer GPU communication for large-scale training."
       },
       {
         "q": "What does NVIDIA MIG (Multi-Instance GPU) allow an administrator to do?",
@@ -542,8 +542,8 @@
           "Translate CUDA code into open-source OpenCL code."
         ],
         "hint": "The name \"Multi-Instance\" implies slicing one piece of hardware into independent, smaller slices with guaranteed QoS.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! MIG partitions a GPU (like an A100 or H100) into up to seven hardware-isolated instances with dedicated memory and compute."
       },
       {
         "q": "What is the primary function of NVIDIA TensorRT?",
@@ -554,8 +554,8 @@
           "To optimize and accelerate deep learning inference models for deployment on NVIDIA hardware."
         ],
         "hint": "It takes a trained model and optimizes it specifically for fast runtime inference on NVIDIA GPUs.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! TensorRT performs layer fusion, precision calibration (FP16/INT8), and kernel optimization for low-latency inference."
       },
       {
         "q": "What is NCCL (NVIDIA Collective Communications Library) used for?",
@@ -567,7 +567,7 @@
         ],
         "hint": "When training spans across dozens or hundreds of GPUs, they need to sync gradients efficiently; NCCL handles those collective operations.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NCCL implements fast collective communication routines across NVLink, NVSwitch, and InfiniBand fabrics."
       },
       {
         "q": "Why is high-throughput, low-latency storage (such as NVMe or RDMA-enabled storage) essential for deep learning training?",
@@ -578,8 +578,8 @@
           "To encrypt weights at rest automatically."
         ],
         "hint": "If data loading is slower than GPU compute speed, the expensive GPUs waste cycles waiting.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! If the data loader cannot feed batches to the GPU fast enough, expensive GPUs waste compute cycles waiting."
       },
       {
         "q": "Which command-line utility is built into NVIDIA drivers to quickly check GPU status, memory usage, and utilization?",
@@ -590,8 +590,8 @@
           "gpumon"
         ],
         "hint": "It stands for System Management Interface and comes bundled with the NVIDIA display driver.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! nvidia-smi (System Management Interface) is the standard command-line tool for querying NVIDIA GPU telemetry."
       },
       {
         "q": "What is NVIDIA DCGM (Data Center GPU Manager) primarily designed for?",
@@ -602,8 +602,8 @@
           "Comprehensive in-band and out-of-band health monitoring, diagnostics, and telemetry in enterprise data centers."
         ],
         "hint": "It is an enterprise-scale management and telemetry suite designed for data centers with many GPU nodes.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! DCGM provides enterprise-grade management, policy enforcement, and diagnostics for scale-out GPU clusters."
       },
       {
         "q": "What is the role of the NVIDIA GPU Operator in a Kubernetes environment?",
@@ -615,7 +615,7 @@
         ],
         "hint": "Think about how administrators deploy drivers, container toolkits, and device plugins declaratively in Kubernetes.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! The GPU Operator uses Kubernetes custom resources to automate full lifecycle management of NVIDIA software stacks on K8s."
       }
     ]
   },
@@ -631,8 +631,8 @@
           "Inference updates the neural network's loss function, while training evaluates final accuracy."
         ],
         "hint": "Think about which phase adjusts the model's internal parameters versus which phase puts the finished model to work on real-world input.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Training is the optimization phase where weights are adjusted via backpropagation, while inference uses those finalized weights to process new inputs."
       },
       {
         "q": "Which type of machine learning relies on an agent learning to make decisions by receiving rewards or penalties from an environment?",
@@ -643,8 +643,8 @@
           "Transfer Learning"
         ],
         "hint": "Think of how a robot or game-playing AI learns through trial and error, guided by a cumulative reward signal.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Reinforcement learning involves an agent interacting with an environment and learning optimal behavior through trial and error guided by rewards."
       },
       {
         "q": "What is the primary role of an activation function in a neural network layer?",
@@ -656,7 +656,7 @@
         ],
         "hint": "Without this component, stacking multiple linear layers would just result in another linear function.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Without non-linear activation functions, stacking multiple neural network layers would mathematically collapse into a single linear transformation."
       },
       {
         "q": "Which of the following is a key advantage of Deep Learning over traditional machine learning algorithms?",
@@ -667,8 +667,8 @@
           "Deep learning can automatically perform feature extraction from raw, unstructured data."
         ],
         "hint": "Consider how deep learning handles raw pixels, audio waves, or text without manual engineering of features.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Traditional ML often requires manual feature engineering, whereas deep learning layers automatically discover hierarchical representations from raw pixels, audio, or text."
       },
       {
         "q": "In a binary classification problem, what does \"precision\" measure?",
@@ -679,8 +679,8 @@
           "The speed at which the model performs inference in milliseconds."
         ],
         "hint": "Precision asks: \"Of all the items the model predicted as positive, how many actually were?\"",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Precision is calculated as True Positives divided by (True Positives + False Positives)."
       },
       {
         "q": "What is \"overfitting\" in machine learning?",
@@ -692,7 +692,7 @@
         ],
         "hint": "Think of a student who memorizes specific practice test answers word-for-word but fails the actual exam when presented with new questions.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Overfitting happens when a model memorizes the training set rather than learning generalizable underlying patterns."
       },
       {
         "q": "What are Tensor Cores in modern NVIDIA GPUs specifically designed to accelerate?",
@@ -703,8 +703,8 @@
           "CPU-to-GPU PCIe handshakes."
         ],
         "hint": "These specialized processing units excel at performing rapid math operations like matrix multiplication using mixed-precision.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Tensor Cores perform fused matrix multiply-accumulate operations (e.g., FP16, BF16, INT8) critical for neural network training and inference."
       },
       {
         "q": "Why is high-bandwidth memory (such as HBM or GDDR on GPUs) critical for large AI workloads compared to standard system RAM?",
@@ -715,8 +715,8 @@
           "It provides massive data transfer rates needed to feed high-throughput GPU compute cores without starvation."
         ],
         "hint": "GPUs can compute data much faster than standard RAM can deliver it; high-bandwidth memory bridges this speed gap.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! High-bandwidth memory has a much wider memory bus and vastly higher data transfer speeds, preventing GPU compute units from sitting idle."
       },
       {
         "q": "What is the primary purpose of NVIDIA NVLink in a multi-GPU server?",
@@ -728,7 +728,7 @@
         ],
         "hint": "When training massive models across multiple GPUs in a single box, standard PCIe can become a bottleneck. This high-speed bridge solves that.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NVLink offers a high-bandwidth, low-latency interconnect between GPUs in a node, greatly accelerating multi-GPU scaling."
       },
       {
         "q": "Which networking technology is most commonly deployed in large-scale AI clusters for low-latency, high-throughput RDMA (Remote Direct Memory Access) communication?",
@@ -739,8 +739,8 @@
           "USB 3.2 Gen 2"
         ],
         "hint": "This networking tech allows a GPU on Node A to read/write memory directly on Node B's GPU without involving the host CPU.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! InfiniBand and RoCE allow direct memory transfers between server nodes with minimal CPU overhead and ultra-low latency."
       },
       {
         "q": "Why do AI training pipelines often require high-throughput parallel file systems (like Lustre, GPFS, or high-performance NVMe storage)?",
@@ -751,8 +751,8 @@
           "To reduce the physical weight of the server racks."
         ],
         "hint": "If the data loader can't feed the GPUs fast enough, expensive GPUs sit idle (\"GPU starvation\").",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! High-throughput storage ensures that data loaders can continuously feed batches to GPUs, avoiding costly \"GPU starvation.\""
       },
       {
         "q": "What architectural difference best explains why GPUs are preferred over CPUs for deep learning training?",
@@ -763,8 +763,8 @@
           "GPUs have thousands of smaller, specialized cores capable of executing massive numbers of parallel floating-point operations simultaneously."
         ],
         "hint": "Think of a CPU as a small team of expert mathematicians versus a GPU as an army of thousands of workers doing simple arithmetic simultaneously.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Deep learning workloads consist of millions of independent matrix calculations that can be executed concurrently across thousands of GPU cores."
       },
       {
         "q": "Why are modern enterprise AI infrastructure systems (such as NVIDIA HGX or DGX servers) often liquid-cooled or engineered for high-density racks?",
@@ -776,7 +776,7 @@
         ],
         "hint": "High-performance AI chips run at very high thermal design power (TDP), pushing traditional air cooling to its physical limits.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! High-performance AI accelerators operate at high thermal design power (TDP), making advanced cooling and high-density power delivery essential."
       },
       {
         "q": "What is the main role of the NVIDIA Container Toolkit?",
@@ -787,8 +787,8 @@
           "To automatically generate unit tests for deep learning scripts."
         ],
         "hint": "Standard Docker containers cannot see the GPU hardware on the host machine out-of-the-box; this tool bridges that gap.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! The NVIDIA Container Toolkit translates container GPU requests so that applications inside Docker can leverage CUDA and host GPUs."
       },
       {
         "q": "Which command-line utility is built into NVIDIA drivers to quickly inspect real-time GPU utilization, memory usage, and temperature?",
@@ -799,8 +799,8 @@
           "lsblk"
         ],
         "hint": "System administrators type this short command in a Linux terminal to see GPU % busy and VRAM consumption.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! nvidia-smi (NVIDIA System Management Interface) is the standard command-line tool for monitoring GPU health and metrics."
       }
     ]
   },
@@ -816,8 +816,8 @@
           "Inference requires distributed multi-node clusters with NCCL, whereas training always runs on a single desktop GPU."
         ],
         "hint": "Think about which phase involves gradient updates and adjusting billions of parameters versus running a finished model to make predictions.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Training builds and refines model weights through forward and backward passes over large datasets, while inference executes the final network on live or batch inputs."
       },
       {
         "q": "Which NVIDIA software tool is specifically designed to maximize deep learning inference performance by optimizing, quantizing, and fusing neural network layers for target GPU hardware?",
@@ -829,7 +829,7 @@
         ],
         "hint": "This engine/compiler takes trained weights and strips away redundant operations while lowering numerical precision to accelerate live execution.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! TensorRT is a C++ library and SDK for high-performance deep learning inference that optimizes neural networks through precision calibration (FP16/INT8), layer fusion, and kernel selection."
       },
       {
         "q": "Why are NVIDIA GPUs fundamentally better suited for deep learning workloads compared to traditional multi-core CPUs?",
@@ -840,8 +840,8 @@
           "GPUs eliminate the need for any operating system kernel or driver during execution."
         ],
         "hint": "Consider concurrency: a CPU handles complex branching and sequential logic well, whereas neural networks perform massive volumes of simultaneous math.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Deep learning relies heavily on parallel matrix multiplications where thousands of GPU cores excel compared to a handful of general-purpose CPU cores."
       },
       {
         "q": "What is the primary function of NVIDIA NVLink within a multi-GPU server node (such as an NVIDIA DGX system)?",
@@ -852,8 +852,8 @@
           "It provides high-bandwidth, ultra-low-latency direct GPU-to-GPU peer communication, bypassing the slower PCIe bus."
         ],
         "hint": "Think about how 8 GPUs inside a single DGX chassis talk directly to one another without bottlenecking through the host CPU PCIe root complex.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! NVLink allows GPUs inside a node to share data and synchronize gradients at speeds vastly exceeding standard PCIe lanes."
       },
       {
         "q": "Why is InfiniBand frequently preferred over standard Ethernet for scale-out distributed AI training across multiple server nodes?",
@@ -865,7 +865,7 @@
         ],
         "hint": "Distributed training across nodes relies on frequent gradient exchanges where bypassing the OS stack via RDMA dramatically lowers communication overhead.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! InfiniBand’s native RDMA capabilities allow GPUs on different nodes to read/write memory directly with minimal CPU/OS overhead, crucial for all-reduce operations."
       },
       {
         "q": "What is the primary role of an NVIDIA BlueField Data Processing Unit (DPU) in a modern AI data center?",
@@ -876,8 +876,8 @@
           "To manage physical liquid cooling valves and chilled water temperature in the rack."
         ],
         "hint": "Think of the DPU as a \"data-center-on-a-chip\" on a PCIe card that frees up host CPU cycles by handling network and security virtualization.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! A DPU acts as a programmable SmartNIC that handles software-defined networking, encryption, and storage offloads so host CPUs remain dedicated to application tasks."
       },
       {
         "q": "As modern AI rack densities scale up to tens or hundreds of kilowatts per rack with hardware like NVIDIA Blackwell and Hopper platforms, what major facility challenge typically emerges?",
@@ -889,7 +889,7 @@
         ],
         "hint": "High-wattage multi-GPU nodes draw several kilowatts per chassis, forcing data centers to rethink heat dissipation and electrical distribution.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! High-density GPU racks generate thermal loads that exceed traditional computer room air conditioner (CRAC) capabilities, driving adoption of direct-to-chip liquid cooling."
       },
       {
         "q": "Which NVIDIA tool is specifically designed for enterprise-grade, continuous, real-time telemetry, GPU health monitoring, and diagnostic profiling across a fleet of multi-GPU servers?",
@@ -900,8 +900,8 @@
           "The standard Linux ifconfig command"
         ],
         "hint": "While nvidia-smi is great for quick point-in-time checks on a single node, this suite is built for continuous, programmatic cluster-wide monitoring and diagnostics.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! DCGM provides comprehensive out-of-band/in-band health monitoring, diagnostics, power management, and telemetry for enterprise GPU clusters."
       },
       {
         "q": "In an enterprise or HPC AI cluster, what is the core responsibility of a workload scheduler like Slurm?",
@@ -912,8 +912,8 @@
           "Replacing internal DNS name resolution on private subnets."
         ],
         "hint": "Imagine a busy shared cluster with hundreds of researchers submitting long-running training jobs; this tool decides who gets which GPUs and when.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Slurm manages node reservations, queues training jobs, and assigns specific GPU and CPU resources across multi-node cluster requests."
       },
       {
         "q": "What does NVIDIA Multi-Instance GPU (MIG) technology allow an administrator to do on supported data center GPUs?",
@@ -924,8 +924,8 @@
           "Automatically convert FP32 models to INT4 without loss of accuracy."
         ],
         "hint": "When smaller inference workloads or development sandboxes don't need an entire massive GPU, this technology lets you carve that GPU into safe, isolated slices.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! MIG allows a single physical GPU (such as an A100 or H100) to be sliced into up to seven independent instances with fault isolation and guaranteed QoS."
       }
     ]
   },
@@ -941,8 +941,8 @@
           "Inference requires real-time gradient backpropagation to adapt model weights to live user prompts on the fly."
         ],
         "hint": "Think about what happens during a training step (forward + backward + optimizer step) versus simply feeding an input through a frozen network to get an output.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Training is computationally heavy due to backpropagation and parameter updates, whereas inference only evaluates the frozen forward graph."
       },
       {
         "q": "In an interactive user-facing AI application (such as a real-time voice assistant or chat interface), which performance metric is typically prioritized during inference?",
@@ -954,7 +954,7 @@
         ],
         "hint": "Consider a user waiting for a response on their phone—what would frustrate them the most?",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Interactive users are highly sensitive to delay; minimizing latency ensures a responsive conversational experience."
       },
       {
         "q": "Why do training pipelines typically utilize much larger batch sizes compared to real-time interactive inference?",
@@ -965,8 +965,8 @@
           "Large batch sizes in training enable higher hardware parallelism and smoother, more stable gradient descent steps, whereas interactive inference often prioritizes single-request or small-batch processing to minimize latency."
         ],
         "hint": "Think about how gradient updates benefit from averaging over multiple samples versus a user waiting for a single prompt reply.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Training benefits from gradient averaging over large batches, whereas interactive inference trades off large batches to keep per-user latency low."
       },
       {
         "q": "Why has mixed-precision training (using formats like FP16 or BF16 paired with FP32 master weights/accumulators) become the standard for deep learning training?",
@@ -977,8 +977,8 @@
           "It converts all neural network weights to fixed integer format before backpropagation begins."
         ],
         "hint": "Lower precision speeds up matrix multiplication, but you need to retain higher precision accumulators or master weights to prevent gradients from underflowing.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! FP16/BF16 accelerate tensor core operations and halve memory traffic, while FP32 accumulators prevent underflow/overflow during summation."
       },
       {
         "q": "What is the primary operational benefit of quantizing an AI model's weights and activations to INT8 or INT4 for inference?",
@@ -989,8 +989,8 @@
           "It forces the model to run exclusively on low-power 128-bit CPUs."
         ],
         "hint": "Inference is often memory-bandwidth bound rather than compute bound; shrinking the size of each weight byte helps data move faster from VRAM to compute units.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Inference is frequently memory-bandwidth bound; smaller data types mean fewer bytes need to be fetched from VRAM per operation."
       },
       {
         "q": "Why are high-speed, low-latency cluster interconnects (such as NVIDIA NVLink or InfiniBand) critically important for large-scale model training, yet often less demanding for single-node or smaller-scale inference?",
@@ -1002,7 +1002,7 @@
         ],
         "hint": "Think about what data needs to be shared across multiple chips when you are cooperatively updating model weights versus serving a prompt.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Training involves heavy data exchange across data-parallel and tensor-parallel boundaries on every step, whereas inference often serves self-contained requests."
       },
       {
         "q": "In a standard training run using the Adam optimizer, what typically consumes a large portion of GPU memory relative to the raw size of the model weights?",
@@ -1013,8 +1013,8 @@
           "The static configuration JSON files loaded at startup."
         ],
         "hint": "Adam keeps track of moving averages of gradients and squared gradients, which often triples or quadruples the memory needed just for the weights alone.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Adam stores momentum and variance buffers in FP32 for every parameter, often multiplying the baseline weight memory footprint by 3x to 4x."
       },
       {
         "q": "In auto-regressive Large Language Model (LLM) inference, what is the primary purpose of the Key-Value (KV) cache?",
@@ -1025,8 +1025,8 @@
           "It encrypts user prompts before sending them into the GPU tensor cores."
         ],
         "hint": "As an LLM generates a 500-token response token-by-token, recalculating attention over all previous tokens every time would be wasteful; caching helps avoid redundant work.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Caching past K and V projections dramatically cuts down redundant attention computations during token generation."
       },
       {
         "q": "How do incoming workload patterns typically differ between a large-scale training cluster and a production inference deployment?",
@@ -1037,8 +1037,8 @@
           "Training jobs are typically long-running, scheduled, deterministic batch workloads, whereas production inference experiences dynamic, bursty, and unpredictable user-driven request loads."
         ],
         "hint": "Who or what is driving the execution schedule—an automated batch script over massive datasets versus real human users hitting a web service?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Training runs are planned batch operations, while inference must handle variable, real-time user traffic spikes."
       },
       {
         "q": "When transitioning a trained deep learning model to a production inference engine, which components are typically discarded or stripped from the checkpoint?",
@@ -1049,8 +1049,8 @@
           "Optimizer states, momentum buffers, learning rate scheduler state, and backward-pass graph metadata."
         ],
         "hint": "Once training is finished and you no longer need to update weights via backpropagation, what extra data structures carried around during training become dead weight?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Once training concludes and weights are frozen, all artifacts related to gradient updates and backpropagation are no longer needed."
       }
     ]
   },
@@ -1066,8 +1066,8 @@
           "The backward pass requires four times the FLOPs of the forward pass (4:1 ratio)."
         ],
         "hint": "Think about what chain-rule derivatives need to be computed during backpropagation: you need a gradient with respect to the input activations and a gradient with respect to the weight matrix itself.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Computing gradients with respect to activations and weights together require about 2x the FLOPs of the forward pass, which is why standard training FLOP estimates use ~6 * N * D (where N is parameters and D is tokens), compared to ~2 * N * D for inference."
       },
       {
         "q": "In high-concurrency LLM serving systems, why does continuous batching (iteration-level scheduling) dramatically improve GPU throughput and reduce average request latency compared to traditional static batching?",
@@ -1079,7 +1079,7 @@
         ],
         "hint": "Consider what happens in a queue when one user asks a 10-token question and another asks a 2,000-token question under traditional static batching.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Static batching forces all sequences in a batch to wait until the longest sequence completes. Continuous batching frees up slots immediately as individual sequences finish, keeping the GPU saturated."
       },
       {
         "q": "When scaling the global batch size (\\(B\\)) upward in distributed large-language-model pre-training while scaling the learning rate accordingly, what fundamental generalization phenomenon often occurs when \\(B\\) becomes excessively large?",
@@ -1090,8 +1090,8 @@
           "The training trajectory tends to converge into sharp local minima because large batches yield gradient estimates with lower stochastic noise, reducing exploratory escape from narrow basins."
         ],
         "hint": "Think about Stochastic Gradient Descent (SGD) versus full-batch gradient descent and why a little bit of noise in gradient estimates is historically beneficial for finding flatter, better-generalizing minima.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Smaller mini-batches introduce stochastic gradient noise that acts as implicit regularization, helping the optimizer escape sharp, poor-generalizing local minima."
       },
       {
         "q": "Why is the Brain Floating Point (BF16) format often preferred over IEEE 754 half-precision (FP16) for deep learning training without requiring complex dynamic loss scaling?",
@@ -1102,8 +1102,8 @@
           "FP16 cannot be accelerated by modern GPU Tensor Cores."
         ],
         "hint": "Compare how many bits are allocated to the exponent versus the mantissa in FP32 versus FP16 and BF16. Which field determines how large or small numbers can get?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! By preserving the 8-bit exponent field of FP32, BF16 matches FP32's dynamic range ( 3.4 ×1038 ⁠), avoiding the narrow dynamic range ( 65 , 050 ⁠) that causes FP16 gradients to underflow."
       },
       {
         "q": "During the autoregressive generation (decoding) phase of a Large Language Model, the computational profile of each step is predominantly:",
@@ -1115,7 +1115,7 @@
         ],
         "hint": "Think about the Roofline model: when generating 1 token at a time for a 70-billion parameter model, how many bytes must be fetched from VRAM vs. how many arithmetic operations are performed on those bytes?",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Because batch size during token-by-token generation is often small (or per-step arithmetic intensity is low), the arithmetic intensity falls well below the hardware's ridge point, making HBM read speed the primary bottleneck."
       },
       {
         "q": "In DeepSpeed ZeRO-3 (Fully Sharded Data Parallel / FSDP), which specific components of the training state are partitioned across the data-parallel GPU ranks?",
@@ -1126,8 +1126,8 @@
           "Optimizer states, gradients, and model parameters are all partitioned across the data-parallel ranks, dynamically all-gathereed only right before the computation that needs them."
         ],
         "hint": "Recall the progression of ZeRO stages: Stage 1 shards optimizer states, Stage 2 adds gradient sharding, and Stage 3 shards the model parameters themselves.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! ZeRO-3 eliminates data redundancy completely by sharding optimizer states, gradients, and parameters across Ncap N 𝑁 ⁠ GPUs, reducing per-GPU memory usage roughly Ncap N 𝑁 ⁠-fold."
       },
       {
         "q": "How does speculative decoding accelerate autoregressive LLM generation without altering the mathematical probability distribution of the target model's output?",
@@ -1138,8 +1138,8 @@
           "By skipping entire decoder layers dynamically based on a token-entropy threshold."
         ],
         "hint": "Think about having a fast intern draft a paragraph quickly, and a senior editor reviewing and accepting/correcting several words at once.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Using rejection sampling over the draft proposals ensures the target model's exact distribution is preserved while verifying multiple tokens per forward pass."
       },
       {
         "q": "How do the operational characteristics of the \"prefill\" phase differ from the \"decode\" (autoregressive) phase during an LLM inference request?",
@@ -1150,8 +1150,8 @@
           "Prefill requires backpropagation while decode only executes forward-backward optimization steps."
         ],
         "hint": "When you first paste a 2,000-word document into ChatGPT, the GPU processes all 2,000 tokens at once. When it starts typing out the reply word-by-word, how is that different?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! During prefill, all prompt tokens are processed in parallel (high matrix-matrix multiplication intensity). During decode, tokens are generated one-by-one (matrix-vector operations limited by memory bandwidth)."
       },
       {
         "q": "Why do activation outliers in Transformer hidden states pose a major challenge for W8A8 (8-bit weight, 8-bit activation) Post-Training Quantization (PTQ)?",
@@ -1163,7 +1163,7 @@
         ],
         "hint": "If 99% of your numbers fall between -1 and 1, but a single channel spikes to +100, what happens when you map that range to an 8-bit integer (-128 to 127)?",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Outlier features (which appear consistently in specific hidden dimensions across layers) stretch the dynamic range of per-tensor or per-token scales, collapsing the effective resolution of typical activations."
       },
       {
         "q": "How does FlashAttention optimize exact attention computation compared to standard \\(O(N^2)\\) attention implementations?",
@@ -1174,8 +1174,8 @@
           "By tiling the attention computation across blocks and computing online softmax statistics in fast on-chip SRAM to avoid materializing the large \\(N \\times N\\) attention matrix in slow HBM."
         ],
         "hint": "Where is the performance bottleneck in standard attention? It's not just FLOPs—it's reading and writing the massive \\(N \\times N\\) attention score matrix back and forth to high-bandwidth memory (HBM).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! Standard attention writes and reads the 𝑁 ×𝑁 ⁠ matrix to/from HBM (memory-bound), whereas FlashAttention uses tiling and recomputation during the backward pass to remain IO-aware and fast."
       }
     ]
   },
@@ -1192,7 +1192,7 @@
         ],
         "hint": "Compare the arithmetic logic unit (ALU) to control logic ratio on a GPU Streaming Multiprocessor versus a general-purpose CPU core.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! GPUs trade off large instruction-decoding and branch-prediction logic for thousands of arithmetic units, yielding massive throughput on dense matrix and vector operations."
       },
       {
         "q": "An enterprise MLOps team transitions a fine-tuned 70B parameter LLM from a pre-training cluster to an interactive production API endpoint. Which of the following best characterizes the computational profile shift between the training phase and the inference (decoding) phase?",
@@ -1203,8 +1203,8 @@
           "Inference requires reading and writing the entire 70B parameter model weights from NVMe SSDs for every individual user prompt."
         ],
         "hint": "Recall the Roofline model and what happens to arithmetic intensity when generating one token at a time autoregressively.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! During autoregressive token generation, weights must be fetched from HBM for every single generated token, making HBM read bandwidth the primary performance bottleneck."
       },
       {
         "q": "A product manager asks you to categorize different enterprise software capabilities across AI, Machine Learning (ML), and Deep Learning (DL). Which hierarchical statement is strictly and conceptually accurate?",
@@ -1215,8 +1215,8 @@
           "Artificial Intelligence refers exclusively to transformer-based generative models trained after 2017."
         ],
         "hint": "Think of AI, ML, and DL as concentric circles from broadest field to most specific neural subfield.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! This correctly reflects the concentric taxonomy of AI encompassing ML, which in turn encompasses DL."
       },
       {
         "q": "An HPC developer writes a custom C++ application that directly launches parallel kernels on NVIDIA GPUs and manages device memory allocation. Which foundational layer of the NVIDIA AI software stack is the developer directly interfacing with?",
@@ -1227,8 +1227,8 @@
           "RAPIDS cuDF Dataframe library."
         ],
         "hint": "Think about the parallel computing platform and programming model that exposes the GPU as a general-purpose data-parallel computing device.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! CUDA is the parallel computing platform and programming model that exposes the GPU as a general-purpose compute device."
       },
       {
         "q": "After exporting a PyTorch transformer model to production, an engineer wants to fuse layer-normalization, attention blocks, and kernel operations while calibrating INT8 quantization for maximum latency reduction on an NVIDIA GPU. Which NVIDIA software stack component is purpose-built for this inference optimization and compilation?",
@@ -1239,8 +1239,8 @@
           "NVIDIA RAPIDS cuML."
         ],
         "hint": "It optimizes deep learning models for production inference by performing layer fusion, precision calibration, and target-hardware code generation.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! TensorRT is NVIDIA’s deep learning inference optimizer and runtime that performs layer fusion, precision calibration (FP16/INT8/FP8), and kernel auto-tuning."
       },
       {
         "q": "Your organization is standardizing enterprise LLM deployment so that various teams can consume foundation models through a cloud-native, self-hosted API endpoint with pre-configured vLLM/TensorRT-backends and OpenAI-compatible REST contracts. Which NVIDIA AI Enterprise software artifact should you deploy?",
@@ -1251,8 +1251,8 @@
           "NVIDIA DeepStream SDK for smart video analytics."
         ],
         "hint": "It packages pre-trained, containerized AI models with an industry-standard API wrapper and built-in hardware acceleration engines.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVIDIA NIM packages pre-trained foundation models into pre-built, production-ready microservices with standard OpenAPI endpoints and optimized engines."
       },
       {
         "q": "An AI operations team needs to serve multiple concurrent models (including PyTorch, ONNX, and TensorRT engines) simultaneously on a single GPU cluster, supporting dynamic batching and concurrent model execution. Which open-source NVIDIA inference serving software should they implement?",
@@ -1263,8 +1263,8 @@
           "NVIDIA NeMo Curator."
         ],
         "hint": "It is a standardized inference server that supports multiple deep learning frameworks and dynamic batching.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Triton Inference Server is designed to host multi-framework models with dynamic batching, concurrent execution, and live model updates."
       },
       {
         "q": "A data scientist wants to accelerate end-to-end data science pipelines (ETL, dataframe manipulation, and machine learning algorithms like XGBoost and Random Forests) directly on GPU memory without serializing back to CPU host RAM. Which NVIDIA software suite provides pandas-equivalent and scikit-learn-equivalent GPU APIs?",
@@ -1275,8 +1275,8 @@
           "NVIDIA River."
         ],
         "hint": "Think of GPU-accelerated alternatives to Python pandas and scikit-learn.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! RAPIDS enables GPU-accelerated data processing and machine learning workflows matching Python pandas and scikit-learn interfaces."
       },
       {
         "q": "An infrastructure specialist is evaluating an NVIDIA Blackwell or Hopper GPU and comparing specialized execution units inside the Streaming Multiprocessor (SM). What is the primary function of Tensor Cores compared to standard CUDA cores?",
@@ -1287,8 +1287,8 @@
           "Tensor Cores run only on CPU host RAM, offloading work from the GPU."
         ],
         "hint": "Look for mixed-precision matrix-multiply-accumulate acceleration.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Tensor Cores compute entire matrix-multiply-accumulate operations (𝐷 =𝐴 ×𝐵 +𝐶 ⁠) in a single instruction cycle, massively accelerating deep learning."
       },
       {
         "q": "Why has Brain Floating Point (BF16) or FP8 increasingly replaced traditional IEEE FP16 for large language model pre-training and high-throughput inference?",
@@ -1299,8 +1299,8 @@
           "FP16 provides higher dynamic range than FP32."
         ],
         "hint": "Compare the exponent width of BF16 (8 bits) with FP16 (5 bits) and FP32 (8 bits).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! BF16 shares FP32's 8-bit exponent field, avoiding FP16's narrow dynamic range that frequently causes gradient underflow."
       },
       {
         "q": "You are planning an enterprise data center rack layout using NVIDIA HGX H200 / B200 8-GPU baseboard systems versus NVIDIA DGX integrated appliances. What is a key structural distinction between an HGX board configuration and a complete DGX system?",
@@ -1311,8 +1311,8 @@
           "HGX requires external PCIe 1.0 slots for inter-GPU communication."
         ],
         "hint": "Think of OEM integration versus NVIDIA-engineered turnkey system.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! HGX is the modular 8-GPU/NVSwitch building block supplied to OEMs (Dell, HPE, Lenovo, etc.), while DGX is NVIDIA's branded turnkey accelerated computing system."
       },
       {
         "q": "In an NVIDIA HGX/DGX 8-GPU node, all 8 GPUs are interconnected via high-bandwidth NVLink fabric managed by NVSwitch ASICs. Why is this NVLink/NVSwitch topology critical for multi-GPU training compared to connecting 8 GPUs purely over standard PCIe Gen5 switches?",
@@ -1323,8 +1323,8 @@
           "PCIe switches allow direct memory access between GPUs without OS drivers."
         ],
         "hint": "Consider CPU-free peer-to-peer GPU communication bandwidth and all-to-all topology.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVSwitch enables direct memory access between any two GPUs in the node without routing through host memory or PCIe bus bottlenecks."
       },
       {
         "q": "A cluster designer is choosing the scale-out fabric for a 1,024-GPU training cluster. They want ultra-low tail latency, native RDMA (Remote Direct Memory Access) transport without TCP/IP overhead, and adaptive routing to prevent congestion from all-reduce traffic. Which networking technology is traditionally the gold standard for high-performance AI scale-out fabrics, and what NVIDIA Ethernet innovation competes with it?",
@@ -1335,8 +1335,8 @@
           "Serial Attached SCSI (SAS) backplanes."
         ],
         "hint": "Look for InfiniBand vs. Spectrum-X.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! InfiniBand is the gold standard HPC/AI fabric, while NVIDIA Spectrum-X brings AI-optimized Ethernet performance (adaptive routing, congestion control) to enterprise Ethernet clusters."
       },
       {
         "q": "Your organization is deploying a RoCEv2 (RDMA over Converged Ethernet) fabric on standard Ethernet switches. Which prerequisite network configuration is mandatory on the switches and NICs to prevent packet loss under heavy AI training traffic bursts?",
@@ -1347,8 +1347,8 @@
           "Routing all RoCEv2 packets through a software NAT firewall."
         ],
         "hint": "RDMA over Ethernet requires a lossless fabric to avoid dropping packets when queues fill up.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! RoCEv2 requires a lossless Ethernet environment using PFC (IEEE 802.1Qbb) and ECN (RFC 3168) to pause or shape traffic before packet drops occur."
       },
       {
         "q": "In an NVIDIA SuperPOD deployment, NVIDIA BlueField DPUs are installed in the compute and storage nodes. What is the primary role of a BlueField DPU in an AI cluster architecture?",
@@ -1359,8 +1359,8 @@
           "To store persistent backup snapshots on magnetic tape."
         ],
         "hint": "\"DPU\" stands for Data Processing Unit; it offloads network, security, and storage services.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! BlueField DPUs act as a specialized DPU/SmartNIC combining ARM cores, hardware accelerators, and networking to free CPU/GPU cycles for AI workloads."
       },
       {
         "q": "An AI data engineering pipeline is bottlenecked reading petabytes of training dataset records from storage into GPU memory through the traditional POSIX file system path (Storage -> CPU RAM -> Bounce Buffer -> GPU VRAM). Which NVIDIA technology allows a direct DMA path between local/network NVMe storage and GPU memory?",
@@ -1371,8 +1371,8 @@
           "NVIDIA CUDA Unified Virtual Memory over USB 3.0."
         ],
         "hint": "Look for \"GPUDirect\" and direct path from storage controller to GPU VRAM.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! GPUDirect Storage bypasses host CPU bounce buffers by establishing a direct DMA path between storage and GPU memory."
       },
       {
         "q": "An enterprise wants to deploy an NVIDIA reference architecture blueprint for a turnkey AI data center pod with validated compute, networking (InfiniBand/Spectrum-X), storage, and software management scaled cleanly from 1 to 32+ racks. What are the two official NVIDIA architectural scaling tiers?",
@@ -1383,8 +1383,8 @@
           "NVIDIA vSphere-POD and Hyper-V-POD."
         ],
         "hint": "BasePOD vs SuperPOD.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! DGX BasePOD provides a flexible enterprise scaling blueprint, while DGX SuperPOD is the standardized, ultra-scale supercomputer blueprint."
       }
     ]
   },
@@ -1400,8 +1400,8 @@
           "CPUs lack hardware floating-point units entirely and emulate all vector math via software microcode."
         ],
         "hint": "Consider how a GPU Streaming Multiprocessor (SM) handles thousands of concurrent threads compared to a CPU core optimized for single-thread clock speed.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! GPUs maximize arithmetic density by dedicating silicon area to compute and wide memory buses rather than complex thread-control structures."
       },
       {
         "q": "Why is the operational performance profile of autoregressive Large Language Model (LLM) inference (decoding phase) predominantly memory-bandwidth-bound, whereas training is typically compute-bound?",
@@ -1412,8 +1412,8 @@
           "Inference workloads execute exclusively on the host CPU, bypassing GPU VRAM."
         ],
         "hint": "Apply the Roofline model: think about how many bytes of weights you must load from VRAM per token generated versus how many arithmetic operations you perform on those bytes.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Because every single token generation step requires reading the entire model parameters from HBM into on-chip SRAM for minimal FLOPs, memory bandwidth is the primary bottleneck."
       },
       {
         "q": "What is the primary architectural advantage of the Brain Floating Point (BF16) format over standard IEEE 754 half-precision (FP16) in deep learning training?",
@@ -1424,8 +1424,8 @@
           "BF16 preserves the exact same 8-bit exponent range as FP32, eliminating the underflow and overflow issues common in FP16 without requiring complex loss scaling."
         ],
         "hint": "Compare how bit allocation is split between the sign, exponent, and mantissa fields in FP32 versus FP16 and BF16. Which field determines the numerical range?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! By sharing FP32's 8-bit exponent width, BF16 avoids dynamic loss scaling while still halving memory and doubling Tensor Core throughput compared to FP32."
       },
       {
         "q": "What is the primary distinction between the CUDA Driver API and the CUDA Runtime API in the NVIDIA software stack?",
@@ -1437,7 +1437,7 @@
         ],
         "hint": "Think about convenience versus granular control: one API manages contexts explicitly, while the other abstracts context initialization for ease of use.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! The Runtime API simplifies development with automatic context initialization and implicit memory operations, while the Driver API offers explicit low-level control."
       },
       {
         "q": "Which optimization technique implemented by NVIDIA TensorRT involves combining adjacent neural network layers (such as Convolution, Bias, and ReLU) into a single GPU kernel to reduce HBM read/write traffic?",
@@ -1448,8 +1448,8 @@
           "Asynchronous CUDA Streams"
         ],
         "hint": "Instead of writing output tensors from a convolution to HBM just for the next activation function to immediately read them back, what fuses them into one pass?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Vertical and horizontal layer fusion combine operations into a single kernel pass, eliminating intermediate memory round-trips to HBM."
       },
       {
         "q": "How does NVIDIA Triton Inference Server's dynamic batching feature improve GPU utilization in production serving environments?",
@@ -1460,8 +1460,8 @@
           "It executes model inference exclusively on host CPU threads."
         ],
         "hint": "Imagine 10 users send single prompts to an API within a 5-millisecond window; dynamic batching groups them together before running inference.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Dynamic batching groups independent client requests into a larger batch to maximize hardware parallelism without requiring clients to send batched payloads."
       },
       {
         "q": "What is the primary value proposition of deploying foundation models using NVIDIA Inference Microservices (NIM)?",
@@ -1472,8 +1472,8 @@
           "NIM requires custom bare-metal C++ kernel writing for every new model architecture."
         ],
         "hint": "Think about containerized microservice standards combined with pre-tuned, high-throughput inference backends.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NIM encapsulates optimized inference engines and standard APIs into portable, containerized microservices ready for enterprise deployment."
       },
       {
         "q": "Which Python data science library in the NVIDIA RAPIDS ecosystem provides a GPU-accelerated DataFrame API designed as a drop-in drop-equivalent replacement for pandas?",
@@ -1484,8 +1484,8 @@
           "TensorRT"
         ],
         "hint": "Think of the first two letters representing CUDA and the next letters representing DataFrames.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! cuDF provides a pandas-like DataFrame API that executes on GPU memory using Apache Arrow columnar memory structures."
       },
       {
         "q": "What is the core structural difference between an NVIDIA HGX baseboard system and an NVIDIA DGX integrated appliance?",
@@ -1496,8 +1496,8 @@
           "DGX systems cannot be used in data center rack clusters."
         ],
         "hint": "Consider OEM integration vs. NVIDIA's proprietary turnkey server engineering.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! HGX provides the modular accelerated building block for OEM ecosystem partners, while DGX is NVIDIA's branded turnkey accelerated computing appliance."
       },
       {
         "q": "In an NVIDIA 8-GPU HGX/DGX node, why is the NVLink and NVSwitch interconnect fabric superior to standard PCIe Gen5 switches for multi-GPU training?",
@@ -1508,8 +1508,8 @@
           "NVSwitch is used exclusively for routing out-of-band IPMI sensor data."
         ],
         "hint": "Think about tensor-parallelism and pipeline-parallelism across 8 GPUs inside a single enclosure without CPU bottlenecks.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVSwitch allows any GPU in the node to communicate directly with any other GPU at terabit-per-second speeds without traversing the CPU or PCIe switch hierarchy."
       },
       {
         "q": "What distinct advantage does NVIDIA Spectrum-X provide for enterprise AI clusters compared to standard traditional Ethernet?",
@@ -1520,8 +1520,8 @@
           "It is physically incompatible with Linux kernel network interfaces."
         ],
         "hint": "Think of bringing InfiniBand-grade congestion management and adaptive routing to Ethernet-based data centers.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Spectrum-X enhances standard Ethernet with InfiniBand-like telemetry, adaptive routing, and performance isolation for AI workloads."
       },
       {
         "q": "When configuring a RoCEv2 (RDMA over Converged Ethernet) network for distributed GPU training, which two Ethernet features are mandatory on switches and network adapters to prevent packet loss during congestion?",
@@ -1532,8 +1532,8 @@
           "IPsec encryption and NAT traversal"
         ],
         "hint": "One feature pauses traffic at the link layer when buffers fill, and the other marks congestion flags on IP headers before queues overflow.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! PFC provides lossless link-level pause frames per priority queue, while ECN signals congestion early to end-hosts to throttle send rates without dropping packets."
       },
       {
         "q": "What is the primary role of an NVIDIA BlueField Data Processing Unit (DPU) inside an AI supercomputing node?",
@@ -1545,7 +1545,7 @@
         ],
         "hint": "Think of a \"DPU\" as an on-card computer dedicated to infrastructure tasks (networking, security, storage) so the host CPU/GPU doesn't waste cycles on them.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! BlueField DPUs combine embedded ARM cores and hardware accelerators to handle infrastructure services, freeing 100% of host CPU/GPU cycles for AI computation."
       },
       {
         "q": "How does NVIDIA GPUDirect Storage (GDS) accelerate I/O throughput between storage subsystems and GPU VRAM?",
@@ -1556,8 +1556,8 @@
           "It converts SSD storage blocks into optical wireless signals."
         ],
         "hint": "Where does the traditional POSIX file read go? Storage -> CPU RAM -> GPU VRAM. GDS cuts out the middleman (CPU RAM).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! GDS eliminates CPU memory copies, dramatically lowering latency and CPU overhead when loading massive training datasets."
       },
       {
         "q": "What distinguishes an NVIDIA DGX BasePOD blueprint from an NVIDIA DGX SuperPOD blueprint?",
@@ -1568,8 +1568,8 @@
           "SuperPOD does not use InfiniBand or Spectrum-X networking."
         ],
         "hint": "Think of \"Base\" as a flexible modular starting block for enterprise vs \"Super\" as a hyperscale turnkey reference supercomputer design.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! SuperPOD defines a strict, massive-scale reference topology with dedicated scaling ratios, while BasePOD offers modular enterprise flexibility."
       },
       {
         "q": "Why are modern high-density AI server platforms (such as NVIDIA Blackwell B200 / NVL72 racks) increasingly adopting direct-to-chip or immersion liquid cooling instead of traditional air cooling?",
@@ -1580,8 +1580,8 @@
           "Air cooling is illegal in modern data centers."
         ],
         "hint": "Consider the thermal envelope (kW per rack) of a 72-GPU NVLink domain like NVL72.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Modern multi-GPU racks dissipate over 100 kilowatts, making liquid cooling mandatory to maintain safe junction temperatures and peak clock speeds."
       },
       {
         "q": "What is the primary function of the NVIDIA GPU Operator in a Kubernetes cluster?",
@@ -1592,8 +1592,8 @@
           "It runs virtual machines instead of containers."
         ],
         "hint": "Think of Helm-driven automation that installs GPU drivers, Container Toolkit, and Kubernetes Device Plugins automatically on worker nodes.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! The GPU Operator automates node provisioning and lifecycle management of GPU drivers and container runtimes on Kubernetes clusters."
       },
       {
         "q": "What is the fundamental difference between NVIDIA Multi-Instance GPU (MIG) and GPU Time-Slicing?",
@@ -1604,8 +1604,8 @@
           "Neither feature supports containerized workloads in Kubernetes."
         ],
         "hint": "Ask yourself: does the feature slice physical silicon (SMs + memory controllers) or does it rapidly share the whole GPU in time slices?",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! MIG provides true hardware-level isolation, QoS, and fault containment per slice, whereas Time-Slicing context-switches processes on the shared GPU."
       },
       {
         "q": "What is the purpose of NVIDIA Data Center GPU Manager (DCGM) in an AI data center?",
@@ -1616,8 +1616,8 @@
           "It encrypts network packets traveling over InfiniBand switches."
         ],
         "hint": "Think about Prometheus scraping GPU temperature, power draw, XID errors, and utilization metrics in real time.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! DCGM (paired with DCGM Exporter and Prometheus/Grafana) is the industry standard for monitoring GPU utilization, ECC errors, thermal throttles, and health checks."
       },
       {
         "q": "When configuring a Slurm Workload Manager script to allocate GPUs on an enterprise cluster, which generic resource (GRES) flag is used to request 4 NVIDIA GPUs of a specific type (e.g., h100)?",
@@ -1628,8 +1628,8 @@
           "#SBATCH --cuda-devices=4"
         ],
         "hint": "Look for the Slurm directive starting with --gres=gpu:....",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Slurm uses the Generic Resource (--gres) parameter formatted as gpu:[type]:count to allocate specific GPU models and counts to a job."
       }
     ]
   },
@@ -1645,8 +1645,8 @@
           "10GbE RoCEv2 Ethernet"
         ],
         "hint": "Think about the technology that creates a high-bandwidth mesh directly linking the GPUs inside a single DGX server chassis (scale-up vs. scale-out).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVIDIA NVLink provides high-bandwidth, low-latency direct GPU-to-GPU interconnects within a multi-GPU node (such as a DGX system), enabling unified memory space and high-speed peer-to-peer communication."
       },
       {
         "q": "During distributed multi-node LLM training, gradient synchronization across nodes generates massive East-West traffic with strict latency and zero-packet-drop requirements. Which networking technology and protocol suite is standard for high-performance scale-out NVIDIA AI SuperPODs?",
@@ -1657,8 +1657,8 @@
           "USB 4.0 Daisy Chaining"
         ],
         "hint": "Look for the technology that enables Remote Direct Memory Access (RDMA) so network cards can write directly to GPU memory without CPU or OS kernel stalls.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! InfiniBand and RoCE utilize Remote Direct Memory Access (RDMA) to bypass the host OS kernel and move data directly between GPU memories across nodes with minimal latency."
       },
       {
         "q": "An infrastructure administrator wants to offload software-defined networking, zero-trust security inspection, and storage virtualization tasks from the host CPU cores of an AI server. Which NVIDIA hardware component is specifically engineered for this purpose?",
@@ -1670,7 +1670,7 @@
         ],
         "hint": "Recall the device that acts as a \"data center on a chip\" combining high-speed network interfaces with an embedded multi-core CPU.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NVIDIA BlueField DPUs integrate multi-core ARM processors and hardware accelerators to offload networking, security, and storage services from the primary host CPUs."
       },
       {
         "q": "When architecting an AI cluster, what is the primary distinction between \"scale-up\" and \"scale-out\" design strategies?",
@@ -1681,8 +1681,8 @@
           "Scale-up refers to cloud-only billing models, whereas scale-out refers strictly to on-premises bare-metal setups."
         ],
         "hint": "Differentiate between expanding capacity inside one box (vertical) versus linking multiple boxes together over a network (horizontal).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Scale-up focuses on tight integration inside a single chassis (e.g., 8 GPUs via NVLink), while scale-out aggregates multiple chassis across a high-speed network fabric."
       },
       {
         "q": "A data center facility is upgrading from air-cooled 10kW server racks to high-density racks housing multi-GPU systems that draw over 40kW per rack. Traditional raised-floor CRAC air cooling is insufficient. Which thermal management solution is most effective for modern high-density AI nodes?",
@@ -1693,8 +1693,8 @@
           "Increasing ambient server room temperature to 30°C"
         ],
         "hint": "High-density AI hardware relies on liquids circulating directly over cold plates or immersing boards rather than relying solely on forced air.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! Liquid cooling transfers heat significantly more efficiently than air, making it mandatory for high-density modern GPU platforms like NVIDIA Blackwell and Hopper systems."
       },
       {
         "q": "An enterprise has strict data sovereignty requirements and a predictable 24/7 internal workload training large proprietary models on sensitive patient data. Which deployment model typically provides the best long-term Total Cost of Ownership (TCO) and compliance control?",
@@ -1705,8 +1705,8 @@
           "Public cloud serverless functions (AWS Lambda without GPU)"
         ],
         "hint": "Consider predictable 24/7 utilization and data sovereignty where owning hardware on-premises avoids continuous metered cloud compute charges.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! For continuous 24/7 heavy utilization with strict data locality and compliance, dedicated on-premises infrastructure often yields a lower TCO than perpetual cloud per-hour fees."
       },
       {
         "q": "During deep learning training, if the parallel file system feeding training datasets to GPU local memory has insufficient I/O throughput, what symptom is most commonly observed on the GPUs?",
@@ -1717,8 +1717,8 @@
           "Automatic reduction in model parameter count"
         ],
         "hint": "Ask what happens when the fast compute engine is kept waiting for data to arrive from storage.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! When data loaders cannot stream batches fast enough from storage to GPU memory, the GPU compute units sit idle waiting for input data."
       },
       {
         "q": "What does Power Usage Effectiveness (PUE) measure in a data center environment?",
@@ -1729,8 +1729,8 @@
           "The maximum wattage rating of an individual NVIDIA DGX H100 power supply"
         ],
         "hint": "PUE compares how much extra energy the building (cooling, lighting, power conversion) uses compared to what goes into the servers.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! PUE = Total Facility Energy / IT Equipment Energy. A PUE closer to 1.0 indicates higher facility cooling/overhead efficiency."
       },
       {
         "q": "An administrator evaluates a server architecture where GPUs communicate via standard PCIe Gen5 slots versus one utilizing NVIDIA NVLink. What key advantage does NVLink provide over traditional PCIe?",
@@ -1741,8 +1741,8 @@
           "NVLink only operates over long-haul fiber optic cables outside the data center."
         ],
         "hint": "Think about bypassing the CPU PCIe root complex for direct GPU-to-GPU memory exchange.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! NVLink bypasses the CPU root complex to provide direct high-speed point-to-point and switched bandwidth between GPUs."
       },
       {
         "q": "How do Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) relate hierarchically?",
@@ -1753,8 +1753,8 @@
           "Deep Learning requires only CPUs, whereas AI and ML require GPUs."
         ],
         "hint": "Visualize concentric circles: the outer field is AI, inside that is ML, and inside ML is Deep Learning.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Artificial Intelligence is the overarching field; Machine Learning uses statistical learning methods; Deep Learning uses deep neural networks capable of automatic feature extraction."
       },
       {
         "q": "Why are NVIDIA GPUs fundamentally better suited for Deep Learning training workloads than general-purpose multi-core x86 CPUs?",
@@ -1765,8 +1765,8 @@
           "GPUs do not require any system RAM or caching."
         ],
         "hint": "Compare CPU latency-oriented few cores vs. GPU throughput-oriented thousands of parallel cores.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! CPUs are optimized for low-latency sequential tasks with a few powerful cores, whereas GPUs excel at massively parallel throughput for matrix multiplication."
       },
       {
         "q": "What specialized hardware unit inside modern NVIDIA Tensor Core GPUs (such as Hopper or Blackwell) accelerates mixed-precision matrix multiply-accumulate (MMA) operations?",
@@ -1777,8 +1777,8 @@
           "NVLink Packet Schedulers"
         ],
         "hint": "The specialized programmable math accelerator is named directly after the mathematical object (tensor) used in deep learning.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Tensor Cores perform fused matrix multiply-accumulate operations in a single clock cycle, greatly accelerating deep learning training and inference."
       },
       {
         "q": "Which low-level software platform and programming model provided by NVIDIA enables developers to use C, C++, and Python to program GPUs directly for general-purpose parallel computing?",
@@ -1789,8 +1789,8 @@
           "NVIDIA DCGM"
         ],
         "hint": "It is the foundational acronym for NVIDIA's parallel computing architecture (Compute Unified Device Architecture).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! CUDA is NVIDIA's parallel computing platform and programming model that allows developers to write software running on GPU accelerators."
       },
       {
         "q": "An ML Engineer has trained a large transformer model in PyTorch and wants to deploy it to production with minimal latency and reduced memory footprint by fusing layers and quantizing weights to FP8. Which NVIDIA software tool should they use?",
@@ -1801,8 +1801,8 @@
           "NVIDIA TensorRT"
         ],
         "hint": "Look for the NVIDIA engine specialized in high-performance model optimization and quantization specifically for production inference.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 3,
+        "explanation": "Correct! TensorRT is NVIDIA's deep learning inference optimizer and runtime that performs kernel fusion, precision calibration (FP8/INT8), and runtime execution tuning."
       },
       {
         "q": "What is a primary operational benefit of deploying deep learning models using NVIDIA Triton Inference Server in production?",
@@ -1813,8 +1813,8 @@
           "It automatically generates synthetic training datasets from scratch."
         ],
         "hint": "Think about serving multiple AI models concurrently and grouping incoming inference requests dynamically into batches.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Triton provides a standardized serving engine that handles dynamic batching, multi-model concurrency, and seamless integration with various ML frameworks."
       },
       {
         "q": "During multi-GPU and multi-node deep learning training, gradient synchronization relies heavily on collective communication primitives like AllReduce and AllGather. Which NVIDIA library optimizes these routines across NVLink and InfiniBand?",
@@ -1826,7 +1826,7 @@
         ],
         "hint": "The acronym stands for NVIDIA Collective Communications Library.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! NCCL provides multi-GPU and multi-node collective communication primitives optimized for NVLink, NVSwitch, and InfiniBand fabrics."
       },
       {
         "q": "What is the core function of NVIDIA NIM (NVIDIA Inference Microservice)?",
@@ -1837,8 +1837,8 @@
           "A distributed file system protocol for checkpointing large weights"
         ],
         "hint": "NIM stands for NVIDIA Inference Microservices, wrapping foundation models into portable containers.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! NVIDIA NIM accelerates the deployment of generative AI models by packaging them into containerized microservices with standardized enterprise APIs and optimized runtimes."
       },
       {
         "q": "How do infrastructure requirements typically differ between a Deep Learning Training workload and a production Inference workload?",
@@ -1849,8 +1849,8 @@
           "Training can be executed entirely without floating-point math support."
         ],
         "hint": "Contrast gradient updates and massive multi-node checkpointing in training against low-latency prediction serving in inference.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Training is compute- and communication-heavy across large clusters, while inference focuses on fast time-to-first-token/response, serving concurrency, and cost-per-query efficiency."
       },
       {
         "q": "What is the primary benefit of adopting lower-precision data formats (such as FP8 or INT8) compared to standard FP32 in modern AI workloads?",
@@ -1862,7 +1862,7 @@
         ],
         "hint": "Using fewer bits per number allows you to fit larger batches and move data faster through memory.",
         "correctIndex": 0,
-        "explanation": ""
+        "explanation": "Correct! Lower precision formats reduce memory footprint and increase Tensor Core matrix operation throughput significantly."
       },
       {
         "q": "An administrator wants to inspect real-time GPU utilization, VRAM usage, power draw, and active processes on a Linux host. Which command-line utility is built into the NVIDIA driver for quick inspection?",
@@ -1873,8 +1873,8 @@
           "lspci -v"
         ],
         "hint": "The command ends with -smi (System Management Interface).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 2,
+        "explanation": "Correct! nvidia-smi (NVIDIA System Management Interface) is the standard command-line diagnostic and monitoring utility for NVIDIA GPUs."
       },
       {
         "q": "In an enterprise HPC/AI cluster, users submit multi-node batch jobs that require specific GPU counts, network topology placement, and exclusive access to compute nodes. Which workload manager is most commonly deployed to handle this?",
@@ -1885,8 +1885,8 @@
           "Nginx Ingress Controller"
         ],
         "hint": "Look for the ubiquitous HPC/AI cluster scheduler starting with 'S' (Slurm).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Slurm is the industry-standard open-source cluster management and job scheduling system for HPC and large-scale AI training clusters."
       },
       {
         "q": "When running GPU-accelerated workloads on Kubernetes, what is the role of the NVIDIA GPU Operator?",
@@ -1897,8 +1897,8 @@
           "It restricts GPU containers from accessing network interfaces."
         ],
         "hint": "Think of Kubernetes Operators that automatically install and update NVIDIA drivers and device plugins on worker nodes.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! The NVIDIA GPU Operator uses Kubernetes Operator patterns to automate the lifecycle of all NVIDIA software components required to run GPU pods."
       },
       {
         "q": "An organization wants to physically partition a single enterprise GPU (such as an NVIDIA A100 or H100) into up to 7 isolated hardware instances with dedicated compute, memory, and fault isolation. Which NVIDIA technology provides this capability?",
@@ -1909,8 +1909,8 @@
           "NVIDIA Nsight Compute"
         ],
         "hint": "The feature is abbreviated as MIG (Multi-Instance GPU).",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! MIG allows a GPU to be securely partitioned into multiple (up to 7) independent GPU instances with dedicated memory and fault isolation."
       },
       {
         "q": "What is the primary operational advantage of using an AI workload scheduler and GPU orchestrator like NVIDIA Run:ai over a basic static queue?",
@@ -1921,8 +1921,8 @@
           "It disables all GPU telemetry to save CPU cycles."
         ],
         "hint": "Run:ai focuses on intelligent GPU virtualization, fractional sharing, and dynamic queue multiplexing.",
-        "correctIndex": 0,
-        "explanation": ""
+        "correctIndex": 1,
+        "explanation": "Correct! Run:ai provides fractional GPU allocation (over-subscription/dynamic slicing) and advanced fair-share scheduling to maximize cluster utilization."
       }
     ]
   }
